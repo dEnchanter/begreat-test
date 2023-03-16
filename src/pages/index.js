@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,8 +15,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1 className='text-red-500'> tailwindcss is working </h1>
+      <main >
+       <div className='flex justify-between items-center px-10 py-5'>
+          <div className='w-[30%]'>
+            <Link href={'/'} >Logo</Link>
+          </div>
+          <div className='w-[80%]'>
+            <ul className='m-0 p-0 transform-none flex justify-end gap-8 '>
+              <li className=''>
+                <Link href={'/about'}>About</Link>
+              </li>
+              <li><Link href={'/service'}>Service</Link></li>
+              <li><Link href={'/login'}>Login</Link></li>
+              
+            </ul>
+          </div>
+       </div>
       </main>
     </>
   )
