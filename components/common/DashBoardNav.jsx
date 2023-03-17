@@ -8,11 +8,11 @@ import { FaUser } from 'react-icons/fa'
 export default function DashBoardNav() {
   return (
     <nav>
-        <div className='flex justify-between items-center px-5 py-5 shadow-lg'>
+        <div className='flex justify-between items-center px-5 py-5 shadow-xl'>
             <div>
                 <FallBackImage
                 src={'/Images/Dashboard/logo.png'}
-                width={189}
+                width={199}
                 height={59}
                 />
             </div>
