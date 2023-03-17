@@ -1,17 +1,26 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
+import { useRouter } from 'next/router'
+import Layout from '../../components/Layout'
 
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const router =useRouter();
   return (
-    <div>
+    <Layout>
       <Head>
         <title> Be-great Finance</title>
       </Head>
       
-      <h1> Hello World</h1>
-    </div>
+      <main>
+        <div id='homeDiv' className='border border-sky-500 h-[50vh] flex items-center justify-center'>Home</div>
+        <div className='h-[50vh] flex items-center justify-center'>Service</div>
+        <div className='h-[50vh] flex items-center justify-center'>About</div>
+        <div className='h-[50vh] flex items-center justify-center'>Chahah</div>
+        <div id='#know' className='h-[50vh] flex items-center justify-center'>Know</div>
+        <div id="targetDiv">This is the target div on Page 2</div>
+
+      </main>
+    </Layout>
   )
 }

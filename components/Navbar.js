@@ -10,6 +10,10 @@ export default function Navbar({ fixed }) {
     setNavbarOpen(!navbarOpen);
   };
 
+  function scrollToDiv() {
+    var targetDiv = document.getElementById("targetDiv");
+    targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   return (
     <>
@@ -42,12 +46,13 @@ export default function Navbar({ fixed }) {
     >
       <ul
         onClick={handleNav}
-        className="flex flex-col lg:flex-row list-none lg:ml-auto"
+        className="flex gap-5 flex-col lg:flex-row list-none lg:ml-auto"
       >
         <li className="nav-item">
           <Link
             className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-            href="/about"
+            href="/#homeDiv"
+            scroll={true}
           >
             About
           </Link>
@@ -56,7 +61,8 @@ export default function Navbar({ fixed }) {
         <li className="nav-item">
           <Link
             className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-            href="/service"
+            href="/#targetDiv"
+            scroll={false}
           >
             Service
           </Link>
