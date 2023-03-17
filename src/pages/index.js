@@ -11,7 +11,7 @@ export default function Home() {
         <title> Be-great Finance</title>
       </Head>
       
-      <h1> Hello World</h1>
+      <h1 className='mt-20'> Hello World</h1>
     </div>
   )
 }

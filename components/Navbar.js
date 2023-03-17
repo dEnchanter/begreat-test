@@ -3,6 +3,7 @@ import Link from "next/link";
 import {AiOutlineMenu,AiOutlineClose} from "react-icons/ai"
 import { useState } from "react";
 
+
 export default function Navbar({ fixed }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
  
@@ -13,24 +14,19 @@ export default function Navbar({ fixed }) {
 
   return (
     <>
-     <nav className="fixed w-full top-0 z-50 flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500 mb-3">
-  <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-    <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-      <a
-        className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-        href="/"
-      >
-        Logo
-      </a>
+     <nav className="fixed w-full top-0 z-50 flex flex-wrap items-center justify-between lg:px-2 border-2 lg:py-3  mb-3">
+  <div className="container lg:px-4 mx-auto flex flex-wrap items-center justify-between">
+    <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
+     <img src="/images/Logo.png" alt="logo" className="h-10 "/>
       <button
-        className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
         type="button"
         onClick={() => setNavbarOpen(!navbarOpen)}
       >
         {navbarOpen ? (
-          <AiOutlineClose className="transition ease-in duration-500" />
+          <AiOutlineClose className="transition ease-in duration-500 text-black" />
         ) : (
-          <AiOutlineMenu className="transition ease-in duration-500" />
+          <AiOutlineMenu className="transition ease-in duration-500 text-black" />
         )}
       </button>
     </div>
@@ -42,11 +38,11 @@ export default function Navbar({ fixed }) {
     >
       <ul
         onClick={handleNav}
-        className="flex flex-col lg:flex-row list-none lg:ml-auto"
+        className="flex flex-col lg:flex-row list-none bg-white w-full lg:w-fit space-x-4 lg:ml-auto"
       >
         <li className="nav-item">
           <Link
-            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
             href="/about"
           >
             About
@@ -55,7 +51,7 @@ export default function Navbar({ fixed }) {
 
         <li className="nav-item">
           <Link
-            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
             href="/service"
           >
             Service
