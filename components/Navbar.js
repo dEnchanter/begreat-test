@@ -17,7 +17,9 @@ export default function Navbar({ fixed }) {
      <nav className="fixed w-full top-0 z-50 flex flex-wrap items-center justify-between lg:px-2 border-2 lg:py-3  mb-3">
   <div className="container lg:px-4 mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
-     <img src="/images/Logo.png" alt="logo" className="h-10 "/>
+    <Link href='/'>
+       <img src="/images/Logo.png" alt="logo" className="h-10 "/> 
+    </Link>
       <button
         className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
         type="button"
