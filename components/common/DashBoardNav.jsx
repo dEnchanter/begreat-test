@@ -8,7 +8,7 @@ import { FaUser } from 'react-icons/fa'
 export default function DashBoardNav() {
   return (
     <nav>
-        <div className='flex justify-between items-center px-5 py-5 shadow-xl'>
+        <div className='flex justify-between items-center px-3 xl:px-5 py-5 shadow-xl'>
             <div>
                 <FallBackImage
                 src={'/Images/Dashboard/logo.png'}
@@ -16,7 +16,7 @@ export default function DashBoardNav() {
                 height={59}
                 />
             </div>
-            <div className='flex items-center gap-7'>
+            <div className='flex items-center gap-3 xl:gap-7'>
                 <div className='bg-[#F4F4F4] px-[5px] rounded-xl flex gap-1 items-center'>
                 <div className='py-1 px-2 bg-white  rounded-lg text-center'><BsSun size={18} color='#292D32'/></div>
                 <div className='p-2   rounded-lg'><HiOutlineMoon size={18} color='#929292'/></div>

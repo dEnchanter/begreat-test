@@ -10,11 +10,15 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^1.4.2",
+    "animate.css": "^4.1.1",
+    "babel-plugin-styled-components": "^2.0.7",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropdown": "^1.11.0",
     "react-hash-scroll": "^1.4.7",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
