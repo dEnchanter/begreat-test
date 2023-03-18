@@ -9,7 +9,7 @@ export default function DropDownItem({options=[],onChange,placeholder,value}) {
         arrowClosed={<span className="arrow-closed"><BsChevronDown/></span>}
         arrowOpen={<span className="arrow-open" ><BsChevronUp/></span>}
         options={options}
-        onChange={(e) => console.log(e)}
+        onChange={onChange}
         value={value}
         placeholder={placeholder||"Select"}
       />
@@ -24,8 +24,9 @@ const DropDownItemStyle = styled.div`
     display:flex;
     gap:5px;
     align-items: center;
-    background: #FAFAFA;
+    background: var(--dropDownBg);
     border-color: #E9ECEB;
+    color:var(--foreground);
 }
 
     

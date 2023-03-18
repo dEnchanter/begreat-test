@@ -810,6 +810,11 @@ nanoid@^3.3.4:
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
+next-themes@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.2.1.tgz#0c9f128e847979daf6c67f70b38e6b6567856e45"
+  integrity sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==
+
 next@13.2.4:
   version "13.2.4"
   resolved "https://registry.npmjs.org/next/-/next-13.2.4.tgz"
@@ -970,6 +975,13 @@ quick-lru@^5.1.1:
   version "5.1.1"
   resolved "https://registry.npmjs.org/quick-lru/-/quick-lru-5.1.1.tgz"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
+
+react-data-table-component@^7.5.3:
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/react-data-table-component/-/react-data-table-component-7.5.3.tgz#a008b4c281574cc1a81315e2c1b34107b5d18fe0"
+  integrity sha512-JhatRTgThAAa1HobPaPmkNPsjLT6+fnMIdtcXRCy+0bSYN7XJnTgob9Qyi4bjHh/8tMPTHtxZCV/TKiPwRvFMA==
+  dependencies:
+    deepmerge "^4.2.2"
 
 react-dom@18.2.0, react-dom@^18.2.0:
   version "18.2.0"
