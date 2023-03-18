@@ -20,7 +20,7 @@ export default function Navbar({ fixed }) {
   return (
     <>
      <nav className="fixed w-full top-0 z-50 flex flex-wrap items-center justify-between bg-white   lg:py-3   mb-3">
-  <div className="container lg:px-14 bg-white px-4    xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
+  <div className="container lg:px-20 bg-white px-4    xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
        <img src="/images/homepage/Logo.png" alt="logo" className="h-10 "/> 

@@ -76,20 +76,20 @@ const HowItWorks = () => {
             <p> Our powerful dashboard provides real-time insights and analytics, helping you make informed decisions about your investments </p>
           </div>
 
-          <div className='grid  gap-10 lg:grid-cols-2 lg:px-4 mt-10 mb-10 '>
-              <div className='w-fit  flex space-x-2'> 
+          <div className='grid  lg:gap-x-20 gap-y-6 lg:grid-cols-2 lg:px-10 lg:mx-auto w-fit mt-10 mb-10 '>
+              <div className='w-fit lg:w-[28rem] flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>
 
                 <div> 
                   <h1 className='text-[0.95rem]  font-semibold'> Multi-timeframe Analysis </h1>
-                  <p className='text-[0.8rem]'> Analyze an asset's price movement across different timeframes to gain a more comprehensive view of its trend and momentum. </p>
+                  <p className='text-[0.8rem]  '> Analyze an asset's price movement across different timeframes to gain a more comprehensive view of its trend and momentum. </p>
                 </div>
 
               </div>
 
-              <div className='w-fit  flex space-x-2'> 
+              <div className='w-fit lg:w-[28rem] flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>
@@ -101,7 +101,7 @@ const HowItWorks = () => {
 
               </div>
 
-              <div className='w-fit  flex space-x-2'> 
+              <div className='w-fit lg:w-[28rem] flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>
@@ -113,7 +113,7 @@ const HowItWorks = () => {
 
               </div>
 
-              <div className='w-fit  flex space-x-2'> 
+              <div className='w-fit lg:w-[28rem] flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>

@@ -5,8 +5,8 @@ import { Container } from '../styles/Container'
 
 const Faqs = () => {
   return (
-   <Container> 
-         <div className=' lg:flex  justify-between '> 
+   <Container className=''> 
+         <div className=' lg:flex lg:px-10 justify-between '> 
            <div className='lg:w-[30%] w-fit mx-auto  lg:mx-0 text-center lg:text-start '> 
                 <h1 className='font-bold text-2xl '> Frequently asked <br/> questions </h1>
                 <p className='text-sm'> Can’t find the answer you’re looking for? Reach out to our customer support team. </p>
