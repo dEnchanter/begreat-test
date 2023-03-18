@@ -4,7 +4,7 @@ import React from 'react'
 const HowItWorks = () => {
   return (
     <Container id='how-it-works'>
-      <div  className=' border-2 pt-10'>
+      <div  className='  pt-10'>
           <div className='text-center '> 
             <h1> how it works </h1>
             <h1> Learn More About theProcess </h1>
@@ -76,8 +76,8 @@ const HowItWorks = () => {
             <p> Our powerful dashboard provides real-time insights and analytics, helping you make informed decisions about your investments </p>
           </div>
 
-          <div className='grid gap-10 lg:grid-cols-2 lg:px-8 mt-10 mb-10 border-2'>
-              <div className='w-fit flex space-x-2'> 
+          <div className='grid  gap-10 lg:grid-cols-2 lg:px-4 mt-10 mb-10 '>
+              <div className='w-fit  flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>
@@ -89,7 +89,7 @@ const HowItWorks = () => {
 
               </div>
 
-              <div className='w-fit flex space-x-2'> 
+              <div className='w-fit  flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>
@@ -101,7 +101,7 @@ const HowItWorks = () => {
 
               </div>
 
-              <div className='w-fit flex space-x-2'> 
+              <div className='w-fit  flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>
@@ -113,7 +113,7 @@ const HowItWorks = () => {
 
               </div>
 
-              <div className='w-fit flex space-x-2'> 
+              <div className='w-fit  flex space-x-2'> 
                 <div>
                   <img className='cover w-16' src='./images/homepage/main.png' alt='icon' />
                 </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import {AiOutlineMenu,AiOutlineClose} from "react-icons/ai"
 import { useState } from "react";
+import { Button } from "./styles/Button";
 
 
 export default function Navbar({ fixed }) {
@@ -44,9 +45,10 @@ export default function Navbar({ fixed }) {
     >
       <ul
         onClick={handleNav}
-        className="flex gap-5 flex-col lg:flex-row list-none lg:ml-auto"
+        className="flex  lg:space-x-[9rem] lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
       >
-        <li className="nav-item">
+        <div className="flex lg:space-x-4 flex-col lg:flex-row mt-4 lg:mt-0 "> 
+          <li className="nav-item">
           <Link
             className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
             href="/#home"
@@ -85,6 +87,12 @@ export default function Navbar({ fixed }) {
             Pricing
           </Link>
         </li>
+        </div>
+
+        <div className="flex lg:space-x-4  lg:items-center flex-col lg:flex-row "> 
+          <h1 className="mt-2 lg:mt-0"> Login </h1>
+          <Button className="px-3 mt-4 lg:mt-0"> Get Started </Button>
+        </div>
       </ul>
     </div>
   </div>
