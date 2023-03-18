@@ -77,11 +77,11 @@ export default function DashBoardHome() {
             <div>
               <ButtonComp
                 btnText={
-                  <span className="flex items-center">
+                  <span className="flex items-center text-white">
                     <HiPlus className="mr-3" color="white" /> Watchlist
                   </span>
                 }
-                btnTextClassName="rounded-3xl px-8 font-semibold py-[10px] btnWaitlist "
+                btnTextClassName="rounded-3xl px-8 font-semibold  py-[10px] btnWaitlist "
               />
             </div>
           </div>
@@ -218,7 +218,7 @@ export default function DashBoardHome() {
                   <ButtonComp
                     btnTextClassName={"rounded-md btn2"}
                     btnText={
-                      <span className="text-[13px]">
+                      <span className="text-[13px] text-white">
                         Current Time Change(%):{" "}
                         <span className="text-[#50AF95]">5min</span>
                       </span>
@@ -241,30 +241,32 @@ export default function DashBoardHome() {
               {/*  */}
               <div className="text-[#EA3943] p-2 font-bold borderColor border-[1px] rounded-md mb-5">Watchlist 5m Average (%) Change: -8%</div>
               {/*  */}
-              <div class="overflow-x-auto whitespace-no-wrap">
-  <table class="table-fixed">
-  <thead>
-    <tr className="text-[14px] justify-between flex">
-      <th>Symbol</th>
-      <th>Price</th>
-      <th>Pulse</th>
-      <th>Shift</th>
-      <th>Change</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CRV/USDT</td>
-      <td>$0.096</td>
-      <td><div className="w-[20px] h-[10px] bg-[#26A17B]"></div></td>
-      <td><div className="w-[20px] h-[10px] bg-[#26A17B]"></div></td>
-      <td>-34.5%</td>
-      
-    </tr>
-  
-  </tbody>
-</table>
+              <div class="overflow-x-auto whitespace-no-wrap bg-white ">
+                <div className="flex justify-between items-center tableHeaderText text-[13px] mb-3 borderColor border-b-[1px] pb-2">
+                  <div>Symbol</div>
+                  <div>Price</div>
+                  <div>Pulse</div>
+                  <div>Shift</div>
+                  <div>Change</div>
+                </div>
+                <div className="flex justify-between items-center  text-[14px] borderColor border-b-[1px] pb-3 mb-3">
+                  <div>CRV/<br/>USDT</div>
+                  <div>$0.096</div>
+                  <div> <div className="w-[20px] h-[10px] bg-[#EA3943]"></div></div>
+                  <div><div className="w-[20px] h-[10px] bg-[#26A17B]"></div></div>
+                  <div> <div className="text-[#EA3943] font-semibold">-34.5%</div></div>
+                </div>
+                {/*  */}
+                <div className="flex justify-between items-center  text-[14px] borderColor border-b-[1px] pb-3 mb-3">
+                  <div>CRV/<br/>USDT</div>
+                  <div>$0.096</div>
+                  <div> <div className="w-[20px] h-[10px] bg-[#EA3943]"></div></div>
+                  <div><div className="w-[20px] h-[10px] bg-[#26A17B]"></div></div>
+                  <div> <div className="text-[#EA3943] font-semibold">-34.5%</div></div>
+                </div>
             </div>
+            {/*  */}
+          
             </div>
           </div>
         </div>

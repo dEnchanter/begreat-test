@@ -4,137 +4,183 @@
     --background1: white;
     --foreground: black;
     --foreground1: white;
-    --primary:#2B2C3B;
-    --primaryText:#2B2C3B;
-    --secondary:#0A0118;
-    --btnWaitlist:#0A0118;
-    --btn2:#0A0118;
-    --text2:#475467;
-    --text3:#475467;
-    --gradient2:#EA3943;
-    --modeBackground:#F4F4F4;
-    --modeIconBackSelect:#FFFFFF;
-    --iconColorBg1:#EFEFEF;
-    --borderColor:#E9ECEB;
-    --textI:#080542;
-    --gray:#545454;
-    --priceText:#545454;
-    --dropDownBg:#FAFAFA;
-    --iconColor:#101828;
-    --bgList :#fff;
-    --List1:#EA3943;
-    --List2:#26A17B;
+    --primary: #2B2C3B;
+    --primaryText: #2B2C3B;
+    --secondary: #0A0118;
+    --btnWaitlist: #0A0118;
+    --btn2: #0A0118;
+    --text2: #475467;
+    --text3: #475467;
+    --textII:#fff;
+    --gradient2: #EA3943;
+    --modeBackground: #F4F4F4;
+    --modeIconBackSelect: #FFFFFF;
+    --iconColorBg1: #EFEFEF;
+    --borderColor: #E9ECEB;
+    --borderColorI: #D2D3D9;
+    --textI: #080542;
+    --gray: #545454;
+    --priceText: #545454;
+    --tableHeaderText: #545454;
+    --dropDownBg: #FAFAFA;
+    --iconColor: #101828;
+    --bgList: #fff;
+    --List1: #EA3943;
+    --List2: #26A17B;
     --gradient1: linear-gradient(180deg, #009E61 -29.17%, rgba(22, 199, 130, 0) 118.38%);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
-  }
-  
-  [data-theme='dark'] {
+    --text-sm:14px;
+}
+
+[data-theme='dark'] {
     --background: black;
     --foreground: white;
     --foreground1: #19171C;
-    --btnWaitlist:linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
-    --borderColor:#363638;
-    /* --primary:#fff; */
-    --primaryText:#fff;
-    --btn2:#2D2C2F;
-    --text2:#D1D1D1;
-    --text3:#fff;
+    --btnWaitlist: linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
+    --borderColor: #363638;
+    --borderColorI: #fff;
 
-    --gradient2:#EA3943;
-    --secondary:#fff;
-    --modeBackground:#3E3E3E;
-    --modeIconBackSelect:#787878;
-    --iconColorBg1:#3E3E3E;
-    --textI:#fff;
-    --priceText:#fff;
+    /* --primary:#fff; */
+    --primaryText: #fff;
+    --btn2: #2D2C2F;
+    --text2: #D1D1D1;
+    --text3: #fff;
+    --textII:#0A0118;
+    --gradient2: #EA3943;
+    --secondary: #fff;
+    --modeBackground: #3E3E3E;
+    --modeIconBackSelect: #787878;
+    --iconColorBg1: #3E3E3E;
+    --textI: #fff;
+    --priceText: #fff;
+    --tableHeaderText: #A6A6A6;
     --gray: #CACACA;
-    --dropDownBg:#343334;
-    --iconColor:#FFFFFF;
+    --dropDownBg: #343334;
+    --iconColor: #FFFFFF;
     --bgList: rgba(255, 255, 255, 0.15);
-    --List1:#FF9298;
-    --List2:#87F5D3;
+    --List1: #FF9298;
+    --List2: #87F5D3;
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
     --gradient1: linear-gradient(180deg, #16C782 -29.17%, rgba(22, 199, 130, 0) 118.38%);
-  }
+}
 
-  body{
+body {
     font-family: 'Inter', sans-serif !important;
 }
 
 
-.bg-header{
+.bg-header {
     background-color: var(--foreground1);
 }
-.bg-white{
+
+.bg-white {
     background-color: var(--background);
 }
-.bg-modeBackground{
+
+.bg-modeBackground {
     background-color: var(--modeBackground);
 }
-.bg-modeIconBackSelect{
+
+.bg-modeIconBackSelect {
     background-color: var(--modeIconBackSelect);
 }
+.bg-bk {
+    background: var(--foreground);
+}
+
 .primary {
     color: var(--primary);
 }
-.bg-secondary{
+
+.bg-secondary {
     background-color: var(--secondary);
 }
-.bgList{
+
+.bgList {
     background-color: var(--bgList);
 }
-.dropDownBg{
+
+.dropDownBg {
     background-color: var(--dropDownBg);
 }
-.secondary{
-color: var(--secondary);
+
+.secondary {
+    color: var(--secondary);
 }
-.gray{
+
+.gray {
     color: var(--gray);
 }
-.iconColor{
+
+.iconColor {
     color: var(--foreground);
 }
-.iconColor1{
+.iconColor1 {
+    color: var(--background);
+}
+
+.iconColor1 {
     background-color: var(--iconColorBg1);
     color: var(--iconColor);
 }
-.back1{
-    background:var(--gradient1);
+.iconColor2{
+    background-color: var(--iconColor);
+    color: var(--secondary);
 }
-.back2{
+
+.back1 {
+    background: var(--gradient1);
+}
+
+.back2 {
     background: var(--gradient2)
 }
-.backText{
+
+.backText {
     color: var(--foreground);
 }
-.textI{
+
+.textI {
     color: var(--textI);
 }
-.text2{
+
+.text2 {
     color: var(--text2);
 }
-.text3{
+
+.text3 {
     color: var(--text3);
 }
-.List2{
+
+.textII{
+    color: var(--textII);
+}
+.tableHeaderText{
+    color: var(--tableHeaderText);
+}
+
+.List2 {
     color: var(--List2);
 }
-.List1{
+
+.List1 {
     color: var(--List1);
 }
-.priceText{
-color: var(--priceText);
+
+.priceText {
+    color: var(--priceText);
 }
-.primaryText{
+
+.primaryText {
     color: var(---primaryText);
 }
 
 /* Button */
-.btnWaitlist{
+.btnWaitlist {
     background: var(--btnWaitlist);
 }
-.btn2{
+
+.btn2 {
     background: var(--btn2);
 }
 
@@ -143,16 +189,46 @@ color: var(--priceText);
     color: var(--foreground);
 
 }
+
 /*  */
-.borderColor{
+.borderColor {
     border-color: var(--borderColor);
 }
+.borderColorI {
+    border-color: var(--borderColorI);
+}
+
 /*  */
 
-.font-1{
+.font-1 {
     font-family: 'Poppins', sans-serif;
 }
 
 .my-element {
     --animate-duration: 3.5s;
+}
+
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    font-size: var(--text-sm);
+  }
+  
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: var(--text-sm);
+  }
+  
+  :-ms-input-placeholder {
+    /* IE 10+ */
+    font-size: var(--text-sm);
+  }
+  
+  :-moz-placeholder {
+    /* Old versions of Firefox */
+    font-size: var(--text-sm);
+  }
+  
+  ::placeholder {
+    /* Modern browsers */
+    font-size: var(--text-sm);
   }

@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function ButtonComp({ btnText,btnTextClassName }) {
+export default function ButtonComp({ btnText,btnTextClassName,onClick}) {
   return (
     <button
-      className={` text-white p-2 ${btnTextClassName} `}
+      className={` p-2 ${btnTextClassName} `}
+      onClick={onClick}
     >
       {btnText}
     </button>
