@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Layout from '../../components/Layout'
+import Faqs from '../../components/modules/Faqs';
+import Hero from '../../components/modules/Hero';
+import HowItWorks from '../../components/modules/HowItWorks';
+import Pricing from '../../components/modules/Pricing';
+import Tools from '../../components/modules/Tools';
 
 
 
@@ -13,12 +18,14 @@ export default function Home() {
       </Head>
       
       <main>
-        <div id='homeDiv' className='border border-sky-500 h-[50vh] flex items-center justify-center'>Home</div>
-        <div className='h-[50vh] flex items-center justify-center'>Service</div>
-        <div className='h-[50vh] flex items-center justify-center'>About</div>
-        <div className='h-[50vh] flex items-center justify-center'>Chahah</div>
-        <div id='#know' className='h-[50vh] flex items-center justify-center'>Know</div>
-        <div id="targetDiv">This is the target div on Page 2</div>
+        <Hero/>
+        <HowItWorks/>
+        <Tools/>
+        <Pricing/>
+        <Faqs/>
+
+        
+      
 
       </main>
     </Layout>
