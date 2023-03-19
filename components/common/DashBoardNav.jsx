@@ -37,6 +37,7 @@ export default function DashBoardNav({change}) {
                 :
                 <div>
                     <ButtonComp
+                      onClick={()=>router.push('/dashboard')}
                     btnText={'Go to Dashboard'}
                     btnTextClassName='iconColor2 textII rounded-xl px-4'
                     />

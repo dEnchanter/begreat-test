@@ -24,12 +24,19 @@
     --tableHeaderText: #545454;
     --dropDownBg: #FAFAFA;
     --iconColor: #101828;
+    --btnClick: #101828;
     --bgList: #fff;
     --List1: #EA3943;
     --List2: #26A17B;
     --gradient1: linear-gradient(180deg, #009E61 -29.17%, rgba(22, 199, 130, 0) 118.38%);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
     --text-sm:14px;
+    --currentPlanBtnBg:#FF0000;
+    --currentPlanBtnBgI:#101828;
+    --currentPlanBtnText:#fff;
+    --planBG:#fff;
+    --smallText:#667085;
+    --smallTextI:#6B7280;
 }
 
 [data-theme='dark'] {
@@ -58,10 +65,19 @@
     --dropDownBg: #343334;
     --iconColor: #FFFFFF;
     --bgList: rgba(255, 255, 255, 0.15);
+    --btnClick: #EA3943;
     --List1: #FF9298;
     --List2: #87F5D3;
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
     --gradient1: linear-gradient(180deg, #16C782 -29.17%, rgba(22, 199, 130, 0) 118.38%);
+    --currentPlanBtnBg:#fff;
+    --currentPlanBtnText:#FF0000;
+    --currentPlanBtnBgI:#FF0000;
+    --planBG:linear-gradient(132.69deg, rgba(113, 104, 155, 0.4) 13.87%, rgba(20, 12, 57, 0.1) 98.5%);
+    --smallText:rgba(255, 255, 255, 0.8);
+    --smallTextI:#fff;
+    --bgII:rgba(255, 255, 255, 0.12);
+
 }
 
 body {
@@ -179,6 +195,37 @@ body {
 .btnWaitlist {
     background: var(--btnWaitlist);
 }
+.btnClick{
+    background-color: var(--btnClick);
+    border-color: var(--btnClick);
+}
+
+.bgII{
+    background-color: var(--bgII);
+}
+
+.CurrentPlanBtn{
+    background-color: var(--currentPlanBtnBg);
+    color: var(--currentPlanBtnText);
+}
+.CurrentPlanBtnI{
+    border-color: var(--currentPlanBtnBg);
+    color: var(--currentPlanBtnBg);
+}
+.currentPlanBtnBgI{
+    background-color: var(--currentPlanBtnBgI);
+    border-color: var(--currentPlanBtnBgI);
+}
+
+.planBG{
+    background: var(--planBG);
+}
+.smallText{
+    color: var(--smallText);
+}
+.smallTextI{
+    color: var(--smallTextI);
+}
 
 .btn2 {
     background: var(--btn2);
@@ -202,6 +249,9 @@ body {
 
 .font-1 {
     font-family: 'Poppins', sans-serif;
+}
+.font-2 {
+    font-family: 'Mulish', sans-serif;
 }
 
 .my-element {
