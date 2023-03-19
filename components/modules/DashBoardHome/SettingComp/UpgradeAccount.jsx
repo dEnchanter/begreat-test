@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GrCheckmark, GrFormCheckmark } from 'react-icons/gr'
 import { FcCheckmark } from 'react-icons/fc'
 import ButtonComp from '../../../ui/ButtonComp'
 import ModalComp from '../../../common/ModalComp'
 
 export default function UpgradeAccount({theme}) {
-
+    const [modal,setModal] =useState(false)
     const WhatInCludes =[
         'Pulse tool',
         'Shift tool',
@@ -16,7 +16,7 @@ export default function UpgradeAccount({theme}) {
     
   return (
     <section>
-        {/* <ModalComp/> */}
+        {modal && <ModalComp setModal={setModal}/>}
         <section className='flex flex-wrap  justify-between pb-10'>
             <div className=' w-ful lg:w-[30%] mb-5 lg:mb-0'>
                 <div className='text-[24px] secondary font-bold'>
@@ -28,7 +28,7 @@ export default function UpgradeAccount({theme}) {
             </div>
             {/*  */}
             <div className='w-full lg:w-[60%]'>
-            <div className='flex flex-wrap gap-5  mb-10 overflow-hidden'>
+            <div className='flex flex-wrap gap-5 justify-center  mb-10 overflow-hidden'>
                     <div className='py-5 px-5 lg:px-10 shadow-lg planBG rounded-md w-[391px] animate__fadeInRight animate__animated'>
                         <div className='text-[22px] secondary flex gap-8 items-center font-semibold mb-2' >Standard Plan 
                          <ButtonComp btnText={'Current Plan'} btnTextClassName='text-[12px] CurrentPlanBtn px-5 py-1 rounded-xl font-extrabold font-2'/></div>
@@ -82,6 +82,7 @@ export default function UpgradeAccount({theme}) {
                 </div>
                 <div className='flex justify-center'>
                 <ButtonComp
+                onClick={()=>setModal(true)}
                             btnText={'Cancel Subscription'}
                             btnTextClassName={'CurrentPlanBtnI text-[16px] border-[1px] py-3 w-[60%] rounded-md'}
                             />

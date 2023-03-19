@@ -23,8 +23,8 @@ export default function DashBoardNav({change}) {
                 height={59}
                 />
             </div>
-            <div className='flex items-center gap-3 xl:gap-7'>
-                <div className='bg-modeBackground px-[8px] rounded-xl flex gap-2  items-center'>
+            <div className='flex items-center gap-3 xl:gap-7 '>
+                <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center hidden md:flex'>
                 <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor'/></div>
                 <div className={`   rounded-lg ${theme ==="dark" && 'bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
                 </div>

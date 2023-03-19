@@ -23,8 +23,9 @@ export default function TextInput({
           <div className={suffixIconClassName}> {suffixIcon} </div>
         )}{" "}
         <input
-          className={`border-0 px-1 lg:px-3 outline-0 bg-transparent placeholder: ${inputClassName} ${theme==='dark' ?'placeholder-[#fff]':'placeholder-[#595959]'}`}
+          className={`border-0 px-1 lg:px-3 w-full outline-0 bg-transparent placeholder: ${inputClassName} ${theme==='dark' ?'placeholder-[#fff]':'placeholder-[#595959]'}`}
           placeholder={placeholder}
+          
         />{" "}
         {prefixIcon && (
           <div className={prefixIconClassName}> {prefixIcon} </div>
