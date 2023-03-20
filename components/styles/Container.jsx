@@ -6,5 +6,5 @@ container
  mx-auto 
  lg:px-14
 px-4   
-max-w-[1180px]
+xl:max-w-[1180px]
 `

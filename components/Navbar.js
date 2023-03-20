@@ -20,7 +20,7 @@ export default function Navbar({ fixed }) {
   return (
     <>
      <nav className="fixed w-full top-0 z-50 flex flex-wrap items-center justify-between bg-white   lg:py-3   mb-3">
-  <div className="container lg:px-20 bg-white px-4    xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
+  <div className="container lg:px-[5.5rem] bg-white px-4    xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
        <img src="/images/homepage/Logo.png" alt="logo" className="h-10 "/> 
@@ -45,7 +45,7 @@ export default function Navbar({ fixed }) {
     >
       <ul
         onClick={handleNav}
-        className="flex  lg:space-x-[9rem] lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
+        className="flex  lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
       >
         <div className="flex lg:space-x-4 flex-col lg:flex-row mt-4 lg:mt-0 "> 
           <li className="nav-item">
@@ -89,9 +89,9 @@ export default function Navbar({ fixed }) {
         </li>
         </div>
 
-        <div className="flex lg:space-x-4  lg:items-center flex-col lg:flex-row "> 
+        <div className="flex   lg:space-x-4  lg:items-center flex-col lg:flex-row "> 
           <h1 className="mt-2 lg:mt-0"> Login </h1>
-          <Button className="px-3 mt-4 lg:mt-0"> Get Started </Button>
+          <Button className="px-3  mt-4 lg:mt-0"> Get Started </Button>
         </div>
       </ul>
     </div>

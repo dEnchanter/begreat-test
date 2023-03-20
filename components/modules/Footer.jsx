@@ -10,7 +10,7 @@ const Footer = () => {
         <div className=' lg:flex justify-between pb-10 lg:px-10'>
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-12 w-fit mx-auto lg:mx-0'  src='./images/homepage/Logo.png' alt='logo'/>
-                <p className='text-[0.79rem] mt-4 text-center lg:text-start'> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa aut explicabo natus aliquid nostrum! Totam harum aspernatur </p>
+                <p className='lg:text-[0.79rem] text-sm mt-4 text-center lg:text-start sm:w-[70%]  sm:mx-auto lg:w-full lg:mx-0'> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa aut explicabo natus aliquid nostrum! Totam harum aspernatur </p>
                 <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0'>  
                     <BsFacebook/>
                     <BsInstagram/>
@@ -19,7 +19,7 @@ const Footer = () => {
             </div>
 
             <div className='leading-loose text-sm w-fit mx-auto lg:mx-0 text-center lg:text-start mt-4 lg:mt-0'> 
-                <h1 className='uppercase'> company </h1> 
+                <h1 className='uppercase font-bold'> company </h1> 
                <Link href='/#home'> <p> About </p> </Link> 
                 <p> Pricing </p>
                 <p> How it works </p>
@@ -32,7 +32,7 @@ const Footer = () => {
                     <input className='lg:px-8 border-2' placeholder='Enter your email'/>  
                     <Button className='rounded w-fit px-2 text-sm'> Notify me </Button>
                 </div>
-                <p className='sm:text-xs text-xs text-center mt-1'> We care about the protection of your data. Read our <span className='border-b'> Privacy Policy. </span> </p>
+                <p className='sm:text-xs text-xs text-center mt-1'> We care about the protection of your data. <br className='sm:hidden'/> Read our <span className='border-b'>  Privacy Policy. </span> </p>
             </div>
 
             
