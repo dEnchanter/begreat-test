@@ -3,11 +3,15 @@ import Link from "next/link";
 import {AiOutlineMenu,AiOutlineClose} from "react-icons/ai"
 import { useState } from "react";
 import { Button } from "./styles/Button";
+import { useTheme } from "next-themes";
+import { BsSun } from "react-icons/bs";
+import { HiOutlineMoon } from "react-icons/hi";
 
 
 export default function Navbar({ fixed }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
- 
+  const { theme, setTheme } = useTheme();
+
   const handleNav = () => {
     setNavbarOpen(!navbarOpen);
   };
@@ -23,7 +27,7 @@ export default function Navbar({ fixed }) {
   <div className="container lg:px-[5.5rem] bg-white px-4    xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
-       <img src="/images/homepage/Logo.png" alt="logo" className="h-10 "/> 
+       <img src={theme=="dark"?"/Images/Dashboard/Logo1.png":"/Images/Dashboard/logo.png" } alt="logo" className="h-10 "/> 
     </Link>
       <button
         className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
@@ -45,7 +49,7 @@ export default function Navbar({ fixed }) {
     >
       <ul
         onClick={handleNav}
-        className="flex  lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
+        className="flex items-stretch  lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
       >
         <div className="flex lg:space-x-4 flex-col lg:flex-row mt-4 lg:mt-0 "> 
           <li className="nav-item">
@@ -79,13 +83,20 @@ export default function Navbar({ fixed }) {
         </li>
 
          <li className="nav-item">
-          <Link
-            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
-            href="/#pricing"
-            scroll={false}
+          <div
+            className=" py-2 flex items-center gap-3 text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+            
           >
-            Pricing
-          </Link>
+            <Link href="/#pricing"
+            scroll={false}>
+Pricing
+            </Link>
+            
+            <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap md:flex'>
+                <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor'/></div>
+                <div className={`   rounded-lg ${theme ==="dark" && 'bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
+                </div>
+          </div>
         </li>
         </div>
 

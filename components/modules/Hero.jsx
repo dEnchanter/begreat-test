@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '../styles/Button'
 import { Container } from '../styles/Container'
+import ButtonComp from '../ui/ButtonComp'
 
 
 const Hero = () => {
@@ -18,6 +19,10 @@ const Hero = () => {
 
  
           <div className='flex w-fit mx-auto justify-between space-x-4 mt-8 mb-4'> 
+          <ButtonComp
+          btnText={'Get Started '}
+          btnTextClassName='bg-secondary  iconColor1 rounded-3xl px-5'
+          />
             <Button className='bg-red border-0'> Get Started  </Button>
             <Button> View Pricing  </Button>
           </div>
