@@ -46,6 +46,11 @@
     --paymentBorder:#D0D1D7;
     --iconBg:#FEF3F2;
     --iconText:#FF0000;
+    --navBtnBG:linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
+    --loginBorder:rgba(168, 168, 168, 0.5);
+    --loginBG:white;
+    --loginInputBorder:#A1A8B4;
+    --bgMode:#0A0118;
 }
 
 [data-theme='dark'] {
@@ -96,6 +101,11 @@
     --paymentBorder:#fff;
     --iconBg:#FEF3F2;
     --iconText:#FF0000;
+    --navBtnBG:linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
+    --loginBorder:rgba(168, 168, 168, 0.19);
+    --loginBG:linear-gradient(132.69deg, rgba(113, 104, 155, 0.4) 13.87%, rgba(20, 12, 57, 0.1) 98.5%);
+    --loginInputBorder:#4C4F63;
+    --bgMode:#F4F4F4;
 
 }
 
@@ -235,6 +245,24 @@ body {
     background-color: var(--currentPlanBtnBgI);
     border-color: var(--currentPlanBtnBgI);
 }
+.navBtnBG{
+    background: var(--navBtnBG);
+}
+.navBtnBorder{
+    /* border: 2px solid;
+    border-image: linear-gradient(to right, #ff5f6d, #ffc371);
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; */
+}
+
+.loginBack{
+    border-color: var(--loginBorder);
+    background: var(--loginBG);
+}
 
 .planBG{
     background: var(--planBG);
@@ -276,6 +304,9 @@ body {
     color: var(--foreground);
 
 }
+.bgMode{
+    background-color: var(--bgMode);
+}
 
 /*  */
 .borderColor {
@@ -289,6 +320,9 @@ body {
 }
 .paymentBorder{
     border-color: var(--paymentBorder);
+}
+.loginInputBorder{
+    border-color: var(--loginInputBorder);
 }
 
 /*  */
@@ -327,4 +361,14 @@ body {
   ::placeholder {
     /* Modern browsers */
     font-size: var(--text-sm);
+  }
+
+  .check{
+    background-color: #0A0118;
+    background-image: var(--navBtnBG);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
   }

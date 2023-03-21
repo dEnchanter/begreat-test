@@ -56,7 +56,7 @@ export default function Login() {
             <div className='py-[2rem]'></div>
             <div>
             <div className='text-[30px] font-bold secondary mb-1'>
-            Login to your Account
+            Create an Account
             </div>
             <div className='smallText text-[14px] mb-3'>Please fill your detail to access your account.</div>
             <div className='mb-5'>
