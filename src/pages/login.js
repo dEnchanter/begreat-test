@@ -13,7 +13,7 @@ export default function Login() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <section>
+    <section className='animated__animated animate-spin'>
       <nav className='px-5 lg:px-28 py-4 flex justify-between items-center mb-[3rem] lg:mb-[7rem]'>
         <FallBackImage
         src={'/Images/Dashboard/logo.png'}
