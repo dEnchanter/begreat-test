@@ -1,0 +1,1 @@
+export const BASE_URL = "https://be-great-finance.herokuapp.com/api/"

@@ -99,7 +99,7 @@ export default function Navbar({ fixed }) {
         </div>
 
         <div className="flex   lg:space-x-4  lg:items-center flex-col lg:flex-row "> 
-          <h1 className="mt-2 lg:mt-0 text-sm hover:cursor-pointer hover:text-[#FF0000] transition ease-in duration-300"> Login </h1>
+          <h1 className="mt-2 lg:mt-0 text-sm hover:cursor-pointer hover:text-[#FF0000] transition ease-in duration-300"> <Link href={'/login'}>Login</Link> </h1>
           <Button className="px-4 text-white font-light  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer  hover:text-gray-300 transition ease-in duration-300"> Get Started </Button>
         </div>
       </ul>

@@ -11,6 +11,7 @@ import FlexContainer from "../../common/FlexContainer";
 import ButtonComp from "../../ui/ButtonComp";
 import { TableComp } from "../../common/Table";
 import { useTheme } from "next-themes";
+import { useTimeFrameQuery } from "../../../store/Coins/coinsApi";
 export default function DashBoardHome() {
   const options = [
     {
@@ -35,25 +36,39 @@ export default function DashBoardHome() {
     },
   ];
 
-  const List = [
-    'DAY','4 HOURS','1 HOURS','15 MINS','5 MINS'
-  ]
-  const defaultOption = options[0];
+  const defaultOption = options[4];
   const { theme, setTheme } = useTheme();
-  const [listDay,seyListDay] =useState(6)
+  const [listDay, seyListDay] = useState(6);
+  const { data: Day1, isLoading } = useTimeFrameQuery("1d");
+  const { data: FourHours } = useTimeFrameQuery("240");
+  const { data: OneHours } = useTimeFrameQuery("60");
+  const { data: FifteenMin } = useTimeFrameQuery("15");
+  const { data: FiveMin } = useTimeFrameQuery("5");
+
+  const List = [
+    { time: "DAY", data: Day1?.data?.average },
+    { time: "4 HOURS", data: FourHours?.data?.average },
+    { time: "1 HOURS",data: OneHours?.data?.average  },
+    { time: "15 MINS",data: FifteenMin?.data?.average  },
+    { time: "5 MINS" ,data: FiveMin?.data?.average },
+  ];
+
 
   return (
     <section className="relative">
-     
       <div className="flex px-3 lg:px-8 flex-wrap">
         <div className="flex-grow w-[100%] xl:w-[67%] mb-4 xl:mb-0  ">
           <div className="flex items-center justify-between flex-wrap mb-3">
             <div className="flex items-center gap-2 flex-wrap">
               <TextInput
-              //  containerClassName={'text-[#1E1D20]'}
-              inputClassName={'backText'}
+                //  containerClassName={'text-[#1E1D20]'}
+                inputClassName={"backText"}
                 suffixIcon={
-                  <TbSearch size={25} wrapperClassName=" xl:w-[29%]" color="text-[#fff]" />
+                  <TbSearch
+                    size={25}
+                    wrapperClassName=" xl:w-[29%]"
+                    color="text-[#fff]"
+                  />
                 }
               />
               <div className="flex gap-1 items-center">
@@ -117,93 +132,63 @@ export default function DashBoardHome() {
             {/*  */}
             <div className="flex-grow w-full md:w-[60%] xl:w-[74%]">
               <div className="flex gap-2 h-[415px] mx-3 flex-wrap mb-3">
-                {List?.splice(0,listDay)?.map((item,i)=> 
-                 <div key={i} className={`${i%2==0?'back1 animate__animated animate__fadeIn my-element':'back2 animate__animated animate__fadeIn my-element'} flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[19%] rounded`}>
-                  {item}
-                </div>)}
-                
+                {List?.slice(0, listDay)?.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`${
+                      i % 2 == 0
+                        ? "back1 animate__animated animate__fadeIn my-element"
+                        : "back2 animate__animated animate__fadeIn my-element"
+                    } flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[19%] rounded`}
+                  >
+                    {item?.time || item}
+                  </div>
+                ))}
               </div>
 
               <div className="flex  h-min-[216px] mx-3 flex-wrap mb-3 mt-6">
                 {/*  */}
-                <div className=" flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[25%] ">
-                  <FlexContainer
-                    wrapperContainer={`back2 flex justify-center w-full mr-2 py-6 rounded-xl`}
-                    innerContainer={
-                      "flex justify-center item-center rounded-xl border-[#EA3943] border-[1px] bgList w-full"
-                    }
-                  >
-                    <div className="p-3 flex flex-col justify-around item-center">
-                      <div className="text3 text-center font-semibold font-1">
-                        Last 4 hours
+                {console.log(List, "data1")}
+                {List?.slice(0, listDay)?.map((item) => (
+                  <div className=" flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ">
+                    <FlexContainer
+                      wrapperContainer={`${
+                        item?.data > 0 ? "back1" : "back2"
+                      }  flex justify-center w-full mr-2 py-6 rounded-xl`}
+                      innerContainer={`flex justify-center gap-3 item-center rounded-xl border-[${
+                        item?.data > 0 ? "#26A17B" : "#EA3943"
+                      }] border-[1px] bgList w-full`}
+                    >
+                      <div className="p-3 flex flex-col justify-around item-center">
+                        <div className="text3 text-center font-semibold font-1">
+                          Last {item?.time}
+                        </div>
+                        <div
+                          className={`${
+                            item?.data > 0 ? "List2" : "List1"
+                          } text-center text-[46px]  font-bold font-1`}
+                        >
+                          {Math.floor(item?.data || 0)}%
+                        </div>
                       </div>
-                      <div className="text-center text-[46px] List1 font-bold font-1">
-                        +17%
-                      </div>
-                    </div>
-                  </FlexContainer>
-                </div>
+                    </FlexContainer>
+                  </div>
+                ))}
+
                 {/*  */}
-                <div className=" flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[25%] ">
-                  <FlexContainer
-                    wrapperContainer={`back1 flex justify-center w-full mr-2 py-6 rounded-xl`}
-                    innerContainer={
-                      "flex justify-center item-center rounded-xl border-[#26A17B] border-[1px] bgList w-full"
-                    }
-                  >
-                    <div className="p-3 flex flex-col justify-around item-center">
-                      <div className="text3 text-center font-semibold">
-                        Last 1 hour
-                      </div>
-                      <div className="text-center text-[46px] List2 font-bold font-1">
-                        +17%
-                      </div>
-                    </div>
-                  </FlexContainer>
-                </div>
+
                 {/*  */}
-                <div className=" flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[25%] ">
-                  <FlexContainer
-                    wrapperContainer={`back2 flex justify-center w-full mr-2 py-6 rounded-xl`}
-                    innerContainer={
-                      "flex justify-center item-center rounded-xl border-[#EA3943] border-[1px] bgList w-full"
-                    }
-                  >
-                    <div className="p-3 flex flex-col justify-around item-center">
-                      <div className="text3 text-center font-semibold">
-                        Last 30 minutes
-                      </div>
-                      <div className="text-center text-[46px] List1 font-bold font-1">
-                        +17%
-                      </div>
-                    </div>
-                  </FlexContainer>
-                </div>
-                {/*  */}
-                <div className=" flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[25%] ">
-                  <FlexContainer
-                    wrapperContainer={`back1 flex justify-center w-full  py-6 rounded-xl`}
-                    innerContainer={
-                      "flex justify-center item-center rounded-xl border-[#26A17B] border-[1px] bgList w-full"
-                    }
-                  >
-                    <div className="p-3 flex flex-col justify-around item-center">
-                      <div className="text3 text-center font-semibold">
-                        Last 4 hours
-                      </div>
-                      <div className="text-center text-[46px] List2 font-bold font-1">
-                        +17%
-                      </div>
-                    </div>
-                  </FlexContainer>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="flex-grow    xl:w-[33%]">
           <div className="mx-3 ">
-            <Accordance options={options} value={defaultOption} seyListDay={seyListDay} />
+            <Accordance
+              options={options}
+              value={defaultOption}
+              seyListDay={seyListDay}
+            />
             <Accordance
               options={options}
               value={defaultOption}
@@ -227,19 +212,21 @@ export default function DashBoardHome() {
                 }
               />
               <TwoSides
-              WrapperClassName={'mb-5'}
-                sideA={<DropDownItem placeholder={'Crypto'}/>}
+                WrapperClassName={"mb-5"}
+                sideA={<DropDownItem placeholder={"Crypto"} />}
                 sideB={
                   <span className="flex gap-2 items-center">
                     <MdSort className="text2" size={20} />{" "}
                     <span className="text2">Sort:</span>
-                    <DropDownItem placeholder={'Bullish'}/>
+                    <DropDownItem placeholder={"Bullish"} />
                   </span>
                 }
               />
 
               {/*  */}
-              <div className="text-[#EA3943] p-2 font-bold borderColor border-[1px] rounded-md mb-5">Watchlist 5m Average (%) Change: -8%</div>
+              <div className="text-[#EA3943] p-2 font-bold borderColor border-[1px] rounded-md mb-5">
+                Watchlist 5m Average (%) Change: -8%
+              </div>
               {/*  */}
               <div class="overflow-x-auto whitespace-no-wrap bg-white ">
                 <div className="flex justify-between items-center tableHeaderText text-[13px] mb-3 borderColor border-b-[1px] pb-2">
@@ -250,23 +237,46 @@ export default function DashBoardHome() {
                   <div>Change</div>
                 </div>
                 <div className="flex justify-between items-center  text-[14px] borderColor border-b-[1px] pb-3 mb-3">
-                  <div>CRV/<br/>USDT</div>
+                  <div>
+                    CRV/
+                    <br />
+                    USDT
+                  </div>
                   <div>$0.096</div>
-                  <div> <div className="w-[20px] h-[10px] bg-[#EA3943]"></div></div>
-                  <div><div className="w-[20px] h-[10px] bg-[#26A17B]"></div></div>
-                  <div> <div className="text-[#EA3943] font-semibold">-34.5%</div></div>
+                  <div>
+                    {" "}
+                    <div className="w-[20px] h-[10px] bg-[#EA3943]"></div>
+                  </div>
+                  <div>
+                    <div className="w-[20px] h-[10px] bg-[#26A17B]"></div>
+                  </div>
+                  <div>
+                    {" "}
+                    <div className="text-[#EA3943] font-semibold">-34.5%</div>
+                  </div>
                 </div>
                 {/*  */}
                 <div className="flex justify-between items-center  text-[14px] borderColor border-b-[1px] pb-3 mb-3">
-                  <div>CRV/<br/>USDT</div>
+                  <div>
+                    CRV/
+                    <br />
+                    USDT
+                  </div>
                   <div>$0.096</div>
-                  <div> <div className="w-[20px] h-[10px] bg-[#EA3943]"></div></div>
-                  <div><div className="w-[20px] h-[10px] bg-[#26A17B]"></div></div>
-                  <div> <div className="text-[#EA3943] font-semibold">-34.5%</div></div>
+                  <div>
+                    {" "}
+                    <div className="w-[20px] h-[10px] bg-[#EA3943]"></div>
+                  </div>
+                  <div>
+                    <div className="w-[20px] h-[10px] bg-[#26A17B]"></div>
+                  </div>
+                  <div>
+                    {" "}
+                    <div className="text-[#EA3943] font-semibold">-34.5%</div>
+                  </div>
                 </div>
-            </div>
-            {/*  */}
-          
+              </div>
+              {/*  */}
             </div>
           </div>
         </div>
