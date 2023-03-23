@@ -1,5 +1,7 @@
 :root {
     /* Your default theme */
+    --worksbg: white;
+    --herobg: white;
     --background: white;
     --background1: white;
     --foreground: black;
@@ -47,9 +49,17 @@
     --paymentBorder:#D0D1D7;
     --iconBg:#FEF3F2;
     --iconText:#FF0000;
+    --primaryblack: #2B2C3B;
+    --btnbgplan:  white;
+    --btnstarted: linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
+    --toolsbg: #FFFCFB;
+    
 }
 
 [data-theme='dark'] {
+    --worksbg: #0A0118;
+    --herobg: #101828;
+    --primaryblack: red;
     --background: black;
     --foreground: white;
     --foreground1: #19171C;
@@ -98,7 +108,26 @@
     --paymentBorder:#fff;
     --iconBg:#FEF3F2;
     --iconText:#FF0000;
+    --btnstarted: linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
+    --btnbgplan: white;
+    --background-image: url(/public/Images/homepage/toolsbg.png);
+}
 
+.worksbg{
+    background-color: var(--worksbg);
+}
+
+.herobg{
+    background-color: var(--herobg);
+}
+
+.btnstarted{
+    color: var(--btnstarted);
+}
+
+.btnbgplan{
+    background-color: var(--btnbgplan);
+    
 }
 
 body {
@@ -336,3 +365,20 @@ body {
     /* Modern browsers */
     font-size: var(--text-sm);
   }
+
+
+.toolsdarkbg {
+    background-image: url(../image/toolsbg.png);
+}
+
+
+.pricebg {
+    background-image: url(../image/pricebg.png);
+}
+
+
+.divebg {
+    background-image: url(../image/divebg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

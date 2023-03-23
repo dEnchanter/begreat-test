@@ -23,11 +23,11 @@ export default function Navbar({ fixed }) {
 
   return (
     <>
-     <nav className="fixed w-full top-0 z-50 flex flex-wrap items-center justify-between bg-white   lg:py-3   mb-3">
-  <div className="container lg:px-[5.5rem] bg-white px-4    xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
+     <nav className="fixed w-full herobg top-0 z-50 flex flex-wrap items-center justify-between    lg:py-3   mb-3">
+  <div className="container lg:px-[5.5rem] herobg px-4    xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
-       <img src={theme=="dark"?"/Images/Dashboard/Logo1.png":"/Images/Dashboard/logo.png" } alt="logo" className="h-10 "/> 
+       <img src={theme=="dark"?"/images/homepage/logoW.png":"/images/homepage/logoD.png" } alt="logo" className="h-10 "/> 
     </Link>
       <button
         className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
@@ -49,12 +49,12 @@ export default function Navbar({ fixed }) {
     >
       <ul
         onClick={handleNav}
-        className="flex items-stretch  lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
+        className="flex items-stretch   lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
       >
-        <div className="flex lg:space-x-4 flex-col lg:flex-row mt-4 lg:mt-0 "> 
+        <div className="flex lg:space-x-4 text-secondary font-semibold flex-col lg:flex-row mt-4 lg:mt-0 lg:items-center"> 
           <li className="nav-item">
           <Link
-            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+            className=" py-2 flex items-center text-xs uppercase  leading-snug hover:cursor-pointer hover:text-[#FF0000] transition ease-in duration-300"
             href="/#home"
             scroll={true}
           >
@@ -64,7 +64,7 @@ export default function Navbar({ fixed }) {
 
         <li className="nav-item">
           <Link
-            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+            className=" py-2 flex items-center text-xs uppercase  leading-snug  hover:cursor-pointer hover:text-[#FF0000] transition ease-in duration-300"
             href="/#how-it-works"
             scroll={false}
           >
@@ -74,7 +74,7 @@ export default function Navbar({ fixed }) {
 
          <li className="nav-item">
           <Link
-            className=" py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+            className=" py-2 flex items-center text-xs uppercase  leading-snug  hover:cursor-pointer hover:text-[#FF0000] transition ease-in duration-300"
             href="/#tools"
             scroll={false}
           >
@@ -82,27 +82,25 @@ export default function Navbar({ fixed }) {
           </Link>
         </li>
 
-         <li className="nav-item">
-          <div
-            className=" py-2 flex items-center gap-3 text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
-            
+          <li className="nav-item">
+          <Link
+            className=" py-2 flex items-center text-xs uppercase  leading-snug  hover:cursor-pointer hover:text-[#FF0000] transition ease-in duration-300"
+            href="/#pricing"
+            scroll={false}
           >
-            <Link href="/#pricing"
-            scroll={false}>
-Pricing
-            </Link>
-            
-            <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap md:flex'>
-                <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor'/></div>
-                <div className={`   rounded-lg ${theme ==="dark" && 'bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
-                </div>
-          </div>
+            Pricing
+          </Link>
         </li>
+
+         <div className='bg-modeBackground px-[8px] rounded-xl hover:cursor-pointer gap-2  items-center whitespace-nowrap md:flex'>
+                <div className={`   ${theme ==="light" && 'hover:cursor-pointer bg-modeIconBackSelect  px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor'/></div>
+                <div className={`   rounded-lg ${theme ==="dark" && 'bg-modeIconBackSelect hover:cursor-pointer my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
+                </div>
         </div>
 
         <div className="flex   lg:space-x-4  lg:items-center flex-col lg:flex-row "> 
-          <h1 className="mt-2 lg:mt-0"> Login </h1>
-          <Button className="px-3  mt-4 lg:mt-0"> Get Started </Button>
+          <h1 className="mt-2 lg:mt-0 text-sm hover:cursor-pointer hover:text-[#FF0000] transition ease-in duration-300"> Login </h1>
+          <Button className="px-4 text-white font-light  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer  hover:text-gray-300 transition ease-in duration-300"> Get Started </Button>
         </div>
       </ul>
     </div>

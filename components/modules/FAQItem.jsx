@@ -8,7 +8,7 @@ const FAQItem = ({ question, answer }) => {
   };
 
   return (
-    <div className="border-b  py-4 md:py-6 " >
+    <div className="border-b  py-4 md:py-6  " >
       <button
         className="w-full text-left font-semibold  text-lg focus:outline-none"
         onClick={toggleAnswer}
