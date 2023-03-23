@@ -13,6 +13,8 @@ import { TableComp } from "../../common/Table";
 import { useTheme } from "next-themes";
 import { useTimeFrameQuery } from "../../../store/Coins/coinsApi";
 export default function DashBoardHome() {
+
+ 
   const options = [
     {
       value: 1,
@@ -35,6 +37,7 @@ export default function DashBoardHome() {
       label: <span className=" font-semibold">5</span>,
     },
   ];
+  const [getTimeFrame,setTimeFrame] =useState(options[4])
 
   const defaultOption = options[4];
   const { theme, setTheme } = useTheme();
@@ -132,7 +135,7 @@ export default function DashBoardHome() {
             {/*  */}
             <div className="flex-grow w-full md:w-[60%] xl:w-[74%]">
               <div className="flex gap-2 h-[415px] mx-3 flex-wrap mb-3">
-                {List?.slice(0, listDay)?.map((item, i) => (
+                {List?.slice(0, getTimeFrame?.value)?.map((item, i) => (
                   <div
                     key={i}
                     className={`${
@@ -149,7 +152,7 @@ export default function DashBoardHome() {
               <div className="flex  h-min-[216px] mx-3 flex-wrap mb-3 mt-6">
                 {/*  */}
                 {console.log(List, "data1")}
-                {List?.slice(0, listDay)?.map((item) => (
+                {List?.slice(0, getTimeFrame?.value)?.map((item) => (
                   <div className=" flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ">
                     <FlexContainer
                       wrapperContainer={`${
@@ -186,12 +189,13 @@ export default function DashBoardHome() {
           <div className="mx-3 ">
             <Accordance
               options={options}
-              value={defaultOption}
-              seyListDay={seyListDay}
+              value={getTimeFrame}
+              seyListDay={setTimeFrame}
             />
             <Accordance
               options={options}
-              value={defaultOption}
+              seyListDay={setTimeFrame}
+              value={getTimeFrame}
               title="Watchlist Timeframe Settings"
             />
             <div className="bg-white  py-3 px-3">
