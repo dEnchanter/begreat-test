@@ -56,6 +56,13 @@
     --workstext: #667085;
     --navicon: black;
     
+    --navBtnBG:linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
+    --loginBorder:rgba(168, 168, 168, 0.5);
+    --loginBG:white;
+    --loginInputBorder:#A1A8B4;
+    --bgMode:#0A0118;
+    --uploadText1:#292D32;
+    --uploadText2:#AEAEAE;
 }
 
 [data-theme='dark'] {
@@ -113,10 +120,21 @@
     --btnstarted: linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
     --btnbgplan: white;
     --background-image: url(/public/Images/homepage/toolsbg.png);
+<<<<<<< HEAD
     --workstext: #D3D3D3;
     --navicon: white;
     
+=======
+    --navBtnBG:linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
+    --loginBorder:rgba(168, 168, 168, 0.19);
+    --loginBG:linear-gradient(132.69deg, rgba(113, 104, 155, 0.4) 13.87%, rgba(20, 12, 57, 0.1) 98.5%);
+    --loginInputBorder:#4C4F63;
+    --bgMode:#F4F4F4;
+    --uploadText1:#F4F4F4;
+    --uploadText2:#F4F4F4;
+>>>>>>> e18daf4654b867ef9446390e0f55b7b70c7e9e0b
 }
+    
 
 .worksbg{
     background-color: var(--worksbg);
@@ -246,6 +264,13 @@ body {
     color: var(---primaryText);
 }
 
+.uploadText1{
+    color: var(--uploadText1);
+}
+.uploadText2{
+    color: var(--uploadText2);
+}
+
 /* Button */
 .btnWaitlist {
     background: var(--btnWaitlist);
@@ -276,6 +301,24 @@ body {
 .currentPlanBtnBgI{
     background-color: var(--currentPlanBtnBgI);
     border-color: var(--currentPlanBtnBgI);
+}
+.navBtnBG{
+    background: var(--navBtnBG);
+}
+.navBtnBorder{
+    /* border: 2px solid;
+    border-image: linear-gradient(to right, #ff5f6d, #ffc371);
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; */
+}
+
+.loginBack{
+    border-color: var(--loginBorder);
+    background: var(--loginBG);
 }
 
 .planBG{
@@ -318,6 +361,9 @@ body {
     color: var(--foreground);
 
 }
+.bgMode{
+    background-color: var(--bgMode);
+}
 
 /*  */
 .borderColor {
@@ -331,6 +377,9 @@ body {
 }
 .paymentBorder{
     border-color: var(--paymentBorder);
+}
+.loginInputBorder{
+    border-color: var(--loginInputBorder);
 }
 
 /*  */
@@ -400,6 +449,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+<<<<<<< HEAD
 .faqbg {
     background-image: url(../image/faqbg.png);
         background-repeat: no-repeat;
@@ -424,3 +474,14 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+=======
+  .check{
+    background-color: #0A0118;
+    background-image: var(--navBtnBG);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+  }
+>>>>>>> e18daf4654b867ef9446390e0f55b7b70c7e9e0b

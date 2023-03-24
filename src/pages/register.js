@@ -1,24 +1,20 @@
 import { useTheme } from 'next-themes'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { AiOutlineEyeInvisible } from 'react-icons/ai'
 import { BsSun } from 'react-icons/bs'
 import { FcGoogle } from 'react-icons/fc'
 import { HiOutlineMoon } from 'react-icons/hi'
 import FallBackImage from '../../components/common/FallBackImage'
-import Layout from '../../components/Layout'
 import ButtonComp from '../../components/ui/ButtonComp'
 import DropDownItem from '../../components/ui/DropDownItem'
 import TextInput from '../../components/ui/TextInput'
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
-  const router =useRouter();
 
   return (
-    <Layout>
-    <section className='animated__animated animate-fadeIn'>
-      {/* <nav className='px-5 lg:px-28 py-4 flex justify-between items-center mb-[3rem] lg:mb-[7rem]'>
+    <section>
+      <nav className='px-5 lg:px-28 py-4 flex justify-between items-center mb-[3rem] lg:mb-[7rem]'>
         <FallBackImage
         src={'/Images/Dashboard/logo.png'}
         width={227}
@@ -48,9 +44,9 @@ export default function Login() {
               </ul>
           </div>
         </div>
-      </nav> */}
+      </nav>
 
-      <main className='mb-[7rem] mt-[10rem]'>
+      <main className='mb-[7rem]'>
         <section className='mb-[2rem]'>
           <div className='text-center text-[30px] lg:text-[36px] font-semibold font-3 leading-10'>Revolutionize Your <span className='check'>Finances </span>with <br/> Our Powerful Platform</div>
         </section>
@@ -60,7 +56,7 @@ export default function Login() {
             <div className='py-[2rem]'></div>
             <div>
             <div className='text-[30px] font-bold secondary mb-1'>
-            Login to your Account
+            Create an Account
             </div>
             <div className='smallText text-[14px] mb-3'>Please fill your detail to access your account.</div>
             <div className='mb-5'>
@@ -93,10 +89,6 @@ export default function Login() {
               </div>
 
               <ButtonComp
-              onClick={(e)=>{
-                e.preventDefault();
-                router.push('/dashboard')
-              }}
               btnText={'Login'}
               btnTextClassName={'navBtnBG rounded-full text-white w-full py-3 font-extrabold text-[18px]'}
               />
@@ -110,6 +102,5 @@ export default function Login() {
         </section>
       </main>
     </section>
-    </Layout>
   )
 }

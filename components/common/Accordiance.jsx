@@ -31,7 +31,10 @@ export default function Accordance({ title, options, value, seyListDay }) {
           sideB={
             <DropDownItem
               options={options}
-              onChange={(e) => seyListDay(e?.value)}
+              onChange={(e) => {
+                console.log(e,'data')
+                seyListDay(e)
+              }}
               value={value}
             />
           }

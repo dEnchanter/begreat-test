@@ -1,0 +1,2 @@
+export const SESA_ADMIN_USER = "SESA_ADMIN_USER";
+export const GET_ADMIN_MANAGER = "GET_ADMIN_MANAGER";
