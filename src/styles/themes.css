@@ -53,6 +53,8 @@
     --btnbgplan:  white;
     --btnstarted: linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
     --toolsbg: #FFFCFB;
+    --workstext: #667085;
+    --navicon: black;
     
 }
 
@@ -111,6 +113,9 @@
     --btnstarted: linear-gradient(111.39deg, #FF0000 -26.06%, #7374FF 100.52%);
     --btnbgplan: white;
     --background-image: url(/public/Images/homepage/toolsbg.png);
+    --workstext: #D3D3D3;
+    --navicon: white;
+    
 }
 
 .worksbg{
@@ -341,6 +346,16 @@ body {
     --animate-duration: 3.5s;
 }
 
+.workstext{
+    color: var(--workstext);
+}
+
+.navicon{
+    color: var(--navicon);
+}
+
+
+
 ::-webkit-input-placeholder {
     /* WebKit browsers */
     font-size: var(--text-sm);
@@ -374,11 +389,38 @@ body {
 
 .pricebg {
     background-image: url(../image/pricebg.png);
+    background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
 }
 
 
 .divebg {
     background-image: url(../image/divebg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.faqbg {
+    background-image: url(../image/faqbg.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+}
+
+
+
+.circles{
+    background-image: url(../image/circles.png);
+    background-repeat: no-repeat;
+    background-size: 50rem;
+        background-position: center;
+       
+
+}
+
+
+.linesbg{
+    background-image: url(../image/lines.png);
     background-repeat: no-repeat;
     background-size: cover;
 }

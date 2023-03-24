@@ -31,13 +31,13 @@ const Faqs = () => {
        
 
    <div> 
-       <div className='worksbg mt-16 pb-20'> 
+       <div  className={theme=="light"?"bg-[#FFFCFB] lg:mt-16  pb-20":"faqbg lg:mt-16  pb-20"}> 
          <Container className=''> 
          <div className=' md:flex lg:px-10 justify-between pt-10 '> 
-           <div className='md:w-[30%] w-fit mx-auto md:mt-4  text-center  '> 
+           <div className='md:w-[30%] w-fit mx-auto md:mt-4  text-center md:text-start '> 
                 <h1 className='font-bold text-2xl '> Frequently asked <br/> Questions </h1>
                 <p className='lg:text-sm text-base mt-2 sm:w-[70%] sm:mx-auto md:w-full lg:mx-0'> Can’t find the answer you’re looking for? Reach out to our customer support team. </p>
-                <img  className='w-[10rem] mx-auto  md:mt-6 mt-8' src='./images/homepage/faqs.png' alt='faqs'/>
+                <img  className='w-[10rem] mx-auto md:ml-6 md:mt-6 mt-8' src='./images/homepage/faqs.png' alt='faqs'/>
             </div>
 
 

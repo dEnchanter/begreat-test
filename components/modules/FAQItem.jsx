@@ -21,8 +21,8 @@ const FAQItem = ({ question, answer }) => {
         </div>
       </button>
       {isOpen && (
-        <div className="mt-2 text-gray-700">
-          <p className='text-sm w-[80%rem] sm:w-full mx-auto'> {answer} </p>
+        <div className="mt-2">
+          <p className='text-sm leading-4 w-[80%rem] sm:w-full mx-auto workstext'> {answer} </p>
         </div>
       )}
     </div>
