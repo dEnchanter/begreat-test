@@ -2,10 +2,12 @@ import { Button } from '../styles/Button'
 import React from 'react'
 import { Container } from '../styles/Container'
 import { useTheme } from "next-themes";
+import { useRouter } from 'next/router';
 
 
 const Pricing = () => {
    const { theme, setTheme } = useTheme();
+   const router =useRouter()
   return (
     <div className={theme=="light"?"bg-[#FFF]":"pricebg"}> 
     <Container id='pricing' >
@@ -22,7 +24,7 @@ const Pricing = () => {
             <p className=' text-sm  mt-4 mx-auto sm:w-[70%] sm:mx-auto smallTextI leading-5 '>Our pricing plans are designed to be affordable, flexible, and scalable, <br className='hidden md:flex'/> so you can choose the plan that best fits your investment goals. </p>
 
             <div className='w-fit mx-auto mt-10'> 
-              <Button className= {theme=="light"? " ' text-[0.7rem] py-1.5 border border-red-400 hover:cursor-pointer hover:shadow-lg transition ease-in duration-300 text-transparent font-semibold bg-clip-text bg-gradient-to-r from-[#fc0542] to-[#8a76c7]" : "' text-[0.7rem] py-1.5  hover:cursor-pointer hover:text-gray-100 hover:shadow-lg transition ease-in duration-300  border-red-400 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1]   font-semibold text-white"}> View Pricing  </Button>
+              <Button onClick={()=>router.push('/pricing')} className= {theme=="light"? " ' text-[0.7rem] py-1.5 border border-red-400 hover:cursor-pointer hover:shadow-lg transition ease-in duration-300 text-transparent font-semibold bg-clip-text bg-gradient-to-r from-[#fc0542] to-[#8a76c7]" : "' text-[0.7rem] py-1.5  hover:cursor-pointer hover:text-gray-100 hover:shadow-lg transition ease-in duration-300  border-red-400 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1]   font-semibold text-white"}> View Pricing  </Button>
              </div>
         </div>
     </Container>

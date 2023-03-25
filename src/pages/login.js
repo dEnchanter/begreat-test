@@ -11,6 +11,7 @@ import TextInput from "../../components/ui/TextInput";
 import { generateMaxLength, generateMinLength, REGEX_PATTERNS } from "../../constants/errors";
 import { userLogin } from "../../store/auth/authAction";
 import Link from "next/link";
+import Footer from "../../components/modules/Footer";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
@@ -192,6 +193,7 @@ console.log(all,userInfo,loading,'userInfo')
           </section>
         </main>
       </section>
+      <Footer/>
     </Layout>
   );
 }
