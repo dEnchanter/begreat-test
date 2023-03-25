@@ -31,19 +31,20 @@ export const ProtectedRoute = ({ children, type }) => {
   //   }
   // }, [dispatch, isLoggedIn, isSuccess, userProfileData?.data]);
 
-  // useEffect(() => {
-  //   setGetData(true)
-  //   if(!getToken()){
-  //     setGetData(false)
-  //     router.push("/login");
-  //     dispatch(logout());
-  //   }
-  //   if (!isLoggedIn && error?.status === 401) {
-  //     router.push("/login");
-  //     setGetData(false)
-  //     dispatch(logout());
-  //   }
-  // }, [dispatch, error?.status, router, isLoggedIn]);
+  useEffect(() => {
+    setGetData(true)
+    if(!getToken()){
+      setGetData(false)
+      dispatch(logout());
+      router.push("/login");
+      
+    }
+    // if (!isLoggedIn && error?.status === 401) {
+    //   router.push("/login");
+    //   setGetData(false)
+    //   dispatch(logout());
+    // }
+  }, [dispatch, router]);
 
   return true ? (
     children

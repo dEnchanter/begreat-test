@@ -50,11 +50,11 @@ const Header=[
     label:'Payment Information',
     icon:<CiWallet size={30}/>
   },
-  {
-    name:'Security',
-    label:'Security',
-    icon:<AiOutlineSecurityScan size={30}/>
-  },
+  // {
+  //   name:'Security',
+  //   label:'Security',
+  //   icon:<AiOutlineSecurityScan size={30}/>
+  // },
   {
     name:'Referrals',
     label:'Referrals',

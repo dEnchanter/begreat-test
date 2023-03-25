@@ -11,7 +11,11 @@ import FlexContainer from "../../common/FlexContainer";
 import ButtonComp from "../../ui/ButtonComp";
 import { TableComp } from "../../common/Table";
 import { useTheme } from "next-themes";
-import { useTimeFrameQuery } from "../../../store/Coins/coinsApi";
+import { useSearchCoinsQuery, useTimeFrameQuery } from "../../../store/Coins/coinsApi";
+import Spinner from "../../common/Spinner";
+import { Controller, useForm } from "react-hook-form";
+import { generateMaxLength, generateMinLength } from "../../../constants/errors";
+
 export default function DashBoardHome() {
 
  
@@ -37,25 +41,54 @@ export default function DashBoardHome() {
       label: <span className=" font-semibold">5</span>,
     },
   ];
-  const [getTimeFrame,setTimeFrame] =useState(options[4])
+  const [getTimeFrame,setTimeFrame] =useState(options[4]);
+  const [coinName,setCoinName]=useState('SOL')
 
   const defaultOption = options[4];
   const { theme, setTheme } = useTheme();
   const [listDay, seyListDay] = useState(6);
-  const { data: Day1, isLoading } = useTimeFrameQuery("1d");
-  const { data: FourHours } = useTimeFrameQuery("240");
-  const { data: OneHours } = useTimeFrameQuery("60");
-  const { data: FifteenMin } = useTimeFrameQuery("15");
-  const { data: FiveMin } = useTimeFrameQuery("5");
+  const { data: Day1, isLoading:Day1Loader } = useTimeFrameQuery("1d");
+  const { data: FourHours,isLoading:FourHoursLoader } = useTimeFrameQuery("240");
+  const { data: OneHours, isLoading:OneHoursLoader} = useTimeFrameQuery("60");
+  const { data: FifteenMin, isLoading:FifteenMinLoader } = useTimeFrameQuery("15");
+  const { data: FiveMin,isLoading:FiveMinLoader } = useTimeFrameQuery("5");
+  // 
+  const { data} = useSearchCoinsQuery(
+    coinName,
+    {
+      // pollingInterval: 3000,
+      refetchOnMountOrArgChange: true,
+      // skip: false,
+    }
+  );
+
+  console.log(data,'data')
 
   const List = [
-    { time: "DAY", data: Day1?.data?.average },
-    { time: "4 HOURS", data: FourHours?.data?.average },
-    { time: "1 HOURS",data: OneHours?.data?.average  },
-    { time: "15 MINS",data: FifteenMin?.data?.average  },
-    { time: "5 MINS" ,data: FiveMin?.data?.average },
+    { time: "DAY", data: Day1?.data?.average,loading:Day1Loader },
+    { time: "4 HOURS", data: FourHours?.data?.average,loading:FourHoursLoader},
+    { time: "1 HOURS",data: OneHours?.data?.average,loading:OneHoursLoader },
+    { time: "15 MINS",data: FifteenMin?.data?.average,loading:FifteenMinLoader },
+    { time: "5 MINS" ,data: FiveMin?.data?.average,loading:FiveMinLoader},
   ];
 
+  const toThreeFig = (nums) =>{
+    let myNum = parseFloat(nums);
+    let roundedNum = myNum.toFixed(3);
+    return roundedNum;
+  }
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: {
+      coinname: "",
+    },
+  });
+
+  const handleClick = (data) => {
+   
+    if(data?.coinname){
+      setCoinName(data?.coinName)
+    }
+  }
 
   return (
     <section className="relative">
@@ -63,6 +96,20 @@ export default function DashBoardHome() {
         <div className="flex-grow w-[100%] xl:w-[67%] mb-4 xl:mb-0  ">
           <div className="flex items-center justify-between flex-wrap mb-3">
             <div className="flex items-center gap-2 flex-wrap">
+            <Controller
+                  name="coinname"
+                  control={control}
+                  rules={{
+                    required: "Coin Name is required",
+                    // pattern: REGEX_PATTERNS?.EMAIL,
+                    maxLength: generateMaxLength(3),
+                  }}
+                  render={({
+                    field: { value, onChange },
+                    formState: { errors },
+                  }) => {
+                    const errorMessage = errors?.coinname?.message;
+                    return (
               <TextInput
                 //  containerClassName={'text-[#1E1D20]'}
                 inputClassName={"backText"}
@@ -71,9 +118,16 @@ export default function DashBoardHome() {
                     size={25}
                     wrapperClassName=" xl:w-[29%]"
                     color="text-[#fff]"
+                    className="cursor-pointer"
+                    onClick={handleSubmit(handleClick)}
                   />
                 }
+                name="coinname"
+                {...{ value, onChange, errors: [errorMessage] }}
               />
+            );
+          }}
+        />
               <div className="flex gap-1 items-center">
                 <FallBackImage
                   src={"/Images/Dashboard/coin.png"}
@@ -109,25 +163,25 @@ export default function DashBoardHome() {
               <div className="bg-white py-3 px-3 border-[#E9ECEB] border-[0.6px] rounded-lg">
                 <div className="mb-5">
                   <div className="text-[14px] font-semibold priceText mb-4">
-                    Last 60 Minutes high price:{" "}
-                    <span className="font-bold secondary">10</span>
+                    Last 60 Minutes low price:{" "}
+                    <span className="font-bold secondary">{toThreeFig(data?.low)}</span>
                   </div>
                   <div className="h-[200px] md:h-[308px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">
-                    +75%
+                    {toThreeFig(data?.fall||0)}%
                   </div>
                 </div>
 
                 <div>
                   <div className="text-[16px] font-semibold priceText mb-4">
                     Current Price :{" "}
-                    <span className="font-bold secondary"> 1,334.0</span>
+                    <span className="font-bold secondary">{toThreeFig(data?.currentPrice||0)}</span>
                   </div>
                   <div className="h-[200px] md:h-[209px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
-                    +35%
+                  {toThreeFig(data?.rise||0)}%
                   </div>
                   <div className="text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes high price:{" "}
-                    <span className="font-bold secondary">10</span>
+                    <span className="font-bold secondary">  {toThreeFig(data?.high||0)}</span>
                   </div>
                 </div>
               </div>
@@ -138,22 +192,23 @@ export default function DashBoardHome() {
                 {List?.slice(0, getTimeFrame?.value)?.map((item, i) => (
                   <div
                     key={i}
-                    className={`${
+                    className={`  ${
                       i % 2 == 0
                         ? "back1 animate__animated animate__fadeIn my-element"
                         : "back2 animate__animated animate__fadeIn my-element"
                     } flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[19%] rounded`}
                   >
-                    {item?.time || item}
+                    
+                    {item?.loading ? <Spinner/>: item?.time || item}
                   </div>
                 ))}
               </div>
 
               <div className="flex  h-min-[216px] mx-3 flex-wrap mb-3 mt-6">
                 {/*  */}
-                {console.log(List, "data1")}
+               
                 {List?.slice(0, getTimeFrame?.value)?.map((item) => (
-                  <div className=" flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ">
+                  <div className={`flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ${item?.loading && 'blur-2xl'} `}>
                     <FlexContainer
                       wrapperContainer={`${
                         item?.data > 0 ? "back1" : "back2"
@@ -162,7 +217,7 @@ export default function DashBoardHome() {
                         item?.data > 0 ? "#26A17B" : "#EA3943"
                       }] border-[1px] bgList w-full`}
                     >
-                      <div className="p-3 flex flex-col justify-around item-center">
+                      <div className="p-3 flex flex-col justify-around item-center ">
                         <div className="text3 text-center font-semibold font-1">
                           Last {item?.time}
                         </div>

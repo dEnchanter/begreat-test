@@ -11,6 +11,8 @@ export default function TextInput({
   wrapperClassName,
   placeholder='Search',
   borderColor,
+  errors,
+  ...props
 }) {
   const { theme, setTheme } = useTheme();
 
@@ -26,12 +28,19 @@ export default function TextInput({
         <input
           className={`border-0 px-1 lg:px-3 w-full outline-0 bg-transparent placeholder: ${inputClassName} ${theme==='dark' ?'placeholder-[#fff]':'placeholder-[#595959]'}`}
           placeholder={placeholder}
-          
+          {...props}
         />{" "}
         {prefixIcon && (
           <div className={prefixIconClassName}> {prefixIcon} </div>
         )}{" "}
       </div>{" "}
+      {errors?.map((error, i) => (
+           
+           <small className="text-red-600 mt-2 h60 font-semibold" key={i}>
+            
+             {error}
+           </small>
+         ))}
     </div>
   );
 }

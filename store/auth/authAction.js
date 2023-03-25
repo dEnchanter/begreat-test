@@ -17,15 +17,15 @@ export const userLogin = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        `${BASE_URL}authentication`,
+        `${BASE_URL}signin`,
         { email, password, strategy: "local" },
         config
       );
       // store user's token in local storage
-      console.log(data, "userInfoLoginData");
+      //console.log(data, "userInfoLoginData");
       setToken(data?.accessToken)
       setUserDataS(data?.user)
-      toast.success('User Logged In Successfully...');
+      toast.success(data?.message);
       // localStorage.setItem('userToken', data.userToken)
       return data;
     } catch (error) {
