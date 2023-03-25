@@ -20,56 +20,47 @@ export default function Navbar({ fixed }) {
 
   return (
     <>
-      <nav className="fixed w-full herobg top-0 z-50 flex flex-wrap items-center justify-between    lg:py-3   mb-3">
-        <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
-            <Link href="/">
-              <img
-                src={
-                  theme == "dark"
-                    ? "/images/homepage/logoW.png"
-                    : "/images/homepage/logoD.png"
-                }
-                alt="logo"
-                className="h-10 "
-              />
-            </Link>
-            <button
-              className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              {navbarOpen ? (
-                <AiOutlineClose className="transition ease-in duration-500 navicon" />
-              ) : (
-                <AiOutlineMenu className="transition ease-in duration-500 navicon" />
-              )}
-            </button>
-          </div>
-          <div
-            className={
-              "lg:flex flex-grow items-center " +
-              (navbarOpen ? " flex" : " hidden")
-            }
-            id="example-navbar-danger"
-          >
-            <ul
-              onClick={handleNav}
-              className="flex items-stretch   lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
-            >
-              <div className="flex lg:space-x-4 text-secondary font-semibold flex-col lg:flex-row mt-4 lg:mt-0 lg:items-center">
-                <li className="nav-item">
-                  <Link
-                    className={`py-2 flex items-center text-xs uppercase hover:text-red-500 leading-snug hover:cursor-pointer ${
+     <nav className="fixed w-full herobg top-0 z-50 flex flex-wrap items-center justify-between    lg:py-3   mb-3">
+  <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
+    <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
+    <Link href='/'>
+       <img src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt="logo" className="h-10 "/> 
+    </Link>
+      <button
+        className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none  "
+        type="button"
+        onClick={() => setNavbarOpen(!navbarOpen)}
+      >
+        {navbarOpen ? (
+          <AiOutlineClose className="transition ease-in duration-500 navicon" />
+        ) : (
+          <AiOutlineMenu className="transition ease-in duration-500 navicon" />
+        )}
+      </button>
+    </div>
+    <div
+      className={
+        "lg:flex flex-grow items-center ml-4 " + (navbarOpen ? " flex" : " hidden")
+      }
+      id="example-navbar-danger"
+    >
+      <ul
+        onClick={handleNav}
+        className="flex items-stretch   lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
+      >
+        <div className="flex lg:space-x-4 text-secondary font-semibold flex-col lg:flex-row mt-4 lg:mt-0 lg:items-center"> 
+          <li className="nav-item">
+          <Link
+             className={`py-2 flex items-center text-xs uppercase hover:text-red-500 leading-snug hover:cursor-pointer ${
                       activeLink === "home" ? "text-red-500" : "text-secondary"
                     } transition ease-in duration-300`}
-                    href="/#home"
-                    scroll={true}
-                    onClick={() => setActiveLink("home")}
-                  >
-                    Home
-                  </Link>
-                </li>
+            href="/"
+            scroll={true}
+            onClick={() => setActiveLink("home")}
+          >
+            Home
+          </Link>
+        </li>
 
                 <li className="nav-item">
                   <Link

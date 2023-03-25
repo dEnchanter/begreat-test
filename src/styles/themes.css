@@ -267,12 +267,15 @@ body {
 .btnWaitlist {
     background: var(--btnWaitlist);
 }
+
+
 .btnWaitlistI {
     color: var(--btnWaitlistI);
     /* background: var(--btnWaitlistI); */
     /* -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
 }
+
 .btnClick{
     background-color: var(--btnClick);
     border-color: var(--btnClick);
@@ -450,6 +453,13 @@ body {
 
 }
 
+.footerbg{
+    background-image: url(../image/footerbg.png);
+        background-repeat: no-repeat;
+        background-size: 50rem;
+        background-position: center;
+}
+
 .processbg{
     background-image: url(../image/process.png);
         background-repeat: no-repeat;
@@ -472,4 +482,14 @@ body {
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
+  }
+
+
+  .border-gradient {
+   
+        border-image: linear-gradient(to right, #f00, #0f0, #00f) 1;
+        background-color: transparent;
+        border-radius: 25px;
+        
+        
   }

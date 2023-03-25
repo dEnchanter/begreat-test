@@ -30,10 +30,11 @@ const Faqs = () => {
   return (
        
 
-   <div> 
-       <div  className={theme=="light"?"bg-[#FFFCFB] lg:mt-16  pb-20":"faqbg lg:mt-16  pb-20"}> 
+   <div id='faqs'> 
+     <img className='h-8 absolute mt-[23rem] lg:left-[23rem] 2xl:left-[45rem] hidden lg:flex'  src='./images/homepage/faqstar.png' alt=' ' />
+       <div  className={theme=="light"?"bg-[#FFFCFB] lg:mt-162  pb-20":"faqbg lg:mt-16  pb-20"}> 
          <Container className=''> 
-         <div className=' md:flex lg:px-10 justify-between pt-10 '> 
+         <div className=' md:flex lg:px-10 justify-between pt-16  '> 
            <div className='md:w-[30%] w-fit mx-auto md:mt-4  text-center md:text-start '> 
                 <h1 className='font-bold text-2xl '> Frequently asked <br/> Questions </h1>
                 <p className='lg:text-sm text-base mt-2 sm:w-[70%] sm:mx-auto md:w-full lg:mx-0'> Can’t find the answer you’re looking for? Reach out to our customer support team. </p>
@@ -57,9 +58,8 @@ const Faqs = () => {
     {/* <div  className={theme=="light"?"bg-[#FEF3F2]":"worksbg mt-20"}>  */}
     <div className='divebg'>
         <Container> 
-           <img className='h-16 absolute mt-[3rem] lg:left-[16rem] 2xl:left-[30rem]'  src='./images/homepage/litecoin.png' alt=''/>
-            <img className='h-20 absolute mt-[5rem] lg:right-[15rem] 2xl:right-[30rem] hidden lg:flex'  src='./images/homepage/red.png' alt=' ' />
-            <img className='h-20 absolute mt-[10rem] lg:left-[25rem] 2xl:left-[38rem] hidden lg:flex'  src='./images/homepage/green.png' alt=' ' />
+             <img className='h-[10rem] absolute mt-[2rem] lg:left-[10rem] 2xl:left-[20rem] hidden xl:flex' src='./images/homepage/bigether.png' alt=' ' />
+             <img className='h-[10rem] absolute mt-[6rem] lg:right-[7rem] 2xl:right-[14rem] hidden xl:flex' src='./images/homepage/biglite.png' alt=' ' />
                   <div className='text-center text-gray-300 font-bold text-xl md:text-2xl pb-20 pt-14 mt-20 mb-20'>
             <h1> Ready to dive in? </h1>
             <h1> Start with a plan today. </h1> 
