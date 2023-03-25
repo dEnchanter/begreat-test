@@ -28,10 +28,10 @@ export default function Navbar({ fixed }) {
   <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
-       <img src={theme=="dark"?"/images/homepage/logoW.png":"/images/homepage/logoD.png" } alt="logo" className="h-10 "/> 
+       <img src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt="logo" className="h-10 "/> 
     </Link>
       <button
-        className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
+        className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none  "
         type="button"
         onClick={() => setNavbarOpen(!navbarOpen)}
       >
@@ -44,7 +44,7 @@ export default function Navbar({ fixed }) {
     </div>
     <div
       className={
-        "lg:flex flex-grow items-center " + (navbarOpen ? " flex" : " hidden")
+        "lg:flex flex-grow items-center ml-4 " + (navbarOpen ? " flex" : " hidden")
       }
       id="example-navbar-danger"
     >
@@ -58,7 +58,7 @@ export default function Navbar({ fixed }) {
              className={`py-2 flex items-center text-xs uppercase hover:text-red-500 leading-snug hover:cursor-pointer ${
                       activeLink === "home" ? "text-red-500" : "text-secondary"
                     } transition ease-in duration-300`}
-            href="/#home"
+            href="/"
             scroll={true}
             onClick={() => setActiveLink("home")}
           >

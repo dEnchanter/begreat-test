@@ -10,10 +10,10 @@ const HowItWorks = () => {
   return (
     <div> 
     <div className={theme=="light"?"bg-[#FFFCFB] ":"processbg "}> 
-    <Container id='how-it-works' className='pt-16 lg:pb-10 pb-2'>
-        <img className='h-6 absolute mt-12 left-[15rem] hidden lg:flex 2xl:left-[35rem]' src='./images/homepage/binance.png' alt=' ' />
-        <img className='h-10 absolute mt-[17rem] left-[10rem] hidden lg:flex 2xl:left-[25rem]' src='./images/homepage/ether2.png' alt='' />
-        <img className='h-8 absolute mt-[25rem] right-[18rem] hidden lg:flex 2xl:right-[34rem]' src='./images/homepage/security.png' alt=' ' />
+    <Container id='how-it-works' className='pt-16 md:pt-20 lg:pb-10 pb-2'>
+        <img className='h-6 absolute mt-12 left-[15rem] hidden xl:flex 2xl:left-[35rem]' src='./images/homepage/binance.png' alt=' ' />
+        <img className='h-10 absolute mt-[17rem] left-[10rem] hidden xl:flex 2xl:left-[25rem]' src='./images/homepage/ether2.png' alt='' />
+        <img className='h-8 absolute mt-[25rem] right-[18rem] hidden xl:flex 2xl:right-[34rem]' src='./images/homepage/security.png' alt=' ' />
       <div  className='  '>
 
           <div className='text-center '> 
@@ -24,9 +24,9 @@ const HowItWorks = () => {
           </div>
 
 
-          <div className='md:flex md:w-full space-y-8 lg:space-y-0 md:px-10 w-fit mx-auto justify-around mt-10 md:mt-16 mb-20'>
+          <div className='md:flex md:w-full space-y-8 md:space-y-0 md:px-10 w-fit mx-auto justify-around mt-10 md:mt-16 mb-20'>
 
-              <div className='flex flex-col  lg:w-[12rem] w-[14rem] mx-auto md:mx-0 md:mt-0 mt-4'>
+              <div className='flex flex-col  lg:w-[12rem]  w-[14rem] mx-auto md:mx-0 md:mt-0 mt-4'>
                   <div className='flex bg-[#160E33] w-fit mx-auto items-center rounded-full py-2 px-2 '> 
                       <div className='items-center justify-center flex  btnbgplan rounded-full h-6 w-6 '>
                         <p className='  text-center items-center font-light text-xs  text-transparent bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '> 01 </p>
