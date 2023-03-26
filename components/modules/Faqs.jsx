@@ -3,10 +3,14 @@ import FAQItem from './FAQItem'
 import { Button } from '../styles/Button'
 import { Container } from '../styles/Container'
 import { useTheme } from "next-themes";
+import { useRouter } from 'next/router';
+
 
 
 const Faqs = () => {
   const { theme, setTheme } = useTheme();
+  const router =useRouter();
+  
     const faqs = [
     {
       question: 'What does Be-finance do?',
@@ -63,7 +67,7 @@ const Faqs = () => {
                   <div className='text-center text-gray-300 font-bold text-xl md:text-2xl pb-20 pt-14 mt-20 mb-20'>
             <h1> Ready to dive in? </h1>
             <h1> Start with a plan today. </h1> 
-            <Button className='w-fit mx-auto hover:cursor-pointer mt-8 py-2 border-0 text-xs font-light text-white bg-gradient-to-r from-[#D32652] to-[#8466E1]'> Get Started </Button>
+            <Button onClick={() => router.push("/register")} className='w-fit mx-auto hover:cursor-pointer mt-8 py-2 border-0 text-xs font-light text-white bg-gradient-to-r from-[#D32652] to-[#8466E1]'> Get Started </Button>
             </div>
         </Container>
     </div>

@@ -61,6 +61,7 @@
     --bgMode:#0A0118;
     --uploadText1:#292D32;
     --uploadText2:#AEAEAE;
+    --priceback: rgb(250, 242, 242) ;
 }
 
 [data-theme='dark'] {
@@ -125,6 +126,12 @@
     --bgMode:#F4F4F4;
     --uploadText1:#F4F4F4;
     --uploadText2:#F4F4F4;
+    --priceback: #373b55;
+}
+
+
+.priceback {
+    background-color: var(--priceback);
 }
     
 

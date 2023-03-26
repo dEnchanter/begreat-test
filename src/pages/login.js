@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import Layout from "../../components/Layout";
@@ -20,6 +20,12 @@ export default function Login() {
   const all = useSelector((state) => state.auth);
   const [userData, setUserData] = useState();
   const dispatch  =useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
+const togglePasswordVisibility = () => {
+  setShowPassword(!showPassword);
+};
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
       email: "",
@@ -112,7 +118,7 @@ console.log(all,userInfo,loading,'userInfo')
                     rules={{
                       required: "Password is required",
 
-                      maxLength: generateMinLength(6),
+                      minLength: generateMinLength(6),
                     }}
                     render={({
                       field: { value, onChange },
@@ -121,12 +127,18 @@ console.log(all,userInfo,loading,'userInfo')
                       const errorMessage = errors?.password?.message;
                       return (
                         <TextInput
+                         type={showPassword ? 'text' : 'password'}
                           placeholder="••••••••"
                           containerClassName={"loginInputBorder border-[1px]"}
-                          prefixIcon={<AiOutlineEyeInvisible size={20} />}
+                           prefixIcon={
+                            showPassword ? (
+                              <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
+                            ) : (
+                              <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
+                            )
+                          }
                           name="password"
-                          {...{ value, onChange, errors: [errorMessage] }}
-                        />
+                          {...{ value, onChange, errors: [errorMessage] }}                       />
                       );
                     }}
                   />

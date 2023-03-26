@@ -1,6 +1,5 @@
 import { useTheme } from "next-themes";
-import React, { useEffect } from "react";
-import { AiOutlineEyeInvisible } from "react-icons/ai";
+import React, { useEffect ,useState} from "react";
 import { BsSun } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineMoon } from "react-icons/hi";
@@ -10,6 +9,7 @@ import DropDownItem from "../../components/ui/DropDownItem";
 import TextInput from "../../components/ui/TextInput";
 import { useUserSignUpMutation } from "../../store/auth/authApi";
 import { Controller, useForm } from "react-hook-form";
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import {
   generateMaxLength,
   generateMinLength,
@@ -23,6 +23,11 @@ import Link from "next/link";
 export default function Login() {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
+const togglePasswordVisibility = () => {
+  setShowPassword(!showPassword);
+};
   const [userSignUp, { isLoading, isError, isSuccess }] =
     useUserSignUpMutation();
   const { control, handleSubmit, reset } = useForm({
@@ -134,9 +139,14 @@ export default function Login() {
                     const errorMessage = errors?.password?.message;
                     return (
                       <TextInput
+                      type={showPassword ? 'text' : 'password'}
                         placeholder="••••••••"
                         containerClassName={"loginInputBorder border-[1px]"}
-                        prefixIcon={<AiOutlineEyeInvisible size={20} />}
+                        prefixIcon={ showPassword ? (
+              <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
+            ) : (
+              <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
+            )}
                         name="password"
                         {...{ value, onChange, errors: [errorMessage] }}
                       />
@@ -155,7 +165,7 @@ export default function Login() {
               </div>
 
               <ButtonComp
-                btnText={isLoading ? "Loading..." : "Login"}
+                btnText={isLoading ? "Loading..." : "Sign Up"}
                 type="submit"
                 btnTextClassName={
                   "navBtnBG rounded-full text-white w-full py-3 font-extrabold text-[18px]"
