@@ -18,7 +18,7 @@ export default function pricing() {
           <h1 className='font-bold text-xl pt-4'>Monthly Plan </h1>
           <p className='text-xs mt-2'> All the basics for starting a new business </p>
           <h1 className='mt-4 text-xs'> <span className='text-3xl font-bold'>$50</span>/MO </h1>
-          <button className='border border-[#4F46E5] text-[#4F46E5] hover:text-white hover:bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full'> Buy Plan </button> 
+          <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in'> Buy Plan </button> 
           <div className='mt-5 text-xs space-y-3 '> 
              <p className='uppercase font-semibold'> What's Included </p>
              <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Pulse Tool </p>
@@ -31,7 +31,7 @@ export default function pricing() {
           <h1 className='font-bold text-xl pt-4'>Yearly Plan </h1>
           <p className='text-xs mt-2'> All the basics for starting a new business </p>
           <h1 className='mt-4 text-xs'> <span className='text-3xl font-bold'>$500</span>/YR </h1>
-          <button className='border border-[#4F46E5] text-[#4F46E5] hover:text-white hover:bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full'> Buy Plan </button> 
+          <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in'> Buy Plan </button> 
           <div className='mt-5 text-xs space-y-3 '> 
              <p className='uppercase font-semibold'> What's Included </p>
              <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Pulse Tool </p>
