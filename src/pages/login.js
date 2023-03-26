@@ -12,11 +12,12 @@ import { generateMaxLength, generateMinLength, REGEX_PATTERNS } from "../../cons
 import { userLogin } from "../../store/auth/authAction";
 import Link from "next/link";
 import Footer from "../../components/modules/Footer";
+import { toast } from "react-hot-toast";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
-  const {loading,userInfo,isLoggedIn,error} = useSelector((state) => state.auth)
+  const {loading,userInfo,isLoggedIn,error,} = useSelector((state) => state.auth)
   const all = useSelector((state) => state.auth);
   const [userData, setUserData] = useState();
   const dispatch  =useDispatch();
@@ -32,7 +33,7 @@ const togglePasswordVisibility = () => {
       password: "",
     },
   });
-console.log(all,userInfo,loading,'userInfo')
+//console.log(all,userInfo,loading,error,'userInfo')
   const HandleSubmit = (data)=>{
     console.log(data)
     dispatch(userLogin(data))
@@ -43,6 +44,11 @@ console.log(all,userInfo,loading,'userInfo')
       router.push('/dashboard')
     }
   }, [router, isLoggedIn])
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+    }
+  }, [error])
       
   return (
     <Layout >
