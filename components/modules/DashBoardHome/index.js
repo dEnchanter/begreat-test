@@ -62,7 +62,7 @@ export default function DashBoardHome() {
     }
   );
 
-  console.log(data,'data')
+  
 
   const List = [
     { time: "DAY", data: Day1?.data?.average,loading:Day1Loader },
@@ -84,11 +84,15 @@ export default function DashBoardHome() {
   });
 
   const handleClick = (data) => {
-    console.log(data)
+    // console.log(data)
+    setCoinName(data?.coinName)
     if(data?.coinname){
-      setCoinName(data?.coinName)
+      // console.log(data,'data2')
+      setCoinName(data?.coinname)
     }
   }
+
+  console.log(coinName,data,'data3')
 
   return (
     <section className="relative">
@@ -164,7 +168,7 @@ export default function DashBoardHome() {
                 <div className="mb-5">
                   <div className="text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes low price:{" "}
-                    <span className="font-bold secondary">{toThreeFig(data?.low)}</span>
+                    <span className="font-bold secondary">{toThreeFig(data?.low)||0}</span>
                   </div>
                   <div className="h-[200px] md:h-[308px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">
                     {toThreeFig(data?.fall||0)}%

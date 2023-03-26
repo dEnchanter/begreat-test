@@ -56,7 +56,7 @@ export const authSlice = createSlice({
       // state.userToken = payload.accessToken;
     },
     [userLogin.rejected]: (state, { payload }) => {
-        console.log(state ,'state2')
+      
       state.loading = false;
       state.error = payload||'Oops, something went wrong, try again later';
       state.isLoggedIn =false;

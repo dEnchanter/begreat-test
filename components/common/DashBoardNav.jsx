@@ -7,10 +7,12 @@ import { FaUser } from 'react-icons/fa'
 import { useTheme } from 'next-themes'
 import ButtonComp from '../ui/ButtonComp'
 import { useRouter } from 'next/router'
-
+import { useDispatch } from 'react-redux'
+import { logout } from "../../store/auth";
 export default function DashBoardNav({change}) {
     const { theme, setTheme } = useTheme();
-    const router =useRouter()
+    const router =useRouter();
+    const dispatch  =useDispatch();
     
   return (
     <nav>
@@ -43,7 +45,7 @@ export default function DashBoardNav({change}) {
                     />
                     </div>}
                 <div className='iconColor1 p-3 rounded-full'>
-                    <HiUser size={20} className=''/>
+                    <HiUser size={20} className='cursor-pointer' onClick={()=>dispatch(logout())}/>
                 </div>
             </div>
         </div>
