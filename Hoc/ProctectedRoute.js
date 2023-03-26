@@ -46,7 +46,7 @@ export const ProtectedRoute = ({ children, type }) => {
     // }
   }, [dispatch, router]);
 
-  return true ? (
+  return getData ? (
     children
   ) : (
     <div>

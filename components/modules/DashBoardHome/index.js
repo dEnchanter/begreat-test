@@ -84,7 +84,7 @@ export default function DashBoardHome() {
   });
 
   const handleClick = (data) => {
-   
+    console.log(data)
     if(data?.coinname){
       setCoinName(data?.coinName)
     }
