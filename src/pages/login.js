@@ -40,44 +40,14 @@ console.log(all,userInfo,loading,'userInfo')
       
   return (
     <Layout >
-      <section className="animated__animated animate-fadeIn bg-transparent">
-        {/* <nav className='px-5 lg:px-28 py-4 flex justify-between items-center mb-[3rem] lg:mb-[7rem]'>
-        <FallBackImage
-        src={'/Images/Dashboard/logo.png'}
-        width={227}
-        height={227}
-        />
-        <div className=' hidden lg:flex items-center gap-20'>
-          <div className=''>
-            <ul className='flex gap-10 items-center text-[14px] paymentTextI font-medium'>
-              <li>Home</li>
-              <li>How it works</li>
-              <li><DropDownItem padding={'0px'} BackgroundColor={'transparent'} border='transparent' value={{label:<span className='paymentTextI'>Tools</span>,value:'Tools'}} options={[{label:'Tools',value:'Tools'}]} /></li>
-              <li className='flex gap-4 items-center'>Pricing <span> <div className='bgMode px-[8px] rounded-full  gap-2  items-center hidden md:flex'>
-                <div className={`   ${theme ==="light" ? 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center ':'text-white'}`}><BsSun onClick={()=>setTheme('light')} size={18} className='background'/></div>
-                <div className={`   rounded-lg ${theme ==="dark" ? 'bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center ':'text-white'}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='background'/></div>
-                </div></span></li>
-            </ul>
-          </div>
-          <div>
-          <ul className='flex gap-10 items-center text-[14px]'>
-              <li className='paymentTextI font-semibold'>Login</li>
-              <li>
-                <ButtonComp
-                btnText={'Get Started'}
-                btnTextClassName='border-1 rounded-full navBtnBG text-white px-8 py-3'
-                />
-              </li>
-              </ul>
-          </div>
-        </div>
-      </nav> */}
+      <section className="px-2 animated__animated animate-fadeIn bg-transparent">
+      
 
-        <main className="pb-[7rem] pt-[10rem] bg-transparent">
+        <main className="pb-[7rem] pt-[5rem] lg:pt-[10rem] bg-transparent">
           <section className="mb-[2rem]">
-            <div className="text-center text-[30px] lg:text-[36px] font-semibold font-3 leading-10">
+            <div className="text-center text-[24px] md:text-[30px] lg:text-[36px] font-semibold font-3 leading-10">
               Revolutionize Your <span className="check">Finances </span>with{" "}
-              <br /> Our Powerful Platform
+              <br className="hidden lg:block" /> Our Powerful Platform
             </div>
           </section>
           {/*  */}
@@ -85,7 +55,7 @@ console.log(all,userInfo,loading,'userInfo')
             <div className="loginBack border-[1.5px] w-full mx-3 lg:mx-0 lg:max-w-[578px] text-center rounded-lg px-5 lg:px-10">
               <div className="py-[2rem] bg-transparent"></div>
               <div>
-                <div className="text-[30px] font-bold secondary mb-1">
+                <div className="text-[25px] lg:text-[30px] font-bold secondary mb-1">
                   Login to your Account
                 </div>
                 <div className="smallText text-[14px] mb-3">
@@ -183,7 +153,7 @@ console.log(all,userInfo,loading,'userInfo')
                   }
                 />
 
-                <div className="mt-7 priceText font-normal text-[18px] mb-5">
+                <div className="mt-7 priceText font-normal text-[16px] lg:text-[18px] mb-5">
                   Don’t Have an Account?
                   <span className="font-thin cursor-pointer"><Link href={'/register'}> Sign Up</Link></span>
                 </div>

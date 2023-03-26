@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }) {
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true)
+    
   }, [])
 
   if (!mounted) {
@@ -23,7 +24,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ThemeProvider
-    // defaultTheme={theme}
+   defaultTheme={'light'}
    // attribute="class"
     // enableSystem={false}
     // storageKey="theme"

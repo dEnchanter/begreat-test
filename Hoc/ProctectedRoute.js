@@ -14,14 +14,7 @@ export const ProtectedRoute = ({ children, type }) => {
   const { loading, userInfo, isLoggedIn } = useSelector((state) => state.auth);
   const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
-  const {
-    data: userProfileData,
-    // isLoading,
-    isSuccess,
-    // isError,
-    // status,
-    error,
-  } = useGetUserProfileQuery();
+ 
 
   
   // useEffect(() => {

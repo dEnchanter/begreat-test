@@ -18,6 +18,7 @@ import {
 import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
@@ -55,19 +56,19 @@ export default function Login() {
 
   return (
     <Layout>
-      <main className="pb-[7rem] pt-[10rem] bg-transparent">
+        <main className="pb-[7rem] pt-[5rem] lg:pt-[10rem] bg-transparent px-2">
         <section className="mb-[2rem]">
-          <div className="text-center text-[30px] lg:text-[36px] font-semibold font-3 leading-10">
-            Revolutionize Your <span className="check">Finances </span>with{" "}
-            <br /> Our Powerful Platform
-          </div>
+        <div className="text-center text-[24px] md:text-[30px] lg:text-[36px] font-semibold font-3 leading-10">
+              Revolutionize Your <span className="check">Finances </span>with{" "}
+              <br className=" hidden lg:block" /> Our Powerful Platform
+            </div>
         </section>
         {/*  */}
         <section className="flex justify-center">
           <div className="loginBack border-[1.5px] w-full mx-3 lg:mx-0 lg:max-w-[578px] text-center rounded-lg px-5 lg:px-10">
             <div className="py-[2rem]"></div>
             <div>
-              <div className="text-[30px] font-bold secondary mb-1">
+            <div className="text-[25px] lg:text-[30px] font-bold secondary mb-1">
                 Create an Account
               </div>
               <div className="smallText text-[14px] mb-3">
@@ -161,10 +162,10 @@ export default function Login() {
                 }
               />
 
-              <div className="mt-7 priceText font-normal text-[18px] mb-5">
-                Don’t Have an Account?
-                <span className="font-thin cursor-pointer"> Sign Up</span>
-              </div>
+<div className="mt-7 priceText font-normal text-[16px] lg:text-[18px] mb-5">
+                  Don’t Have an Account?
+                  <span className="font-thin cursor-pointer"><Link href={'/register'}> Sign Up</Link></span>
+                </div>
             </form>
             <div className="py-[1rem]"></div>
           </div>
