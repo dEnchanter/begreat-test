@@ -23,7 +23,7 @@ const Footer = () => {
             </div>
 
             <div className='leading-loose text-xs w-fit  workstext mx-auto lg:mx-0 text-center hover:cursor-pointer lg:text-start mt-4 lg:mt-0'> 
-                <h1 className='uppercase font-bold text-sm text-gray-500  hover:cursor-pointer hover:text-[#FF0000]'> company </h1> 
+                <h1 className='uppercase font-bold text-sm text-gray-500 '> company </h1> 
                <Link href='/#home' > <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> About </h1> </Link> 
                <Link href='/#pricing'>  <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> Pricing </h1> </Link> 
                <Link href='/#how-it-works'> <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> How it works </h1> </Link> 
@@ -45,7 +45,7 @@ const Footer = () => {
     </Container>
 
     <hr/>
-    <h1 className='text-center mt-4 text-sm pb-4'>  Be great Finance © 2023  </h1>
+    <h1 className='text-center mt-4 text-xs pb-4'>  Be great Finance © 2023  </h1>
    </footer>
   )
 }
