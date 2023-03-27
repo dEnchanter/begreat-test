@@ -168,7 +168,7 @@ export default function DashBoardHome() {
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
                   {`${data?.asset?.split("U")[0]}/U${
                     data?.asset?.split("U")[1]
-                  }`}
+                  }`||''}
                 </h1>
               </div>
             </div>
