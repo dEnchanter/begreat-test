@@ -13,8 +13,8 @@ export default function pricing() {
           <p className='text-center text-sm'> Our pricing plans are designed to be affordable, flexible, and scalable, so you can <br className='hidden md:flex'/> choose the plan that best fits your investment goals. </p>
         </div>
 
-       <div className='flex md:flex-row flex-col justify-center space-y-4 md:space-y-0 md:space-x-4 mt-10 pb-10'> 
-           <div className=' rounded-md shadow-lg  hover:shadow-2xl hover:cursor-pointer h-[23rem]  w-full  md:mx-0 mx-auto sm:w-[18rem] px-6 priceback'> 
+       <div className='flex md:flex-row flex-col justify-center space-y-4 md:space-y-0 md:space-x-6 mt-10 pb-10'> 
+           <div className=' rounded-md shadow-lg  lg:hover:shadow-2xl hover:cursor-pointer h-[23rem]  w-full  md:mx-0 mx-auto max-w-[19rem] sm:max-w-[18rem] px-6 priceback'> 
           <h1 className='font-bold text-xl pt-4'>Monthly Plan </h1>
           <p className='text-xs mt-2'> All the basics for starting a new business </p>
           <h1 className='mt-4 text-xs'> <span className='text-3xl font-bold'>$50</span>/MO </h1>
@@ -27,7 +27,7 @@ export default function pricing() {
           </div>
         </div>
 
-        <div className=' rounded-md shadow-lg  hover:shadow-2xl hover:cursor-pointer h-[23rem]  w-full md:mx-0 mx-auto sm:w-[18rem] px-6 priceback'> 
+        <div className=' rounded-md shadow-lg  lg:hover:shadow-2xl hover:cursor-pointer h-[23rem]  w-full md:mx-0 mx-auto max-w-[19rem] sm:max-w-[18rem] px-6 priceback'> 
           <h1 className='font-bold text-xl pt-4'>Yearly Plan </h1>
           <p className='text-xs mt-2'> All the basics for starting a new business </p>
           <h1 className='mt-4 text-xs'> <span className='text-3xl font-bold'>$500</span>/YR </h1>
