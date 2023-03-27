@@ -53,7 +53,7 @@ export default function DashBoardHome() {
   const { data: FifteenMin, isLoading:FifteenMinLoader } = useTimeFrameQuery("15");
   const { data: FiveMin,isLoading:FiveMinLoader } = useTimeFrameQuery("5");
   // 
-  const { data} = useSearchCoinsQuery(
+  const { data,isLoading:FindCoinLoader,isFetching} = useSearchCoinsQuery(
     coinName,
     {
       // pollingInterval: 3000,
@@ -92,7 +92,7 @@ export default function DashBoardHome() {
     }
   }
 
-  console.log(coinName,data,'data3')
+  //console.log(coinName,data,'data3')
 
   return (
     <section className="relative">
@@ -126,6 +126,7 @@ export default function DashBoardHome() {
                     onClick={handleSubmit(handleClick)}
                   />
                 }
+                prefixIcon={FindCoinLoader||isFetching&&<Spinner/>}
                 name="coinname"
                 {...{ value, onChange, errors: [errorMessage] }}
               />
@@ -139,7 +140,7 @@ export default function DashBoardHome() {
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  BNB/USDT
+                  {`${data?.asset?.split('U')[0]}/U${data?.asset?.split('U')[1]}`}
                 </h1>
               </div>
             </div>
@@ -168,7 +169,7 @@ export default function DashBoardHome() {
                 <div className="mb-5">
                   <div className="text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes low price:{" "}
-                    <span className="font-bold secondary">{toThreeFig(data?.low)||0}</span>
+                    <span className="font-bold secondary">{toThreeFig(data?.low||0)}</span>
                   </div>
                   <div className="h-[200px] md:h-[308px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">
                     {toThreeFig(data?.fall||0)}%
