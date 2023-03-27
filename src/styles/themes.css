@@ -61,10 +61,12 @@
     --bgMode:#0A0118;
     --uploadText1:#292D32;
     --uploadText2:#AEAEAE;
-    --priceback: rgb(250, 242, 242) ;
+    --priceback: rgb(255, 255, 255) ;
+    --navicon : black;
 }
 
 [data-theme='dark'] {
+    --navicon: white;
     --worksbg: #0A0118;
     --herobg: #101828;
     --primaryblack: red;
@@ -127,6 +129,10 @@
     --uploadText1:#F4F4F4;
     --uploadText2:#F4F4F4;
     --priceback: #373b55;
+}
+
+.navicon{
+    color: var(--navicon);
 }
 
 
