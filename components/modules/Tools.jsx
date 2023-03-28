@@ -21,30 +21,43 @@ const Tools = () => {
 
            <div  className='grid  sm:grid-cols-2 gap-5 lg:mx-0  mx-auto w-fit mt-6 lg:px-2'> 
               <div  className={theme=="light"?"w-[15rem]  hover:cursor-pointer hover:shadow-2xl transition-all ease-in duration-150   text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-[#FFFCFB]":"w-[15rem] hover:cursor-pointer  text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-gradient-to-r from-[#483d64] to-[#130925]"} >
-                <h1 className='text-sm font-bold text2'> Pulse Tool </h1>
-                <p className='lg:text-xs text-sm mt-2 text text2'> The Pulse tool in our SAAS finance dashboard for cryptocurrency provides a real-time overview of market sentiment and activity.  the Pulse tool helps you stay up-to-date on the latest developments in the cryptocurrency market and gain insights into investor sentiment. </p> 
-                <p className='flex items-center text-xs mt-2 bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '> Learn More <span className='ml-2 w-2'> <img src='./images/homepage/arrow.png' alt='icon'/> </span>  </p>
+                <h1 className='text-sm font-bold text2'> Pulse  </h1>
+                <p className='lg:text-xs text-sm mt-2 text text2'> Pulse is a multi-timeframe algorithmic trend detection tool, helping users to easily
+                  detect and visualize trend strength and direction for an asset by categorizing price
+                  action into one of four possible outputs.
+                  </p> 
+               
 
               </div>
 
            <div  className={theme=="light"?"w-[15rem]  hover:cursor-pointer hover:shadow-2xl transition-all ease-in duration-150 text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-[#FFFCFB]":"w-[15rem] hover:cursor-pointer  text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-gradient-to-r from-[#483d64] to-[#130925]"} >
-                <h1 className='text-sm font-bold text2'> Watchlist Tool </h1>
-                <p className='lg:text-xs text-sm mt-2 text text2 '> Stay up-to-date with the latest market trends and monitor price changes in real-time with our Watchlist feature. Never miss a buying or selling opportunity again with our instant price updates and easy-to-use interface. </p> 
-                <p className='flex items-center text-xs mt-2 bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '> Learn More <span className='ml-2 w-2'> <img src='./images/homepage/arrow.png' alt='icon'/> </span>  </p>
+                <h1 className='text-sm font-bold text2'> Shift </h1>
+                <p className='lg:text-xs text-sm mt-2 text text2 '> Shift is a price momentum analysis tool that helps you quickly identify the direction
+                and speed of price movement across multiple timeframes. With Shift, you can easily
+                recognize market trends and potential price breakouts, shortening your reaction time
+                in the volatile cryptocurrency markets. </p> 
+                                
 
               </div>
 
               <div  className={theme=="light"?"w-[15rem] hover:cursor-pointer hover:shadow-2xl transition-all ease-in duration-150 text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-[#FFFCFB]":"w-[15rem] hover:cursor-pointer  text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-gradient-to-r from-[#483d64] to-[#130925]"} >
-                <h1 className='text-sm font-bold text2'> Rise/Fall Tool </h1>
-                <p className='lg:text-xs text-sm mt-2 text text2'> This allows you to quickly and easily identify the top gainers and losers in the cryptocurrency market. By tracking real-time price movements and percentage changes across different cryptocurrencies, the Rise/Fall tool provides valuable insights into market trends and potential opportunities. </p> 
-                <p className='flex items-center text-xs mt-2 bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '> Learn More <span className='ml-2 w-2'> <img src='./images/homepage/arrow.png' alt='icon'/> </span>  </p>
+                <h1 className='text-sm font-bold text2'> Levels </h1>
+                <p className='lg:text-xs text-sm mt-2 text text2'> Levels is a price contextualization tool, allowing users to visualize recent price
+                extremes on various timeframes. Use these levels, along with the rise and fall
+                amounts to easily intepret market ranges and volatility as well as adjust risk
+                management accordingly. </p> 
+               
 
               </div>
 
               <div  className={theme=="light"?"w-[15rem] hover:cursor-pointer hover:shadow-2xl transition-all ease-in duration-150 text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-[#FFFCFB]":"w-[15rem]  hover:cursor-pointer text-black pb-4 px-2 pt-4 rounded-md shadow-lg bg-gradient-to-r from-[#483d64] to-[#130925]"} >
-                <h1 className='text-sm font-bold text2'> Shift Tool </h1>
-                <p className='lg:text-xs text-sm mt-2 text text2'> The Shift tool in our finance dashboard for cryptocurrency provides advanced technical analysis capabilities to help you identify potential market opportunities and make informed trading decisions. By analyzing historical price data and market trends, the Shift tool helps you identify potential shifts in market sentiment and direction. </p> 
-                <p className='flex items-center text-xs mt-2 bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '> Learn More <span className='ml-2 w-2'> <img src='./images/homepage/arrow.png' alt='icon'/> </span>  </p>
+                <h1 className='text-sm font-bold text2'> TrendScan </h1>
+                <p className='lg:text-xs text-sm mt-2 text text2'> TrendScan is the ultimate custom watchlist scanner, designed to help you identify
+              the best opportunities to profit in the market. With advanced analysis of trends,
+              breakouts, and volatility on assets in your watchlist, TrendScan sorts them by your
+              preferences to help you easily identify and react to the latest and most promising
+              opportunities in the market </p> 
+               
 
               </div>
               

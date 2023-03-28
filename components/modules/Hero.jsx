@@ -23,7 +23,11 @@ const router = useRouter();
       <div className='lg:mt-[4rem]   mt-12 lg:mb-[4rem]'> 
           <div className='text-center'> 
               <h1 className='md:px-4 text-center  mx-auto  md:text-3xl mt-2  text-2xl font-bold'> Maximize Your <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '> Crypto Profits </span> with <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#9C52B3] to-[#B43E89]'> Be Great </span> <br className='hidden lg:block'/> <span className='text-[#BD3779]'> Finance's  </span> Live Price Analysis Dashboard </h1>
-              <p className=' mx-auto lg:text-sm text-base text-center   mt-4 '> Experience the power of Finance SaaS and take control of your finances today. Sign up <br className='hidden md:flex'/> now for a free trial and see how we can help take your business to the next level. </p>
+              <p className=' mx-auto lg:text-sm text-base text-center   mt-4 '>               
+              Experience the power of live algorithmic trend analysis and start growing your crypto
+              portfolio today.  <br className='hidden md:flex'/> Sign up now and use our deluxe suite of tools to pinpoint the best
+            <br className='hidden md:flex'/> profit opportunities in the volatile cryptocurrency markets.
+            </p>
           </div>
 
  

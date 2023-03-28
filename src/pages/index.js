@@ -16,6 +16,7 @@ export default function Home() {
     <Layout>
       <Head>
         <title> Be-great Finance</title>
+        <link rel="icon" href="/Bicon.png" />
       </Head>
       
       <main>

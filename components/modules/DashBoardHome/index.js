@@ -155,7 +155,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                 rules={{
                   required: "Coin Name is required",
                   // pattern: REGEX_PATTERNS?.EMAIL,
-                  maxLength: generateMaxLength(3),
+                  maxLength: generateMaxLength(5),
                 }}
                 render={({
                   field: { value, onChange },
@@ -170,7 +170,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                         <TbSearch
                           size={25}
                           wrapperClassName=" xl:w-[29%]"
-                          color="text-[#fff]"
+                          color="text-[#fff"
                           className="cursor-pointer"
                           onClick={handleSubmit(handleClick)}
                         />
@@ -198,7 +198,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
             <div className="leading-[1.4rem]">
               <div className="gray mb-0">Price</div>
               <div className="primaryText text-[20px] lg:text-[24px] font-bold">
-                1,334.0
+                {toThreeFig(data?.currentPrice||0)}
               </div>
             </div>
 
@@ -216,7 +216,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
           {/*  */}
           <div className="flex flex-wrap mt-5">
             <div className="flex-grow w-full md:w-[39%] xl:w-[24%] ">
-              <div className="bg-white py-3 px-3 border-[#E9ECEB] border-[0.6px] rounded-lg">
+              <div className="bg-white py-3 px-3  rounded-lg">
                 <div className="mb-5">
                   <div className="text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes low price:{" "}

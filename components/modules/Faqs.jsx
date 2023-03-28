@@ -13,21 +13,21 @@ const Faqs = () => {
   
     const faqs = [
     {
-      question: 'What does Be-finance do?',
-      answer: 'I dont know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat',
+      question: 'Can I Trade on Be Great Finance?',
+      answer: 'No, Be Great Finance is not a trading platform. It is a web app that provides users with advanced analytics, tools, and information to help them make informed trading decisions on other platforms. ',
     },
     {
-      question: 'How do you Pay for Pricing Plan?',
-      answer: 'You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+      question: 'What kind of market data does Be Great Finance cover?',
+      answer: 'Currently, Be Great Finance only offers analysis on cryptocurrencies. However, there are plans in place to expand our coverage to include forex data, align with other assets in the near future.',
     },
     {
-      question: 'How does Be-finance work?',
-      answer: 'Nobody knows. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+      question: 'Is Be Great Finance suitable for beginner traders?',
+      answer: 'Yes, Be Great Finance is suitable for traders of all experience levels. Our platform is user-friendly and our data visualization tools make it easy to interpret complex price action analysis models. We also recommend educational resources to help traders improve their skills as they grow. ',
     },
 
     {
-      question: 'How can I upgrade From my current plan?',
-      answer: 'Because theyre so good at it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat',
+      question: 'How many cryptocurrencies are available on Be Great Finance?',
+      answer: 'Be Great FInance offers analysis on over 1200 cryptocurrency pairs, with more being added on a regular basis.',
     },
 
 ];
@@ -41,7 +41,8 @@ const Faqs = () => {
          <div className=' md:flex lg:px-10 justify-between pt-16  '> 
            <div className='md:w-[30%] w-fit mx-auto md:mt-4  text-center md:text-start '> 
                 <h1 className='font-bold text-2xl '> Frequently asked <br/> Questions </h1>
-                <p className='lg:text-sm text-base mt-2 sm:w-[70%] sm:mx-auto md:w-full lg:mx-0'> Can’t find the answer you’re looking for? Reach out to our customer support team. </p>
+                <p className='lg:text-sm text-base mt-2 sm:w-[70%] sm:mx-auto md:w-full lg:mx-0'>Can’t find the answer you’re looking for? Reach out to our customer support team at
+                <span className='underline'>  <a to='support@begreat.finance'> support@begreat.finance </a> </span> </p>
                 <img  className='w-[10rem] mx-auto md:ml-6 md:mt-6 mt-8' src='./images/homepage/faqs.png' alt='faqs'/>
             </div>
 

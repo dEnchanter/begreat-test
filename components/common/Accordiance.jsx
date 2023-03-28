@@ -7,7 +7,7 @@ import DropDownItem from "../ui/DropDownItem";
 export default function Accordance({ title, options, value, seyListDay,options1, value1, seyListDay1 }) {
   const [toggle, setToggle] = useState(false);
   return (
-    <div className=" border bg-white py-3 px-3 rounded-xl mb-3">
+    <div className="  bg-white py-3 px-3 rounded-xl mb-3">
       <div className="flex items-center justify-between pb-3 pt-3 border-b-[1px] borderColor">
         <div className="flex items-center ">
           <AiFillSetting size={30} className="mr-3" />{" "}
