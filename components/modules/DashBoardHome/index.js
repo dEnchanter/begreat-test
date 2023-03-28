@@ -147,7 +147,7 @@ export default function DashBoardHome() {
                         <TbSearch
                           size={25}
                           wrapperClassName=" xl:w-[29%]"
-                          color="text-[#fff]"
+                          color="text-[#fff"
                           className="cursor-pointer"
                           onClick={handleSubmit(handleClick)}
                         />
@@ -193,7 +193,7 @@ export default function DashBoardHome() {
           {/*  */}
           <div className="flex flex-wrap mt-5">
             <div className="flex-grow w-full md:w-[39%] xl:w-[24%] ">
-              <div className="bg-white py-3 px-3 border-[#E9ECEB] border-[0.6px] rounded-lg">
+              <div className="bg-white py-3 px-3  rounded-lg">
                 <div className="mb-5">
                   <div className="text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes low price:{" "}

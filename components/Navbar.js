@@ -24,7 +24,7 @@ export default function Navbar({ fixed }) {
   <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
-       <img src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt="logo" className="h-10 "/> 
+       <img src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt="logo" className="h-10  "/> 
     </Link>
       <button
         className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none  "
@@ -144,7 +144,7 @@ export default function Navbar({ fixed }) {
                   className="px-4 text-white   mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
                   onClick={() => router.push("/login")}
                 >
-                 Launch App
+                 Launch App 
                 </Button>
               </div>
 

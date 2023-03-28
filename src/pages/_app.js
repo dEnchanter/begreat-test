@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ThemeProvider
-   defaultTheme={'light'}
+   defaultTheme={'dark'}
    // attribute="class"
     // enableSystem={false}
     // storageKey="theme"

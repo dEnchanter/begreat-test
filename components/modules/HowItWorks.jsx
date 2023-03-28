@@ -61,19 +61,19 @@ const HowItWorks = () => {
 
               </div>
 
-                <div className='flex flex-col lg:w-[12rem] w-[14rem] mx-auto md:mx-0 md:mt-0 mt-4'>
-                  <div className='flex bg-[#160E33] w-fit mx-auto items-center rounded-full py-2 px-2 '> 
+                <div className='flex flex-col lg:w-[13rem] w-[14rem] mx-auto md:mx-0 md:mt-0 mt-4'>
+                  <div className='flex bg-[#160E33] w-fit mx-auto items-center rounded-full py-2 px-4 '> 
                       <div className='items-center justify-center flex  btnbgplan rounded-full h-6 w-6 '>
                         <p className='  text-center items-center font-light text-xs  text-transparent bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '> 03 </p>
                       </div>
 
                       <div>
-                        <h1 className='px-3 text-[0.7rem] text-white '> Identify Profit Opportunities </h1> 
+                        <h1 className=' text-[0.7rem] text-white ml-1'> Identify Profit Opportunities </h1> 
                       </div>
                   </div>
 
                   <div> 
-                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext
+                      <p className='text-center text-sm lg:text-[0.76rem] leading-4  workstext
                     mt-2'> Analyze cryptocurrency prices in real-time and pinpoint the best profit opportunities.
                       Our dashboard provides everything you need to navigate the markets successfully</p>
                   </div>
@@ -99,61 +99,7 @@ const HowItWorks = () => {
           about your investments  </p>
           </div>
 
-          {/* <div className='grid lg:mt-[4rem]  lg:gap-x-20 md:gap-x-5 gap-y-6 md:grid-cols-2 md:px-5 lg:px-10 md:mx-auto w-fit mt-10 mb-20 '>
-              <div className='w-fit mx-auto md:mx-0 md:w-[22rem] lg:w-[28rem] flex space-x-2'> 
-                <div>
-                  <img className='cover w-10 md:w-16  mx-auto' src='./images/homepage/main.png' alt='icon' />
-                </div>
-
-                <div> 
-                  <h1 className='text-[0.9rem] text-center md:text-start foreground  font-bold'> Multi-timeframe Analysis </h1>
-                  <p className='lg:text-[0.75rem] mt-1 text- leading-4 sm:max-w-[70%] sm:mx-auto md:max-w-full md:mx-0  text-base text-center md:text-start'> Analyze an asset's price movement across different timeframes to gain a more comprehensive view of its trend and momentum. </p>
-                </div>
-
-              </div>
-
-               <div className='w-fit mx-auto md:mx-0 md:w-[22rem] lg:w-[28rem] flex space-x-2'> 
-                <div>
-                  <img className='cover w-10 md:w-16  mx-auto' src='./images/homepage/updates.png' alt='icon' />
-                </div>
-
-                <div> 
-                  <h1 className='text-[0.95rem] text-center md:text-start  font-bold'> Live Updates </h1>
-                  <p className='lg:text-[0.8rem] sm:max-w-[70%] sm:mx-auto md:max-w-full md:mx-0  text-base text-center md:text-start'> Stay up-to-date with the latest developments in the fast-paced world of cryptocurrency with our live updates. </p>
-                </div>
-
-              </div>
-
-               <div className='w-fit mx-auto md:mx-0 md:w-[22rem] lg:w-[28rem] flex space-x-2'> 
-                <div className=' md:w-[9rem]'>
-                  <img className='cover w-10 md:w-16  lg:mx-0 mx-auto' src='./images/homepage/trend.png' alt='icon' />
-                </div>
-
-                <div> 
-                  <h1 className='text-[0.95rem] text-center md:text-start  font-bold'> Trade the Trend </h1>
-                  <p className='lg:text-[0.8rem] sm:max-w-[70%] sm:mx-auto md:max-w-full md:mx-0  text-base text-center md:text-start'> Take advantage of the latest trends in the cryptocurrency market with our powerful trading platform. Our platform utilizes advanced algorithms and cutting-edge technology to help you identify and trade the latest trends in the market. </p>
-                </div>
-
-              </div>
-
-               <div className='w-fit mx-auto md:mx-0 md:w-[22rem] lg:w-[28rem] flex space-x-2'> 
-                <div className='md:w-[8rem]'>
-                  <img className='cover w-10 md:w-16  mx-auto' src='./images/homepage/price.png' alt='icon' />
-                </div>
-
-                <div> 
-                  <h1 className='text-[0.95rem] text-center md:text-start  font-bold'> Contextualize Pricing </h1>
-                  <p className='lg:text-[0.8rem] sm:max-w-[70%] sm:mx-auto md:max-w-full md:mx-0  text-base text-center md:text-start'> Our platform provides real-time data and analysis to help you understand the factors that influence cryptocurrency prices and make informed trading decisions. </p>
-                </div>
-
-              </div>
-
-              
-
-              
-
-            
-          </div> */}
+        
       
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10 lg:px-10'> 
               <div className='sm:flex sm:space-x-2'> 
