@@ -20,8 +20,10 @@ const Pricing = () => {
   <div className='  text-center pt-10 pb-10 '> 
             <h1 className='uppercase mt-10 font-bold text-center text-sm text-transparent  bg-clip-text bg-gradient-to-r from-[#fc0542] to-[#8a76c7]'> Pricing </h1>
 
-            <h1 className='leading-normal smallTextI text-xl lg:text-2xl lg:w-[40rem] mt-4 font-bold mx-auto md:w-[70%] sm:mx-auto '> Access the Power of Advanced Analytics with Our Premium Cryptocurrency Pricing Plans  </h1>
-            <p className=' text-sm  mt-4 mx-auto sm:w-[70%] sm:mx-auto smallTextI leading-5 '>Our pricing plans are designed to be affordable, flexible, and scalable, <br className='hidden md:flex'/> so you can choose the plan that best fits your investment goals. </p>
+            <h1 className='leading-normal smallTextI text-xl lg:text-2xl lg:w-[40rem] mt-4 font-bold mx-auto md:w-[70%] sm:mx-auto '> Unlock the Power of Advanced Analytics with Our Premium Plans  </h1>
+            <p className=' text-sm  mt-4 mx-auto sm:w-[70%] sm:mx-auto smallTextI leading-5 '>            
+            Take advantage of our discounted pricing for premium <br className='hidden md:flex'/> accounts while our
+            community begins to grow. </p>
 
             <div className='w-fit mx-auto mt-10'> 
               <Button onClick={()=>router.push('/pricing')} className= {theme=="light"? " ' text-[0.7rem] py-1.5 border border-red-400 hover:cursor-pointer hover:shadow-lg transition ease-in duration-300 text-transparent font-semibold bg-clip-text bg-gradient-to-r from-[#fc0542] to-[#8a76c7]" : "' text-[0.7rem] py-1.5  hover:cursor-pointer hover:text-gray-100 hover:shadow-lg transition ease-in duration-300  border-red-400 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1]   font-semibold text-white"}> View Pricing  </Button>

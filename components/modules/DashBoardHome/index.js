@@ -147,7 +147,7 @@ export default function DashBoardHome() {
             <div className="leading-[1.4rem]">
               <div className="gray mb-0">Price</div>
               <div className="primaryText text-[20px] lg:text-[24px] font-bold">
-                1,334.0
+                {toThreeFig(data?.currentPrice||0)}
               </div>
             </div>
 

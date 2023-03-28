@@ -20,7 +20,7 @@ const HowItWorks = () => {
             <h1 className='font-semibold uppercase text-sm lg:text-xs text-[#BF5493]'> how it works </h1>
             {/* <h1 className={theme == "dark" ? "md:text-2xl  text-xl  font-bold text " : "md:text-2xl text-[#2B2C3B]  text-xl  font-bold"}> Learn More About the Process </h1> */}
             <h1 className='md:text-2xl  text-xl smallTextI  font-black'> Learn More About the Process </h1>
-            <p className='lg:text-xs  text-sm smallTextI'> Get familiar with the steps for using our product to manage <br/> your cryptocurrency  activities. </p>
+            <p className='lg:text-xs  text-sm smallTextI'>Take control of your investments and start making informed  <br className='hidden md:flex'/>trading decisions today </p>
           </div>
 
 
@@ -38,7 +38,7 @@ const HowItWorks = () => {
                   </div>
 
                   <div> 
-                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext mt-2'> The possibilities are endless! Sign up for an account today and start exploring </p>
+                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext mt-2'>Create an account and select a plan to begin your journey with Be Great Finance </p>
                   </div>
 
               </div>
@@ -50,12 +50,13 @@ const HowItWorks = () => {
                       </div>
 
                       <div>
-                        <h1 className='px-3 text-[0.7rem] text-white '> Select any Plan </h1> 
+                        <h1 className='px-3 text-[0.7rem] text-white '> Access the Dashboard </h1> 
                       </div>
                   </div>
 
                   <div> 
-                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext mt-2'> The possibilities are endless! Sign up for an account today and start exploring </p>
+                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext mt-2'> Launch the app and login to access our live price analysis dashboard and its suite of
+                        powerful, yet easy-to-use analysis tools</p>
                   </div>
 
               </div>
@@ -67,13 +68,14 @@ const HowItWorks = () => {
                       </div>
 
                       <div>
-                        <h1 className='px-3 text-[0.7rem] text-white '> Start trading/Exploring </h1> 
+                        <h1 className='px-3 text-[0.7rem] text-white '> Identify Profit Opportunities </h1> 
                       </div>
                   </div>
 
                   <div> 
                       <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext
-]  mt-2'> The possibilities are endless! Sign up for an account today and start exploring </p>
+                    mt-2'> Analyze cryptocurrency prices in real-time and pinpoint the best profit opportunities.
+                      Our dashboard provides everything you need to navigate the markets successfully</p>
                   </div>
 
               </div>
@@ -91,7 +93,10 @@ const HowItWorks = () => {
           <div className='text-center'> 
             <h1 className='uppercase text-sm lg:text-xs font-semibold text-[#BF5493]'> Our Core Features </h1> 
             <h1 className='font-semibold mt-3 md:text-2xl text-xl smallTextI '> Elevate Your Investment Strategy with <br className='hidden lg:flex'/> Our Robust Features </h1>
-            <p className='lg:text-xs text-sm  lg:px-6 workstext'> Our powerful dashboard provides real-time insights and analytics, helping <br className='hidden lg:flex'/> you make informed decisions about your investments </p>
+            <p className='lg:text-xs text-sm  lg:px-6 workstext'> 
+            Our powerful dashboard provides real-time insights and analytics, <br className='hidden lg:flex'/> helping you easily
+            be aware of opportunities in all market  conditions <br className='hidden lg:flex'/> and make informed decisions
+          about your investments  </p>
           </div>
 
           {/* <div className='grid lg:mt-[4rem]  lg:gap-x-20 md:gap-x-5 gap-y-6 md:grid-cols-2 md:px-5 lg:px-10 md:mx-auto w-fit mt-10 mb-20 '>
@@ -157,7 +162,10 @@ const HowItWorks = () => {
                   <div className='text-center sm:text-start'> 
                     <h1 className='foreground font-semibold' > Multi-timeframe Analysis </h1>
                     <p className='text-xs leading-5 workstext'> 
-                        Analyze an asset's price movement across different timeframes to gain a more comprehensive view of its trend and momentum. </p>
+                       Price action agreement across multiple timeframes is key in assessing the strength
+              and direction of market and asset price action. Our availability of multiple
+              timeframes on our tools assists users in making trading decisions with speed and
+            confidence. </p>
                   </div>
               </div>
 
@@ -165,8 +173,12 @@ const HowItWorks = () => {
                   <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./images/homepage/updates.png' alt=''/>
 
                   <div className='text-center sm:text-start'> 
-                    <h1 className='foreground font-semibold ' > Live Updates </h1>
-                    <p className='text-xs leading-5 workstext'> Take advantage of the latest trends in the cryptocurrency market with our powerful trading platform. Our platform utilizes advanced algorithms and cutting-edge technology to help you identify and trade the latest trends in the market. </p>
+                    <h1 className='foreground font-semibold ' > Individualized Market Analytics </h1>
+                    <p className='text-xs leading-5 workstext'> Our dashboard is fully customizable to fit your risk management and trading speed
+                    preferences. With over 700,000 possible dashboard combinations across multiple
+                    tools and timeframes, confidently adapt your style to any strategy or market
+                    condition.
+                  </p>
                   </div>
               </div>
 
@@ -175,7 +187,10 @@ const HowItWorks = () => {
 
                   <div className='text-center sm:text-start'> 
                     <h1 className='foreground font-semibold ' > Trade the trend </h1>
-                    <p className='text-xs leading-5 workstext'> Take advantage of the latest trends in the cryptocurrency market with our powerful trading platform. Our platform utilizes advanced algorithms and cutting-edge technology to help you identify and trade the latest trends in the market. </p>
+                    <p className='text-xs leading-5 workstext'> Easily identify trends early on in order to profit from smooth, fast, and consistent
+                price action with minimal drawdowns. Our tools help you to stay in trades with
+                confidence as price moves in your favor, maximizing your potential profits.
+                 </p>
                   </div>
               </div>
 
@@ -183,8 +198,11 @@ const HowItWorks = () => {
                   <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./images/homepage/price.png' alt=''/>
 
                   <div className='text-center sm:text-start'> 
-                    <h1 className='foreground font-semibold ' > Contextualize Pricing </h1>
-                    <p className='text-xs leading-5 workstext '> Our platform provides real-time data and analysis to help you understand the factors that influence cryptocurrency prices and make informed trading decisions. </p>
+                    <h1 className='foreground font-semibold ' > Data VIsualization </h1>
+                    <p className='text-xs leading-5 workstext '> Easily visualize multiple price action events simultaneously in order to align market
+                    phenomena and react to price accordingly to yield a profit. Our color coded
+                    dashboard outputs make complex price action analysis simple enough for the
+                    newest of traders. </p>
                   </div>
               </div>
 

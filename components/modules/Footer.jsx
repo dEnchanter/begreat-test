@@ -14,7 +14,7 @@ const Footer = () => {
         <div className=' lg:flex justify-between pb-10 lg:px-10'>
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-10  mx-auto lg:mx-0'  src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt='logo'/>
-                <p className='lg:text-[0.79rem] text-xs mt-2 text-center lg:text-start sm:w-[70%]  sm:mx-auto lg:w-full lg:mx-0 workstext leading-4 '> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa aut explicabo natus aliquid nostrum! Totam harum aspernatur </p>
+                
                 <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0 text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2]'>  
                     <BsFacebook className='hover:cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '/>
                     <BsInstagram/>
