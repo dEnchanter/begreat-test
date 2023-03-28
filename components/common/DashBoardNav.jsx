@@ -27,8 +27,8 @@ export default function DashBoardNav({change}) {
             </div>
             <div className='flex items-center gap-3 xl:gap-7 '>
                 <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap md:flex'>
-                <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor'/></div>
-                <div className={`   rounded-lg ${theme ==="dark" && 'bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
+                <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor hover:cursor-pointer'/></div>
+                <div className={`   rounded-lg ${theme ==="dark" && 'hover:cursor-pointer bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
                 </div>
                {!change? <div className='border p-[5px] borderColor  rounded'>
                     <ButtonComp
@@ -45,7 +45,7 @@ export default function DashBoardNav({change}) {
                     />
                     </div>}
                 <div className='iconColor1 p-3 rounded-full'>
-                    <HiUser size={20} className='cursor-pointer' onClick={()=>dispatch(logout())}/>
+                    <HiUser size={20} className='hover:cursor-pointer' onClick={()=>dispatch(logout())}/>
                 </div>
             </div>
         </div>

@@ -171,6 +171,7 @@ export default function Navbar({ fixed }) {
                     onClick={() => setTheme("dark")}
                     size={18}
                     className="navicon"
+                    
                   />
                 </div>
               </div>
