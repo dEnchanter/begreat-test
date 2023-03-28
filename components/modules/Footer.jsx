@@ -45,7 +45,7 @@ const Footer = () => {
     </Container>
 
     <hr/>
-    <h1 className='text-center mt-4 text-xs pb-4'>  Be great Finance © 2023  </h1>
+    <h1 className='text-center font-semibold text-gray-500 mt-4 text-xs pb-4'>  Be Great Finance © 2023  </h1>
    </footer>
   )
 }

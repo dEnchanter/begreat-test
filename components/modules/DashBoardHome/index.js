@@ -132,7 +132,7 @@ export default function DashBoardHome() {
                 rules={{
                   required: "Coin Name is required",
                   // pattern: REGEX_PATTERNS?.EMAIL,
-                  maxLength: generateMaxLength(3),
+                  maxLength: generateMaxLength(5),
                 }}
                 render={({
                   field: { value, onChange },
