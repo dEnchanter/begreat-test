@@ -4,7 +4,7 @@ import { AiFillSetting, AiOutlinePlus } from "react-icons/ai";
 import TwoSides from "./TwoSides";
 import DropDownItem from "../ui/DropDownItem";
 
-export default function Accordance({ title, options, value, seyListDay }) {
+export default function Accordance({ title, options, value, seyListDay,options1, value1, seyListDay1 }) {
   const [toggle, setToggle] = useState(false);
   return (
     <div className=" border bg-white py-3 px-3 rounded-xl mb-3">
@@ -32,7 +32,7 @@ export default function Accordance({ title, options, value, seyListDay }) {
             <DropDownItem
               options={options}
               onChange={(e) => {
-                console.log(e,'data')
+                console.log(e,'data454')
                 seyListDay(e)
               }}
               value={value}
@@ -43,7 +43,12 @@ export default function Accordance({ title, options, value, seyListDay }) {
           WrapperClassName="mb-3"
           sideA={"Shift timeframe:"}
           sideAClassName={"capitalize gray font-medium"}
-          sideB={<DropDownItem options={options} value={value} />}
+          sideB={<DropDownItem options={options1}
+          onChange={(e) => {
+            console.log(e,'data454')
+            seyListDay1(e)
+          }}
+          value={value1} />}
         />
       </div>
     </div>

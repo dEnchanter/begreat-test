@@ -45,7 +45,30 @@ export default function DashBoardHome() {
       label: <span className=" font-semibold">5</span>,
     },
   ];
+  const options1 = [
+    {
+      value: 1,
+      label: <span className=" font-semibold">1</span>,
+    },
+    {
+      value: 2,
+      label: <span className=" font-semibold">2</span>,
+    },
+    {
+      value: 3,
+      label: <span className=" font-semibold">3</span>,
+    },
+    {
+      value: 4,
+      label: <span className=" font-semibold">4</span>,
+    },
+    // {
+    //   value: 5,
+    //   label: <span className=" font-semibold">5</span>,
+    // },
+  ];
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
+  const [getShiftFrame, setShiftFrame] = useState(options1[3]);
   const [coinName, setCoinName] = useState("SOL");
 
   const defaultOption = options[4];
@@ -118,7 +141,7 @@ export default function DashBoardHome() {
     }
   };
 
-  //console.log(coinName,data,'data3')
+console.log(getShiftFrame,getTimeFrame,'data3')
 
   return (
     <section className="relative">
@@ -166,9 +189,9 @@ export default function DashBoardHome() {
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split("U")[0]}/U${
-                    data?.asset?.split("U")[1]
-                  }`||''}
+                  {`${data?.asset?.split("U")[0]||" "}/U${
+                    data?.asset?.split("U")[1]||' '
+                  }`}
                 </h1>
               </div>
             </div>
@@ -236,7 +259,7 @@ export default function DashBoardHome() {
                       i % 2 == 0
                         ? "back1 animate__animated animate__fadeIn my-element"
                         : "back2 animate__animated animate__fadeIn my-element"
-                    } flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[19%] rounded`}
+                    } flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[18%] rounded`}
                   >
                     {item?.loading ? <Spinner /> : item?.time || item}
                   </div>
@@ -246,7 +269,7 @@ export default function DashBoardHome() {
               <div className="flex  h-min-[216px] mx-3 flex-wrap mb-3 mt-6">
                 {/*  */}
 
-                {List?.slice(0, getTimeFrame?.value)?.map((item) => (
+                {List?.slice(0, getShiftFrame?.value)?.map((item) => (
                   <div
                     className={`flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ${
                       item?.loading && "blur-2xl"
@@ -289,11 +312,15 @@ export default function DashBoardHome() {
               options={options}
               value={getTimeFrame}
               seyListDay={setTimeFrame}
+              options1={options1}
+              seyListDay1={setShiftFrame}
+              value1={getShiftFrame}
+              
             />
             <Accordance
-              options={options}
-              seyListDay={setTimeFrame}
-              value={getTimeFrame}
+              options={options1}
+              seyListDay={setShiftFrame}
+              value={getShiftFrame}
               title="Watchlist Timeframe Settings"
             />
             <div className="bg-white  py-3 px-3">
