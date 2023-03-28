@@ -11,14 +11,18 @@ import FlexContainer from "../../common/FlexContainer";
 import ButtonComp from "../../ui/ButtonComp";
 import { TableComp } from "../../common/Table";
 import { useTheme } from "next-themes";
-import { useSearchCoinsQuery, useTimeFrameQuery } from "../../../store/Coins/coinsApi";
+import {
+  useSearchCoinsQuery,
+  useTimeFrameQuery,
+} from "../../../store/Coins/coinsApi";
 import Spinner from "../../common/Spinner";
 import { Controller, useForm } from "react-hook-form";
-import { generateMaxLength, generateMinLength } from "../../../constants/errors";
+import {
+  generateMaxLength,
+  generateMinLength,
+} from "../../../constants/errors";
 
 export default function DashBoardHome() {
-
- 
   const options = [
     {
       value: 1,
@@ -41,42 +45,64 @@ export default function DashBoardHome() {
       label: <span className=" font-semibold">5</span>,
     },
   ];
-  const [getTimeFrame,setTimeFrame] =useState(options[4]);
-  const [coinName,setCoinName]=useState('SOL')
+  const [getTimeFrame, setTimeFrame] = useState(options[4]);
+  const [coinName, setCoinName] = useState("SOL");
 
   const defaultOption = options[4];
   const { theme, setTheme } = useTheme();
   const [listDay, seyListDay] = useState(6);
-  const { data: Day1, isLoading:Day1Loader } = useTimeFrameQuery("1d");
-  const { data: FourHours,isLoading:FourHoursLoader } = useTimeFrameQuery("240");
-  const { data: OneHours, isLoading:OneHoursLoader} = useTimeFrameQuery("60");
-  const { data: FifteenMin, isLoading:FifteenMinLoader } = useTimeFrameQuery("15");
-  const { data: FiveMin,isLoading:FiveMinLoader } = useTimeFrameQuery("5");
-  // 
-  const { data,isLoading:FindCoinLoader,isFetching} = useSearchCoinsQuery(
+  const { data: Day1, isLoading: Day1Loader, isFetching:Day1IsFetching } = useTimeFrameQuery({
+    id: "1d",
     coinName,
-    {
-      // pollingInterval: 3000,
-      refetchOnMountOrArgChange: true,
-      // skip: false,
-    }
+  },   { refetchOnMountOrArgChange: true });
+  const { data: FourHours, isLoading: FourHoursLoader,isFetching:FourHoursLoaderIsFetching } = useTimeFrameQuery({
+    id: "240",
+    coinName,
+  },   { refetchOnMountOrArgChange: true });
+  const { data: OneHours, isLoading: OneHoursLoader,isFetching:OneHoursIsFetching } = useTimeFrameQuery({
+    id: "60",
+    coinName,
+  },   { refetchOnMountOrArgChange: true });
+  const { data: FifteenMin, isLoading: FifteenMinLoader,isFetching:FifteenMinIsFetching } = useTimeFrameQuery({
+    id: "15",
+    coinName,
+  },   { refetchOnMountOrArgChange: true });
+  const { data: FiveMin, isLoading: FiveMinLoader,isFetching:FiveMinIsFetching } = useTimeFrameQuery(
+    { id: "5", coinName },
+    { refetchOnMountOrArgChange: true }
   );
-
-  
+  //
+  const {
+    data,
+    isLoading: FindCoinLoader,
+    isFetching,
+  } = useSearchCoinsQuery(coinName, {
+    // pollingInterval: 3000,
+    refetchOnMountOrArgChange: true,
+    // skip: false,
+  });
 
   const List = [
-    { time: "DAY", data: Day1?.data?.average,loading:Day1Loader },
-    { time: "4 HOURS", data: FourHours?.data?.average,loading:FourHoursLoader},
-    { time: "1 HOURS",data: OneHours?.data?.average,loading:OneHoursLoader },
-    { time: "15 MINS",data: FifteenMin?.data?.average,loading:FifteenMinLoader },
-    { time: "5 MINS" ,data: FiveMin?.data?.average,loading:FiveMinLoader},
+    { time: "DAY", data: Day1?.data?.average, loading: Day1Loader||Day1IsFetching },
+    {
+      time: "4 HOURS",
+      data: FourHours?.data?.average,
+      loading: FourHoursLoader||FourHoursLoaderIsFetching,
+    },
+    { time: "1 HOURS", data: OneHours?.data?.average, loading: OneHoursLoader||OneHoursIsFetching },
+    {
+      time: "15 MINS",
+      data: FifteenMin?.data?.average,
+      loading: FifteenMinLoader||FifteenMinIsFetching,
+    },
+    { time: "5 MINS", data: FiveMin?.data?.average, loading: FiveMinLoader||FiveMinIsFetching },
   ];
 
-  const toThreeFig = (nums) =>{
+  const toThreeFig = (nums) => {
     let myNum = parseFloat(nums);
     let roundedNum = myNum.toFixed(3);
     return roundedNum;
-  }
+  };
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
       coinname: "",
@@ -85,12 +111,12 @@ export default function DashBoardHome() {
 
   const handleClick = (data) => {
     // console.log(data)
-    setCoinName(data?.coinName)
-    if(data?.coinname){
+    setCoinName(data?.coinName);
+    if (data?.coinname) {
       // console.log(data,'data2')
-      setCoinName(data?.coinname)
+      setCoinName(data?.coinname);
     }
-  }
+  };
 
   //console.log(coinName,data,'data3')
 
@@ -100,39 +126,39 @@ export default function DashBoardHome() {
         <div className="flex-grow w-[100%] xl:w-[67%] mb-4 xl:mb-0  ">
           <div className="flex items-center justify-between flex-wrap mb-3">
             <div className="flex items-center gap-2 flex-wrap">
-            <Controller
-                  name="coinname"
-                  control={control}
-                  rules={{
-                    required: "Coin Name is required",
-                    // pattern: REGEX_PATTERNS?.EMAIL,
-                    maxLength: generateMaxLength(3),
-                  }}
-                  render={({
-                    field: { value, onChange },
-                    formState: { errors },
-                  }) => {
-                    const errorMessage = errors?.coinname?.message;
-                    return (
-              <TextInput
-                //  containerClassName={'text-[#1E1D20]'}
-                inputClassName={"backText"}
-                suffixIcon={
-                  <TbSearch
-                    size={25}
-                    wrapperClassName=" xl:w-[29%]"
-                    color="text-[#fff]"
-                    className="cursor-pointer"
-                    onClick={handleSubmit(handleClick)}
-                  />
-                }
-                prefixIcon={FindCoinLoader||isFetching&&<Spinner/>}
+              <Controller
                 name="coinname"
-                {...{ value, onChange, errors: [errorMessage] }}
+                control={control}
+                rules={{
+                  required: "Coin Name is required",
+                  // pattern: REGEX_PATTERNS?.EMAIL,
+                  maxLength: generateMaxLength(3),
+                }}
+                render={({
+                  field: { value, onChange },
+                  formState: { errors },
+                }) => {
+                  const errorMessage = errors?.coinname?.message;
+                  return (
+                    <TextInput
+                      //  containerClassName={'text-[#1E1D20]'}
+                      inputClassName={"backText"}
+                      suffixIcon={
+                        <TbSearch
+                          size={25}
+                          wrapperClassName=" xl:w-[29%]"
+                          color="text-[#fff]"
+                          className="cursor-pointer"
+                          onClick={handleSubmit(handleClick)}
+                        />
+                      }
+                      prefixIcon={FindCoinLoader || (isFetching && <Spinner />)}
+                      name="coinname"
+                      {...{ value, onChange, errors: [errorMessage] }}
+                    />
+                  );
+                }}
               />
-            );
-          }}
-        />
               <div className="flex gap-1 items-center">
                 <FallBackImage
                   src={"/Images/Dashboard/coin.png"}
@@ -140,7 +166,9 @@ export default function DashBoardHome() {
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split('U')[0]}/U${data?.asset?.split('U')[1]}`}
+                  {`${data?.asset?.split("U")[0]}/U${
+                    data?.asset?.split("U")[1]
+                  }`||''}
                 </h1>
               </div>
             </div>
@@ -169,24 +197,31 @@ export default function DashBoardHome() {
                 <div className="mb-5">
                   <div className="text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes low price:{" "}
-                    <span className="font-bold secondary">{toThreeFig(data?.low||0)}</span>
+                    <span className="font-bold secondary">
+                      {toThreeFig(data?.low || 0)}
+                    </span>
                   </div>
                   <div className="h-[200px] md:h-[308px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">
-                    {toThreeFig(data?.fall||0)}%
+                    {toThreeFig(data?.fall || 0)}%
                   </div>
                 </div>
 
                 <div>
                   <div className="text-[16px] font-semibold priceText mb-4">
                     Current Price :{" "}
-                    <span className="font-bold secondary">{toThreeFig(data?.currentPrice||0)}</span>
+                    <span className="font-bold secondary">
+                      {toThreeFig(data?.currentPrice || 0)}
+                    </span>
                   </div>
                   <div className="h-[200px] md:h-[209px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
-                  {toThreeFig(data?.rise||0)}%
+                    {toThreeFig(data?.rise || 0)}%
                   </div>
                   <div className="text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes high price:{" "}
-                    <span className="font-bold secondary">  {toThreeFig(data?.high||0)}</span>
+                    <span className="font-bold secondary">
+                      {" "}
+                      {toThreeFig(data?.high || 0)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -203,17 +238,20 @@ export default function DashBoardHome() {
                         : "back2 animate__animated animate__fadeIn my-element"
                     } flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[19%] rounded`}
                   >
-                    
-                    {item?.loading ? <Spinner/>: item?.time || item}
+                    {item?.loading ? <Spinner /> : item?.time || item}
                   </div>
                 ))}
               </div>
 
               <div className="flex  h-min-[216px] mx-3 flex-wrap mb-3 mt-6">
                 {/*  */}
-               
+
                 {List?.slice(0, getTimeFrame?.value)?.map((item) => (
-                  <div className={`flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ${item?.loading && 'blur-2xl'} `}>
+                  <div
+                    className={`flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ${
+                      item?.loading && "blur-2xl"
+                    } `}
+                  >
                     <FlexContainer
                       wrapperContainer={`${
                         item?.data > 0 ? "back1" : "back2"
