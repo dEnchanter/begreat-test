@@ -63,6 +63,8 @@
     --uploadText2:#AEAEAE;
     --priceback: rgb(255, 255, 255) ;
     --navicon : black;
+    --deepGreen:linear-gradient(180deg, #16C782 -29.17%, rgba(22, 199, 130, 0) 118.38%);
+    --deepRed:linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 88.37%, rgba(255, 202, 205, 0) 88.39%);
 }
 
 [data-theme='dark'] {
@@ -129,6 +131,8 @@
     --uploadText1:#F4F4F4;
     --uploadText2:#F4F4F4;
     --priceback: #373b55;
+    --deepGreen:linear-gradient(180deg, rgba(218, 255, 241, 0.1) 18.85%, #009C5F 122.82%);
+    --deepRed:linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
 }
 
 .navicon{
@@ -371,6 +375,13 @@ body {
 }
 .bgMode{
     background-color: var(--bgMode);
+}
+.deepGreen{
+    background: var(--deepGreen);
+}
+
+.deepRed{
+    background: var(--deepRed);
 }
 
 /*  */

@@ -8,14 +8,24 @@ export const coinsApi = createApi({
   endpoints: (builder) => ({
     timeFrame: builder.query({
       query: ({id,coinName}) => ({
-        url: `/ca/${coinName}USDT?tf[]=${id}`,
+        url: `/ca/SOLUSDT?tf[]=60`,
+        // url: `/ca/${coinName}USDT?tf[]=${id}`,
         method: "GET",
         // body,
       }),
     }),
     searchCoins: builder.query({
-      query: (coinName) => ({
-        url: `/rf/${coinName}USDT?tf[]=60`,
+      query: ({coinName,timeLeft}) => ({
+        // url: `/rf/SOLUSDT?tf[]=60`,
+        url: `/rf/${coinName}USDT?tf[]=${timeLeft}`,
+        method: "GET",
+        // body,
+      }),
+    }),
+    searchCoinPrice: builder.query({
+      query: ({coinName,id}) => ({
+        url: `/ham/${coinName}USDT?tf[]=${id}`,
+        //url: `/ham/${coinName}USDT?tf[]=60`,
         method: "GET",
         // body,
       }),
@@ -27,5 +37,6 @@ export const coinsApi = createApi({
 export const {
 
   useTimeFrameQuery,
-  useSearchCoinsQuery
+  useSearchCoinsQuery,
+  useSearchCoinPriceQuery
 } = coinsApi;

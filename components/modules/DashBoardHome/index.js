@@ -12,6 +12,7 @@ import ButtonComp from "../../ui/ButtonComp";
 import { TableComp } from "../../common/Table";
 import { useTheme } from "next-themes";
 import {
+  useSearchCoinPriceQuery,
   useSearchCoinsQuery,
   useTimeFrameQuery,
 } from "../../../store/Coins/coinsApi";
@@ -48,7 +49,7 @@ export default function DashBoardHome() {
   const options1 = [
     {
       value: 1,
-      label: <span className=" font-semibold">1</span>,
+      label: <span className=" font-semibold  whitespace-nowrap">1</span>,
     },
     {
       value: 2,
@@ -67,6 +68,40 @@ export default function DashBoardHome() {
     //   label: <span className=" font-semibold">5</span>,
     // },
   ];
+  const options2 = [
+    {
+      value: 30,
+      label: <span className=" font-semibold whitespace-nowrap ">30 mins</span>,
+    },
+    {
+      value: 60,
+      label: <span className=" font-semibold  whitespace-nowrap ">1 hrs</span>,
+    },
+    {
+      value: 120,
+      label: <span className=" font-semibold  whitespace-nowrap">2 hrs</span>,
+    },
+    {
+      value: 240,
+      label: <span className=" font-semibold  whitespace-nowrap">4 hrs</span>,
+    },
+    {
+      value: 360,
+      label: <span className=" font-semibold  whitespace-nowrap">6 hrs</span>,
+    },
+    {
+      value: 320,
+      label: <span className=" font-semibold  whitespace-nowrap">8 hrs</span>,
+    },
+    {
+      value: 720,
+      label: <span className=" font-semibold">12 hrs</span>,
+    },
+    // {
+    //   value: 5,
+    //   label: <span className=" font-semibold">5</span>,
+    // },
+  ];
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
   const [getShiftFrame, setShiftFrame] = useState(options1[3]);
   const [coinName, setCoinName] = useState("SOL");
@@ -74,6 +109,14 @@ export default function DashBoardHome() {
   const defaultOption = options[4];
   const { theme, setTheme } = useTheme();
   const [listDay, seyListDay] = useState(6);
+  const [timeLeft,setTimeLeft] =useState(options2[1])
+  // 
+  const [day1,setDay1]=useState({label:<span className="flex whitespace-nowrap">DAY</span>,value:'1d'})
+  const [fourHours,setFourHours]=useState({label:<span className="flex whitespace-nowrap">4 hrs</span>,value:'240'});
+  const [oneHour,setOneHours] =useState({label:<span className="flex whitespace-nowrap">1 Hr</span>,value:'60'})
+  const [fifteenMin,setFifteenMin] =useState({label:<span className="flex whitespace-nowrap">15 Min</span>,value:'15'});
+  const [fiveMin,setFiveMin]=useState({label:<span className="flex whitespace-nowrap">5 Min</span>,value:'5'})
+  // 
   const { data: Day1, isLoading: Day1Loader, isFetching:Day1IsFetching } = useTimeFrameQuery({
     id: "1d",
     coinName,
@@ -95,35 +138,85 @@ export default function DashBoardHome() {
     { refetchOnMountOrArgChange: true }
   );
   //
+  const { data: Day1Color, isLoading: Day1LoaderColor, isFetching:Day1IsFetchingColor } = useSearchCoinPriceQuery({
+    id: day1?.value,
+    coinName,
+  },   { refetchOnMountOrArgChange: true });
+  const { data: FourHoursColor, isLoading: FourHoursLoaderColor,isFetching:FourHoursLoaderIsFetchingColor } = useSearchCoinPriceQuery({
+    id: fourHours?.value,
+    coinName,
+  },   { refetchOnMountOrArgChange: true });
+  const { data: OneHoursColor, isLoading: OneHoursLoaderColor,isFetching:OneHoursIsFetchingColor } = useSearchCoinPriceQuery({
+    id: oneHour?.value,
+    coinName,
+  },   { refetchOnMountOrArgChange: true });
+  const { data: FifteenMinColor, isLoading: FifteenMinLoaderColor,isFetching:FifteenMinIsFetchingColor } = useSearchCoinPriceQuery({
+    id: fifteenMin?.value,
+    coinName,
+  },   { refetchOnMountOrArgChange: true });
+  const { data: FiveMinColor, isLoading: FiveMinLoaderColor,isFetching:FiveMinIsFetchingColor } = useSearchCoinPriceQuery(
+    { id: fiveMin?.value, coinName },
+    { refetchOnMountOrArgChange: true }
+  );
+
+
   const {
     data,
     isLoading: FindCoinLoader,
     isFetching,
-  } = useSearchCoinsQuery(coinName, {
+  } = useSearchCoinsQuery({coinName,timeLeft:timeLeft?.value}, {
     // pollingInterval: 3000,
     refetchOnMountOrArgChange: true,
     // skip: false,
   });
 
+  const ConvertObject =(object=[]) => {
+    return Object?.values(object)
+  }
+
   const List = [
-    { time: "DAY", data: Day1?.data?.average, loading: Day1Loader||Day1IsFetching },
+    { 
+      time: <DropDownItem options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
+      time1:'1 day',
+     data: Day1?.data?.average, loading: Day1Loader||Day1IsFetching||Day1LoaderColor,
+     pulseColor:ConvertObject(Day1Color?.data)[0],
+    },
+    
     {
-      time: "4 HOURS",
+      time: <DropDownItem options={options2} value={fourHours} onChange={(e)=>setFourHours(e)}/>,
       data: FourHours?.data?.average,
-      loading: FourHoursLoader||FourHoursLoaderIsFetching,
+      time1:'4 Hrs',
+      loading: FourHoursLoader||FourHoursLoaderIsFetching||FourHoursLoaderIsFetchingColor,
+      pulseColor:ConvertObject(FourHoursColor?.data)[0],
+
     },
-    { time: "1 HOURS", data: OneHours?.data?.average, loading: OneHoursLoader||OneHoursIsFetching },
+    { 
+      time: <DropDownItem options={options2} value={oneHour}  onChange={(e)=>setOneHours(e)}/>,
+      time1:'1 Hrs',
+     data: OneHours?.data?.average, loading: OneHoursLoader||OneHoursIsFetching||OneHoursIsFetchingColor,
+     pulseColor:ConvertObject(OneHoursColor?.data)[0],
+
+    },
     {
-      time: "15 MINS",
+      time: <DropDownItem options={options2} value={fifteenMin}  onChange={(e)=>setFifteenMin(e)}/>,
+      time1:'15 Mins',
       data: FifteenMin?.data?.average,
-      loading: FifteenMinLoader||FifteenMinIsFetching,
+      loading: FifteenMinLoader||FifteenMinIsFetching||FifteenMinIsFetchingColor,
+      pulseColor:ConvertObject(FifteenMinColor?.data)[0],
+
     },
-    { time: "5 MINS", data: FiveMin?.data?.average, loading: FiveMinLoader||FiveMinIsFetching },
+    { 
+      time: <DropDownItem options={options2} value={fiveMin}  onChange={(e)=>setFiveMin(e)}/>,
+      time1:'5 Mins',
+     data: FiveMin?.data?.average, loading: FiveMinLoader||FiveMinIsFetching||FiveMinIsFetchingColor,
+     pulseColor:ConvertObject(FiveMinColor?.data)[0],
+    },
+     
   ];
 
-  const toThreeFig = (nums) => {
+  const toThreeFig = (nums,places=3) => {
     let myNum = parseFloat(nums);
-    let roundedNum = myNum.toFixed(3);
+    let roundedNum = myNum.toFixed(places);
     return roundedNum;
   };
   const { control, handleSubmit, reset } = useForm({
@@ -141,7 +234,24 @@ export default function DashBoardHome() {
     }
   };
 
-console.log(getShiftFrame,getTimeFrame,'data3')
+   const handleColor =(no) =>{
+    console.log(no,'DFGHJKL')
+    switch (no) {
+      case 1:
+        return "back1 animate__animated animate__fadeIn my-element"
+      case 2:
+        return "deepGreen animate__animated animate__fadeIn my-element"
+      case -1:
+        return "back2 animate__animated animate__fadeIn my-element"
+      case -2:
+        return "deepRed animate__animated animate__fadeIn my-element"
+      
+    
+      default:
+        return  "back1 animate__animated animate__fadeIn my-element";
+    }
+  }
+//console.log(data,timeLeft?.value,'timeLeft')
 
   return (
     <section className="relative">
@@ -189,7 +299,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split("U")[0]||" "}/U${
+                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset||""&&'U'}${
                     data?.asset?.split("U")[1]||' '
                   }`}
                 </h1>
@@ -218,13 +328,19 @@ console.log(getShiftFrame,getTimeFrame,'data3')
             <div className="flex-grow w-full md:w-[39%] xl:w-[24%] ">
               <div className="bg-white py-3 px-3  rounded-lg">
                 <div className="mb-5">
-                  <div className="text-[14px] font-semibold priceText mb-4">
-                    Last 60 Minutes low price:{" "}
+                  <div className=" whitespace-normal font-semibold text-[13px] priceText mb-4 flex items-center  ">
+                    Last<DropDownItem
+                    padding={'0px 30px 0px 3px'}
+                    onChange={(e)=>setTimeLeft(e)}
+                    options={options2}
+                    noIcon={true}
+                    value={timeLeft}
+                    />low price:
                     <span className="font-bold secondary">
                       {toThreeFig(data?.low || 0)}
                     </span>
                   </div>
-                  <div className="h-[200px] md:h-[308px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">
+                  <div className="h-[200px] md:h-[308px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">{" "}
                     {toThreeFig(data?.fall || 0)}%
                   </div>
                 </div>
@@ -239,7 +355,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                   <div className="h-[200px] md:h-[209px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
                     {toThreeFig(data?.rise || 0)}%
                   </div>
-                  <div className="text-[14px] font-semibold priceText mb-4">
+                  <div className=" whitespace-nowrap font-semibold priceText mb-4">
                     Last 60 Minutes high price:{" "}
                     <span className="font-bold secondary">
                       {" "}
@@ -255,12 +371,9 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                 {List?.slice(0, getTimeFrame?.value)?.map((item, i) => (
                   <div
                     key={i}
-                    className={`  ${
-                      i % 2 == 0
-                        ? "back1 animate__animated animate__fadeIn my-element"
-                        : "back2 animate__animated animate__fadeIn my-element"
-                    } flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[18%] rounded`}
+                    className={`${handleColor(item?.pulseColor )}  flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[18%] rounded`}
                   >
+                    {console.log(item,'DFGHJKL')}
                     {item?.loading ? <Spinner /> : item?.time || item}
                   </div>
                 ))}
@@ -285,14 +398,14 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                     >
                       <div className="p-3 flex flex-col justify-around item-center ">
                         <div className="text3 text-center font-semibold font-1">
-                          Last {item?.time}
+                          Last {item?.time1}
                         </div>
                         <div
                           className={`${
                             item?.data > 0 ? "List2" : "List1"
-                          } text-center text-[46px]  font-bold font-1`}
+                          } text-center text-[36px]  font-bold font-1`}
                         >
-                          {Math.floor(item?.data || 0)}%
+                          {toThreeFig(item?.data || 0,1)}%
                         </div>
                       </div>
                     </FlexContainer>
@@ -305,7 +418,9 @@ console.log(getShiftFrame,getTimeFrame,'data3')
               </div>
             </div>
           </div>
+          {/*  */}
         </div>
+        {/*  */}
         <div className="flex-grow    xl:w-[33%]">
           <div className="mx-3 ">
             <Accordance
@@ -365,7 +480,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                   <div>Shift</div>
                   <div>Change</div>
                 </div>
-                <div className="flex justify-between items-center  text-[14px] borderColor border-b-[1px] pb-3 mb-3">
+                <div className="flex justify-between items-center   whitespace-nowrap borderColor border-b-[1px] pb-3 mb-3">
                   <div>
                     CRV/
                     <br />
@@ -385,7 +500,7 @@ console.log(getShiftFrame,getTimeFrame,'data3')
                   </div>
                 </div>
                 {/*  */}
-                <div className="flex justify-between items-center  text-[14px] borderColor border-b-[1px] pb-3 mb-3">
+                <div className="flex justify-between items-center   whitespace-nowrap borderColor border-b-[1px] pb-3 mb-3">
                   <div>
                     CRV/
                     <br />
