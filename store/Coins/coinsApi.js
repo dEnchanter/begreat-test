@@ -8,7 +8,7 @@ export const coinsApi = createApi({
   endpoints: (builder) => ({
     timeFrame: builder.query({
       query: ({id,coinName}) => ({
-        url: `/ca/SOLUSDT?tf[]=60`,
+        url: `/ca/${coinName}USDT?tf[]=${id}`,
         // url: `/ca/${coinName}USDT?tf[]=${id}`,
         method: "GET",
         // body,

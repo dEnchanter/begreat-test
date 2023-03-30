@@ -2,9 +2,9 @@ import React from "react";
 import Dropdown from 'react-dropdown';
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import styled from "styled-components";
-export default function DropDownItem({options=[],onChange,placeholder,value, border,BackgroundColor,padding,noIcon}) {
+export default function DropDownItem({options=[],onChange,placeholder,value, border,BackgroundColor,padding,noIcon,borderRadius}) {
   return (
-    <DropDownItemStyle BackgroundColor={BackgroundColor} Border={border}Padding={padding} NoIcon={noIcon}>
+    <DropDownItemStyle BackgroundColor={BackgroundColor} Border={border}Padding={padding} NoIcon={noIcon} BorderRadius={borderRadius}>
       <Dropdown
         arrowClosed={noIcon?false:<span className="arrow-closed"><BsChevronDown/></span>}
         arrowOpen={noIcon?false:<span className="arrow-open" ><BsChevronUp/></span>}
@@ -30,6 +30,7 @@ const DropDownItemStyle = styled.div`
     color:var(--foreground);
     border: ${props=>props?.NoIcon?'none' :''};
     background: transparent;
+    border-radius:${props=>props?.BorderRadius?props?.BorderRadius :'0px'};
 }
 border: none;
 background: transparent;
