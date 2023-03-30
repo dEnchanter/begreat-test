@@ -71,7 +71,7 @@ export default function DashBoardHome() {
   const options2 = [
     {
       value: 30,
-      label: <span className=" font-semibold whitespace-nowrap ">30 mins</span>,
+      label: <span className=" font-semibold whitespace-nowrap">30 mins</span>,
     },
     {
       value: 60,
@@ -111,30 +111,30 @@ export default function DashBoardHome() {
   const [listDay, seyListDay] = useState(6);
   const [timeLeft,setTimeLeft] =useState(options2[1])
   // 
-  const [day1,setDay1]=useState({label:<span className="flex whitespace-nowrap">DAY</span>,value:'1d'})
+  const [day1,setDay1]=useState({label:<span className="flex whitespace-nowrap">DAY</span>,value:'1440'})
   const [fourHours,setFourHours]=useState({label:<span className="flex whitespace-nowrap">4 hrs</span>,value:'240'});
   const [oneHour,setOneHours] =useState({label:<span className="flex whitespace-nowrap">1 Hr</span>,value:'60'})
   const [fifteenMin,setFifteenMin] =useState({label:<span className="flex whitespace-nowrap">15 Min</span>,value:'15'});
   const [fiveMin,setFiveMin]=useState({label:<span className="flex whitespace-nowrap">5 Min</span>,value:'5'})
   // 
   const { data: Day1, isLoading: Day1Loader, isFetching:Day1IsFetching } = useTimeFrameQuery({
-    id: "1d",
+    id: day1?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName});
   const { data: FourHours, isLoading: FourHoursLoader,isFetching:FourHoursLoaderIsFetching } = useTimeFrameQuery({
-    id: "240",
+    id: fourHours?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: OneHours, isLoading: OneHoursLoader,isFetching:OneHoursIsFetching } = useTimeFrameQuery({
-    id: "60",
+    id: oneHour?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: FifteenMin, isLoading: FifteenMinLoader,isFetching:FifteenMinIsFetching } = useTimeFrameQuery({
-    id: "15",
+    id: fifteenMin?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: FiveMin, isLoading: FiveMinLoader,isFetching:FiveMinIsFetching } = useTimeFrameQuery(
-    { id: "5", coinName },
+    { id: fiveMin?.value, coinName },
     { refetchOnMountOrArgChange: true ,skip:!coinName}
   );
   //
@@ -180,14 +180,14 @@ export default function DashBoardHome() {
 
   const List = [
     { 
-      time: <DropDownItem  options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
+      time: <DropDownItem borderRadius='10px' options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
       time1:'1 day',
      data: Day1?.data?.average, loading: Day1Loader||Day1IsFetching||Day1LoaderColor,
      pulseColor:ConvertObject(Day1Color?.data)[0],
     },
     
     {
-      time: <DropDownItem options={options2} value={fourHours} onChange={(e)=>setFourHours(e)}/>,
+      time: <DropDownItem borderRadius='10px' options={options2} value={fourHours} onChange={(e)=>setFourHours(e)}/>,
       data: FourHours?.data?.average,
       time1:'4 Hrs',
       loading: FourHoursLoader||FourHoursLoaderIsFetching||FourHoursLoaderIsFetchingColor,
@@ -195,14 +195,14 @@ export default function DashBoardHome() {
 
     },
     { 
-      time: <DropDownItem options={options2} value={oneHour}  onChange={(e)=>setOneHours(e)}/>,
+      time: <DropDownItem borderRadius='10px' options={options2} value={oneHour}  onChange={(e)=>setOneHours(e)}/>,
       time1:'1 Hrs',
      data: OneHours?.data?.average, loading: OneHoursLoader||OneHoursIsFetching||OneHoursIsFetchingColor,
      pulseColor:ConvertObject(OneHoursColor?.data)[0],
 
     },
     {
-      time: <DropDownItem options={options2} value={fifteenMin}  onChange={(e)=>setFifteenMin(e)}/>,
+      time: <DropDownItem borderRadius='10px' options={options2} value={fifteenMin}  onChange={(e)=>setFifteenMin(e)}/>,
       time1:'15 Mins',
       data: FifteenMin?.data?.average,
       loading: FifteenMinLoader||FifteenMinIsFetching||FifteenMinIsFetchingColor,
@@ -210,7 +210,7 @@ export default function DashBoardHome() {
 
     },
     { 
-      time: <DropDownItem options={options2} value={fiveMin}  onChange={(e)=>setFiveMin(e)}/>,
+      time: <DropDownItem borderRadius='10px' options={options2} value={fiveMin}  onChange={(e)=>setFiveMin(e)}/>,
       time1:'5 Mins',
      data: FiveMin?.data?.average, loading: FiveMinLoader||FiveMinIsFetching||FiveMinIsFetchingColor,
      pulseColor:ConvertObject(FiveMinColor?.data)[0],
@@ -359,7 +359,7 @@ export default function DashBoardHome() {
                   <div className="h-[200px] md:h-[209px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
                     {toThreeFig(data?.rise || 0)}%
                   </div>
-                  <div className=" whitespace-nowrap font-semibold priceText mb-4">
+                  <div className=" whitespace-normal text-[14px] font-semibold priceText mb-4">
                     Last 60 Minutes high price:{" "}
                     <span className="font-bold secondary">
                       {" "}
@@ -375,7 +375,7 @@ export default function DashBoardHome() {
                 {List?.slice(0, getTimeFrame?.value)?.map((item, i) => (
                   <div
                     key={i}
-                    className={`${handleColor(item?.pulseColor )}  flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[24px] w-full md:w-[24%] xl:w-[18%] rounded`}
+                    className={`${handleColor(item?.pulseColor )}  flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[20px] w-full md:w-[24%] xl:w-[18%] rounded`}
                   >
                     {console.log(item,'DFGHJKL')}
                     {item?.loading ? <Spinner /> : item?.time || item}
@@ -409,7 +409,7 @@ export default function DashBoardHome() {
                             item?.data > 0 ? "List2" : "List1"
                           } text-center text-[36px]  font-bold font-1`}
                         >
-                          {toThreeFig(item?.data || 0,1)}%
+                          {toThreeFig(item?.data || 0,2)}%
                         </div>
                       </div>
                     </FlexContainer>
