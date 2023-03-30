@@ -120,22 +120,22 @@ export default function DashBoardHome() {
   const { data: Day1, isLoading: Day1Loader, isFetching:Day1IsFetching } = useTimeFrameQuery({
     id: "1d",
     coinName,
-  },   { refetchOnMountOrArgChange: true });
+  },   { refetchOnMountOrArgChange: true,skip:!coinName});
   const { data: FourHours, isLoading: FourHoursLoader,isFetching:FourHoursLoaderIsFetching } = useTimeFrameQuery({
     id: "240",
     coinName,
-  },   { refetchOnMountOrArgChange: true });
+  },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: OneHours, isLoading: OneHoursLoader,isFetching:OneHoursIsFetching } = useTimeFrameQuery({
     id: "60",
     coinName,
-  },   { refetchOnMountOrArgChange: true });
+  },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: FifteenMin, isLoading: FifteenMinLoader,isFetching:FifteenMinIsFetching } = useTimeFrameQuery({
     id: "15",
     coinName,
-  },   { refetchOnMountOrArgChange: true });
+  },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: FiveMin, isLoading: FiveMinLoader,isFetching:FiveMinIsFetching } = useTimeFrameQuery(
     { id: "5", coinName },
-    { refetchOnMountOrArgChange: true }
+    { refetchOnMountOrArgChange: true ,skip:!coinName}
   );
   //
   const { data: Day1Color, isLoading: Day1LoaderColor, isFetching:Day1IsFetchingColor } = useSearchCoinPriceQuery(day1?.value && coinName&&{
@@ -143,23 +143,23 @@ export default function DashBoardHome() {
     coinName,
   },   { refetchOnMountOrArgChange: true });
   const { data: FourHoursColor, isLoading: FourHoursLoaderColor,isFetching:FourHoursLoaderIsFetchingColor } = useSearchCoinPriceQuery(
-    fourHours?.value && coinName&&{
+    {
     id: fourHours?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true });
+  },   { refetchOnMountOrArgChange: true ,skip:!fourHours?.value || !coinName });
   const { data: OneHoursColor, isLoading: OneHoursLoaderColor,isFetching:OneHoursIsFetchingColor } = useSearchCoinPriceQuery(
-    oneHour?.value && coinName&&{
+    {
     id: oneHour?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true });
+  },   { refetchOnMountOrArgChange: true,skip:!oneHour?.value || !coinName});
   const { data: FifteenMinColor, isLoading: FifteenMinLoaderColor,isFetching:FifteenMinIsFetchingColor } = useSearchCoinPriceQuery(
-    fifteenMin?.value && coinName&&{
+   {
     id: fifteenMin?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true });
+  },   { refetchOnMountOrArgChange: true,skip:!fifteenMin?.value || !coinName });
   const { data: FiveMinColor, isLoading: FiveMinLoaderColor,isFetching:FiveMinIsFetchingColor } = useSearchCoinPriceQuery(
-    fiveMin?.value && coinName&&{ id: fiveMin?.value, coinName },
-    { refetchOnMountOrArgChange: true }
+    { id: fiveMin?.value, coinName },
+    { refetchOnMountOrArgChange: true,skip:!fiveMin?.value || !coinName }
   );
 
 
@@ -167,9 +167,10 @@ export default function DashBoardHome() {
     data,
     isLoading: FindCoinLoader,
     isFetching,
-  } = useSearchCoinsQuery(coinName&&timeLeft?.value&&{coinName,timeLeft:timeLeft?.value}, {
+  } = useSearchCoinsQuery({coinName,timeLeft:timeLeft?.value}, {
     // pollingInterval: 3000,
     refetchOnMountOrArgChange: true,
+    skip:!timeLeft?.value || !coinName
     // skip: false,
   });
 
@@ -238,7 +239,7 @@ export default function DashBoardHome() {
   };
 
    const handleColor =(no) =>{
-    console.log(no,'DFGHJKL')
+    //console.log(no,'DFGHJKL')
     switch (no) {
       case 1:
         return "back1 animate__animated animate__fadeIn my-element"
