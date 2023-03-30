@@ -180,7 +180,7 @@ export default function DashBoardHome() {
 
   const List = [
     { 
-      time: <DropDownItem options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
+      time: <DropDownItem  options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
       time1:'1 day',
      data: Day1?.data?.average, loading: Day1Loader||Day1IsFetching||Day1LoaderColor,
      pulseColor:ConvertObject(Day1Color?.data)[0],
