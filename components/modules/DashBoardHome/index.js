@@ -97,10 +97,10 @@ export default function DashBoardHome() {
       value: 720,
       label: <span className=" font-semibold">12 hrs</span>,
     },
-    // {
-    //   value: 5,
-    //   label: <span className=" font-semibold">5</span>,
-    // },
+    {
+      value: 5,
+      label: <span className=" font-semibold">5 mins</span>,
+    },
   ];
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
   const [getShiftFrame, setShiftFrame] = useState(options1[3]);
@@ -138,24 +138,27 @@ export default function DashBoardHome() {
     { refetchOnMountOrArgChange: true }
   );
   //
-  const { data: Day1Color, isLoading: Day1LoaderColor, isFetching:Day1IsFetchingColor } = useSearchCoinPriceQuery({
+  const { data: Day1Color, isLoading: Day1LoaderColor, isFetching:Day1IsFetchingColor } = useSearchCoinPriceQuery(day1?.value && coinName&&{
     id: day1?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true });
-  const { data: FourHoursColor, isLoading: FourHoursLoaderColor,isFetching:FourHoursLoaderIsFetchingColor } = useSearchCoinPriceQuery({
+  const { data: FourHoursColor, isLoading: FourHoursLoaderColor,isFetching:FourHoursLoaderIsFetchingColor } = useSearchCoinPriceQuery(
+    fourHours?.value && coinName&&{
     id: fourHours?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true });
-  const { data: OneHoursColor, isLoading: OneHoursLoaderColor,isFetching:OneHoursIsFetchingColor } = useSearchCoinPriceQuery({
+  const { data: OneHoursColor, isLoading: OneHoursLoaderColor,isFetching:OneHoursIsFetchingColor } = useSearchCoinPriceQuery(
+    oneHour?.value && coinName&&{
     id: oneHour?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true });
-  const { data: FifteenMinColor, isLoading: FifteenMinLoaderColor,isFetching:FifteenMinIsFetchingColor } = useSearchCoinPriceQuery({
+  const { data: FifteenMinColor, isLoading: FifteenMinLoaderColor,isFetching:FifteenMinIsFetchingColor } = useSearchCoinPriceQuery(
+    fifteenMin?.value && coinName&&{
     id: fifteenMin?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true });
   const { data: FiveMinColor, isLoading: FiveMinLoaderColor,isFetching:FiveMinIsFetchingColor } = useSearchCoinPriceQuery(
-    { id: fiveMin?.value, coinName },
+    fiveMin?.value && coinName&&{ id: fiveMin?.value, coinName },
     { refetchOnMountOrArgChange: true }
   );
 
@@ -164,7 +167,7 @@ export default function DashBoardHome() {
     data,
     isLoading: FindCoinLoader,
     isFetching,
-  } = useSearchCoinsQuery({coinName,timeLeft:timeLeft?.value}, {
+  } = useSearchCoinsQuery(coinName&&timeLeft?.value&&{coinName,timeLeft:timeLeft?.value}, {
     // pollingInterval: 3000,
     refetchOnMountOrArgChange: true,
     // skip: false,
