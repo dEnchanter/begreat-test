@@ -63,10 +63,10 @@ export default function DashBoardHome() {
       value: 4,
       label: <span className=" font-semibold">4</span>,
     },
-    // {
-    //   value: 5,
-    //   label: <span className=" font-semibold">5</span>,
-    // },
+    {
+      value: 5,
+      label: <span className=" font-semibold">5</span>,
+    },
   ];
   const options2 = [
     {
@@ -102,39 +102,84 @@ export default function DashBoardHome() {
       label: <span className=" font-semibold">5 mins</span>,
     },
   ];
+  const options3 = [
+    {
+      value: 30,
+      label: <span className=" font-semibold whitespace-nowrap">30 mins</span>,
+    },
+    {
+      value: 60,
+      label: <span className=" font-semibold  whitespace-nowrap ">1 hrs</span>,
+    },
+    {
+      value: 120,
+      label: <span className=" font-semibold  whitespace-nowrap">2 hrs</span>,
+    },
+    {
+      value: 240,
+      label: <span className=" font-semibold  whitespace-nowrap">4 hrs</span>,
+    },
+    {
+      value: 360,
+      label: <span className=" font-semibold  whitespace-nowrap">6 hrs</span>,
+    },
+    {
+      value: 320,
+      label: <span className=" font-semibold  whitespace-nowrap">8 hrs</span>,
+    },
+    {
+      value: 720,
+      label: <span className=" font-semibold">12 hrs</span>,
+    },
+    {
+      value: 5,
+      label: <span className=" font-semibold">5 mins</span>,
+    },
+  ];
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
-  const [getShiftFrame, setShiftFrame] = useState(options1[3]);
+  const [getShiftFrame, setShiftFrame] = useState(options1[4]);
   const [coinName, setCoinName] = useState("SOL");
 
   const defaultOption = options[4];
   const { theme, setTheme } = useTheme();
   const [listDay, seyListDay] = useState(6);
   const [timeLeft,setTimeLeft] =useState(options2[1])
-  // 
+  //
+     //  this for Pules TimeFrame 
   const [day1,setDay1]=useState({label:<span className="flex whitespace-nowrap">DAY</span>,value:'1440'})
   const [fourHours,setFourHours]=useState({label:<span className="flex whitespace-nowrap">4 hrs</span>,value:'240'});
   const [oneHour,setOneHours] =useState({label:<span className="flex whitespace-nowrap">1 Hr</span>,value:'60'})
   const [fifteenMin,setFifteenMin] =useState({label:<span className="flex whitespace-nowrap">15 Min</span>,value:'15'});
   const [fiveMin,setFiveMin]=useState({label:<span className="flex whitespace-nowrap">5 Min</span>,value:'5'})
   // 
+
+  const [day1b,setDay1b]=useState({label:<span className="flex whitespace-nowrap">DAY</span>,value:'1d'})
+  const [fourHoursb,setFourHoursb]=useState({label:<span className="flex whitespace-nowrap">4 hrs</span>,value:'240'});
+  const [oneHourb,setOneHoursb] =useState({label:<span className="flex whitespace-nowrap">1 Hr</span>,value:'60'})
+  const [fifteenMinb,setFifteenMinb] =useState({label:<span className="flex whitespace-nowrap">15 Min</span>,value:'15'});
+  const [fiveMinb,setFiveMinb]=useState({label:<span className="flex whitespace-nowrap">5 Min</span>,value:'5'})
+// /
+
+
+
   const { data: Day1, isLoading: Day1Loader, isFetching:Day1IsFetching } = useTimeFrameQuery({
-    id: day1?.value,
+    id: day1b?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName});
   const { data: FourHours, isLoading: FourHoursLoader,isFetching:FourHoursLoaderIsFetching } = useTimeFrameQuery({
-    id: fourHours?.value,
+    id: fourHoursb?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: OneHours, isLoading: OneHoursLoader,isFetching:OneHoursIsFetching } = useTimeFrameQuery({
-    id: oneHour?.value,
+    id: oneHourb?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: FifteenMin, isLoading: FifteenMinLoader,isFetching:FifteenMinIsFetching } = useTimeFrameQuery({
-    id: fifteenMin?.value,
+    id: fifteenMinb?.value,
     coinName,
   },   { refetchOnMountOrArgChange: true,skip:!coinName });
   const { data: FiveMin, isLoading: FiveMinLoader,isFetching:FiveMinIsFetching } = useTimeFrameQuery(
-    { id: fiveMin?.value, coinName },
+    { id: fiveMinb?.value, coinName },
     { refetchOnMountOrArgChange: true ,skip:!coinName}
   );
   //
@@ -181,38 +226,56 @@ export default function DashBoardHome() {
   const List = [
     { 
       time: <DropDownItem borderRadius='10px' options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
+      time2: <DropDownItem borderRadius='10px' options={options3} value={day1b} onChange={(e)=>setDay1b(e)}/>,
       time1:'1 day',
-     data: Day1?.data?.average, loading: Day1Loader||Day1IsFetching||Day1LoaderColor,
+     data: Day1?.data?.average,
+      loading: Day1IsFetchingColor,
+     loading1: Day1Loader||Day1IsFetching,
+        //  this for Pules TimeFrame
      pulseColor:ConvertObject(Day1Color?.data)[0],
     },
     
     {
       time: <DropDownItem borderRadius='10px' options={options2} value={fourHours} onChange={(e)=>setFourHours(e)}/>,
+      time2: <DropDownItem borderRadius='10px' options={options3} value={fourHoursb} onChange={(e)=>setFourHoursb(e)}/>,
       data: FourHours?.data?.average,
       time1:'4 Hrs',
-      loading: FourHoursLoader||FourHoursLoaderIsFetching||FourHoursLoaderIsFetchingColor,
+      loading: FourHoursLoaderIsFetchingColor,
+      loading1: FourHoursLoader||FourHoursLoaderIsFetching,
+         //  this for Pules TimeFrame
       pulseColor:ConvertObject(FourHoursColor?.data)[0],
 
     },
     { 
       time: <DropDownItem borderRadius='10px' options={options2} value={oneHour}  onChange={(e)=>setOneHours(e)}/>,
+      time2: <DropDownItem borderRadius='10px' options={options3} value={oneHourb}  onChange={(e)=>setOneHoursb(e)}/>,
       time1:'1 Hrs',
-     data: OneHours?.data?.average, loading: OneHoursLoader||OneHoursIsFetching||OneHoursIsFetchingColor,
+     data: OneHours?.data?.average, 
+     loading: OneHoursIsFetchingColor,
+     loading1: OneHoursLoader||OneHoursIsFetching,
+        //  this for Pules TimeFrame
      pulseColor:ConvertObject(OneHoursColor?.data)[0],
 
     },
     {
       time: <DropDownItem borderRadius='10px' options={options2} value={fifteenMin}  onChange={(e)=>setFifteenMin(e)}/>,
+      time2: <DropDownItem borderRadius='10px' options={options3} value={fifteenMinb}  onChange={(e)=>setFifteenMinb(e)}/>,
       time1:'15 Mins',
       data: FifteenMin?.data?.average,
-      loading: FifteenMinLoader||FifteenMinIsFetching||FifteenMinIsFetchingColor,
+      loading:FifteenMinIsFetchingColor,
+      loading1: FifteenMinLoader||FifteenMinIsFetching,
+         //  this for Pules TimeFrame
       pulseColor:ConvertObject(FifteenMinColor?.data)[0],
 
     },
     { 
       time: <DropDownItem borderRadius='10px' options={options2} value={fiveMin}  onChange={(e)=>setFiveMin(e)}/>,
+      time2: <DropDownItem borderRadius='10px' options={options3} value={fiveMinb}  onChange={(e)=>setFiveMinb(e)}/>,
       time1:'5 Mins',
-     data: FiveMin?.data?.average, loading: FiveMinLoader||FiveMinIsFetching||FiveMinIsFetchingColor,
+     data: FiveMin?.data?.average, 
+     loading: FiveMinIsFetchingColor,
+     loading1: FiveMinLoader||FiveMinIsFetching,
+    //  this for Pules TimeFrame
      pulseColor:ConvertObject(FiveMinColor?.data)[0],
     },
      
@@ -377,7 +440,7 @@ export default function DashBoardHome() {
                     key={i}
                     className={`${handleColor(item?.pulseColor )}  flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[20px] w-full md:w-[24%] xl:w-[18%] rounded`}
                   >
-                    {console.log(item,'DFGHJKL')}
+                 
                     {item?.loading ? <Spinner /> : item?.time || item}
                   </div>
                 ))}
@@ -389,7 +452,7 @@ export default function DashBoardHome() {
                 {List?.slice(0, getShiftFrame?.value)?.map((item) => (
                   <div
                     className={`flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ${
-                      item?.loading && "blur-2xl"
+                      item?.loading1 && "blur-2xl"
                     } `}
                   >
                     <FlexContainer
@@ -403,6 +466,9 @@ export default function DashBoardHome() {
                       <div className="p-3 flex flex-col justify-around item-center ">
                         <div className="text3 text-center font-semibold font-1">
                           Last {item?.time1}
+                        </div>
+                        <div>
+                        {item?.time2}
                         </div>
                         <div
                           className={`${
