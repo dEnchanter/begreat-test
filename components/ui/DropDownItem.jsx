@@ -4,7 +4,7 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import styled from "styled-components";
 export default function DropDownItem({options=[],onChange,placeholder,value, border,BackgroundColor,padding,noIcon,borderRadius}) {
   return (
-    <DropDownItemStyle BackgroundColor={BackgroundColor} Border={border}Padding={padding} NoIcon={noIcon} BorderRadius={borderRadius}>
+    <DropDownItemStyle BackgroundColor={BackgroundColor} Border={border} Padding={padding} NoIcon={noIcon} BorderRadius={borderRadius}>
       <Dropdown
         arrowClosed={noIcon?false:<span className="arrow-closed"><BsChevronDown/></span>}
         arrowOpen={noIcon?false:<span className="arrow-open" ><BsChevronUp/></span>}
