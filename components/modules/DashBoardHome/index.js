@@ -49,7 +49,7 @@ export default function DashBoardHome() {
   const options1 = [
     {
       value: 1,
-      label: <span className=" font-semibold  whitespace-nowrap">1</span>,
+      label: <span className=" font-semibold  ">1</span>,
     },
     {
       value: 2,
@@ -481,7 +481,7 @@ export default function DashBoardHome() {
                     />                  </div>
               <div className="bg-white py-3 px-3  rounded-lg">
                  <div className="text-sm">
-                 Last 60 Minutes high price:{" "}  <span className="font-bold secondary">
+                 High price:{" "}  <span className="font-bold secondary">
                       {" "}
                       {toThreeFig(data?.high || 0)}
                     </span>
@@ -506,7 +506,7 @@ export default function DashBoardHome() {
                     {toThreeFig(data?.fall || 0)}%
                     
                   </div> 
-                   <p className="text-sm">  Last 60 Minutes low price:{" "} </p>  <span className="font-bold secondary">
+                   <p className="text-sm">   Low price:{" "} </p>  <span className="font-bold secondary">
                       {" "}
                       {toThreeFig(data?.low || 0)}
                     </span>
