@@ -70,71 +70,149 @@ export default function DashBoardHome() {
   ];
   const options2 = [
     {
-      value: 30,
-      label: <span className=" font-semibold whitespace-nowrap">30 mins</span>,
+      value: 1,
+      label: <span className=" text-sm font-semibold">1 min</span>,
     },
     {
-      value: 60,
-      label: <span className=" font-semibold  whitespace-nowrap ">1 hrs</span>,
-    },
-    {
-      value: 120,
-      label: <span className=" font-semibold  whitespace-nowrap">2 hrs</span>,
-    },
-    {
-      value: 240,
-      label: <span className=" font-semibold  whitespace-nowrap">4 hrs</span>,
-    },
-    {
-      value: 360,
-      label: <span className=" font-semibold  whitespace-nowrap">6 hrs</span>,
-    },
-    {
-      value: 320,
-      label: <span className=" font-semibold  whitespace-nowrap">8 hrs</span>,
-    },
-    {
-      value: 720,
-      label: <span className=" font-semibold">12 hrs</span>,
+      value: 3,
+      label: <span className=" text-sm font-semibold">3 mins</span>,
     },
     {
       value: 5,
-      label: <span className=" font-semibold">5 mins</span>,
+      label: <span className=" text-sm font-semibold">5 mins</span>,
     },
+    {
+      value: 15,
+      label: <span className="text-sm  font-semibold">15 mins</span>,
+    },
+    {
+      value: 30,
+      label: <span className=" text-sm font-semibold whitespace-nowrap">30 mins</span>,
+    },
+    {
+      value: 60,
+      label: <span className="text-sm  font-semibold  whitespace-nowrap ">1 hrs</span>,
+    },
+    {
+      value: 120,
+      label: <span className=" text-sm  font-semibold  whitespace-nowrap">2 hrs</span>,
+    },
+    {
+      value: 240,
+      label: <span className=" text-sm  font-semibold  whitespace-nowrap">4 hrs</span>,
+    },
+    {
+      value: 360,
+      label: <span className="  text-sm font-semibold  whitespace-nowrap">6 hrs</span>,
+    },
+    {
+      value: 480,
+      label: <span className="  text-sm font-semibold  whitespace-nowrap">8 hrs</span>,
+    },
+    {
+      value: 720,
+      label: <span className=" text-sm font-semibold">12 hrs</span>,
+    },
+
+    {
+      value: 1440,
+      label: <span className="text-sm  font-semibold">1 Day</span>,
+    },
+
+    {
+      value: 4320,
+      label: <span className="text-sm  font-semibold">3 Days</span>,
+    },
+
+    {
+      value: 10080,
+      label: <span className="text-sm  font-semibold">1 week</span>,
+    },
+
+    {
+      value: 43200,
+      label: <span className="text-sm font-semibold">1 Month</span>,
+    },
+    
   ];
   const options3 = [
     {
+      value: 1,
+      label: <span className=" text-sm font-semibold">1 min</span>,
+    },
+
+    {
+      value: 3,
+      label: <span className="text-sm  font-semibold">3 mins</span>,
+    },
+
+    {
+      value: 5,
+      label: <span className=" text-sm font-semibold">5 mins</span>,
+    },
+
+    {
+      value: 10,
+      label: <span className=" text-sm font-semibold">10 mins</span>,
+    },
+    {
+      value: 15,
+      label: <span className="text-sm  font-semibold">15 mins</span>,
+    },
+
+    {
       value: 30,
-      label: <span className=" font-semibold whitespace-nowrap px-0">30 mins</span>,
+      label: <span className=" text-sm font-semibold whitespace-nowrap">30 mins</span>,
+    },
+    {
+      value: 45,
+      label: <span className="text-sm  font-semibold">45 mins</span>,
     },
     {
       value: 60,
-      label: <span className=" font-semibold  whitespace-nowrap ">1 hrs</span>,
+      label: <span className=" text-sm font-semibold  whitespace-nowrap ">1 hrs</span>,
     },
     {
       value: 120,
-      label: <span className=" font-semibold  whitespace-nowrap">2 hrs</span>,
+      label: <span className=" text-sm font-semibold  whitespace-nowrap">2 hrs</span>,
     },
     {
       value: 240,
-      label: <span className=" font-semibold  whitespace-nowrap">4 hrs</span>,
+      label: <span className=" text-sm font-semibold  whitespace-nowrap">4 hrs</span>,
     },
     {
       value: 360,
-      label: <span className=" font-semibold  whitespace-nowrap">6 hrs</span>,
+      label: <span className=" text-sm font-semibold  whitespace-nowrap">6 hrs</span>,
     },
     {
-      value: 320,
-      label: <span className=" font-semibold  whitespace-nowrap">8 hrs</span>,
+      value: 480,
+      label: <span className="text-sm  font-semibold  whitespace-nowrap">8 hrs</span>,
     },
     {
-      value: 720,
-      label: <span className=" font-semibold">12 hrs</span>,
+      value: '12h',
+      label: <span className=" text-sm font-semibold">12 hrs</span>,
     },
-    {
-      value: 5,
-      label: <span className=" font-semibold">5 mins</span>,
+
+     {
+      value: '1d',
+      label: <span className=" text-sm font-semibold">1 day</span>,
     },
+
+     {
+      value: '3d',
+      label: <span className=" text-sm font-semibold">3 days</span>,
+    },
+
+     {
+      value: '1w',
+      label: <span className=" text-sm font-semibold">1 week</span>,
+    },
+
+     {
+      value: '1M',
+      label: <span className=" text-sm font-semibold">1 month</span>,
+    },
+    
   ];
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
   const [getShiftFrame, setShiftFrame] = useState(options1[4]);
@@ -225,9 +303,9 @@ export default function DashBoardHome() {
 
   const List = [
     { 
-      time: <DropDownItem borderRadius='10px' options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
-      time2: <DropDownItem borderRadius='10px' padding={"5px"} options={options3} value={day1b} onChange={(e)=>setDay1b(e)}/>,
-      time1:day1b?.label,
+      time: <DropDownItem borderRadius='10px'   options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
+      time2: <DropDownItem borderRadius='10px' options={options3} value={day1b} onChange={(e)=>setDay1b(e)}/>,
+      time1:'1 day',
      data: Day1?.data?.average,
       loading: Day1IsFetchingColor,
      loading1: Day1Loader||Day1IsFetching,
