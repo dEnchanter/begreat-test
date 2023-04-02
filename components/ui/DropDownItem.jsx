@@ -23,6 +23,7 @@ const DropDownItemStyle = styled.div`
 .Dropdown-control {
     padding:${props=>props?.Padding?props?.Padding :' 5px 20px 5px 10px !important'};
     display:flex;
+    justify-content:center;
     gap:5px;
     align-items: center;
     background: ${props=>props?.BackgroundColor?props?.BackgroundColor :'var(--dropDownBg)'} ;
@@ -34,5 +35,8 @@ const DropDownItemStyle = styled.div`
 }
 border: none;
 background: transparent;
-    
+text-align: center;
+.Dropdown-root{
+  display: inline-block;
+}
 `

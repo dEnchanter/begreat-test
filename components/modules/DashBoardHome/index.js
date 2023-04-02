@@ -105,7 +105,7 @@ export default function DashBoardHome() {
   const options3 = [
     {
       value: 30,
-      label: <span className=" font-semibold whitespace-nowrap">30 mins</span>,
+      label: <span className=" font-semibold whitespace-nowrap px-0">30 mins</span>,
     },
     {
       value: 60,
@@ -153,7 +153,7 @@ export default function DashBoardHome() {
   const [fiveMin,setFiveMin]=useState({label:<span className="flex whitespace-nowrap">5 Min</span>,value:'5'})
   // 
 
-  const [day1b,setDay1b]=useState({label:<span className="flex whitespace-nowrap">DAY</span>,value:'1d'})
+  const [day1b,setDay1b]=useState({label:<span className="flex whitespace-nowrap px-0 mx-0">DAY</span>,value:'1d'})
   const [fourHoursb,setFourHoursb]=useState({label:<span className="flex whitespace-nowrap">4 hrs</span>,value:'240'});
   const [oneHourb,setOneHoursb] =useState({label:<span className="flex whitespace-nowrap">1 Hr</span>,value:'60'})
   const [fifteenMinb,setFifteenMinb] =useState({label:<span className="flex whitespace-nowrap">15 Min</span>,value:'15'});
@@ -226,8 +226,8 @@ export default function DashBoardHome() {
   const List = [
     { 
       time: <DropDownItem borderRadius='10px' options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
-      time2: <DropDownItem borderRadius='10px' options={options3} value={day1b} onChange={(e)=>setDay1b(e)}/>,
-      time1:'1 day',
+      time2: <DropDownItem borderRadius='10px' padding={"5px"} options={options3} value={day1b} onChange={(e)=>setDay1b(e)}/>,
+      time1:day1b?.label,
      data: Day1?.data?.average,
       loading: Day1IsFetchingColor,
      loading1: Day1Loader||Day1IsFetching,
@@ -237,9 +237,9 @@ export default function DashBoardHome() {
     
     {
       time: <DropDownItem borderRadius='10px' options={options2} value={fourHours} onChange={(e)=>setFourHours(e)}/>,
-      time2: <DropDownItem borderRadius='10px' options={options3} value={fourHoursb} onChange={(e)=>setFourHoursb(e)}/>,
+      time2: <DropDownItem borderRadius='10px' padding={"5px"} options={options3} value={fourHoursb} onChange={(e)=>setFourHoursb(e)}/>,
       data: FourHours?.data?.average,
-      time1:'4 Hrs',
+      time1:fourHoursb?.label,
       loading: FourHoursLoaderIsFetchingColor,
       loading1: FourHoursLoader||FourHoursLoaderIsFetching,
          //  this for Pules TimeFrame
@@ -249,7 +249,7 @@ export default function DashBoardHome() {
     { 
       time: <DropDownItem borderRadius='10px' options={options2} value={oneHour}  onChange={(e)=>setOneHours(e)}/>,
       time2: <DropDownItem borderRadius='10px' options={options3} value={oneHourb}  onChange={(e)=>setOneHoursb(e)}/>,
-      time1:'1 Hrs',
+      time1:oneHourb?.label,
      data: OneHours?.data?.average, 
      loading: OneHoursIsFetchingColor,
      loading1: OneHoursLoader||OneHoursIsFetching,
@@ -259,8 +259,8 @@ export default function DashBoardHome() {
     },
     {
       time: <DropDownItem borderRadius='10px' options={options2} value={fifteenMin}  onChange={(e)=>setFifteenMin(e)}/>,
-      time2: <DropDownItem borderRadius='10px' options={options3} value={fifteenMinb}  onChange={(e)=>setFifteenMinb(e)}/>,
-      time1:'15 Mins',
+      time2: <DropDownItem borderRadius='10px' padding={"5px"} options={options3} value={fifteenMinb}  onChange={(e)=>setFifteenMinb(e)}/>,
+      time1:fifteenMinb?.label,
       data: FifteenMin?.data?.average,
       loading:FifteenMinIsFetchingColor,
       loading1: FifteenMinLoader||FifteenMinIsFetching,
@@ -271,7 +271,7 @@ export default function DashBoardHome() {
     { 
       time: <DropDownItem borderRadius='10px' options={options2} value={fiveMin}  onChange={(e)=>setFiveMin(e)}/>,
       time2: <DropDownItem borderRadius='10px' options={options3} value={fiveMinb}  onChange={(e)=>setFiveMinb(e)}/>,
-      time1:'5 Mins',
+      time1:fiveMinb?.label,
      data: FiveMin?.data?.average, 
      loading: FiveMinIsFetchingColor,
      loading1: FiveMinLoader||FiveMinIsFetching,
@@ -393,9 +393,7 @@ export default function DashBoardHome() {
           {/*  */}
           <div className="flex flex-wrap mt-5">
             <div className="flex-grow w-full md:w-[39%] xl:w-[24%] ">
-              <div className="bg-white py-3 px-3  rounded-lg">
-                <div className="mb-5">
-                  <div className=" whitespace-normal font-semibold text-[13px] priceText mb-4 flex items-center  ">
+            <div className=" whitespace-normal font-semibold text-[13px] priceText mb-4 flex items-center  ">
                     Last<DropDownItem
                     padding={'0px 30px 0px 3px'}
                     onChange={(e)=>setTimeLeft(e)}
@@ -407,29 +405,37 @@ export default function DashBoardHome() {
                       {toThreeFig(data?.low || 0)}
                     </span>
                   </div>
-                  <div className="h-[200px] md:h-[308px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">{" "}
-                    {toThreeFig(data?.fall || 0)}%
+              <div className="bg-white py-3 px-3  rounded-lg">
+                 <div>
+                 Last 60 Minutes high price:{" "}
+                  <div className="h-[200px] md:h-[250px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
+                    {toThreeFig(data?.rise || 0)}%
                   </div>
-                </div>
-
-                <div>
+                  <div className=" whitespace-normal text-[14px] font-semibold priceText mb-4">
+                   
+                    <span className="font-bold secondary">
+                      {" "}
+                      {toThreeFig(data?.high || 0)}
+                    </span>
+                  </div>
                   <div className="text-[16px] font-semibold priceText mb-4">
                     Current Price :{" "}
                     <span className="font-bold secondary">
                       {toThreeFig(data?.currentPrice || 0)}
                     </span>
                   </div>
-                  <div className="h-[200px] md:h-[209px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
-                    {toThreeFig(data?.rise || 0)}%
-                  </div>
-                  <div className=" whitespace-normal text-[14px] font-semibold priceText mb-4">
-                    Last 60 Minutes high price:{" "}
-                    <span className="font-bold secondary">
-                      {" "}
-                      {toThreeFig(data?.high || 0)}
-                    </span>
-                  </div>
                 </div>
+                {/*  */}
+                <div className="mb-5">
+                 
+                  <div className="h-[200px] md:h-[250px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">{" "}
+                    {toThreeFig(data?.fall || 0)}%
+                  </div>
+                  
+                </div>
+
+               
+
               </div>
             </div>
             {/*  */}
@@ -464,7 +470,7 @@ export default function DashBoardHome() {
                       }] border-[1px] bgList w-full`}
                     >
                       <div className="p-3 flex flex-col justify-around item-center ">
-                        <div className="text3 text-center font-semibold font-1">
+                        <div className="text3 text-[14px] flex gap-1 items-center justify-center text-center font-semibold font-1 whitespace-nowrap">
                           Last {item?.time1}
                         </div>
                         <div>
