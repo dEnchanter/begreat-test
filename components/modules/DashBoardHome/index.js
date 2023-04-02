@@ -137,7 +137,7 @@ export default function DashBoardHome() {
   ];
   const options3 = [
     {
-      value: 1,
+      value: 2,
       label: <span className=" text-sm font-semibold">1 min</span>,
     },
 
@@ -478,13 +478,9 @@ export default function DashBoardHome() {
                     options={options2}
                     noIcon={true}
                     value={timeLeft}
-                    />low price:
-                    <span className="font-bold secondary">
-                      {toThreeFig(data?.low || 0)}
-                    </span>
-                  </div>
+                    />                  </div>
               <div className="bg-white py-3 px-3  rounded-lg">
-                 <div>
+                 <div className="text-sm">
                  Last 60 Minutes high price:{" "}  <span className="font-bold secondary">
                       {" "}
                       {toThreeFig(data?.high || 0)}
@@ -509,9 +505,8 @@ export default function DashBoardHome() {
                   <div className="h-[200px] md:h-[250px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">{" "}
                     {toThreeFig(data?.fall || 0)}%
                     
-                  </div>
-
-                   Last 60 Minutes low price:{" "}  <span className="font-bold secondary">
+                  </div> 
+                   <p className="text-sm">  Last 60 Minutes low price:{" "} </p>  <span className="font-bold secondary">
                       {" "}
                       {toThreeFig(data?.low || 0)}
                     </span>
