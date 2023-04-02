@@ -387,7 +387,7 @@ export default function DashBoardHome() {
       case 2:
         return "deepGreen animate__animated animate__fadeIn my-element"
       case -1:
-        return "back2 animate__animated animate__fadeIn my-element"
+        return "completered animate__animated animate__fadeIn my-element"
       case -2:
         return "deepRed animate__animated animate__fadeIn my-element"
       
@@ -485,16 +485,16 @@ export default function DashBoardHome() {
                   </div>
               <div className="bg-white py-3 px-3  rounded-lg">
                  <div>
-                 Last 60 Minutes high price:{" "}
+                 Last 60 Minutes high price:{" "}  <span className="font-bold secondary">
+                      {" "}
+                      {toThreeFig(data?.high || 0)}
+                    </span>
                   <div className="h-[200px] md:h-[250px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
                     {toThreeFig(data?.rise || 0)}%
                   </div>
                   <div className=" whitespace-normal text-[14px] font-semibold priceText mb-4">
                    
-                    <span className="font-bold secondary">
-                      {" "}
-                      {toThreeFig(data?.high || 0)}
-                    </span>
+                   
                   </div>
                   <div className="text-[16px] font-semibold priceText mb-4">
                     Current Price :{" "}
@@ -508,7 +508,13 @@ export default function DashBoardHome() {
                  
                   <div className="h-[200px] md:h-[250px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">{" "}
                     {toThreeFig(data?.fall || 0)}%
+                    
                   </div>
+
+                   Last 60 Minutes low price:{" "}  <span className="font-bold secondary">
+                      {" "}
+                      {toThreeFig(data?.low || 0)}
+                    </span>
                   
                 </div>
 
