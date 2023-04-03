@@ -32,10 +32,10 @@
     --bgList: #fff;
     --List1: #EA3943;
     --List2: #26A17B;
-    --gradient1: linear-gradient(360deg, #16C782 -10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 100.49%);
+    --gradient1: linear-gradient(360deg, #16C782 -10.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 100.49%);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
-    --deepGreen: linear-gradient(180deg, #16C782 100%, rgba(22, 199, 130, 0) 118.38%);
-    --deepRed: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 88.37%, rgba(255, 202, 205, 0) 88.39%);
+    --deepGreen: linear-gradient(180deg, #16C782 75%, rgba(22, 199, 130, 0) 118.38%);
+    --deepRed: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 50.37%, rgba(255, 202, 205, 0) 88.39%);
 
     --text-sm: 14px;
     --currentPlanBtnBg: #FF0000;
@@ -68,9 +68,11 @@
     --navicon: black;
     --completered: #F9555F;
     --positive1: linear-gradient(179.93deg, #16C782 -40.82%, rgba(255, 118, 126, 0.00520833) 88.37%, rgba(255, 202, 205, 0) 88.39%);
+    --greenAverage: #26A17B;
 }
 
 [data-theme='dark'] {
+    --greenAverage: #26A17B;
     --navicon: white;
     --worksbg: #0A0118;
     --herobg: #101828;
@@ -107,7 +109,7 @@
     --List1: #FF9298;
     --List2: #87F5D3;
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
-    --gradient1: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 80.47%, rgba(234, 57, 67, 0) 100.49%);
+    --gradient1: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 100.49%);
     --currentPlanBtnBg: #fff;
     --currentPlanBtnText: #FF0000;
     --currentPlanBtnBgI: #FF0000;
@@ -134,10 +136,11 @@
     --uploadText1: #F4F4F4;
     --uploadText2: #F4F4F4;
     --priceback: #373b55;
-    --deepGreen: linear-gradient(180deg, #16C782 100.17%, rgba(22, 199, 130, 0) 118.38%);
-    --deepRed: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 88.37%, rgba(255, 202, 205, 0) 88.39%);
+    --deepGreen: linear-gradient(180deg, #16C782 75.17%, rgba(22, 199, 130, 0) 118.38%);
+    --deepRed: linear-gradient(179.93deg, #e0313a -40.82%, rgba(255, 118, 126, 0.00520833) 60.37%, rgba(255, 202, 205, 0) 88.39%);
     --completered: #F9555F;
     --positive1: linear-gradient(green, black);
+    --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
 
 }
 
@@ -150,13 +153,18 @@
 }
 
 .completered {
-    background-color: var(--completered);
+    background-color: var(--gradient2);
 }
 
 .priceback {
     background-color: var(--priceback);
 }
 
+
+.greenAverage{
+    background-color: var(--greenAverage);
+   
+}
 
 .worksbg {
     background-color: var(--worksbg);

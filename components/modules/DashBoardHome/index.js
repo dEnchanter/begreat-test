@@ -387,7 +387,7 @@ export default function DashBoardHome() {
       case 2:
         return "deepGreen animate__animated animate__fadeIn my-element"
       case -1:
-        return "completered animate__animated animate__fadeIn my-element"
+        return "back2 animate__animated animate__fadeIn my-element"
       case -2:
         return "deepRed animate__animated animate__fadeIn my-element"
       
@@ -471,7 +471,7 @@ export default function DashBoardHome() {
           {/*  */}
           <div className="flex flex-wrap mt-5">
             <div className="flex-grow w-full md:w-[39%] xl:w-[24%] ">
-            <div className=" whitespace-normal font-semibold text-[13px] priceText mb-4 flex items-center  ">
+            <div className=" whitespace-normal font-semibold text-[13px] priceText mb-4 flex items-center w-fit mx-auto ">
                     Last<DropDownItem
                     padding={'0px 30px 0px 3px'}
                     onChange={(e)=>setTimeLeft(e)}
@@ -480,7 +480,7 @@ export default function DashBoardHome() {
                     value={timeLeft}
                     />                  </div>
               <div className="bg-white py-3 px-3  rounded-lg">
-                 <div className="text-sm">
+                 <div >
                  High price:{" "}  <span className="font-bold secondary">
                       {" "}
                       {toThreeFig(data?.high || 0)}
@@ -506,11 +506,11 @@ export default function DashBoardHome() {
                     {toThreeFig(data?.fall || 0)}%
                     
                   </div> 
-                   <p className="text-sm">   Low price:{" "} </p>  <span className="font-bold secondary">
+                   <p className="flex mt-2 ">   Low price:{" "}   <span className="font-bold secondary ml-1">
                       {" "}
                       {toThreeFig(data?.low || 0)}
                     </span>
-                  
+                  </p>
                 </div>
 
                
@@ -542,7 +542,7 @@ export default function DashBoardHome() {
                   >
                     <FlexContainer
                       wrapperContainer={`${
-                        item?.data > 0 ? "back1" : "back2"
+                        item?.data > 0 ? "greenAverage" : "back2"
                       }  flex justify-center w-full mr-2 py-6 rounded-xl`}
                       innerContainer={`flex justify-center gap-3 item-center rounded-xl border-[${
                         item?.data > 0 ? "#26A17B" : "#EA3943"
@@ -558,7 +558,7 @@ export default function DashBoardHome() {
                         <div
                           className={`${
                             item?.data > 0 ? "List2" : "List1"
-                          } text-center text-[36px]  font-bold font-1`}
+                          } text-center text-[1.8rem]  font-bold font-1`}
                         >
                           {toThreeFig(item?.data || 0,2)}%
                         </div>
