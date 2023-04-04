@@ -141,7 +141,7 @@ export default function Navbar({ fixed }) {
                   <Link href={"/register"}>Sign Up</Link>{" "}
                 </h1>
                 <Button
-                  className="px-4 text-white   mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
+                  className="px-4 text-white -ml-1  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
                   onClick={() => router.push("/login")}
                 >
                  Launch App 

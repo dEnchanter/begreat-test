@@ -14,15 +14,15 @@ const Faqs = () => {
     const faqs = [
     {
       question: 'Can I Trade on Be Great Finance?',
-      answer: 'No, Be Great Finance is not a trading platform. It is a web app that provides users with advanced analytics, tools, and information to help them make informed trading decisions on other platforms. ',
+      answer: 'No, Be Great Finance is not a trading platform. It is a web application that provides users with advanced analytics, tools, and information to help them make informed trading decisions on other platforms.',
     },
     {
       question: 'What kind of market data does Be Great Finance cover?',
-      answer: 'Currently, Be Great Finance only offers analysis on cryptocurrencies. However, there are plans in place to expand our coverage to include forex data, align with other assets in the near future.',
+      answer: 'Be Great Finance is a comprehensive market data analysis platform, currently offering analysis on cryptocurrencies and expanding its coverage to include forex and other markets in the near future.',
     },
     {
       question: 'Is Be Great Finance suitable for beginner traders?',
-      answer: 'Yes, Be Great Finance is suitable for traders of all experience levels. Our platform is user-friendly and our data visualization tools make it easy to interpret complex price action analysis models. We also recommend educational resources to help traders improve their skills as they grow. ',
+      answer: 'Yes, Be Great Finance is suitable for traders of all experience levels. Our platform is user-friendly and our data visualization tools make it easy to interpret complex price action analysis models. Our community consistently recommends educational resources to help new traders improve their skills as they grow. ',
     },
 
     {

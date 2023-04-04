@@ -33,12 +33,12 @@ const HowItWorks = () => {
                       </div>
 
                       <div>
-                        <h1 className='px-3 text-[0.7rem] text-white '> Create an account </h1> 
+                        <h1 className='ml-1 text-[0.7rem] text-white '> Create an account </h1> 
                       </div>
                   </div>
 
                   <div> 
-                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext mt-2'>Create an account and select a plan to begin your journey with Be Great Finance </p>
+                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 workstext mt-2'>Create an account and select a plan to begin your journey with Be Great Finance </p>
                   </div>
 
               </div>
@@ -50,13 +50,12 @@ const HowItWorks = () => {
                       </div>
 
                       <div>
-                        <h1 className='px-3 text-[0.7rem] text-white '> Access the Dashboard </h1> 
+                        <h1 className='ml-1 text-[0.7rem] text-white '> Customize Your Dashboard </h1> 
                       </div>
                   </div>
 
                   <div> 
-                      <p className='text-center text-sm lg:text-[0.76rem] leading-4 lg:px-4 workstext mt-2'> Launch the app and login to access our live price analysis dashboard and its suite of
-                        powerful, yet easy-to-use analysis tools</p>
+                      <p className='text-center text-sm lg:text-[0.76rem] leading-4  workstext mt-2'> Launch the app and log in to explore our premium suite of tools and customize the dashboard to match your trading style</p>
                   </div>
 
               </div>
@@ -94,9 +93,10 @@ const HowItWorks = () => {
             <h1 className='uppercase text-sm lg:text-xs font-semibold text-[#BF5493]'> Our Core Features </h1> 
             <h1 className='font-semibold mt-3 md:text-2xl text-xl smallTextI '> Elevate Your Investment Strategy with <br className='hidden lg:flex'/> Our Robust Features </h1>
             <p className='lg:text-xs text-sm  lg:px-6 workstext'> 
-            Our powerful dashboard provides real-time insights and analytics, <br className='hidden lg:flex'/> helping you easily
-            be aware of opportunities in all market  conditions <br className='hidden lg:flex'/> and make informed decisions
-          about your investments  </p>
+            
+          
+          Our comprehensive and intuitive dashboard helps you  make informed <br className='hidden lg:flex'/> decisions about your investments by providing real-time insights and analytics. <br className='hidden lg:flex'/> Save time analyzing and easily identify   profit opportunities in a variety of market conditions
+  </p>
           </div>
 
         

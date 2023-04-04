@@ -14,6 +14,7 @@ const Footer = () => {
         <div className=' lg:flex justify-between pb-10 lg:px-10'>
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-10  mx-auto lg:mx-0 hover:cursor-pointer'  src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt='logo'/>
+                <p className='sm:text-[0.7rem] text-sm mt-1 leading-3  text-center lg:text-start'> Our tools and dashboard provide trend recognition and price action analysis services. We do not provide personalized investment advice or instructions to trade. Users recognize investing and trading come with risk, and are responsible for their own investment decisions and risk management. </p>
                 
                 <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0 text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2]'>  
                     <BsFacebook className='hover:cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '/>
@@ -36,7 +37,7 @@ const Footer = () => {
                     <input className={theme=="light"?"px-1 rounded-md lg:p-1 w-[60%] md:w-fit mx-auto border border-gray-400" : "px-1 rounded-md lg:p-1"} placeholder='Enter your email'/>  
                     <Button className={theme=="light"?"rounded border-0 w-fit px-2 text-xs items-center flex bg-black text-white hover:cursor-pointer hover:bg-gray-500":" rounded  w-fit px-2  text-xs items-center flex border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer"} > Notify me </Button>
                 </div>
-                <p className='sm:text-[0.6rem] workstext text-xs text-center mt-2'> We care about the protection of your data. <br className='sm:hidden'/> Read our <span className='border-b border-black font-semibold'>  Privacy Policy. </span> </p>
+                {/* <p className='sm:text-[0.6rem] workstext text-xs text-center mt-2'> We care about the protection of your data. <br className='sm:hidden'/> Read our <span className='border-b border-black font-semibold'>  Privacy Policy. </span> </p> */}
             </div>
 
             
