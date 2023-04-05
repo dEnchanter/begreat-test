@@ -14,7 +14,7 @@ const Footer = () => {
         <div className=' lg:flex justify-between pb-10 lg:px-10'>
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-10  mx-auto lg:mx-0 hover:cursor-pointer'  src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt='logo'/>
-                <p className='sm:text-[0.7rem] text-sm mt-1 leading-3  text-center lg:text-start'> Our tools and dashboard provide trend recognition and price action analysis services. We do not provide personalized investment advice or instructions to trade. Users recognize investing and trading come with risk, and are responsible for their own investment decisions and risk management. </p>
+                <p className='sm:text-[0.7rem] text-sm mt-1   text-center md:text-start'> Simplify your Investments, Maximize your Profits. </p>
                 
                 <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0 text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2]'>  
                     <BsFacebook className='hover:cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '/>

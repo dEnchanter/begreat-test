@@ -82,7 +82,7 @@ const togglePasswordVisibility = () => {
               <div className="mb-5">
                 <ButtonComp
                   btnText={
-                    <span className="priceText text-[14px] font-bold flex items-center  py-3 justify-center gap-4">
+                    <span className="priceText text-[14px] font-bold border-2  rounded-md border-[#C72E66] flex items-center  py-3 justify-center gap-4">
                       <FcGoogle size={20} /> Continue with Google
                     </span>
                   }
@@ -173,8 +173,8 @@ const togglePasswordVisibility = () => {
               />
 
 <div className="mt-7 priceText font-normal text-[16px] lg:text-[18px] mb-5">
-                  Don’t Have an Account?
-                  <span className="font-thin cursor-pointer"><Link href={'/register'}> Sign Up</Link></span>
+                  Already Have an Account?
+                  <span className="font-thin cursor-pointer text-gray-400"><Link href={'/login'}> Login </Link></span>
                 </div>
             </form>
             <div className="py-[1rem]"></div>

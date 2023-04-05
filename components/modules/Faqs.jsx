@@ -27,7 +27,7 @@ const Faqs = () => {
 
     {
       question: 'How many cryptocurrencies are available on Be Great Finance?',
-      answer: 'Be Great FInance offers analysis on over 1200 cryptocurrency pairs, with more being added on a regular basis.',
+      answer: 'Be Great Finance offers analysis on over 1200 cryptocurrency pairs, with more being added regularly.',
     },
 
 ];
