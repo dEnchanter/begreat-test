@@ -61,11 +61,13 @@ const togglePasswordVisibility = () => {
 
   return (
     <Layout>
-        <main className="pb-[7rem] pt-[5rem] lg:pt-[10rem] bg-transparent px-2">
+        <main className="pb-[7rem] pt-[5rem] lg:pt-[6rem] bg-transparent px-2">
         <section className="mb-[2rem]">
-        <div className="text-center text-[24px] md:text-[30px] lg:text-[36px] font-semibold font-3 leading-10">
-              Revolutionize Your <span className="check">Finances </span>with{" "}
-              <br className=" hidden lg:block" /> Our Powerful Platform
+        <div className="text-center text-[1.8rem] font-semibold font-3 leading-10">
+              {/* Revolutionize Your with{" "}
+              <br className=" hidden lg:block" /> Our Powerful Platform */}
+
+              Simplify Your Investments, <br className=" hidden lg:block" /> <span className="check"> Maximize </span>Your Profits
             </div>
         </section>
         {/*  */}
@@ -172,9 +174,9 @@ const togglePasswordVisibility = () => {
                 }
               />
 
-<div className="mt-7 priceText font-normal text-[16px] lg:text-[18px] mb-5">
+<div className="mt-7 priceText font-normal text-[13px] lg:text-[14px] mb-5">
                   Already Have an Account?
-                  <span className="font-thin cursor-pointer text-gray-400"><Link href={'/login'}> Login </Link></span>
+                  <span className="font-extrabold cursor-pointer text-gray-400"><Link href={'/login'}> Login </Link></span>
                 </div>
             </form>
             <div className="py-[1rem]"></div>
