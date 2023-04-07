@@ -90,12 +90,12 @@ const HowItWorks = () => {
           <div className='lg:pt-[4.5rem] pt-[4rem] '> 
          
           <div className='text-center'> 
-            <h1 className='uppercase text-sm lg:text-xs font-semibold text-[#BF5493]'> Our Core Features </h1> 
+            <h1 className='uppercase text-sm  font-semibold text-[#BF5493]'> Our Core Features </h1> 
             <h1 className='font-semibold mt-3 md:text-2xl text-xl smallTextI '> Elevate Your Investment Strategy with <br className='hidden lg:flex'/> Our Robust Features </h1>
             <p className='lg:text-xs text-sm  lg:px-6 workstext'> 
             
           
-          Our comprehensive and intuitive dashboard helps you  make informed <br className='hidden lg:flex'/> decisions about your investments by providing real-time insights and analytics. <br className='hidden lg:flex'/> Save time analyzing and easily identify   profit opportunities in a variety of market conditions
+          Our comprehensive and intuitive dashboard helps you  make informed  decisions about <br className='hidden lg:flex'/>  your  investments by providing real-time insights and analytics. Save time analyzing <br className='hidden lg:flex'/>   and easily identify  profit opportunities in a variety of market conditions
   </p>
           </div>
 

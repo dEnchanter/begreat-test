@@ -79,7 +79,7 @@ const togglePasswordVisibility = () => {
                 Create an Account
               </div>
               <div className="smallText text-[14px] mb-3">
-                Please fill your detail to access your account.
+                Input your information to get started.
               </div>
               <div className="mb-5">
                 <ButtonComp

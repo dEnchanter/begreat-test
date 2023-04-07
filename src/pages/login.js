@@ -73,7 +73,7 @@ const togglePasswordVisibility = () => {
                   Login to your Account
                 </div>
                 <div className="smallText text-[14px] mb-3">
-                  Please fill your detail to access your account.
+                 Fill in your details to access your account.
                 </div>
                 <div className="mb-5">
                   <ButtonComp

@@ -3,6 +3,7 @@ import Layout from '../../components/Layout'
 import Footer from '../../components/modules/Footer'
 import { Container } from '../../components/styles/Container'
 import {FcCheckmark} from 'react-icons/fc'
+import {RxDotFilled} from 'react-icons/rx'
 
 export default function pricing() {
   return (
@@ -19,8 +20,8 @@ export default function pricing() {
        <div className='flex md:flex-row flex-col justify-center space-y-4 md:space-y-0 md:space-x-6 mt-10 pb-10'> 
            <div className=' rounded-md shadow-lg  lg:hover:shadow-2xl hover:cursor-pointer h-[27rem]  w-full  md:mx-0 mx-auto max-w-[19rem] sm:max-w-[18rem] px-6 priceback'> 
           <h1 className='font-bold text-xl pt-4'>Monthly Plan </h1>
-          <p className='text-xs mt-2 h-[4rem]'> Everything you need to navigate the markets successfully </p>
-          <h1 className='mt-2 text-xs'> <span className='text-3xl font-bold'>$50</span>/MO </h1>
+          <p className='text-xs mt-2 h-[4rem] flex items-center'> <span> <RxDotFilled className='text-[1.7rem]'/>  </span>Everything you need to navigate the markets successfully </p>
+          <h1 className='mt-3 text-xs'> <span className='text-3xl font-bold'>$50</span>/MO </h1>
           <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in'> Buy Plan </button> 
           <div className='mt-5 text-xs space-y-3 '> 
              <p className='uppercase font-semibold'> What's Included </p>
@@ -34,8 +35,11 @@ export default function pricing() {
 
         <div className=' rounded-md shadow-lg  lg:hover:shadow-2xl hover:cursor-pointer h-[27rem]  w-full md:mx-0 mx-auto max-w-[19rem] sm:max-w-[18rem] px-6 priceback'> 
           <h1 className='font-bold text-xl pt-4'>Yearly Plan </h1>
-          <p className='text-xs mt-2 h-[4rem]'> Everything you need to navigate the markets successfully <br/> Save over 15% on the premium plan over the course of one year </p>
-          <h1 className='mt-2 text-xs'> <span className='text-3xl font-bold'>$500</span>/YR </h1>
+         <div className='h-[4rem]'> 
+           <p className='text-xs mt-2 flex items-center'> <span> <RxDotFilled className='text-[1.7rem]'/> </span> Everything you need to navigate the markets successfully   </p>
+          <p className='text-xs mt-2  flex items-center'> <span> <RxDotFilled className='text-[1.7rem]'/> </span> Save over 15% on the premium plan over the course of one year </p>
+         </div>
+          <h1 className='mt-3 text-xs'> <span className='text-3xl font-bold'>$500</span>/YR </h1>
           <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in'> Buy Plan </button> 
           <div className='mt-5 text-xs space-y-3 '> 
              <p className='uppercase font-semibold'> What's Included </p>
