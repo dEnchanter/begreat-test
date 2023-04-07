@@ -5,9 +5,9 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    userLogin: builder.mutation({
+    userLoginGoogle: builder.mutation({
       query: (body) => ({
-        url: "/signin",
+        url: "/signinwithgoogle",
         method: "POST",
         body,
       }),
@@ -64,7 +64,7 @@ export const authApi = createApi({
 });
 
 export const {
-  useUserLoginMutation,
+  useUserLoginGoogleMutation,
   useUserSignUpMutation,
   useForgetPasswordMutation,
   useVerifyPasswordCodeMutation,

@@ -444,7 +444,7 @@ export default function DashBoardHome() {
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset&&'U'}${
+                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset?.split("U")[1]&&'U'}${
                     data?.asset?.split("U")[1]||' '
                   }`}
                 </h1>
