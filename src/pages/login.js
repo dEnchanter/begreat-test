@@ -171,7 +171,7 @@ const handleCredentialResponse = (response) => {
                 <div className="mb-5">
                   <ButtonComp
                     btnText={
-                      <span className="priceText text-[14px] font-bold flex items-center border-2  rounded-md border-[#C72E66] py-3 justify-center gap-4">
+                      <span id="buttonDiv" className="priceText text-[14px] font-bold flex items-center border-2  rounded-md border-[#C72E66] py-3 justify-center gap-4">
                         <FcGoogle size={20} /> Continue with Google
                       </span>
                     }
@@ -179,7 +179,7 @@ const handleCredentialResponse = (response) => {
                   />
                 </div>
               </div>
-              <div id="buttonDiv"></div>
+              {/* <div id="buttonDiv"></div> */}
               {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
 
               {/* <LoginGoogle/> */}

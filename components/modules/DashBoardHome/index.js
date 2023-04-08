@@ -475,7 +475,7 @@ export default function DashBoardHome() {
                     Last<DropDownItem
                     padding={'0px 30px 0px 3px'}
                     onChange={(e)=>setTimeLeft(e)}
-                    options={options2}
+                    options={options3}
                     noIcon={true}
                     value={timeLeft}
                     />                  </div>
