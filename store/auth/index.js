@@ -31,6 +31,16 @@ export const authSlice = createSlice({
         state.userInfo = payload
        
       },
+      googleAuth(state){
+       
+        state.loading = false
+        state.userInfo = {name:'Google Users'}
+        
+        // state.error = null
+        state.isLoggedIn =true;
+        // ...logout reducer
+        
+      },
 
       loginTest:(state)=>{
        // console.log(state,'userInfo1')
@@ -63,5 +73,5 @@ export const authSlice = createSlice({
     },
   },
 });
-export const { logout,setCredentials,loginTest,addCount,removeCount} = authSlice.actions;
+export const {googleAuth, logout,setCredentials,loginTest,addCount,removeCount} = authSlice.actions;
 export default authSlice.reducer;

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import store from '../../store';
 import { Toaster } from "react-hot-toast";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export default function App({ Component, pageProps }) {
   const [mounted, setMounted] = useState(false)
@@ -29,6 +30,8 @@ export default function App({ Component, pageProps }) {
     // enableSystem={false}
     // storageKey="theme"
   >
+        <GoogleOAuthProvider clientId={'878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com'}>
+
     <Provider store={store}>
    
     <Toaster
@@ -38,6 +41,7 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
       {/* <button onClick={toggleTheme}>Toggle theme</button> */}
       </Provider>
+      </GoogleOAuthProvider>
     </ThemeProvider>
   );
    

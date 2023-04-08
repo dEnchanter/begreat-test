@@ -8,6 +8,7 @@ const Layout = ({ children,title='' }) => {
     <>
     <Head>
         <title> {`Be-great Finance | ${title}`} </title>
+        {/* <script src="https://accounts.google.com/gsi/client" async defer></script> */}
       </Head>
       <Navbar /> <div className="herobg"> {children} </div>
     </>

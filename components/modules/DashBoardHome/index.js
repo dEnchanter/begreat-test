@@ -444,7 +444,7 @@ export default function DashBoardHome() {
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset&&'U'}${
+                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset?.split("U")[1]&&'U'}${
                     data?.asset?.split("U")[1]||' '
                   }`}
                 </h1>
@@ -475,7 +475,7 @@ export default function DashBoardHome() {
                     Last<DropDownItem
                     padding={'0px 30px 0px 3px'}
                     onChange={(e)=>setTimeLeft(e)}
-                    options={options2}
+                    options={options3}
                     noIcon={true}
                     value={timeLeft}
                     />                  </div>

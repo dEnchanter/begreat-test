@@ -30,8 +30,8 @@ export const userLogin = createAsyncThunk(
       return data;
     } catch (error) {
       // return custom error message from API if any
-      console.log(error?.response);
-      toast.error(error.response.data.message);
+      console.log(error?.response?.data?.error,'dataError');
+      toast.error(error.response.data.error);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {

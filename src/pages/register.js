@@ -30,10 +30,11 @@ const togglePasswordVisibility = () => {
 };
   const [userSignUp, { isLoading, isError, isSuccess }] =
     useUserSignUpMutation();
-  const { control, handleSubmit, reset } = useForm({
+  const { control, handleSubmit, reset,getValues } = useForm({
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword : "",
     },
   });
 
@@ -58,6 +59,14 @@ const togglePasswordVisibility = () => {
         //  toast.error(error.data.message);
       });
   };
+
+  const handleConfirmPassword = (value) => {
+    if(value!==getValues('password')){
+      return false
+    }
+    return true
+
+  }
 
   return (
     <Layout>
@@ -122,7 +131,7 @@ const togglePasswordVisibility = () => {
                   }}
                 />
               </div>
-              <div className="text-left mb-8">
+              <div className="text-left mb-5">
                 <label className="text-left modalText text-[14px] font-semibold mb-1">
                   Password
                 </label>
@@ -141,8 +150,8 @@ const togglePasswordVisibility = () => {
                     const errorMessage = errors?.password?.message;
                     return (
                       <TextInput
+                      placeholder="Enter Password"
                       type={showPassword ? 'text' : 'password'}
-                        placeholder="••••••••"
                         containerClassName={"loginInputBorder border-[1px]"}
                         prefixIcon={ showPassword ? (
               <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
@@ -165,7 +174,51 @@ const togglePasswordVisibility = () => {
                   </div>
                 </div>
               </div>
+              <div className="text-left mb-8">
+                <label className="text-left modalText text-[14px] font-semibold mb-1">
+                  Confirm Password
+                </label>
+                <Controller
+                  name="confirmPassword"
+                  control={control}
+                  rules={{
+                    required: "confirm Password  is required",
+                    // pattern: REGEX_PATTERNS?.EMAIL,
+                    minLength: generateMinLength(6),
+                    validate:(value)=>handleConfirmPassword(value)||'Password does not match'
+                  }}
+                  render={({
+                    field: { value, onChange },
+                    formState: { errors },
+                  }) => {
+                    const errorMessage = errors?.confirmPassword?.message;
+                    return (
+                      <TextInput
+                      placeholder="Enter Confirm Password"
 
+                      type={showPassword ? 'text' : 'password'}
+                        containerClassName={"loginInputBorder border-[1px]"}
+                        prefixIcon={ showPassword ? (
+              <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
+            ) : (
+              <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
+            )}
+                        name="password"
+                        {...{ value, onChange, errors: [errorMessage] }}
+                      />
+                    );
+                  }}
+                />
+                <div className="flex justify-between mt-1">
+                  <div className="text-[12px] text-[#A1A1A1] flex items-center gap-2">
+                    {" "}
+                    <input type={"checkbox"} /> Remember Me
+                  </div>
+                  <div className="text-[12px] text-[#4830F7]">
+                    Forgot Password?
+                  </div>
+                </div>
+              </div>
               <ButtonComp
                 btnText={isLoading ? "Loading..." : "Sign Up"}
                 type="submit"

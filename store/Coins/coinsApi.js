@@ -30,6 +30,14 @@ export const coinsApi = createApi({
         // body,
       }),
     }),
+
+    userLoginGoogleAuth: builder.mutation({
+      query: (body) => ({
+        url: "/signinwithgoogle",
+        method: "POST",
+        body,
+      }),
+    }),
  
   }),
 });
@@ -38,5 +46,6 @@ export const {
 
   useTimeFrameQuery,
   useSearchCoinsQuery,
-  useSearchCoinPriceQuery
+  useSearchCoinPriceQuery,
+  useUserLoginGoogleAuthMutation
 } = coinsApi;
