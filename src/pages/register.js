@@ -25,6 +25,8 @@ export default function Login() {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
 
 const togglePasswordVisibility = () => {
   setShowPassword(!showPassword);
@@ -48,18 +50,28 @@ const togglePasswordVisibility = () => {
     }
   }, [isSuccess, reset, router]);
 
-  const handleSignUp = (data) => {
-    // setHoldEmail(data?.email)
-    userSignUp(data)
-      .unwrap()
-      .catch((error = "oops,something went wrong") => {
-        console.log(error.data.message);
-        toast.error(error.data.message);
-        error?.data?.errors?.length > 0 &&
-          error?.data?.errors?.map((item) => toast.error(item?.message));
-        //  toast.error(error.data.message);
-      });
-  };
+ const handleSignUp = (data) => {
+  // setHoldEmail(data?.email)
+  userSignUp(data)
+    .unwrap()
+    .then(() => {
+      if (rememberMe) {
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("password", data.password);
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+      }
+    })
+    .catch((error = "oops,something went wrong") => {
+      console.log(error.data.message);
+      toast.error(error.data.message);
+      error?.data?.errors?.length > 0 &&
+        error?.data?.errors?.map((item) => toast.error(item?.message));
+      //  toast.error(error.data.message);
+    });
+};
+
 
   const handleConfirmPassword = (value) => {
     if(value!==getValues('password')){
@@ -210,7 +222,11 @@ const togglePasswordVisibility = () => {
                 <div className="flex justify-between mt-1">
                   <div className="text-[12px] text-[#A1A1A1] flex items-center gap-2">
                     {" "}
-                    <input type={"checkbox"} /> Remember Me
+                       <input
+                      type={"checkbox"}
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                    />
                   </div>
                 
                 </div>
