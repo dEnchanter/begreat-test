@@ -177,12 +177,7 @@ const togglePasswordVisibility = () => {
                     );
                   }}
                 />
-                <div className="flex justify-between mt-1">
-                 
-                  <div className="text-[12px] text-[#4830F7]">
-                    Forgot Password?
-                  </div>
-                </div>
+                
               </div>
               <div className="text-left mb-8">
                 <label className="text-left modalText text-[14px] font-semibold mb-1">
@@ -204,7 +199,7 @@ const togglePasswordVisibility = () => {
                     const errorMessage = errors?.confirmPassword?.message;
                     return (
                       <TextInput
-                      placeholder="Enter Confirm Password"
+                      placeholder="Enter Password to confirm"
 
                       type={showPassword ? 'text' : 'password'}
                         containerClassName={"loginInputBorder border-[1px]"}
@@ -227,6 +222,7 @@ const togglePasswordVisibility = () => {
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
                     />
+                    Remember Me
                   </div>
                 
                 </div>

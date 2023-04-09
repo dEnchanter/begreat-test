@@ -278,8 +278,7 @@ const handleCredentialResponse = (response) => {
                      <input
                     type={"checkbox"}
                     onChange={handleRememberMe}
-                    checked={rememberMe}
-/>
+                    checked={rememberMe}/>  Remember Me
                     </div>
                     <div className="text-[12px] text-[#4830F7]">
                       Forgot Password?
