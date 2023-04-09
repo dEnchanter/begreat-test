@@ -166,10 +166,7 @@ const togglePasswordVisibility = () => {
                   }}
                 />
                 <div className="flex justify-between mt-1">
-                  <div className="text-[12px] text-[#A1A1A1] flex items-center gap-2">
-                    {" "}
-                    <input type={"checkbox"} /> Remember Me
-                  </div>
+                 
                   <div className="text-[12px] text-[#4830F7]">
                     Forgot Password?
                   </div>
@@ -215,9 +212,7 @@ const togglePasswordVisibility = () => {
                     {" "}
                     <input type={"checkbox"} /> Remember Me
                   </div>
-                  <div className="text-[12px] text-[#4830F7]">
-                    Forgot Password?
-                  </div>
+                
                 </div>
               </div>
               <ButtonComp
