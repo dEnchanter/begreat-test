@@ -19,6 +19,7 @@ import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
+import GoogleButton from "./Googlebutton";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
@@ -93,8 +94,8 @@ const togglePasswordVisibility = () => {
               <div className="mb-5">
                 <ButtonComp
                   btnText={
-                    <span className="priceText text-[14px] font-bold border-2  rounded-md border-[#C72E66] flex items-center  py-3 justify-center gap-4">
-                      <FcGoogle size={20} /> Continue with Google
+                    <span  className="priceText text-[14px] font-bold border-2  rounded-md border-[#C72E66] flex items-center  py-3 justify-center gap-4">
+                       <GoogleButton  />
                     </span>
                   }
                   btnTextClassName="w-full navBtnBorder "

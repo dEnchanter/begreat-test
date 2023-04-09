@@ -21,6 +21,7 @@ import { useUserLoginGoogleMutation } from "../../store/auth/authApi";
 import { useUserLoginGoogleAuthMutation } from "../../store/Coins/coinsApi";
 import { setToken, setUserDataS } from "../../helper";
 import { googleAuth } from "../../store/auth";
+import GoogleButton from "./Googlebutton";
 // import { GoogleLogin } from '@react-oauth/google';
 
 export default function Login() {
@@ -173,8 +174,8 @@ const handleCredentialResponse = (response) => {
                 <div className="mb-5">
                   <ButtonComp
                     btnText={
-                      <span id="buttonDiv" className="priceText text-[14px] font-bold flex items-center border-2  rounded-md border-[#C72E66] py-3 justify-center gap-4">
-                        <FcGoogle size={20} /> Continue with Google
+                      <span  className="priceText text-[14px] font-bold flex items-center border-2  rounded-md border-[#C72E66] py-3 justify-center gap-4">
+                       <GoogleButton/>
                       </span>
                     }
                     btnTextClassName="w-full navBtnBorder "
