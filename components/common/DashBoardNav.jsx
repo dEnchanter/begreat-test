@@ -63,6 +63,7 @@ export default function DashBoardNav({change}) {
                     >
                         <HiUser size={20} className="hover:cursor-pointer" />
                     </div>
+                    
                     {showDropdown && (
                         <div
                         className="absolute right-0  w-fit mt-1   border border-gray-500 rounded shadow-lg"

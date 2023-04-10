@@ -25,20 +25,14 @@ export default function Profile() {
           <div className="flex-grow w-full xl:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
             Name
           </div>
-          <div className="flex-grow w-[50%] lg:w-[40%] px-3">
+          <div className=" flex-grow  w-full lg:w-[80%] px-3">
             <TextInput
-              placeholder="First Name"
+              placeholder="Name"
               containerClassName={" borderColorI border-[2px] "}
               inputClassName={"text-[14px]"}
             />
           </div>
-          <div className="flex-grow w-[50%] lg:w-[40%] px-3">
-            <TextInput
-              placeholder="Last Name"
-              inputClassName={"text-[14px]"}
-              containerClassName={" borderColorI border-[2px] "}
-            />
-          </div>
+          
         </div>
         {/*  */}
         <div className="flex items-center mb-12 flex-wrap">
