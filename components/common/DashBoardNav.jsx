@@ -27,13 +27,15 @@ export default function DashBoardNav({change}) {
   return (
     <nav>
         <div className='flex justify-between items-center px-3 xl:px-5 py-5 shadow-xl bg-header'>
-            <div>
+            <div  className="hover:cursor-pointer"  onClick={()=>router.push('/dashboard')}>
                 <FallBackImage
                 // src={'/Images/Dashboard/Logo1.png'}
                  src={theme=="dark"?'/Images/Dashboard/Logo1.png':'/Images/Dashboard/logo.png'}
                 width={199}
                 height={59}
+               
                 />
+                
             </div>
             <div className='flex items-center gap-3 xl:gap-7 '>
                 <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap md:flex'>
@@ -43,7 +45,7 @@ export default function DashBoardNav({change}) {
                {!change? <div className='border hover:bg-gray-500  borderColor  rounded'>
                     <ButtonComp
                     onClick={()=>router.push('/dashboard/settings')}
-                    btnText={<AiFillSetting size={24}/>}
+                    btnText={<AiFillSetting size={20}/>}
                     />
                 </div>
                 :
@@ -63,10 +65,10 @@ export default function DashBoardNav({change}) {
                     </div>
                     {showDropdown && (
                         <div
-                        className="absolute right-0  w-fit    border border-gray-500 rounded shadow-lg"
+                        className="absolute right-0  w-fit mt-1   border border-gray-500 rounded shadow-lg"
                         >
                         <div
-                            className="px-2 py-1 text-left text-sm cursor-pointer hover:bg-gray-500 "
+                            className="p-2 text-left text-base cursor-pointer hover:bg-gray-700 "
                             onClick={handleLogoutClick}
                         >
                             Logout
