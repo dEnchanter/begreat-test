@@ -13,28 +13,28 @@ export default function Profile() {
     <section>
       <section className="mb-10">
         <div className="priceText text-[20px] font-medium ">
-          Personal Information
+          Profile Information
         </div>
         <div className="priceText text-[14px] font-normal">
-          Update your Personal details here
+          Update your Profile details here
         </div>
       </section>
 
       <section className="overflow-hidden">
         <div className="flex items-center mb-12 flex-wrap">
           <div className="flex-grow w-full xl:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
-            Full Name
+            Name
           </div>
           <div className="flex-grow w-[50%] lg:w-[40%] px-3">
             <TextInput
-              placeholder="Rey Idowu"
+              placeholder="First Name"
               containerClassName={" borderColorI border-[2px] "}
               inputClassName={"text-[14px]"}
             />
           </div>
           <div className="flex-grow w-[50%] lg:w-[40%] px-3">
             <TextInput
-              placeholder="Rey Idowu"
+              placeholder="Last Name"
               inputClassName={"text-[14px]"}
               containerClassName={" borderColorI border-[2px] "}
             />

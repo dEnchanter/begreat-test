@@ -8,6 +8,7 @@ import { loginTest, logout, setCredentials } from "../store/auth";
 import { useGetUserProfileQuery } from "../store/User/userApi";
 
 
+
 export const ProtectedRoute = ({ children, type }) => {
   const router = useRouter();
   const dispatch = useDispatch();

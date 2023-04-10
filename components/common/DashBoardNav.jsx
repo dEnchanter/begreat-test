@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import FallBackImage from './FallBackImage'
 import {HiOutlineMoon, HiOutlineSun, HiUser} from 'react-icons/hi'
 import {BsMoon, BsSun} from 'react-icons/bs'
@@ -11,8 +11,18 @@ import { useDispatch } from 'react-redux'
 import { logout } from "../../store/auth";
 export default function DashBoardNav({change}) {
     const { theme, setTheme } = useTheme();
+     const [showDropdown, setShowDropdown] = useState(false);
     const router =useRouter();
     const dispatch  =useDispatch();
+
+     const handleLogoutClick = () => {
+    dispatch(logout());
+    router.push('/login');
+  };
+
+    const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
     
   return (
     <nav>
@@ -30,7 +40,7 @@ export default function DashBoardNav({change}) {
                 <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor hover:cursor-pointer'/></div>
                 <div className={`   rounded-lg ${theme ==="dark" && 'hover:cursor-pointer bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
                 </div>
-               {!change? <div className='border p-[5px] borderColor  rounded'>
+               {!change? <div className='border hover:bg-gray-500  borderColor  rounded'>
                     <ButtonComp
                     onClick={()=>router.push('/dashboard/settings')}
                     btnText={<AiFillSetting size={24}/>}
@@ -44,9 +54,26 @@ export default function DashBoardNav({change}) {
                     btnTextClassName='iconColor2 textII rounded-xl px-4'
                     />
                     </div>}
-                <div className='iconColor1 p-3 rounded-full'>
-                    <HiUser size={20} className='hover:cursor-pointer' onClick={()=>dispatch(logout())}/>
-                </div>
+                  <div className="relative">
+                    <div
+                        className="iconColor1 p-2 rounded-full hover:bg-gray-500 cursor-pointer"
+                        onClick={toggleDropdown}
+                    >
+                        <HiUser size={20} className="hover:cursor-pointer" />
+                    </div>
+                    {showDropdown && (
+                        <div
+                        className="absolute right-0  w-fit    border border-gray-500 rounded shadow-lg"
+                        >
+                        <div
+                            className="px-2 py-1 text-left text-sm cursor-pointer hover:bg-gray-500 "
+                            onClick={handleLogoutClick}
+                        >
+                            Logout
+                        </div>
+                        </div>
+                        )}
+                        </div>
             </div>
         </div>
     </nav>
