@@ -38,7 +38,13 @@ export const coinsApi = createApi({
         body,
       }),
     }),
- 
+    forgetPassword: builder.mutation({
+      query: (body) => ({
+        url: "/passwordreset",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -47,5 +53,5 @@ export const {
   useTimeFrameQuery,
   useSearchCoinsQuery,
   useSearchCoinPriceQuery,
-  useUserLoginGoogleAuthMutation
+  useUserLoginGoogleAuthMutation,useForgetPasswordMutation
 } = coinsApi;
