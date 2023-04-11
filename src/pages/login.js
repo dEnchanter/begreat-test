@@ -300,7 +300,7 @@ const handleCredentialResponse = (response) => {
 
                 <div className="mt-7 priceText font-normal text-[13px] lg:text-[14px] mb-5">
                   Don’t Have an Account?
-                  <span className="font-extrabold cursor-pointer text-gray-400"><Link href={'/register'}> Sign Up</Link></span>
+                  <span className="font-extrabold cursor-pointer text-gray-400 hover:text-[#C72E66] hover:duration-200 hover:ease-in"><Link href={'/register'}> Sign Up</Link></span>
                 </div>
               </form>
               <div className="py-[1rem]"></div>
