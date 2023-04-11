@@ -281,7 +281,7 @@ const handleCredentialResponse = (response) => {
                     checked={rememberMe}/>  Remember Me
                     </div>
                     <div >
-                     <Link className="text-[12px] text-[#4830F7]" href={'/forget_password'}> Forgot Password?</Link>
+                     <Link className="text-[12px] text-[#4830F7] font-semibold hover:text-[#676385]  hover:duration-200 hover:ease-in" href={'/forget_password'}> Forgot Password?</Link>
                     </div>
                   </div>
                 </div>
