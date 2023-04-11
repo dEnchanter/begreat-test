@@ -57,7 +57,7 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
       
       toast.success(data?.message);
       reset()
-      // router.push('/dashboard')
+       router.push('/register')
     console.log('Token sent successfully!',data,'data1');
   })
   .catch((err) => {
@@ -68,12 +68,7 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
   
 };
 
-  // const { data} = useUserLoginGoogleAuthMutation({
-  //   token :'eyJhbGciOiJSUzI1NiIsImtpZCI6ImFjZGEzNjBmYjM2Y2QxNWZmODNhZjgzZTE3M2Y0N2ZmYzM2ZDExMWMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODA4OTk0NzIsImF1ZCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMDU1MTQwMjAyNTc4OTQyNzI4MiIsImVtYWlsIjoiZGFtbXltb3NlczIwMDFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF6cCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsIm5hbWUiOiJEYW1teSBNb3NlcyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BR05teXhZdkxuSlFZRlFWWVAtdXRSVnFFTE52MDNiTUVUVUZJRVRsT3ZxeT1zOTYtYyIsImdpdmVuX25hbWUiOiJEYW1teSIsImZhbWlseV9uYW1lIjoiTW9zZXMiLCJpYXQiOjE2ODA4OTk3NzIsImV4cCI6MTY4MDkwMzM3MiwianRpIjoiZWRiMDVjMDc4NTc2MTg3ZTE5OGI0YmVlODc2OGZlNWJhZjdmZWRiYiJ9.VdOfQKC9LMsEnFxV3ANNnjnbBEyuHjQXdjKSZgKm8ZriCgjx_DWR8dqiSBAKRiIAed8PqYMRsLs43cQ6iY6k4Lko92oqY6qK8FkATQMgKJIBSlXZCHEtXnnpcoRfW5Oc24iIjDoerQuavGZcvKzbEV41o46RX24S-nQzcPbSoyah8LfT7F7JXJKLl0_eJ2iiMnj82YKAoCpjd7m_bkDOnv4cFYo9fsKYXSvYMvU7ehuliYyFl1fmumAMCoRVnQvQgnMSKKEbF22HMpg5mBNadNX-Zxup9XmnS63SB9loMLIW4g1YKUBvhVP8Beruyc1k3zT3tqiILuflLN4VbOX33g'
-  // },   { refetchOnMountOrArgChange: true,skip:false});
 
-  
-  // console.log(isError,isLoading,AuthGoogleError,'data')
 
   useEffect(() => {
     if(AuthGoogleError?.data?.error){
@@ -95,85 +90,24 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
     }
   }, [error])
 
-  const handleGoogleSignInSuccess = (token) => {
-    // Send the token to your server for authentication
-    console.log("Encoded JWT ID token: " + token);
-   
-  }
-
-  useEffect(() => {
-  const userEmail = localStorage.getItem("userEmail");
-  const userPassword = localStorage.getItem("userPassword");
-
-  if (userEmail && userPassword) {
-    setRememberMe(true);
-    setValue("email", userEmail);
-    setValue("password", userPassword);
-  }
-}, []);
 
 
-  // useEffect(() => {
-  //   function start(){
-  //     gapi.client.init({
-  //       client_id:clientId,
-  //       scope:""
-  //     })
-  //   };
-  //   gapi.load('client:auth2',start)
-  // }, [])
+//   useEffect(() => {
+//   const userEmail = localStorage.getItem("userEmail");
+//   const userPassword = localStorage.getItem("userPassword");
+
+//   if (userEmail && userPassword) {
+//     setRememberMe(true);
+//     setValue("email", userEmail);
+//     setValue("password", userPassword);
+//   }
+// }, []);
+
+
   
-  const responseMessage = (response) => {
-    console.log(response);
-};
-const errorMessage = (error) => {
-    console.log(error);
-};
+  
 
-const GoogleLoginButton = () => {
  
-}
-const handleCredentialResponse = (response) => {
-  // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
-  console.log("Encoded JWT ID token: " + response);
-  // setToken(response.credential)
-  sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
-  .then((data) => {
-      setUserDataS(data?.accessToken)
-      setToken(data?.accessToken)
-      dispatch(googleAuth(data))
-      toast.success(data?.message);
-      router.push('/dashboard')
-    console.log('Token sent successfully!',data,'data1');
-  })
-  .catch((err) => {
-    console.error('Failed to send token:', err);
-  });
-};
-
-  // useEffect(() => {
-  //   if(!isLoggedIn){
-  //   const loadGoogleAccountsScript = () => {
-  //     const script = document.createElement("script");
-  //     script.src = "https://accounts.google.com/gsi/client";
-  //     script.async = true;
-  //     script.onload = () => {
-  //       google.accounts.id.initialize({
-  //         // client id should be stored in an environment variable
-  //         client_id: "878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com",
-  //         callback: handleCredentialResponse
-  //       });
-  //       google.accounts.id.renderButton(
-  //         document.getElementById("buttonDiv"),
-  //         { theme: "outline", size: "large" } // customization attributes
-  //       );
-  //       google.accounts.id.prompt(); // also display the One Tap dialog
-  //     };
-  //     document.head.appendChild(script);
-  //   };
-  //   loadGoogleAccountsScript();
-  // }
-  // }, []);
       
   return (
     <Layout >
@@ -201,21 +135,10 @@ const handleCredentialResponse = (response) => {
                  Fill in your details to access your account.
                 </div>
                 <div className="mb-5">
-                  {/* <ButtonComp
-                    btnText={
-                      <span  className="priceText text-[14px] font-bold flex items-center border-2  rounded-md border-[#C72E66] py-3 justify-center gap-4">
-                       <GoogleButton/>
-                      </span>
-                    }
-                    btnTextClassName="w-full navBtnBorder "
-                  /> */}
+                 
                 </div>
               </div>
-              {/* <div id="buttonDiv"></div> */}
-              {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-
-              {/* <LoginGoogle/> */}
-              {/* <GoogleSignInButton onSuccess={handleGoogleSignInSuccess} /> */}
+              
               <form onSubmit={handleSubmit(HandleSubmit)}>
                 <div className="text-left mb-20">
                   <label className="text-left modalText text-[14px] font-semibold mb-2">
@@ -246,53 +169,7 @@ const handleCredentialResponse = (response) => {
                     }}
                   />
                 </div>
-                {/* <div className="text-left mb-8">
-                  <label className="text-left modalText text-[14px] font-semibold mb-1">
-                    Password
-                  </label>
-                  <Controller
-                    name="password"
-                    control={control}
-                    rules={{
-                      required: "Password is required",
-
-                      minLength: generateMinLength(6),
-                    }}
-                    render={({
-                      field: { value, onChange },
-                      formState: { errors },
-                    }) => {
-                      const errorMessage = errors?.password?.message;
-                      return (
-                        <TextInput
-                         type={showPassword ? 'text' : 'password'}
-                          placeholder="••••••••"
-                          containerClassName={"loginInputBorder border-[1px]"}
-                           prefixIcon={
-                            showPassword ? (
-                              <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
-                            ) : (
-                              <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
-                            )
-                          }
-                          name="password"
-                          {...{ value, onChange, errors: [errorMessage] }}                       />
-                      );
-                    }}
-                  />
-                  <div className="flex justify-between mt-1">
-                    <div className="text-[12px] text-[#A1A1A1] flex items-center gap-2">
-                      {" "}
-                     <input
-                    type={"checkbox"}
-                    onChange={handleRememberMe}
-                    checked={rememberMe}/>  Remember Me
-                    </div>
-                    <div className="text-[12px] text-[#4830F7]">
-                      Forgot Password?
-                    </div>
-                  </div>
-                </div> */}
+                
 
                 <ButtonComp
                   // onClick={(e)=>{

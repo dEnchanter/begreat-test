@@ -14,7 +14,7 @@ const Footer = () => {
         <div className=' lg:flex justify-between pb-10 lg:px-10'>
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-10  mx-auto lg:mx-0 hover:cursor-pointer'  src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt='logo'/>
-                <p className='sm:text-[0.7rem] text-sm mt-1   text-center md:text-start'> Simplify your Investments, Maximize your Profits. </p>
+                <p className='sm:text-[0.7rem] text-sm mt-1 text-semibold  text-center md:text-start'> Simplify your Investments, Maximize your Profits. </p>
                 
                 <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0 text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2]'>  
                     <BsFacebook className='hover:cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '/>
@@ -23,13 +23,13 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className='leading-loose text-xs w-fit  workstext mx-auto lg:mx-0 text-center hover:cursor-pointer lg:text-start mt-4 lg:mt-0'> 
+            <div className='leading-loose text-xs w-fit  workstext mx-auto lg:mx-0 text-center hover:cursor-pointer  mt-4 lg:mt-0'> 
                 <h1 className='uppercase font-bold text-sm text-gray-500 '> company </h1> 
-               <Link href='/#home' > <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> About </h1> </Link> 
-               <Link href='/#pricing'>  <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> Pricing </h1> </Link> 
-               <Link href='/#how-it-works'> <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> How it works </h1> </Link> 
-               <Link href='/#tools'> <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> Tools </h1> </Link> 
-               <Link href='/#faqs'> <h1 className='hover:cursor-pointer hover:text-[#FF0000]'> Faqs </h1> </Link>  
+               <Link href='/#home' > <h1 className='hover:cursor-pointer hover:text-[#FF0000] font-semibold text-gray-700 '> About </h1> </Link> 
+               <Link href='/#pricing'>  <h1 className='hover:cursor-pointer hover:text-[#FF0000] font-semibold text-gray-700 '> Pricing </h1> </Link> 
+               <Link href='/#how-it-works'> <h1 className='hover:cursor-pointer hover:text-[#FF0000] font-semibold text-gray-700 '> How it works </h1> </Link> 
+               <Link href='/#tools'> <h1 className='hover:cursor-pointer hover:text-[#FF0000] font-semibold text-gray-700 '> Tools </h1> </Link> 
+               <Link href='/#faqs'> <h1 className='hover:cursor-pointer hover:text-[#FF0000] font-semibold text-gray-700 '> Faqs </h1> </Link>  
             </div>
 
             <div> 

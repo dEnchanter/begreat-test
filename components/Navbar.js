@@ -136,7 +136,7 @@ export default function Navbar({ fixed }) {
               </div>
 
               <div className="flex   lg:space-x-4  lg:items-center flex-col lg:flex-row ">
-                <h1 className="mt-2 lg:mt-0 text-sm hover:cursor-pointer hover:text-[#FF0000] transition  ease-in duration-300">
+                <h1 className="mt-2 lg:mt-0 text-sm font-semibold hover:cursor-pointer hover:text-[#FF0000] transition  ease-in duration-300">
                   {" "}
                   <Link href={"/register"}>Sign Up</Link>{" "}
                 </h1>

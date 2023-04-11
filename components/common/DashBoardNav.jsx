@@ -26,7 +26,7 @@ export default function DashBoardNav({change}) {
     
   return (
     <nav>
-        <div className='flex justify-between items-center px-3 xl:px-5 py-5 shadow-xl bg-header'>
+        <div className='flex justify-between items-center px-3 xl:px-5 py-7 shadow-xl bg-header '>
             <div  className="hover:cursor-pointer"  onClick={()=>router.push('/dashboard')}>
                 <FallBackImage
                 // src={'/Images/Dashboard/Logo1.png'}
@@ -66,10 +66,10 @@ export default function DashBoardNav({change}) {
                     
                     {showDropdown && (
                         <div
-                        className="absolute right-0  w-fit mt-1   border border-gray-500 rounded shadow-lg"
+                        className="absolute right-0  w-fit mt-[3px]    border border-gray-500 rounded shadow-lg"
                         >
                         <div
-                            className="p-2 text-left text-base cursor-pointer hover:bg-gray-700 "
+                            className="px-2  py-0.5 text-left  text-base cursor-pointer hover:bg-gray-700 "
                             onClick={handleLogoutClick}
                         >
                             Logout
