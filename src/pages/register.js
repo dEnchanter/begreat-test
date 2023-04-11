@@ -20,6 +20,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 import GoogleButton from "./Googlebutton";
+import Footer from "../../components/modules/Footer";
 
 export default function Login() {
   const { theme, setTheme } = useTheme();
@@ -244,6 +245,7 @@ const togglePasswordVisibility = () => {
           </div>
         </section>
       </main>
+      <Footer/>
     </Layout>
   );
 }
