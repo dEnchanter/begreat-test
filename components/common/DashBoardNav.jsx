@@ -28,17 +28,17 @@ export default function DashBoardNav({change}) {
     <nav>
         <div className='flex justify-between items-center px-3 xl:px-5 py-7 shadow-xl bg-header '>
             <div  className="hover:cursor-pointer"  onClick={()=>router.push('/dashboard')}>
-                <FallBackImage
+                <img
                 // src={'/Images/Dashboard/Logo1.png'}
                  src={theme=="dark"?'/Images/Dashboard/Logo1.png':'/Images/Dashboard/logo.png'}
-                width={199}
-                height={59}
-               
+                // width={199}
+                // height={59}
+                className='h-10 sm:h-16'
                 />
                 
             </div>
-            <div className='flex items-center gap-3 xl:gap-7 '>
-                <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap md:flex'>
+            <div className='flex items-center  gap-3 xl:gap-7 '>
+                <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap flex'>
                 <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor hover:cursor-pointer'/></div>
                 <div className={`   rounded-lg ${theme ==="dark" && 'hover:cursor-pointer bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
                 </div>
