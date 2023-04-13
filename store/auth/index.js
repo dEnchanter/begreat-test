@@ -17,8 +17,8 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout(state){
-       
-        DeleteAuthTokenMaster('user:accesskey') // deletes token from storage
+        DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+        DeleteAuthTokenMaster('begreatFinace:user') // deletes token from storage
         state.loading = false
         state.userInfo = null
         state.userToken = null

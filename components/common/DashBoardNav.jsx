@@ -17,7 +17,7 @@ export default function DashBoardNav({change}) {
 
      const handleLogoutClick = () => {
     dispatch(logout());
-    router.push('/login');
+    // router.push('/login');
   };
 
     const toggleDropdown = () => {

@@ -17,7 +17,7 @@ import GoogleSignInButton from "../../components/common/GoogleSignInButton";
 // import { gapi } from "gapi-script";
 import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
-import { useUserLoginGoogleMutation } from "../../store/auth/authApi";
+import { useGetUserProfileQuery, useUserLoginGoogleMutation } from "../../store/auth/authApi";
 import { useUserLoginGoogleAuthMutation } from "../../store/Coins/coinsApi";
 import { setToken, setUserDataS } from "../../helper";
 import { googleAuth } from "../../store/auth";
@@ -50,7 +50,7 @@ const handleRememberMe = (event) => {
 });
 //console.log(all,userInfo,loading,error,'userInfo')
  const HandleSubmit = (data) => {
-  console.log(data);
+  console.log(data,'userInfoLoginData');
   dispatch(userLogin(data));
 
   if (rememberMe) {
@@ -126,6 +126,21 @@ const errorMessage = (error) => {
 const GoogleLoginButton = () => {
  
 }
+
+const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery(); // Use the generated hook
+
+// useEffect(() => {
+//   if (error?.status === 401) {
+//     // router.push("/login");
+//     DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+//     DeleteAuthTokenMaster('begreatFinace:user') 
+//     setGetData(false)
+//     dispatch(logout());
+//   }
+// }, [error])
+
+
+console.log(userError,data,'userError')
 const handleCredentialResponse = (response) => {
   // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
   console.log("Encoded JWT ID token: " + response);

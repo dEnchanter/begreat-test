@@ -10,15 +10,25 @@ import UpgradeAccount from './UpgradeAccount'
 import PaymentInformation from './PaymentInformation'
 import ButtonComp from '../../../ui/ButtonComp'
 import Referrals from './Referrals'
+import { useGetUserMutation, useGetUserProfileQuery } from '../../../../store/auth/authApi'
+import { getToken, getUserDataS } from '../../../../helper'
 
 export default function SettingComp() {
   const { theme, setTheme } = useTheme();
   const [pageName,setPageName] =useState('profile');
+  const userId =getUserDataS()?.userId
+  const { data, isLoading, error,refetch,isError, } = useGetUserProfileQuery(); // Use the generated hook
+
+
+  // console.log(error,isError
+  //   ,'userId')
+
+  //   const {displayName,email,} =data?.userRecord
 
 const usePage =[
   {
     name:'profile',
-    component:<Profile/>
+    component:<Profile data={data?.userRecord} refetch={refetch}/>
   },
   {
     name:'Upgrade account',

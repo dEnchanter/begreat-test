@@ -2,15 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 import { authSlice } from "./auth";
 import { authApi } from "./auth/authApi";
-import { getAuthToken, getToken } from "../helper";
 import { userApi } from "./User/userApi";
 import { coinsApi } from "./Coins/coinsApi";
+import { getToken } from "../helper";
 
 
-const result = getToken();
+const result = getToken()?.split('Bearer ').join("");
 
 export const store = configureStore({
-  // preloadedState: result ? { auth: result } : undefined,
+  preloadedState: result ? { auth: result } : undefined,
   reducer: {
     auth: authSlice.reducer,
     [authApi.reducerPath]: authApi.reducer,

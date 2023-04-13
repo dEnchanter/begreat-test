@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteAuthTokenMaster, getAuthToken, getToken } from "../helper";
 import { loginTest, logout, setCredentials } from "../store/auth";
-import { useGetUserProfileQuery } from "../store/User/userApi";
+import { useGetUserProfileQuery } from "../store/auth/authApi";
 
 
 
@@ -16,7 +16,10 @@ export const ProtectedRoute = ({ children, type }) => {
   const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
  
+  const { data, isLoading, error } = useGetUserProfileQuery(); // Use the generated hook
 
+
+  console.log(isLoggedIn,'isLoggedIn')
   
   // useEffect(() => {
   //   if (userProfileData?.data) {
@@ -33,12 +36,15 @@ export const ProtectedRoute = ({ children, type }) => {
       router.push("/login");
       
     }
-    // if (!isLoggedIn && error?.status === 401) {
-    //   router.push("/login");
-    //   setGetData(false)
-    //   dispatch(logout());
-    // }
-  }, [dispatch, router]);
+    if ( error?.status === 401) {
+      router.push("/login");
+      dispatch(logout());
+      DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+      DeleteAuthTokenMaster('begreatFinace:user') 
+      setGetData(false)
+     
+    }
+  }, [ router,isLoggedIn,getToken()]);
 
   return getData ? (
     children

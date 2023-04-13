@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../api/baseUrl";
+import { getUserDataS } from "../../helper";
+import { baseQuery } from "../api";
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  baseQuery: baseQuery,
   endpoints: (builder) => ({
     userLoginGoogle: builder.mutation({
       query: (body) => ({
@@ -60,6 +62,28 @@ export const authApi = createApi({
       }),
       transformResponse: (response) => response.data,
     }),
+    getUser: builder.mutation({
+      query: (payload) => ({
+        url: `/users/${getUserDataS()?.userId}`,
+        method: "get",
+        body: payload,
+      }),
+      transformResponse: (response) => response.data,
+    }),
+    getUserProfile: builder.query({
+      query: (body) => ({
+        url: `/users/${getUserDataS()?.userId}`,
+        method: "GET",
+        body,
+      }),
+    }),
+    updateUserProfile: builder.mutation({
+      query: (body) => ({
+        url: `/users/${getUserDataS()?.userId}/updateprofile`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -70,5 +94,8 @@ export const {
   useVerifyPasswordCodeMutation,
   useChangePasswordMutation,
   useResendPasswordMutation,
-  useVerifyUserAccountMutation
+  useVerifyUserAccountMutation,
+  useGetUserMutation,
+  useGetUserProfileQuery,
+  useUpdateUserProfileMutation
 } = authApi;

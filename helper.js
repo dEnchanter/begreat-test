@@ -1,25 +1,25 @@
 
 export const getToken = () => {
     if(typeof window !== 'undefined'){
-        return localStorage.getItem("user:accesskey");
+        return localStorage.getItem("begreatFinace:accesskey");
     }
    
 };
 
 export const setToken = (token) =>{
-    localStorage.setItem("user:accesskey", token);
+    localStorage.setItem("begreatFinace:accesskey", token);
 }
 
 export const getUserDataS = () => {
     if(typeof window !== 'undefined'){
-        return JSON.parse(localStorage.getItem("uFitSub:user"));
+        return JSON.parse(localStorage.getItem("begreatFinace:user"));
     }
     return {}
    
 };
 
 export const setUserDataS = (userData) =>{
-    localStorage.setItem("uFitSub:user", JSON.stringify(userData));
+    localStorage.setItem("begreatFinace:user", JSON.stringify(userData));
 }
     
     

@@ -22,6 +22,7 @@ import {
   generateMaxLength,
   generateMinLength,
 } from "../../../constants/errors";
+import { getUserDataS } from "../../../helper";
 
 export default function DashBoardHome() {
   const options = [
@@ -296,6 +297,8 @@ export default function DashBoardHome() {
     skip:!timeLeft?.value || !coinName
     // skip: false,
   });
+
+  console.log(getUserDataS()?.userId,'getUserDataS')
 
   const ConvertObject =(object=[]) => {
     return Object?.values(object)
