@@ -33,7 +33,7 @@ export const coinsApi = createApi({
 
     userLoginGoogleAuth: builder.mutation({
       query: (body) => ({
-        url: "/signinwithgoogle",
+        url: "users/signinwithgoogle",
         method: "POST",
         body,
       }),
