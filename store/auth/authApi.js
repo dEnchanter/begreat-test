@@ -9,14 +9,14 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     userLoginGoogle: builder.mutation({
       query: (body) => ({
-        url: "/signinwithgoogle",
+        url: "users/signinwithgoogle",
         method: "POST",
         body,
       }),
     }),
     userSignUp: builder.mutation({
       query: (payload) => ({
-        url: "/signup",
+        url: "users/signup",
         method: "POST",
         body: payload,
       }),
