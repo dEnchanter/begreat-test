@@ -165,7 +165,7 @@ useEffect(() => {
           </div>
         </div>
         {/*  */}
-        <div className="flex items-center mb-12 flex-wrap">
+        {/* <div className="flex items-center mb-12 flex-wrap">
           <div className="flex-grow  w-full lg:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
             Backup Email Address
           </div>
@@ -195,7 +195,7 @@ useEffect(() => {
         }}
       />
           </div>
-        </div>
+        </div> */}
         {/*  */}
         <div className="flex items-center mb-12 flex-wrap">
           <div className="flex-grow  w-full lg:w-[20%] px-3 text3 mb-3 lg:mb-0">
