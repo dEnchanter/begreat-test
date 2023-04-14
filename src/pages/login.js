@@ -9,7 +9,7 @@ import Layout from "../../components/Layout";
 import ButtonComp from "../../components/ui/ButtonComp";
 import TextInput from "../../components/ui/TextInput";
 import { generateMaxLength, generateMinLength, REGEX_PATTERNS } from "../../constants/errors";
-import { userLogin } from "../../store/auth/authAction";
+import { loginUser, selectIsAuthenticated, userLogin } from "../../store/auth/authAction";
 import Link from "next/link";
 import Footer from "../../components/modules/Footer";
 import { toast } from "react-hot-toast";
@@ -19,7 +19,7 @@ import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
 import { useGetUserProfileQuery, useUserLoginGoogleMutation } from "../../store/auth/authApi";
 import { useUserLoginGoogleAuthMutation } from "../../store/Coins/coinsApi";
-import { setToken, setUserDataS } from "../../helper";
+import { getUserDataS, setToken, setUserDataS } from "../../helper";
 import { googleAuth } from "../../store/auth";
 import GoogleButton from "./Googlebutton";
 // import { GoogleLogin } from '@react-oauth/google';
@@ -33,6 +33,7 @@ export default function Login() {
   const dispatch  =useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
 
 const togglePasswordVisibility = () => {
   setShowPassword(!showPassword);
@@ -49,9 +50,17 @@ const handleRememberMe = (event) => {
   },
 });
 //console.log(all,userInfo,loading,error,'userInfo')
- const HandleSubmit = (data) => {
-  console.log(data,'userInfoLoginData');
-  dispatch(userLogin(data));
+ const HandleSubmit = async (data) => {
+  const {email,password} =data;
+  // console.log(data,'userInfoLoginData');
+  !IsAuthenticated &&await dispatch(loginUser({ email, password })).then((data)=>{
+    console.log(data,'userInfoLoginData');
+
+    if(data.payload.email){
+      // console.log(data.payload)
+       router.push('/dashboard')
+    }
+  });
 
   if (rememberMe) {
     localStorage.setItem("userEmail", data.email);
@@ -66,7 +75,7 @@ const handleRememberMe = (event) => {
   const [sendToken, { isLoading, isError, error:AuthGoogleError,isSuccess }] = useUserLoginGoogleAuthMutation();
 
 
-  console.log(isError,isLoading,AuthGoogleError,'data')
+  console.log(isError,isLoading,IsAuthenticated,'IsAuthenticated')
 
   useEffect(() => {
     if(isSuccess){
@@ -82,6 +91,7 @@ const handleRememberMe = (event) => {
       router.push('/dashboard')
     }
   }, [router, isLoggedIn])
+
   useEffect(() => {
     if (error) {
       // toast.error(error)
@@ -126,8 +136,9 @@ const errorMessage = (error) => {
 const GoogleLoginButton = () => {
  
 }
+const userId =getUserDataS()?.userId
 
-const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery(); // Use the generated hook
+const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:userId}); // Use the generated hook
 
 // useEffect(() => {
 //   if (error?.status === 401) {

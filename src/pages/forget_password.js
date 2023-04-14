@@ -9,7 +9,7 @@ import Layout from "../../components/Layout";
 import ButtonComp from "../../components/ui/ButtonComp";
 import TextInput from "../../components/ui/TextInput";
 import { generateMaxLength, generateMinLength, REGEX_PATTERNS } from "../../constants/errors";
-import { userLogin } from "../../store/auth/authAction";
+import { userLogin } from "../../store/auth/";
 import Link from "next/link";
 import Footer from "../../components/modules/Footer";
 import { toast } from "react-hot-toast";

@@ -84,6 +84,13 @@ export const authApi = createApi({
         body,
       }),
     }),
+    updateUserEmail: builder.mutation({
+      query: (body) => ({
+        url: `/users/${getUserDataS()?.userId}/updateemail`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -97,5 +104,6 @@ export const {
   useVerifyUserAccountMutation,
   useGetUserMutation,
   useGetUserProfileQuery,
-  useUpdateUserProfileMutation
+  useUpdateUserProfileMutation,
+  useUpdateUserEmailMutation
 } = authApi;

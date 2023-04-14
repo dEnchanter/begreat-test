@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { DeleteAuthTokenMaster, getAuthToken, getToken } from "../helper";
 import { loginTest, logout, setCredentials } from "../store/auth";
 import { useGetUserProfileQuery } from "../store/auth/authApi";
+import { logoutUser, selectIsAuthenticated, selectLoading } from "../store/auth/authAction";
+import { getUserDataS } from "../helper";
 
 
 
@@ -15,11 +17,15 @@ export const ProtectedRoute = ({ children, type }) => {
   const { loading, userInfo, isLoggedIn } = useSelector((state) => state.auth);
   const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
+
+  const userId =getUserDataS()?.userId
  
-  const { data, isLoading, error } = useGetUserProfileQuery(); // Use the generated hook
+  const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
+  const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
+  const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
 
-  console.log(isLoggedIn,'isLoggedIn')
+  console.log(isError,error,status,'isLoggedIn')
   
   // useEffect(() => {
   //   if (userProfileData?.data) {
@@ -32,21 +38,26 @@ export const ProtectedRoute = ({ children, type }) => {
     setGetData(true)
     if(!getToken()){
       setGetData(false)
-      dispatch(logout());
+      dispatch(logoutUser());
       router.push("/login");
+      localStorage.clear()
       
     }
+
+    // if(IsAuthenticated){
+    //   DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+    //   DeleteAuthTokenMaster('begreatFinace:user') 
+    //   router.push("/login");
+    // }
     if ( error?.status === 401) {
       router.push("/login");
-      dispatch(logout());
-      DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
-      DeleteAuthTokenMaster('begreatFinace:user') 
+      dispatch(logoutUser());
       setGetData(false)
-     
+      localStorage.clear()
     }
-  }, [ router,isLoggedIn,getToken()]);
+  }, [ router,isLoggedIn,getToken(),IsAuthenticated]);
 
-  return getData ? (
+  return true ? (
     children
   ) : (
     <div>

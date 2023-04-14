@@ -8,7 +8,7 @@ export const baseQuery = fetchBaseQuery({
   prepareHeaders: (headers, { getState }) => {
     // By default, if we have a token in the store, let's use that for authenticated requests
     // alert(getToken())
-    const token = getToken()?.split('Bearer ')?.join("");
+    const token = getToken();
 
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
