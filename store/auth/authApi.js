@@ -90,6 +90,8 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
+      skip: ({ body }) => body?.id, // replace with your custom condition
+
     }),
   }),
 });

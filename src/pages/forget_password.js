@@ -48,10 +48,12 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
     email: "",
   },
 });
+
+console.log(getUserDataS()?.userId,'getUserDataS()?.userId')
 //console.log(all,userInfo,loading,error,'userInfo')
  const HandleSubmit = (data) => {
   console.log(data,'data');
-  sendEmail({email:data?.email}).unwrap() // Unwrap the response to handle success and error cases
+  sendEmail({email:data?.email,id:getUserDataS()?.userId}).unwrap() // Unwrap the response to handle success and error cases
   .then((data) => {
       
       toast.success(data?.message);
