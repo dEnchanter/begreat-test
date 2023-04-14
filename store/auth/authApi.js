@@ -22,14 +22,7 @@ export const authApi = createApi({
       }),
       transformResponse: (response) => response.data,
     }),
-    forgetPassword: builder.mutation({
-      query: (payload) => ({
-        url: "/forgotPassword/initiate-reset-pwd",
-        method: "POST",
-        body: payload,
-      }),
-      transformResponse: (response) => response.data,
-    }),
+   
     verifyUserAccount: builder.mutation({
       query: (payload) => ({
         url: "/users/verify",
@@ -91,13 +84,20 @@ export const authApi = createApi({
         body,
       }),
     }),
+    forgetPassword: builder.mutation({
+      query: (body) => ({
+        url: `/users/${getUserDataS()?.userId}/passwordreset`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
 export const {
   useUserLoginGoogleMutation,
   useUserSignUpMutation,
-  useForgetPasswordMutation,
+  
   useVerifyPasswordCodeMutation,
   useChangePasswordMutation,
   useResendPasswordMutation,
@@ -105,5 +105,7 @@ export const {
   useGetUserMutation,
   useGetUserProfileQuery,
   useUpdateUserProfileMutation,
-  useUpdateUserEmailMutation
+  useUpdateUserEmailMutation,
+  useForgetPasswordMutation
+  
 } = authApi;

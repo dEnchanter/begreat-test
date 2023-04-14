@@ -18,10 +18,10 @@ import GoogleSignInButton from "../../components/common/GoogleSignInButton";
 import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
 import { useGetUserProfileQuery, useUserLoginGoogleMutation } from "../../store/auth/authApi";
-import { useUserLoginGoogleAuthMutation } from "../../store/Coins/coinsApi";
 import { getUserDataS, setToken, setUserDataS } from "../../helper";
-import { googleAuth } from "../../store/auth";
 import GoogleButton from "./Googlebutton";
+import { useUserLoginGoogleAuthMutation } from "../../store/Coins/coinsApi";
+import { googleAuth } from "../../store/auth";
 // import { GoogleLogin } from '@react-oauth/google';
 
 export default function Login() {
@@ -55,7 +55,7 @@ const handleRememberMe = (event) => {
   // console.log(data,'userInfoLoginData');
   !IsAuthenticated &&await dispatch(loginUser({ email, password })).then((data)=>{
     console.log(data,'userInfoLoginData');
-
+    // router.push('/dashboard')
     if(data.payload.email){
       // console.log(data.payload)
        router.push('/dashboard')
@@ -88,7 +88,7 @@ const handleRememberMe = (event) => {
   
   useEffect(() => {
     if (isLoggedIn) {
-      router.push('/dashboard')
+      
     }
   }, [router, isLoggedIn])
 
@@ -138,8 +138,8 @@ const GoogleLoginButton = () => {
 }
 const userId =getUserDataS()?.userId
 
-const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:userId}); // Use the generated hook
-
+const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
+console.log(data,'datadata')
 // useEffect(() => {
 //   if (error?.status === 401) {
 //     // router.push("/login");
@@ -154,12 +154,12 @@ const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({
 console.log(userError,data,'userError')
 const handleCredentialResponse = (response) => {
   // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
-  console.log("Encoded JWT ID token: " + response);
+  console.log("Encoded JWT ID token: " + response?.credential);
   // setToken(response.credential)
   sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
   .then((data) => {
-      setUserDataS(data?.accessToken)
-      setToken(data?.accessToken)
+      setUserDataS(data)
+      setToken(data?.accessToken?.split('Bearer ')?.join(""))
       dispatch(googleAuth(data))
       toast.success(data?.message);
       router.push('/dashboard')

@@ -18,7 +18,7 @@ export default function DashBoardNav({change}) {
 
      const handleLogoutClick = () => {
     dispatch(logoutUser());
-    // router.push('/login');
+     router.push('/login');
   };
 
     const toggleDropdown = () => {
@@ -71,7 +71,7 @@ export default function DashBoardNav({change}) {
                         >
                         <div
                             className="px-2  py-0.5 text-left  text-base cursor-pointer hover:bg-gray-700 "
-                            onClick={()=>dispatch(logoutUser())}
+                            onClick={handleLogoutClick}
                         >
                             Logout
                         </div>

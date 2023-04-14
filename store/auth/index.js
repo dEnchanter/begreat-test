@@ -53,6 +53,16 @@ export const authSlice = createSlice({
       DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
       DeleteAuthTokenMaster('begreatFinace:user') 
     },
+    googleAuth(state){
+       
+      state.loading = false
+      state.userInfo = {name:'Google Users'}
+      
+      // state.error = null
+      state.isLoggedIn =true;
+      // ...logout reducer
+      
+    },
     logoutUserI: (state) => {
       state.data = null; // Reset user data to null
       state.isLoading = false; // Reset isLoading to false
@@ -85,7 +95,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logoutUser,logoutUserI } = authSlice.actions;
+export const { logoutUser,logoutUserI,googleAuth } = authSlice.actions;
 
 export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
 export const selectUser = (state) => state.auth.user;

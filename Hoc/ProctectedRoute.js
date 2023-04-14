@@ -25,7 +25,7 @@ export const ProtectedRoute = ({ children, type }) => {
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
 
-  console.log(isError,error,status,'isLoggedIn')
+  console.log(IsAuthenticated,error,isError,status,data,'isLoggedIn')
   
   // useEffect(() => {
   //   if (userProfileData?.data) {
@@ -40,7 +40,7 @@ export const ProtectedRoute = ({ children, type }) => {
       setGetData(false)
       dispatch(logoutUser());
       router.push("/login");
-      localStorage.clear()
+      // localStorage.clear()
       
     }
 

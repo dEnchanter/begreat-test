@@ -17,9 +17,8 @@ import GoogleSignInButton from "../../components/common/GoogleSignInButton";
 // import { gapi } from "gapi-script";
 import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
-import {  useUserLoginGoogleMutation } from "../../store/auth/authApi";
-import { useForgetPasswordMutation, useUserLoginGoogleAuthMutation } from "../../store/Coins/coinsApi";
-import { setToken, setUserDataS } from "../../helper";
+import {  useForgetPasswordMutation, useGetUserProfileQuery, useUserLoginGoogleMutation } from "../../store/auth/authApi";
+import { getUserDataS, setToken, setUserDataS } from "../../helper";
 import { googleAuth } from "../../store/auth";
 import GoogleButton from "./Googlebutton";
 // import { GoogleLogin } from '@react-oauth/google';
@@ -57,7 +56,7 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
       
       toast.success(data?.message);
       reset()
-       router.push('/register')
+       router.push('/login')
     console.log('Token sent successfully!',data,'data1');
   })
   .catch((err) => {
@@ -90,7 +89,53 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
     }
   }, [error])
 
+  const userId =getUserDataS()?.userId
 
+  const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:userId}); // Use the generated hook
+
+
+  const handleCredentialResponse = (response) => {
+    // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
+    console.log("Encoded JWT ID token: " + response);
+    // setToken(response.credential)
+    sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
+    .then((data) => {
+        setUserDataS(data?.accessToken)
+        setToken(data?.accessToken?.split('Bearer ')?.join(""))
+        dispatch(googleAuth(data))
+        toast.success(data?.message);
+        router.push('/dashboard')
+      console.log('Token sent successfully!',data,'data1');
+    })
+    .catch((err) => {
+      console.error('Failed to send token:', err);
+    });
+  };
+
+  useEffect(() => {
+    if(!isLoggedIn){
+    const loadGoogleAccountsScript = () => {
+      const script = document.createElement("script");
+      script.src = "https://accounts.google.com/gsi/client";
+      script.async = true;
+      script.onload = () => {
+        google.accounts.id.initialize({
+          // client id should be stored in an environment variable
+          client_id: "878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "outline", size: "large" } // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+      };
+      document.head.appendChild(script);
+    };
+    loadGoogleAccountsScript();
+  }
+  }, []);
+      
 
 //   useEffect(() => {
 //   const userEmail = localStorage.getItem("userEmail");
@@ -135,7 +180,17 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
                  Fill in your details to access your account.
                 </div>
                 <div className="mb-5">
-                 
+                {/* <div id="buttonDiv"></div>  */}
+                <div className="mb-5">
+                  <ButtonComp
+                    btnText={
+                      <span  className="priceText text-[14px] font-bold flex items-center border-2  rounded-md border-[#C72E66] py-3 justify-center gap-4">
+                       <GoogleButton/>
+                      </span>
+                    }
+                    btnTextClassName="w-full navBtnBorder "
+                  />
+                </div>
                 </div>
               </div>
               
