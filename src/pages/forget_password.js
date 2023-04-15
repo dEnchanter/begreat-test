@@ -174,10 +174,10 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
               <div className="py-[2rem] bg-transparent"></div>
               <div>
                 <div className="text-[25px] lg:text-[30px] font-bold secondary mb-1">
-                  Forget Password
+                  Reset Password
                 </div>
                 <div className="smallText text-[14px] mb-3">
-                 Fill in your details to access your account.
+                  Please input the email address associated with your account to continue resetting your password
                 </div>
                 <div className="mb-5">
                 {/* <div id="buttonDiv"></div>  */}
@@ -232,7 +232,7 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
                   //   router.push('/dashboard')
                   // }}
                   type="submit"
-                  btnText={isLoading?"Loading...":"Forget Password"}
+                  btnText={isLoading?"Loading...":"Reset Password"}
                   btnTextClassName={
                     "navBtnBG rounded-full text-white w-full py-3 font-extrabold text-[18px]"
                   }

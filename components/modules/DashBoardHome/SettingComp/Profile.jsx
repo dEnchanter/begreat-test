@@ -102,7 +102,7 @@ useEffect(() => {
           Profile Information
         </div>
         <div className="priceText text-[14px] font-normal">
-          Update your Profile details here
+          Update your profile details here
         </div>
       </section>
 
@@ -333,10 +333,12 @@ useEffect(() => {
         <div className="flex items-center mb-12 mt-10">
           <div className="flex-grow w-[20%] px-3 text3 font-semibold text-[16px]"></div>
           <div className="flex-grow w-[40%] px-3">
-            <ButtonComp
+            <Link href="/dashboard"> 
+              <ButtonComp
               btnText={"Cancel"}
               btnTextClassName="text-center border-[#FF0000] border-[1px] w-full text-[#FF0000] rounded"
             />
+            </Link>
           </div>
           <div className="flex-grow w-[40%] px-3">
             <ButtonComp
