@@ -48,14 +48,7 @@ export const userApi = createApi({
       transformResponse: (response) => response.data,
     }),
     //
-    addSecurityPin: builder.mutation({
-      query: (payload) => ({
-        url: "/set-security-pin",
-        method: "POST",
-        body: payload,
-      }),
-      transformResponse: (response) => response.data,
-    }),
+   
     changeUserPassword: builder.mutation({
       query: (payload) => ({
         url: "/change-user-password",
@@ -69,7 +62,7 @@ export const userApi = createApi({
 
 export const {
   useGetUserProfileQuery,
-  useAddSecurityPinMutation,
+  
   useUpdateUserMutation,
   useUpdateProfilePicMutation,
   useRemoveProfilePicMutation,

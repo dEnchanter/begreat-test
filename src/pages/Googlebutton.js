@@ -22,7 +22,7 @@ const GoogleButton = () => {
   sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
   .then((data) => {
       setUserDataS(data?.accessToken)
-      setToken(data?.accessToken)
+      setToken(data?.accessToken?.split('Bearer ')?.join(""))
       dispatch(googleAuth(data))
       toast.success(data?.message);
       router.push('/dashboard')
@@ -47,7 +47,7 @@ const GoogleButton = () => {
         });
         google.accounts.id.renderButton(
           document.getElementById("google-btn"),
-          { theme: "outline", size: "large",  text: "continue_with",   } // customization attributes
+          { theme: "outline",   text: "continue_with",   } // customization attributes
         );
         google.accounts.id.prompt(); // also display the One Tap dialog
       };
@@ -57,11 +57,11 @@ const GoogleButton = () => {
   }
   }, []);
 
-    useEffect(() => {
-    if (isLoggedIn) {
-      router.push('/dashboard')
-    }
-  }, [router, isLoggedIn])
+  //   useEffect(() => {
+  //   if (isLoggedIn) {
+  //     router.push('/dashboard')
+  //   }
+  // }, [router, isLoggedIn])
   useEffect(() => {
     if (error) {
       // toast.error(error)

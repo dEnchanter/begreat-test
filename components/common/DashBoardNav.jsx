@@ -9,6 +9,7 @@ import ButtonComp from '../ui/ButtonComp'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { logout } from "../../store/auth";
+import { logoutUser, logoutUserI } from '../../store/auth/';
 export default function DashBoardNav({change}) {
     const { theme, setTheme } = useTheme();
      const [showDropdown, setShowDropdown] = useState(false);
@@ -16,8 +17,8 @@ export default function DashBoardNav({change}) {
     const dispatch  =useDispatch();
 
      const handleLogoutClick = () => {
-    dispatch(logout());
-    // router.push('/login');
+    dispatch(logoutUser());
+     router.push('/login');
   };
 
     const toggleDropdown = () => {

@@ -4,10 +4,11 @@ import ButtonComp from "../../../ui/ButtonComp";
 import TextInput from "../../../ui/TextInput";
 import { Controller, useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { useUpdateUserProfileMutation } from "../../../../store/auth/authApi";
+import { useUpdateUserEmailMutation, useUpdateUserProfileMutation } from "../../../../store/auth/authApi";
 import { toast } from "react-hot-toast";
-import { Button } from "../../../styles/Button";
+import { getUserDataS } from "../../../../helper";
 import Link from "next/link";
+import { Button } from "../../../styles/Button";
 
 export default function Profile({data,refetch}) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -45,12 +46,16 @@ export default function Profile({data,refetch}) {
     updateUser,
     { isLoading: userUpdateLoader, isSuccess: userUpdateSuccess,isError,error },
   ] = useUpdateUserProfileMutation();
+  const [
+    updateEmail,
+    { isLoading: emailUpdateLoader, isSuccess: emailUpdateSuccess,isError:emailIsError,error:emailError },
+  ] = useUpdateUserEmailMutation();
 
       
 console.log(isError)
 
 useEffect(() => {
-  if(isError){
+  if(isError||emailIsError){
     toast.error('oops,something went wrong refetch this page')
   }
 }, [isError])
@@ -80,10 +85,12 @@ useEffect(() => {
 
   const handleSubmitForm =(data)=>{
     console.log(data,selectedFile,'handleSubmitForm')
+    const userId =getUserDataS()?.userId;
     const form =new FormData();
       form.append('displayName',data?.displayName);
       selectedFile?.name&& form.append('photo',selectedFile);
-      updateUser(form).unwrap().then((data)=>toast.success(data?.message))
+      data?.displayName&&selectedFile?.name&& updateUser(form).unwrap().then((data)=>toast.success(data?.message))
+      data?.email&&updateEmail(data?.email).unwrap().then((data)=>toast.success(data?.message))
 
     // updateUser
   }
@@ -256,8 +263,8 @@ useEffect(() => {
           <div className="flex-grow  w-full lg:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
             Password
           </div>
-          <div className=" w-[80%] flex justify-start  px-3">
-          {/* <Controller
+          {/* <div className="flex-grow w-[40%] px-3">
+          <Controller
                     name="password"
                     control={control}
                     rules={{
@@ -306,8 +313,11 @@ useEffect(() => {
             />
           );
         }}
-      /> */}
-     <Link href={'/forget_password'}> 
+      />
+          </div> */}
+
+          <div className=" w-[80%] flex justify-start  px-3"> 
+               <Link href={'/forget_password'}> 
            <Button
                   className="px-4 text-white ml-auto  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
                   
@@ -316,6 +326,8 @@ useEffect(() => {
                 </Button>
      </Link>
           </div>
+
+           
         </div>
         {/*  */}
         <div className="flex items-center mb-12 mt-10">
@@ -330,7 +342,7 @@ useEffect(() => {
             <ButtonComp
             onClick={ handleSubmit(handleSubmitForm)
             }
-              btnText={userUpdateLoader?"Loading...":"Save Changes"}
+              btnText={userUpdateLoader||emailUpdateLoader?"Loading...":"Save Changes"}
               btnTextClassName="text-center  btnClick border-[1px] w-full text-[#fff] rounded"
             />
           </div>

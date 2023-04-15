@@ -1,77 +1,106 @@
-import { createSlice ,current} from "@reduxjs/toolkit";
-import { DeleteAuthTokenMaster, getAuthToken, setAuthToken } from "../../helper";
-import { userLogin } from "./authAction";
+// features/user/userSlice.js
 
-const initialState = {
-  loading: false,
-  isLoggedIn: false,
-  userInfo: {}, // for user object
-  // userToken: getAuthToken(), // for storing the JWT
-  error: null,
-  success: false, 
-  
-};
+import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { BASE_URL } from "../api/baseUrl";
+import { DeleteAuthTokenMaster, setToken, setUserDataS } from "../../helper";
+
+// Async thunk for login
+export const loginUser = createAsyncThunk(
+  "user/login",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      // Make API request to authenticate user
+      const response = await axios.post(BASE_URL + "users/signin", credentials);
+      // Extract relevant data from response
+      const { accessToken, userData,message } = response.data;
+      // Store token and user data in Redux store
+      console.log(response.data,'>>>>>>>>>>>>userData')
+       setToken(accessToken?.split('Bearer ')?.join(""));
+      setUserDataS(response?.data);
+      // toast.success(message);
+
+      // console.log(userData);
+      return response?.data;
+    } catch (error) {
+      console.log(error);
+      // Handle error
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const authSlice = createSlice({
   name: "auth",
-  initialState,
-  reducers: {
-    logout(state){
-        DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
-        DeleteAuthTokenMaster('begreatFinace:user') // deletes token from storage
-        state.loading = false
-        state.userInfo = null
-        state.userToken = null
-        state.error = null
-        state.isLoggedIn =false;
-        // ...logout reducer
-        
-      },
-      setCredentials: (state, { payload }) => {
-        state.userInfo = payload
-       
-      },
-      googleAuth(state){
-       
-        state.loading = false
-        state.userInfo = {name:'Google Users'}
-        
-        // state.error = null
-        state.isLoggedIn =true;
-        // ...logout reducer
-        
-      },
-
-      loginTest:(state)=>{
-       // console.log(state,'userInfo1')
-        state.loading=false
-      },
-     clearState:(state)=>{
-
-     }
- 
+  initialState: {
+    isAuthenticated: false,
+    user: null,
+    error: null,
+    loading: false,
+    isLoading: false,
   },
-  extraReducers: {
-    //login User
-    [userLogin.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-      state.isLoggedIn =false;
+  reducers: {
+    // ... rest of the code
+
+    // Logout reducer
+    logoutUser: (state) => {
+      state.data = null; // Reset user data to null
+      state.isLoading = false; // Reset isLoading to false
+      state.error = null; // Reset error to null
+      state.loading = false; // Reset error to null
+      state.isAuthenticated = false;
+      DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+      DeleteAuthTokenMaster('begreatFinace:user') 
     },
-    [userLogin.fulfilled]: (state, { payload }) => {
+    googleAuth(state){
        
-      state.loading = false;
-      state.isLoggedIn =true;
-      state.userInfo = payload?.user;
-      // state.userToken = payload.accessToken;
-    },
-    [userLogin.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.userInfo = {name:'Google Users'}
       
-      state.loading = false;
-      state.error = payload||'Oops, something went wrong, try again later';
-      state.isLoggedIn =false;
+      // state.error = null
+      state.isLoggedIn =true;
+      // ...logout reducer
+      
     },
+    logoutUserI: (state) => {
+      state.data = null; // Reset user data to null
+      state.isLoading = false; // Reset isLoading to false
+      state.error = null; // Reset error to null
+      state.loading = false; // Reset error to null
+      state.isAuthenticated = true;
+      
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isAuthenticated = true;
+        state.user = action.payload;
+        state.error = null;
+        state.loading = false;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isAuthenticated = true;
+        state.user = null;
+        state.loading = false;
+
+        state.error = action.payload ? action.payload.message : "Login failed";
+      })
+      .addCase(loginUser.pending, (state) => {
+        state.error = null;
+        state.loading = true;
+        state.isAuthenticated = false;
+      });
   },
 });
-export const {googleAuth, logout,setCredentials,loginTest,addCount,removeCount} = authSlice.actions;
+
+export const { logoutUser,logoutUserI,googleAuth } = authSlice.actions;
+
+export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
+export const selectUser = (state) => state.auth.user;
+export const selectError = (state) => state.auth.error;
+export const selectLoading = (state) => state.auth;
+// export const selectI = (state) => state.auth?.loading;
+
 export default authSlice.reducer;

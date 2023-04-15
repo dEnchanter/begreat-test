@@ -10,7 +10,7 @@ import { getToken } from "../helper";
 const result = getToken()?.split('Bearer ').join("");
 
 export const store = configureStore({
-  preloadedState: result ? { auth: result } : undefined,
+  // preloadedState: result ? { auth: result } : undefined,
   reducer: {
     auth: authSlice.reducer,
     [authApi.reducerPath]: authApi.reducer,
