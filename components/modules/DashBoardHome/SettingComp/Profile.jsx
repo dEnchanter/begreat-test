@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useUpdateUserEmailMutation, useUpdateUserProfileMutation } from "../../../../store/auth/authApi";
 import { toast } from "react-hot-toast";
 import { getUserDataS } from "../../../../helper";
+import Link from "next/link";
+import { Button } from "../../../styles/Button";
 
 export default function Profile({data,refetch}) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -170,7 +172,7 @@ useEffect(() => {
           </div>
         </div>
         {/*  */}
-        <div className="flex items-center mb-12 flex-wrap">
+        {/* <div className="flex items-center mb-12 flex-wrap">
           <div className="flex-grow  w-full lg:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
             Backup Email Address
           </div>
@@ -200,7 +202,7 @@ useEffect(() => {
         }}
       />
           </div>
-        </div>
+        </div> */}
         {/*  */}
         <div className="flex items-center mb-12 flex-wrap">
           <div className="flex-grow  w-full lg:w-[20%] px-3 text3 mb-3 lg:mb-0">
@@ -261,7 +263,7 @@ useEffect(() => {
           <div className="flex-grow  w-full lg:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
             Password
           </div>
-          <div className="flex-grow w-[40%] px-3">
+          {/* <div className="flex-grow w-[40%] px-3">
           <Controller
                     name="password"
                     control={control}
@@ -312,7 +314,20 @@ useEffect(() => {
           );
         }}
       />
+          </div> */}
+
+          <div className=" w-[80%] flex justify-start  px-3"> 
+               <Link href={'/forget_password'}> 
+           <Button
+                  className="px-4 text-white ml-auto  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
+                  
+                >
+                 Reset Password 
+                </Button>
+     </Link>
           </div>
+
+           
         </div>
         {/*  */}
         <div className="flex items-center mb-12 mt-10">

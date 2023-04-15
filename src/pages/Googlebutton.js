@@ -47,7 +47,7 @@ const GoogleButton = () => {
         });
         google.accounts.id.renderButton(
           document.getElementById("google-btn"),
-          { theme: "outline", size: "large",  text: "continue_with",   } // customization attributes
+          { theme: "outline",   text: "continue_with",   } // customization attributes
         );
         google.accounts.id.prompt(); // also display the One Tap dialog
       };

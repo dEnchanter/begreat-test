@@ -181,16 +181,16 @@ const [sendEmail, { isLoading, isError, error:AuthGoogleError,isSuccess }] = use
                 </div>
                 <div className="mb-5">
                 {/* <div id="buttonDiv"></div>  */}
-                <div className="mb-5">
+                {/* <div className="mb-5">
                   <ButtonComp
                     btnText={
                       <span  className="priceText text-[14px] font-bold flex items-center border-2  rounded-md border-[#C72E66] py-3 justify-center gap-4">
-                       <GoogleButton/>
+                       
                       </span>
                     }
                     btnTextClassName="w-full navBtnBorder "
                   />
-                </div>
+                </div> */}
                 </div>
               </div>
               
