@@ -3,9 +3,12 @@ import { GrCheckmark, GrFormCheckmark } from 'react-icons/gr'
 import { FcCheckmark } from 'react-icons/fc'
 import ButtonComp from '../../../ui/ButtonComp'
 import ModalComp from '../../../common/ModalComp'
+import { useSubscribeMutation } from '../../../../store/auth/authApi'
+import { useEffect } from 'react'
 
 export default function UpgradeAccount({theme}) {
-    const [modal,setModal] =useState(false)
+    const [modal,setModal] =useState();
+    const [paymentType,setPaymentType]=useState()
     const WhatInCludes =[
         'Pulse tool',
         'Shift tool',
@@ -13,6 +16,28 @@ export default function UpgradeAccount({theme}) {
         'TrendScan',
         'Additional Timeframes'
     ]
+
+    const [
+        subscribePlan,
+        { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
+      ] = useSubscribeMutation();
+
+      const handleSubscribePlan =(planID)=>{
+        const payload={
+            priceId:planID
+        }
+        subscribePlan(payload).unwrap().then((data)=>{
+             window.location.href = data?.sessionURL;
+        }).catch((err)=>console.log(err))
+      }
+
+      useEffect(() => {
+        if(SubscribeUpdateSuccess){
+            // window.location.href = 'https://www.example.com';
+        }
+      }, [SubscribeUpdateSuccess])
+      
+    
     
   return (
     <section>
@@ -38,8 +63,12 @@ export default function UpgradeAccount({theme}) {
 
                          <div className='mb-8'>
                             <ButtonComp
-                            btnText={'Cancel Subscription'}
+                            btnText={SubscribeUpdateLoader && paymentType==="monthly"?'Loading...':' Subscription'}
                             btnTextClassName={'CurrentPlanBtnI text-[14px] border-[1px] w-full rounded-md'}
+                            onClick={()=>{
+                                setPaymentType('monthly')
+                                handleSubscribePlan('price_1Mwl2sKtmvZq1QmEcSlq96yF')
+                            }}
                             />
                          </div>
 
@@ -64,8 +93,13 @@ export default function UpgradeAccount({theme}) {
 
                          <div className='mb-8'>
                             <ButtonComp
-                            btnText={'Cancel Subscription'}
-                            btnTextClassName={'currentPlanBtnBgI text-white text-[14px] border-[1px] w-full rounded-md'}
+                                onClick={()=>{
+                                    setPaymentType('yearly')
+
+                                    handleSubscribePlan('price_1Mwl2sKtmvZq1QmErGnaeeQL')
+                                }}
+                                btnText={SubscribeUpdateLoader && paymentType==="yearly"?'Loading...':' Subscription'}
+                                btnTextClassName={'currentPlanBtnBgI text-white text-[14px] border-[1px] w-full rounded-md'}
                             />
                          </div>
 

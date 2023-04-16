@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteAuthTokenMaster, getAuthToken, getToken } from "../helper";
 import { loginTest, logout, setCredentials } from "../store/auth";
-import { useGetUserProfileQuery } from "../store/auth/authApi";
 import { logoutUser, selectIsAuthenticated, selectLoading } from "../store/auth/authAction";
 import { getUserDataS } from "../helper";
+import { useGetUserProfileQuery } from "../store/auth/authApi";
 
 
 
@@ -20,12 +20,12 @@ export const ProtectedRoute = ({ children, type }) => {
 
   const userId =getUserDataS()?.userId
  
-  const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
+  // const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
-
-  console.log(IsAuthenticated,error,isError,status,data,'isLoggedIn')
+  const { data, isLoading, error,refetch,isError, status} = useGetUserProfileQuery(); // Use the generated hook
+  console.log(data,isError,status,error,isLoading,'isLoggedIn')
   
   // useEffect(() => {
   //   if (userProfileData?.data) {
@@ -44,12 +44,11 @@ export const ProtectedRoute = ({ children, type }) => {
       
     }
 
-    // if(IsAuthenticated){
-    //   DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
-    //   DeleteAuthTokenMaster('begreatFinace:user') 
-    //   router.push("/login");
-    // }
-    if ( error?.status === 401) {
+    if(status==="rejected"&&!data?.userRecord?.email){
+      dispatch(logoutUser());
+      router.push("/login");
+    }
+    if (error?.status === 401) {
       router.push("/login");
       dispatch(logoutUser());
       setGetData(false)
@@ -57,7 +56,7 @@ export const ProtectedRoute = ({ children, type }) => {
     }
   }, [ router,isLoggedIn,getToken(),IsAuthenticated]);
 
-  return true ? (
+  return getData ? (
     children
   ) : (
     <div>

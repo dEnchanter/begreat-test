@@ -93,6 +93,16 @@ export const authApi = createApi({
       skip: ({ body }) => body?.id, // replace with your custom condition
 
     }),
+    subscribe: builder.mutation({
+      query: (body) => ({
+        url: `/${getUserDataS()?.userId}/order/checkout
+        `,
+        method: "POST",
+        body,
+      }),
+      skip: ({ body }) => body?.subscribePlanId, // replace with your custom condition
+
+    }),
   }),
 });
 
@@ -108,6 +118,7 @@ export const {
   useGetUserProfileQuery,
   useUpdateUserProfileMutation,
   useUpdateUserEmailMutation,
-  useForgetPasswordMutation
+  useForgetPasswordMutation,
+  useSubscribeMutation
   
 } = authApi;
