@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 export default async (req, res) => {
   toast.success('Payment Successful')
   console.log(res,req)
-   const redirectUrl = '/dashboard';
+   const redirectUrl = '/dashboard/?success=Payment successful';
 
   // Set the appropriate status code and headers for a redirect
   res.writeHead(302, {
