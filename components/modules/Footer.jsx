@@ -11,7 +11,7 @@ const Footer = () => {
    <footer className={theme=="light"?"bg-[#FFFCFB] lg:mt-16  ":"footerbg lg:mt-16  "}> 
          <Container> 
            {/* <img className='h-[17rem]  absolute mt-[-2rem] left-[30%] lg:left-[35%] 2xl:left-[40%] hidden xl:flex' src='./images/homepage/shape.png' alt=' ' /> */}
-        <div className=' lg:flex justify-between pb-10 lg:px-10'>
+        <div className=' lg:flex justify-between pb-10 lg:px-10 '>
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-10  mx-auto lg:mx-0 hover:cursor-pointer'  src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt='logo'/>
                 <p className='sm:text-[0.7rem] text-sm mt-1 font-semibold  text-center md:text-start '> Simplify your Investments, Maximize your Profits. </p>
@@ -32,13 +32,13 @@ const Footer = () => {
                <Link href='/#faqs'> <h1 className='hover:cursor-pointer hover:text-[#FF0000] font-semibold  '> Faqs </h1> </Link>  
             </div>
 
-            <div> 
+            {/* <div> 
                 <div className='flex md:space-x-2 mt-4 lg:mt-0 w-fit mx-auto lg:mx-0'> 
                     <input className={theme=="light"?"px-1 rounded-md lg:p-1 w-[60%] md:w-fit mx-auto border border-gray-400" : "px-1 rounded-md lg:p-1"} placeholder='Enter your email'/>  
                     <Button className={theme=="light"?"rounded border-0 w-fit px-2 text-xs items-center flex bg-black text-white hover:cursor-pointer hover:bg-gray-500":" rounded  w-fit px-2  text-xs items-center flex border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer"} > Notify me </Button>
                 </div>
-                {/* <p className='sm:text-[0.6rem] workstext text-xs text-center mt-2'> We care about the protection of your data. <br className='sm:hidden'/> Read our <span className='border-b border-black font-semibold'>  Privacy Policy. </span> </p> */}
-            </div>
+                <p className='sm:text-[0.6rem] workstext text-xs text-center mt-2'> We care about the protection of your data. <br className='sm:hidden'/> Read our <span className='border-b border-black font-semibold'>  Privacy Policy. </span> </p>
+            </div> */}
 
             
 
