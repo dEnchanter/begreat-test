@@ -20,8 +20,8 @@ export default function SettingComp() {
   const { data, isLoading, error,refetch,isError, } = useGetUserProfileQuery(); // Use the generated hook
 
 
-  // console.log(error,isError
-  //   ,'userId')
+  console.log(error,isError,userId
+    ,'userId')
 
   //   const {displayName,email,} =data?.userRecord
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextInput from "../../ui/TextInput";
 import { TbSearch } from "react-icons/tb";
 import FallBackImage from "../../common/FallBackImage";
@@ -23,8 +23,25 @@ import {
   generateMinLength,
 } from "../../../constants/errors";
 import { getUserDataS } from "../../../helper";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 export default function DashBoardHome() {
+  const router=useRouter();
+   const {query:{success}} =router;
+  //  console.log(query,'setEndDate')
+
+   useEffect(() => {
+    if(success){
+      toast.success(success)
+      redirectToPage()
+    }
+   }, [success])
+
+   const redirectToPage = () => {
+    router.push('/dashboard'); // Replace '/new-page' with the path of the page you want to redirect to
+  };
+   
   const options = [
     {
       value: 1,
@@ -401,6 +418,8 @@ export default function DashBoardHome() {
   }
 //console.log(data,timeLeft?.value,'timeLeft')
 
+  let coinsName=data?.asset?.split("U")[1]?`U${data?.asset?.split("U")[1]}`:''
+
   return (
     <section className="relative">
       <div className="flex px-3 lg:px-8 flex-wrap">
@@ -447,9 +466,7 @@ export default function DashBoardHome() {
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset?.split("U")[1]&&'U'}${
-                    data?.asset?.split("U")[1]||' '
-                  }`}
+                  {`${data?.asset?.split("U")[0]||" "}/${coinsName}`}
                 </h1>
               </div>
             </div>

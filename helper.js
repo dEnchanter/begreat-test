@@ -10,6 +10,16 @@ export const setToken = (token) =>{
     localStorage.setItem("begreatFinace:accesskey", token);
 }
 
+export const getPath = () => {
+    if(typeof window !== 'undefined'){
+        return JSON.parse(localStorage.getItem("begreatFinace:pathlink"));
+    }
+   
+};
+export const setPath = (path) =>{
+    localStorage.setItem("begreatFinace:pathlink",  JSON.stringify(path));
+}
+
 export const getUserDataS = () => {
     if(typeof window !== 'undefined'){
         return JSON.parse(localStorage.getItem("begreatFinace:user"));

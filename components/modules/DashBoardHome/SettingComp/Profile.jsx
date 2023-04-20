@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { getUserDataS } from "../../../../helper";
 import Link from "next/link";
 import { Button } from "../../../styles/Button";
+import { REGEX_PATTERNS } from "../../../../constants/errors";
 
 export default function Profile({data,refetch}) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -79,7 +80,7 @@ useEffect(() => {
 
   useEffect(() => {
     setValue('displayName',data?.displayName)
-    // setValue('email',data?.email)
+     setValue('email',data?.email)
      setValue('email',data?.email)
   }, [data?.displayName])
 
@@ -150,7 +151,7 @@ useEffect(() => {
                     control={control}
                     rules={{
                       required: "Email is required",
-                      //pattern: REGEX_PATTERNS?.EMAIL,
+                      pattern: REGEX_PATTERNS?.EMAIL,
                       //   maxLength: generateMaxLength(14),
                     }}
                     render={({
