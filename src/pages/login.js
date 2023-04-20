@@ -17,8 +17,8 @@ import GoogleSignInButton from "../../components/common/GoogleSignInButton";
 // import { gapi } from "gapi-script";
 import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
-import { useGetUserProfileQuery, useUserLoginGoogleMutation } from "../../store/auth/authApi";
-import { getUserDataS, setToken, setUserDataS } from "../../helper";
+import { useGetUserProfileQuery, useSubscribeMutation, useUserLoginGoogleMutation } from "../../store/auth/authApi";
+import { DeleteAuthTokenMaster, getPath, getUserDataS, setToken, setUserDataS } from "../../helper";
 import GoogleButton from "./Googlebutton";
 import { useUserLoginGoogleAuthMutation } from "../../store/Coins/coinsApi";
 import { googleAuth } from "../../store/auth";
@@ -49,13 +49,28 @@ const handleRememberMe = (event) => {
     password: "",
   },
 });
+
+const [
+  subscribePlan,
+  { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
+] = useSubscribeMutation();
 //console.log(all,userInfo,loading,error,'userInfo')
+console.log(data,getPath(),'userInfoLoginData');
  const HandleSubmit = async (data) => {
   const {email,password} =data;
   // console.log(data,'userInfoLoginData');
   !IsAuthenticated &&await dispatch(loginUser({ email, password })).then((data)=>{
-    console.log(data,'userInfoLoginData');
+   
     // router.push('/dashboard')
+    if(getPath()?.link){
+      const payload={
+        priceId:getPath()?.payment
+    }
+    subscribePlan(payload).unwrap().then((data)=>{
+         window.location.href = data?.sessionURL;
+         DeleteAuthTokenMaster('begreatFinace:pathlink')
+    }).catch((err)=>console.log(err))
+    }
     if(data.payload.email){
       // console.log(data.payload)
        router.push('/dashboard')

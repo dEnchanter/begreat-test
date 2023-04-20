@@ -67,7 +67,7 @@ export default function UpgradeAccount({theme}) {
                             btnTextClassName={'CurrentPlanBtnI text-[14px] border-[1px] w-full rounded-md'}
                             onClick={()=>{
                                 setPaymentType('monthly')
-                                handleSubscribePlan('price_1Mwl2sKtmvZq1QmEcSlq96yF')
+                                handleSubscribePlan(process.env.NEXT_PUBLIC_PAYMENTI)
                             }}
                             />
                          </div>
@@ -96,7 +96,7 @@ export default function UpgradeAccount({theme}) {
                                 onClick={()=>{
                                     setPaymentType('yearly')
 
-                                    handleSubscribePlan('price_1Mwl2sKtmvZq1QmErGnaeeQL')
+                                    handleSubscribePlan(process.env.NEXT_PUBLIC_PAYMENTII)
                                 }}
                                 btnText={SubscribeUpdateLoader && paymentType==="yearly"?'Loading...':' Subscription'}
                                 btnTextClassName={'currentPlanBtnBgI text-white text-[14px] border-[1px] w-full rounded-md'}
