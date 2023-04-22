@@ -12,6 +12,7 @@ import ButtonComp from '../../../ui/ButtonComp'
 import Referrals from './Referrals'
 import { useGetUserMutation, useGetUserProfileQuery } from '../../../../store/auth/authApi'
 import { getToken, getUserDataS } from '../../../../helper'
+import Link from 'next/link'
 
 export default function SettingComp() {
   const { theme, setTheme } = useTheme();
@@ -30,18 +31,18 @@ const usePage =[
     name:'profile',
     component:<Profile data={data?.userRecord} refetch={refetch}/>
   },
-  {
-    name:'Upgrade account',
-    component:<UpgradeAccount theme={theme}/>
-  },
-  {
-    name:'Payment Information',
-    component:<PaymentInformation theme={theme}/>
-  },
-  {
-    name:'Referrals',
-    component:<Referrals theme={theme}/>
-  }
+  // {
+  //   name:'Upgrade account',
+  //   component:<UpgradeAccount theme={theme}/>
+  // },
+  // {
+  //   name:'Payment Information',
+  //   component:<PaymentInformation theme={theme}/>
+  // },
+  // {
+  //   name:'Referrals',
+  //   component:<Referrals theme={theme}/>
+  // }
 ]
 
 const Header=[
@@ -50,26 +51,26 @@ const Header=[
     label:'Profile Information',
     icon:<HiOutlineUserCircle size={30}/>
   },
-  {
-    name:'Upgrade account',
-    label:'Upgrade account',
-    icon:<HiOutlineUserCircle size={30}/>
-  },
-  {
-    name:'Payment Information',
-    label:'Payment Information',
-    icon:<CiWallet size={30}/>
-  },
+  // {
+  //   name:'Upgrade account',
+  //   label:'Upgrade account',
+  //   icon:<HiOutlineUserCircle size={30}/>
+  // },
+  // {
+  //   name:'Payment Information',
+  //   label:'Payment Information',
+  //   icon:<CiWallet size={30}/>
+  // },
   // {
   //   name:'Security',
   //   label:'Security',
   //   icon:<AiOutlineSecurityScan size={30}/>
   // },
-  {
-    name:'Referrals',
-    label:'Referrals',
-    image:true
-  },
+  // {
+  //   name:'Referrals',
+  //   label:'Referrals',
+  //   image:true
+  // },
 ]
 
   return (
@@ -86,9 +87,25 @@ const Header=[
             </div>
 
           )}
-          </div></div>
+          <Link href="https://payments.begreat.finance/p/login/cN29DEcDM5EegdW6oo">
+              <div className='flex  items-center space-x-4 hover:text-red-500'> 
+                 <HiOutlineUserCircle size={30}/>
+                 Upgrade Account
+            </div>
+          </Link>
+
+          <Link href="https://payments.begreat.finance/p/login/cN29DEcDM5EegdW6oo">
+              <div className='flex  items-center space-x-4 hover:text-red-500'> 
+                    <CiWallet size={30}/>
+                 Payment Information
+            </div>
+          </Link>
+          </div>
+          </div>
           {false && <div className='flex-grow xl:w-[20%] mt-1'>
               <div className='flex gap-2 items-center'>
+                
+
                 <ButtonComp
                 btnText={'Current Plan'}
                 btnTextClassName='paymentTextI text-[20px]'

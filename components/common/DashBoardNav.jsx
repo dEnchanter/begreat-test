@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { logout } from "../../store/auth";
 import { logoutUser, logoutUserI } from '../../store/auth/';
+import Link from 'next/link';
 export default function DashBoardNav({change}) {
     const { theme, setTheme } = useTheme();
      const [showDropdown, setShowDropdown] = useState(false);
@@ -27,19 +28,26 @@ export default function DashBoardNav({change}) {
     
   return (
     <nav>
-        <div className='flex justify-between items-center px-3 xl:px-5 py-7 shadow-xl bg-header '>
+        <div className='flex justify-between items-center px-3 xl:px-5 pt-4  pb-8 shadow-xl bg-header '>
             <div  className="hover:cursor-pointer"  onClick={()=>router.push('/dashboard')}>
                 <img
                 // src={'/Images/Dashboard/Logo1.png'}
                  src={theme=="dark"?'/Images/Dashboard/Logo1.png':'/Images/Dashboard/logo.png'}
                 // width={199}
                 // height={59}
-                className='h-10 sm:h-16'
+                className='h-8 sm:h-16 '
                 />
                 
             </div>
             <div className='flex items-center  gap-3 xl:gap-7 '>
-                <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap flex'>
+            <Link href=" https://docs.begreat.finance" >
+            <ButtonComp
+                      
+                      btnText={'Docs'}
+                      btnTextClassName='iconColor2 textII text-xs md:text-base rounded-xl px-2'
+                      />
+            </Link>
+                <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap flex'> 
                 <div className={`   ${theme ==="light" && 'bg-modeIconBackSelect py-1 px-2 my-1 rounded-lg text-center '}`}><BsSun onClick={()=>setTheme('light')} size={18} className='iconColor hover:cursor-pointer'/></div>
                 <div className={`   rounded-lg ${theme ==="dark" && 'hover:cursor-pointer bg-modeIconBackSelect py-1 my-1 px-2 rounded-lg text-center '}`}><HiOutlineMoon onClick={()=>setTheme('dark')} size={18} className='iconColor'/></div>
                 </div>
@@ -54,7 +62,7 @@ export default function DashBoardNav({change}) {
                     <ButtonComp
                       onClick={()=>router.push('/dashboard')}
                     btnText={'Go to Dashboard'}
-                    btnTextClassName='iconColor2 textII text-xs md:text-base rounded-xl px-4'
+                    btnTextClassName='iconColor2 textII text-xs md:text-base rounded-xl px-4 py-2'
                     />
                     </div>}
                   <div className="relative">
@@ -67,13 +75,15 @@ export default function DashBoardNav({change}) {
                     
                     {showDropdown && (
                         <div
-                        className="absolute right-0  w-fit mt-[3px]    border border-gray-500 rounded shadow-lg"
+                        className="absolute z-10 right-0  w-[6rem]  mt-2  bg-modeBackground  border border-gray-500 rounded shadow-lg"
                         >
                         <div
-                            className="px-2  py-0.5 text-left  text-base cursor-pointer hover:bg-gray-700 "
-                            onClick={handleLogoutClick}
-                        >
-                            Logout
+                            className="px-2   text-left  text-base cursor-pointer pt-2 pb-2 "
+                           
+                        >   
+                             <a href="https://discord.gg/2n5X59eeg2"  target='blank' className='hover:text-red-700'  >  Discord </a> 
+                              <a href="mailto:support@begreat.finance" className='hover:text-red-700 w-full'  > Support </a> 
+                            <h1 className='hover:text-red-700' onClick={handleLogoutClick}> Sign Out </h1>
                         </div>
                         </div>
                         )}
