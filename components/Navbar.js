@@ -130,10 +130,10 @@ export default function Navbar({ fixed }) {
 
                <div className="w-fit  "> 
                
-               <select id="selectnav" className="w-full -ml-1 lg:ml-0 text-[0.77rem] uppercase outline-0 hover:cursor-pointer  herobg   border-0  " onChange={handleSelectChange}>
+               <select id="selectnav" className="w-fit  -ml-1 lg:ml-0 text-[0.77rem] uppercase outline-0 hover:cursor-pointer  herobg   border-0  " onChange={handleSelectChange}>
                       <option hidden selected className="">COMMUNITY</option>
-                      <option className=" ">Discord </option>
-                      <option className="">Twitter </option>
+                      <option className="text-center ">Discord </option>
+                      <option className="text-center">Twitter </option>
                 </select>
                </div>
 
@@ -197,7 +197,7 @@ export default function Navbar({ fixed }) {
                 </Button>
               </div>
 
-              <div className="bg-modeBackground px-[8px] rounded-xl hover:cursor-pointer gap-2  w-fit items-center whitespace-nowrap flex mt-8 lg:hidden">
+              <div className="bg-modeBackground px-[8px] -ml-5 mt-4 lg:ml-0 rounded-xl hover:cursor-pointer gap-2  w-fit items-center whitespace-nowrap flex lg:mt-8 lg:hidden">
                 <div
                   className={`   ${
                     theme === "light" &&
