@@ -132,8 +132,8 @@ export default function Navbar({ fixed }) {
                
                <select id="selectnav" className="w-fit  -ml-1 lg:ml-0 text-[0.77rem] uppercase outline-0 hover:cursor-pointer  herobg   border-0  " onChange={handleSelectChange}>
                       <option hidden selected className="">COMMUNITY</option>
-                      <option className="text-center ">Discord </option>
-                      <option className="text-center">Twitter </option>
+                      <option className="text-center hover:cursor-pointer">Discord </option>
+                      <option className="text-center hover:cursor-pointer">Twitter </option>
                 </select>
                </div>
 
