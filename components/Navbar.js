@@ -8,6 +8,7 @@ import { BsSun } from "react-icons/bs";
 import { HiOutlineMoon } from "react-icons/hi";
 import { useRouter } from "next/router";
 
+
 export default function Navbar({ fixed }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -18,9 +19,27 @@ export default function Navbar({ fixed }) {
     setNavbarOpen(!navbarOpen);
   };
 
+  function handleSelectChange(event) {
+    const selectedOption = event.target.value;
+  
+    // if (selectedOption === 'Twitter') {
+    //   window.open('https://twitter.com/begreat_finance', );
+    // }
+
+    if (selectedOption === 'Twitter') {
+      router.push('https://twitter.com/begreat_finance', );
+    }
+
+    if (selectedOption === 'Discord') {
+      router.push('https://discord.gg/2n5X59eeg2', );
+    }
+  }
+
+  
+
   return (
     <>
-     <nav className="fixed w-full herobg top-0 z-50 flex flex-wrap items-center justify-between    lg:py-3   mb-3">
+     <nav className="fixed w-full herobg top-0 z-50 flex flex-wrap items-center justify-between pb-4    lg:py-3   mb-3">
   <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
@@ -45,11 +64,11 @@ export default function Navbar({ fixed }) {
       id="example-navbar-danger"
     >
       <ul
-        onClick={handleNav}
-        className="flex items-stretch   lg:space-x-[9rem] lg:px-4 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
+       
+        className="flex   items-center  lg:space-x-[9rem] lg:mt-2 lg:items-center flex-col lg:flex-row list-none pb-10 lg:pb-0 lg:ml-auto"
       >
         <div className="flex lg:space-x-4 text-secondary font-semibold flex-col lg:flex-row mt-4 lg:mt-0 lg:items-center"> 
-          <li className="nav-item">
+          {/* <li className="nav-item">
           <Link
              className={`py-2 flex items-center text-xs uppercase hover:text-red-500 leading-snug hover:cursor-pointer ${
                       activeLink === "home" ? "text-red-500" : "text-secondary"
@@ -60,9 +79,9 @@ export default function Navbar({ fixed }) {
           >
             Home
           </Link>
-        </li>
+        </li> */}
 
-                <li className="nav-item">
+                <li  onClick={handleNav} className="nav-item">
                   <Link
                     className={`py-2 flex items-center text-xs uppercase hover:text-red-500 leading-snug hover:cursor-pointer ${
                       activeLink === "how-it-works"
@@ -77,7 +96,7 @@ export default function Navbar({ fixed }) {
                   </Link>
                 </li>
 
-                <li className="nav-item">
+                <li  onClick={handleNav} className="nav-item">
                   <Link
                     className={`py-2 flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
                       activeLink === "tools"
@@ -92,7 +111,7 @@ export default function Navbar({ fixed }) {
                   </Link>
                 </li>
 
-                <li className="nav-item">
+                <li  onClick={handleNav} className="nav-item">
                   <Link
                     className={`py-2 flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
                       activeLink === "pricing"
@@ -105,9 +124,39 @@ export default function Navbar({ fixed }) {
                   >
                     Pricing
                   </Link>
+
+                 
                 </li>
 
-                <div className="bg-modeBackground px-[8px] rounded-xl hover:cursor-pointer gap-2  items-center whitespace-nowrap hidden lg:flex">
+               <div className="w-fit  "> 
+               
+               <select id="selectnav" className="w-full -ml-1 lg:ml-0 text-[0.77rem] uppercase outline-0 hover:cursor-pointer  herobg   border-0  " onChange={handleSelectChange}>
+                      <option hidden selected className="">COMMUNITY</option>
+                      <option className=" ">Discord </option>
+                      <option className="">Twitter </option>
+                </select>
+               </div>
+
+               <li  onClick={handleNav} className="nav-item">
+                  <Link
+                    className={`py-2 mt-1 flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
+                      activeLink === "docs"
+                        ? "text-red-500 "
+                        : "text-secondary"
+                    } transition ease-in duration-300`}
+                    href="https://docs.begreat.finance"
+                    scroll={false}
+                    onClick={() => setActiveLink("Docs")}
+                  >
+                    Docs
+                  </Link>
+
+                 
+                </li>
+
+
+
+                <div className="bg-modeBackground px-[8px]  rounded-xl hover:cursor-pointer gap-2  items-center whitespace-nowrap hidden lg:flex">
                   <div
                     className={`   ${
                       theme === "light" &&
@@ -138,7 +187,7 @@ export default function Navbar({ fixed }) {
               <div className="flex   lg:space-x-4  lg:items-center flex-col lg:flex-row ">
                 <h1 className="mt-2 lg:mt-0 text-sm font-semibold hover:cursor-pointer hover:text-[#FF0000] transition  ease-in duration-300">
                   {" "}
-                  <Link href={"/register"}>Sign Up</Link>{" "}
+                  <Link  onClick={handleNav} href={"/register"}>Sign Up</Link>{" "}
                 </h1>
                 <Button
                   className="px-4 text-white -ml-1  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
@@ -182,3 +231,5 @@ export default function Navbar({ fixed }) {
     </>
   );
 }
+
+
