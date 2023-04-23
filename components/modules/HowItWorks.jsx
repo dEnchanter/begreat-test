@@ -10,7 +10,7 @@ const HowItWorks = () => {
   return (
     <div> 
     <div className={theme=="light"?"bg-[#FFFCFB] ":"processbg "}> 
-    <Container id='how-it-works' className='pt-16 md:pt-20 lg:pb-10 pb-2'>
+    <Container id='how-it-works' className='pt-20 lg:pt-14  md:pt-20 lg:pb-10 pb-2'>
         <img className='h-6 absolute mt-12 left-[15rem] hidden xl:flex 2xl:left-[35rem]' src='./images/homepage/binance.png' alt=' ' />
         <img className='h-10 absolute mt-[17rem] left-[10rem] hidden xl:flex 2xl:left-[25rem]' src='./images/homepage/ether2.png' alt='' />
         <img className='h-8 absolute mt-[25rem] right-[18rem] hidden xl:flex 2xl:right-[34rem]' src='./images/homepage/security.png' alt=' ' />
