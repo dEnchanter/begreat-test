@@ -11,7 +11,7 @@ const Tools = () => {
   return (
   <div className={theme=="light"?"bg-[#FFFCFB]":"toolsdarkbg"}> 
    
-     <Container id='tools'  className=' md:pt-20 pt-16 lg:pt-12 pb-6'>
+     <Container id='tools'  className=' md:pt-20 pt-16 lg:pt-20 pb-6'>
         <div className=' lg:flex lg:justify-between   lg:px-10 '> 
            <div className='mt-2 text-center lg:text-start'>
               <h1 className='font-bold   uppercase  text-transparent text-sm bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '>Tools </h1>
