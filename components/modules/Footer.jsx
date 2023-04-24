@@ -16,10 +16,7 @@ const Footer = () => {
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-10  mx-auto lg:mx-0 hover:cursor-pointer'  src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt='logo'/>
                 <p className='sm:text-[0.7rem] text-sm mt-1 font-semibold  text-center md:text-start '> Simplify your Investments, Maximize your Profits. </p>
-                <div className="bg-transparent mt-4 ">
-
-                <TwitterFollowButton screenName={'begreat_finance'}  />
-                </div>
+                
                 {/* <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0 text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2]'>  
                     <BsFacebook className='hover:cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '/>
                     <BsInstagram/>
@@ -43,7 +40,10 @@ const Footer = () => {
                 </div>
                 <p className='sm:text-[0.6rem] workstext text-xs text-center mt-2'> We care about the protection of your data. <br className='sm:hidden'/> Read our <span className='border-b border-black font-semibold'>  Privacy Policy. </span> </p>
             </div> */}
-
+            <div className="bg-transparent w-fit mx-auto lg:mx-0 text-center lg:text-start mt-4 lg:mt-0  ">
+                <p className="mb-2 uppercase font-bold text-sm text-gray-500 "> Stay Updated: </p>
+                <TwitterFollowButton screenName={'begreat_finance'}   />
+            </div>
             
 
         </div>
