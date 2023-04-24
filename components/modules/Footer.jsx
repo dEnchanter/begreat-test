@@ -4,6 +4,7 @@ import {BsFacebook,BsInstagram,BsTwitter} from 'react-icons/bs'
 import { Button } from '../styles/Button'
 import Link from 'next/link'
 import { useTheme } from "next-themes";
+import { TwitterFollowButton } from 'react-twitter-embed';
 
 const Footer = () => {
     const { theme, setTheme } = useTheme();
@@ -15,12 +16,15 @@ const Footer = () => {
             <div className='lg:w-[15rem] w-fit mx-auto lg:mx-0  lg:mt-0'> 
                 <img className='h-10  mx-auto lg:mx-0 hover:cursor-pointer'  src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt='logo'/>
                 <p className='sm:text-[0.7rem] text-sm mt-1 font-semibold  text-center md:text-start '> Simplify your Investments, Maximize your Profits. </p>
-                
-                <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0 text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2]'>  
+                <div className="bg-transparent mt-4 ">
+
+                <TwitterFollowButton screenName={'begreat_finance'}  />
+                </div>
+                {/* <div className='flex space-x-4 mt-4 w-fit mx-auto lg:mx-0 text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2]'>  
                     <BsFacebook className='hover:cursor-pointer text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '/>
                     <BsInstagram/>
                     <BsTwitter/>
-                </div>
+                </div> */}
             </div>
 
             <div className='leading-loose text-xs w-fit  workstext mx-auto lg:mx-0 text-center hover:cursor-pointer  mt-4 lg:mt-0'> 

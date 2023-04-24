@@ -39,12 +39,12 @@ export default function DashBoardNav({change}) {
                 />
                 
             </div>
-            <div className='flex items-center  gap-3 xl:gap-7 '>
+            <div className='flex items-center   gap-3 xl:gap-7 '>
             <Link href=" https://docs.begreat.finance" >
             <ButtonComp
                       
                       btnText={'Docs'}
-                      btnTextClassName='iconColor2 textII text-xs md:text-base rounded-xl px-2'
+                      btnTextClassName='iconColor1  text-xs md:text-base rounded-xl px-2'
                       />
             </Link>
                 <div className='bg-modeBackground px-[8px] rounded-xl  gap-2  items-center whitespace-nowrap flex'> 

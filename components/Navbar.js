@@ -7,6 +7,9 @@ import { useTheme } from "next-themes";
 import { BsSun } from "react-icons/bs";
 import { HiOutlineMoon } from "react-icons/hi";
 import { useRouter } from "next/router";
+import DropDownItem from "./ui/DropDownItem";
+import NavDropDownItem from "./ui/NavDropDownItem";
+
 
 
 export default function Navbar({ fixed }) {
@@ -128,18 +131,38 @@ export default function Navbar({ fixed }) {
                  
                 </li>
 
-               <div className="w-fit  "> 
+               {/* <div className="w-fit  "> 
                
                <select id="selectnav" className="w-fit  -ml-1 lg:ml-0 text-[0.77rem] uppercase outline-0 hover:cursor-pointer  herobg   border-0  " onChange={handleSelectChange}>
                       <option hidden selected className="">COMMUNITY</option>
                       <option className="text-center hover:cursor-pointer">Discord </option>
                       <option className="text-center hover:cursor-pointer">Twitter </option>
                 </select>
-               </div>
+
+
+
+                
+               </div> */}
+                 <li  onClick={handleNav} className="nav-item">
+                  <Link
+                    className={`py-2  flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
+                      activeLink === "discord"
+                        ? "text-red-500 "
+                        : "text-secondary"
+                    } transition ease-in duration-300`}
+                    href="https://discord.gg/2n5X59eeg2"
+                    scroll={false}
+                    onClick={() => setActiveLink("Discord")}
+                  >
+                    Discord
+                  </Link>
+
+                 
+                </li>
 
                <li  onClick={handleNav} className="nav-item">
                   <Link
-                    className={`py-2 mt-1 flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
+                    className={`py-2  flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
                       activeLink === "docs"
                         ? "text-red-500 "
                         : "text-secondary"
@@ -153,6 +176,8 @@ export default function Navbar({ fixed }) {
 
                  
                 </li>
+
+               
 
 
 
