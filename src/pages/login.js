@@ -59,7 +59,7 @@ console.log(data,getPath(),'userInfoLoginData');
  const HandleSubmit = async (data) => {
   const {email,password} =data;
   // console.log(data,'userInfoLoginData');
-  !IsAuthenticated &&await dispatch(loginUser({ email, password })).then((data)=>{
+  await dispatch(loginUser({ email, password })).then((data)=>{
    
     // router.push('/dashboard')
     if(getPath()?.link){
@@ -71,7 +71,7 @@ console.log(data,getPath(),'userInfoLoginData');
          DeleteAuthTokenMaster('begreatFinace:pathlink')
     }).catch((err)=>console.log(err))
     }
-    if(data.payload.email){
+    if(data?.payload?.email){
       // console.log(data.payload)
        router.push('/dashboard')
     }

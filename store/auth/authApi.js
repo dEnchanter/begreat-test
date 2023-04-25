@@ -103,6 +103,14 @@ export const authApi = createApi({
       skip: ({ body }) => body?.subscribePlanId, // replace with your custom condition
 
     }),
+    ///api/:userId/checkstatus
+    checkStatus: builder.query({
+      query: (body) => ({
+        url: `/${getUserDataS()?.userId}/checkstatus`,
+        method: "GET",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -119,6 +127,7 @@ export const {
   useUpdateUserProfileMutation,
   useUpdateUserEmailMutation,
   useForgetPasswordMutation,
-  useSubscribeMutation
+  useSubscribeMutation,
+  useCheckStatusQuery
   
 } = authApi;
