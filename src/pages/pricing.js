@@ -49,7 +49,7 @@ export default function pricing() {
              <p className='uppercase font-semibold'> What's Included </p>
                <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Pulse Tool </p>
              <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Shift Tool </p>
-             <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Level Tool </p>
+             <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Levels Tool </p>
               <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> TrendScan Watchlists  </p>
                <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Additonal Timeframes </p>
           </div>
@@ -67,7 +67,7 @@ export default function pricing() {
              <p className='uppercase font-semibold'> What's Included </p>
              <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Pulse Tool </p>
              <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Shift Tool </p>
-             <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Level Tool </p>
+             <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Levels Tool </p>
               <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> TrendScan Watchlists  </p>
                <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Additonal Timeframes </p>
           </div>
