@@ -5,6 +5,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../api/baseUrl";
 import { DeleteAuthTokenMaster, setToken, setUserDataS } from "../../helper";
+import { toast } from "react-hot-toast";
 
 // Async thunk for login
 export const loginUser = createAsyncThunk(
@@ -24,7 +25,8 @@ export const loginUser = createAsyncThunk(
       // console.log(userData);
       return response?.data;
     } catch (error) {
-      console.log(error);
+      toast.error(error.response?.data?.error||'oops something went wrong...')
+      console.log(error.response?.data,'Error');
       // Handle error
       return rejectWithValue(error.response.data);
     }
