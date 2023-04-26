@@ -40,7 +40,7 @@ const router = useRouter();
           </div>
 
           <div className='circles '> 
-              <img className= 'cover md:max-w-[35rem] mx-auto lg:mt-14 mt-10 hover:cursor-pointer z-20' src={theme=="light"?"/images/homepage/laptop.png":"/images/homepage/darklaptop.png" } alt='laptop' />
+              <img className= 'cover md:max-w-[35rem] mx-auto lg:mt-14 mt-10 hover:cursor-pointer z-20' src={theme=="light"?"/images/homepage/laptop.png":"/images/homepage/darkdesktop.png" } alt='laptop' />
           </div>
       </div>
     </Container>
