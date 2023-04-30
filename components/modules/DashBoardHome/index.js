@@ -4,6 +4,8 @@ import { toast } from "react-hot-toast";
 import { FiPlus } from "react-icons/fi";
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async'
+import useSWR from 'swr';
+import axios from 'axios';
 import FallBackImage from "../../common/FallBackImage";
 import { HiPlus } from "react-icons/hi";
 import { MdCancel, MdOutlineDisabledByDefault } from "react-icons/md";
@@ -61,7 +63,7 @@ export default function DashBoardHome() {
   const options1 = [
     {
       value: 1,
-      label: <span className="text-white text-xl font-semibold  ">1</span>,
+      label: <span className="text-white text-xl font-semibold">1</span>,
     },
     {
       value: 2,
@@ -616,6 +618,23 @@ export default function DashBoardHome() {
 
   const [timeLeft, setTimeLeft] = useState(options3[1]);
 
+  const fetcher1 = async (url) => {
+    const response = await axios.get(url);
+    return response.data;
+  }
+
+  const fetcher2 = async (url) => {
+    const response = await axios.get(url);
+    return response.data;
+  }
+
+  const url = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/${coinName.toLowerCase()}.svg`;
+  const { data: svgData } = useSWR(url, fetcher1);
+
+  const url2 = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/usdt.svg`;
+  const { data: svgUSDT } = useSWR(url2, fetcher2);
+
+
   // FOR PULSE TIMEFRAME
   
   const [day1, setDay1]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">DAY</span>, value:'1440'})
@@ -1082,15 +1101,29 @@ export default function DashBoardHome() {
 
               {/* FALLBACK IMAGE AND ASSET */}
               <div className="flex gap-1 items-center">
-                <FallBackImage
+                {/* <FallBackImage
                   src={"/Images/Dashboard/coin.png"}
                   width={62}
                   height={34}
+                /> */}
+                <FallBackImage
+                  src={`data:image/svg+xml;utf8,${encodeURIComponent(svgData)}`}
+                  width={34}
+                  height={34}
+                />
+                <FallBackImage
+                  src={`data:image/svg+xml;utf8,${encodeURIComponent(svgUSDT)}`}
+                  width={34}
+                  height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset?.split("U")[1]&&'U'}${
-                    data?.asset?.split("U")[1]||' '
-                  }`}
+                  {
+                    // `${data?.asset?.split("U")[0]||" "}/
+                    //  ${data?.asset?.split("U")[1]&&'U'}
+                    //  ${data?.asset?.split("U")[1]||'USDT'}`
+
+                    `${data?.asset?.split("U")[0]||" "}/USDT`
+                  }
                 </h1>
               </div>
             </div>
