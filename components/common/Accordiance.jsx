@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { IoIosArrowUp } from "react-icons/io";
 import { AiFillSetting, AiOutlinePlus } from "react-icons/ai";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import TwoSides from "./TwoSides";
 import DropDownItem from "../ui/DropDownItem";
 import Select from 'react-select';
