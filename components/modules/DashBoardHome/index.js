@@ -661,7 +661,8 @@ export default function DashBoardHome() {
     coinName,
   }, { 
     refetchOnMountOrArgChange: true,
-    skip:!coinName
+    skip:!coinName,
+    pollingInterval: 15000, // 15secs
   });
 
   const { 
@@ -673,7 +674,8 @@ export default function DashBoardHome() {
     coinName,
   }, { 
     refetchOnMountOrArgChange: true,
-    skip:!coinName 
+    skip:!coinName,
+    pollingInterval: 15000, // 15secs 
   });
 
   const { 
@@ -685,7 +687,8 @@ export default function DashBoardHome() {
     coinName,
   }, { 
     refetchOnMountOrArgChange: true,
-    skip:!coinName 
+    skip:!coinName,
+    pollingInterval: 15000, // 15secs
   });
 
   const { 
@@ -697,7 +700,8 @@ export default function DashBoardHome() {
     coinName,
   }, { 
     refetchOnMountOrArgChange: true,
-    skip:!coinName 
+    skip:!coinName,
+    pollingInterval: 15000, // 15secs
   });
 
   const { 
@@ -711,7 +715,8 @@ export default function DashBoardHome() {
     },
     { 
       refetchOnMountOrArgChange: true ,
-      skip:!coinName
+      skip:!coinName,
+      pollingInterval: 15000, // 15secs
     });
 
   const { 
@@ -723,7 +728,8 @@ export default function DashBoardHome() {
     id: day1?.value,
     coinName,
   }, { 
-    refetchOnMountOrArgChange: true 
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 15000, // 15secs
   });
 
   const { 
@@ -735,7 +741,8 @@ export default function DashBoardHome() {
     coinName,
   }, { 
     refetchOnMountOrArgChange: true , 
-    skip:!fourHours?.value || !coinName 
+    skip:!fourHours?.value || !coinName,
+    pollingInterval: 15000, // 15secs 
   });
   
   const { 
@@ -747,7 +754,8 @@ export default function DashBoardHome() {
     coinName,
   }, { 
     refetchOnMountOrArgChange: true,
-    skip:!oneHour?.value || !coinName
+    skip:!oneHour?.value || !coinName,
+    pollingInterval: 15000, // 15secs
   });
 
   const { 
@@ -759,7 +767,8 @@ export default function DashBoardHome() {
     coinName,
   }, { 
     refetchOnMountOrArgChange: true,
-    skip:!fifteenMin?.value || !coinName 
+    skip:!fifteenMin?.value || !coinName,
+    pollingInterval: 15000, // 15secs
   });
 
   const { 
@@ -773,7 +782,8 @@ export default function DashBoardHome() {
     },
     { 
       refetchOnMountOrArgChange: true,
-      skip:!fiveMin?.value || !coinName 
+      skip:!fiveMin?.value || !coinName,
+      pollingInterval: 15000, // 15secs
     });
 
 
@@ -786,7 +796,8 @@ export default function DashBoardHome() {
     timeLeft:timeLeft?.value,
     }, {
     refetchOnMountOrArgChange: true,
-    skip:!timeLeft?.value || !coinName
+    skip:!timeLeft?.value || !coinName,
+    pollingInterval: 15000, // 15secs
   });
 
   const [addToWatchlist] = useAddToWatchListMutation();
@@ -806,7 +817,8 @@ export default function DashBoardHome() {
     wltf: getTf?.value,
     createWatchlist
   }, { 
-    refetchOnMountOrArgChange: true 
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 30000, // 30secs
   });
 
   const {
