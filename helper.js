@@ -20,7 +20,9 @@ export const getWatchlist = () => {
 }
 
 export const removeWatchlist = (token) =>{
-    localStorage.removeItem("createWatchlist", token);
+    if(typeof window !== 'undefined') {
+        localStorage.removeItem("createWatchlist", token);
+    }
 }
 
 export const getPath = () => {
