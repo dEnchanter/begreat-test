@@ -32,10 +32,12 @@
     --bgList: #fff;
     --List1: #EA3943;
     --List2: #26A17B;
-    --gradient1: linear-gradient(360deg, #16C782 -10.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 100.49%);
+    --gradient1: linear-gradient(360deg, #16C782 -10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 200.49%);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
+    --gradient3: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 100.47%, rgba(234, 57, 67, 0) 200.49%);
     --deepGreen: linear-gradient(180deg, #16C782 75%, rgba(22, 199, 130, 0) 118.38%);
-    --deepRed: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 50.37%, rgba(255, 202, 205, 0) 88.39%);
+    --deepRed: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
+    --deepRed2: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 100.37%, rgba(255, 202, 205, 0) 98.39%);
 
     --text-sm: 14px;
     --currentPlanBtnBg: #FF0000;
@@ -109,7 +111,8 @@
     --List1: #FF9298;
     --List2: #87F5D3;
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
-    --gradient1: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 100.49%);
+    --gradient1: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 200.49%);
+    --gradient3: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 100.47%, rgba(234, 57, 67, 0) 200.49%);
     --currentPlanBtnBg: #fff;
     --currentPlanBtnText: #FF0000;
     --currentPlanBtnBgI: #FF0000;
@@ -137,7 +140,9 @@
     --uploadText2: #F4F4F4;
     --priceback: #373b55;
     --deepGreen: linear-gradient(180deg, #16C782 75.17%, rgba(22, 199, 130, 0) 118.38%);
-    --deepRed: linear-gradient(179.93deg, #e0313a -40.82%, rgba(255, 118, 126, 0.00520833) 60.37%, rgba(255, 202, 205, 0) 88.39%);
+    --deepGreen2: linear-gradient(0deg, #16C782 75.17%, rgba(22, 199, 130, 0) 118.38%);
+    --deepRed: linear-gradient(179.93deg, #e0313a -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
+    --deepRed2: linear-gradient(179.93deg, #e0313a -40.82%, rgba(255, 118, 126, 0.00520833) 100.37%, rgba(255, 202, 205, 0) 98.39%);  
     --completered: #F9555F;
     --positive1: linear-gradient(green, black);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
@@ -258,8 +263,22 @@ body {
     background: var(--gradient2)
 }
 
+.back3 {
+    background: var(--gradient3);
+}
+
 .backText {
     color: var(--foreground);
+}
+
+.backText:disabled {
+    color: var(--gray);
+}
+
+.backText::placeholder {
+    color: #999999;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .textI {
@@ -420,6 +439,10 @@ body {
 
 .deepRed {
     background: var(--deepRed);
+}
+
+.deepRed2 {
+    background: var(--deepRed2);
 }
 
 /*  */

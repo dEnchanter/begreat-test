@@ -1,12 +1,49 @@
 import React, { useState } from "react";
-import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { AiFillSetting, AiOutlinePlus } from "react-icons/ai";
 import TwoSides from "./TwoSides";
 import DropDownItem from "../ui/DropDownItem";
 import Select from 'react-select';
 
-export default function Accordance({ title, options, value, seyListDay,options1, value1, seyListDay1 }) {
-  // Select dropdown styling
+export default function Accordance2({ 
+  title, 
+  options6, 
+  value, 
+  seyListDay,
+  options7, 
+  value1, 
+  seyListDay1, 
+  selectedOptions, 
+  setSelectedOptions, 
+  selectedOptions2, 
+  setSelectedOptions2 
+}) {
+  const [toggle, setToggle] = useState(false);
+
+  const handleOptionChange = (selectedOptions) => {
+    // console.log(selectedOptions,'selectedOptions')
+    setSelectedOptions(selectedOptions);
+  }
+
+  const handleOptionChange2 = (selectedOptions2) => {
+    // console.log(selectedOptions2,'selectedOptions2')
+    setSelectedOptions2(selectedOptions2);
+  }
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   // Extract the values of selected options
+  //   const selectedValues = selectedOptions.map(option => option.value);
+
+  //   // Pass the selected values as parameters to your endpoint
+  //   // e.g., fetch(`/api/endpoint?selectedValues=${selectedValues.join(',')}`)
+  //   console.log('Selected Values:', selectedValues);
+  // }
+
+  
+  // Custom styles for react-select
+  
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -18,7 +55,7 @@ export default function Accordance({ title, options, value, seyListDay,options1,
     menu: (provided) => ({
       ...provided,
       backgroundColor: '#343334', // customize background color of dropdown menu
-      textColor: 'white', // customize text color
+      textColor: 'black', // customize text color
       border: '1px solid #343334', // customize border color
     }),
     multiValue: (provided) => ({
@@ -27,9 +64,8 @@ export default function Accordance({ title, options, value, seyListDay,options1,
     }),
   };
 
-  const [toggle, setToggle] = useState(false);
   return (
-    <div className=" bg-white py-3 px-3 rounded-xl mb-3">
+    <div className="bg-white py-3 px-3 rounded-xl mb-3">
       <div className="flex items-center justify-between pb-3 pt-3 border-b-[1px] borderColor">
         <div className="flex items-center ">
           <AiFillSetting size={30} className="mr-3" />{" "}
@@ -63,14 +99,11 @@ export default function Accordance({ title, options, value, seyListDay,options1,
             //   }}
             //   value={value}
             // />
-
-            <Select 
-              options={options}
-              onChange={(e) => {
-                console.log(e,'data454')
-                seyListDay(e)
-              }}
-              value={value}
+            <Select
+              isMulti
+              options={options6}
+              value={selectedOptions || defaultOption}
+              onChange={handleOptionChange}
               styles={customStyles}
             />
           }
@@ -80,21 +113,12 @@ export default function Accordance({ title, options, value, seyListDay,options1,
           sideA={"Shift timeframe:"}
           sideAClassName={"capitalize gray font-medium"}
           sideB={
-          // <DropDownItem options={options1}
-          // onChange={(e) => {
-          //   console.log(e,'data454')
-          //   seyListDay1(e)
-          // }}
-          // value={value1} />
-
-          <Select 
-              options={options1}
-              onChange={(e) => {
-                console.log(e,'data454')
-                seyListDay1(e)
-              }}
-              value={value1}
-              styles={customStyles}
+          <Select
+            isMulti
+            options={options7}
+            value={selectedOptions2}
+            onChange={handleOptionChange2}
+            styles={customStyles}
             />
           }
         />

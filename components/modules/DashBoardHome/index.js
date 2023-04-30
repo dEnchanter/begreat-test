@@ -1,341 +1,835 @@
 import React, { useEffect, useState } from "react";
 import TextInput from "../../ui/TextInput";
-import { TbSearch } from "react-icons/tb";
+import { toast } from "react-hot-toast";
+import { FiPlus } from "react-icons/fi";
+import Select from 'react-select';
+import AsyncSelect from 'react-select/async'
 import FallBackImage from "../../common/FallBackImage";
 import { HiPlus } from "react-icons/hi";
-import { MdOutlineSort, MdSort } from "react-icons/md";
+import { MdCancel, MdOutlineDisabledByDefault } from "react-icons/md";
+import { MdSort } from "react-icons/md";
 import DropDownItem from "../../ui/DropDownItem";
 import TwoSides from "../../common/TwoSides";
 import Accordance from "../../common/Accordiance";
 import FlexContainer from "../../common/FlexContainer";
 import ButtonComp from "../../ui/ButtonComp";
-import { TableComp } from "../../common/Table";
-import { useTheme } from "next-themes";
 import {
+  useAddToWatchListMutation,
+  useGetAllWatchListQuery,
+  useGetAllAssetQuery,
+  useRemoveFromWatchListMutation,
   useSearchCoinPriceQuery,
   useSearchCoinsQuery,
   useTimeFrameQuery,
+  useCreateWatchlistHolderMutation,
+  useRemoveWatchlistHolderMutation,
+  useRemoveAssetsFromWatchlistMutation,
+  useDeleteWatchlistMutation,
 } from "../../../store/Coins/coinsApi";
 import Spinner from "../../common/Spinner";
 import { Controller, useForm } from "react-hook-form";
 import {
   generateMaxLength,
-  generateMinLength,
 } from "../../../constants/errors";
-import { getUserDataS } from "../../../helper";
-import { useRouter } from "next/router";
-import { toast } from "react-hot-toast";
+import Accordance2 from "../../common/Accordiance2";
+import { getWatchlist, removeWatchlist, setWatchlist } from "../../../helper";
 
 export default function DashBoardHome() {
-  const router=useRouter();
-   const {query:{success}} =router;
-  //  console.log(query,'setEndDate')
-
-   useEffect(() => {
-    if(success){
-      toast.success(success)
-      redirectToPage()
-    }
-   }, [success])
-
-   const redirectToPage = () => {
-    router.push('/dashboard'); // Replace '/new-page' with the path of the page you want to redirect to
-  };
-   
   const options = [
     {
       value: 1,
-      label: <span className=" font-semibold">1</span>,
+      label: <span className="text-white text-xl font-semibold">1</span>,
     },
     {
       value: 2,
-      label: <span className=" font-semibold">2</span>,
+      label: <span className="text-white text-xl font-semibold">2</span>,
     },
     {
       value: 3,
-      label: <span className=" font-semibold">3</span>,
+      label: <span className="text-white text-xl font-semibold">3</span>,
     },
     {
       value: 4,
-      label: <span className=" font-semibold">4</span>,
+      label: <span className="text-white text-xl font-semibold">4</span>,
     },
     {
       value: 5,
-      label: <span className=" font-semibold">5</span>,
+      label: <span className="text-white text-xl font-semibold">5</span>,
     },
   ];
+
   const options1 = [
     {
       value: 1,
-      label: <span className=" font-semibold  ">1</span>,
+      label: <span className="text-white text-xl font-semibold  ">1</span>,
     },
     {
       value: 2,
-      label: <span className=" font-semibold">2</span>,
+      label: <span className="text-white text-xl font-semibold">2</span>,
     },
     {
       value: 3,
-      label: <span className=" font-semibold">3</span>,
+      label: <span className="text-white text-xl font-semibold">3</span>,
     },
     {
       value: 4,
-      label: <span className=" font-semibold">4</span>,
+      label: <span className="text-white text-xl font-semibold">4</span>,
     },
     {
       value: 5,
-      label: <span className=" font-semibold">5</span>,
+      label: <span className="text-white text-xl font-semibold">5</span>,
     },
   ];
+
+  // Pulse timeframes
   const options2 = [
     {
       value: 1,
-      label: <span className=" text-sm font-semibold">1 min</span>,
+      label: <span className=" text-xl font-semibold">1 MINUTE</span>,
     },
     {
       value: 3,
-      label: <span className=" text-sm font-semibold">3 mins</span>,
+      label: <span className=" text-xl font-semibold">3 MINUTE</span>,
     },
     {
       value: 5,
-      label: <span className=" text-sm font-semibold">5 mins</span>,
+      label: <span className=" text-xl font-semibold">5 MINUTE</span>,
     },
     {
       value: 15,
-      label: <span className="text-sm  font-semibold">15 mins</span>,
+      label: <span className="text-xl  font-semibold">15 MINUTE</span>,
     },
     {
       value: 30,
-      label: <span className=" text-sm font-semibold whitespace-nowrap">30 mins</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">30 MINUTE</span>,
     },
     {
       value: 60,
-      label: <span className="text-sm  font-semibold  whitespace-nowrap ">1 hrs</span>,
+      label: <span className="text-xl  font-semibold  whitespace-nowrap ">1 HOUR</span>,
     },
     {
       value: 120,
-      label: <span className=" text-sm  font-semibold  whitespace-nowrap">2 hrs</span>,
+      label: <span className=" text-xl  font-semibold  whitespace-nowrap">2 HOUR</span>,
     },
     {
       value: 240,
-      label: <span className=" text-sm  font-semibold  whitespace-nowrap">4 hrs</span>,
+      label: <span className=" text-xl  font-semibold  whitespace-nowrap">4 HOUR</span>,
     },
     {
       value: 360,
-      label: <span className="  text-sm font-semibold  whitespace-nowrap">6 hrs</span>,
+      label: <span className="  text-xl font-semibold  whitespace-nowrap">6 HOUR</span>,
     },
     {
       value: 480,
-      label: <span className="  text-sm font-semibold  whitespace-nowrap">8 hrs</span>,
+      label: <span className="  text-xl font-semibold  whitespace-nowrap">8 HOUR</span>,
     },
     {
       value: 720,
-      label: <span className=" text-sm font-semibold">12 hrs</span>,
+      label: <span className=" text-xl font-semibold">12 HOUR</span>,
     },
 
     {
       value: 1440,
-      label: <span className="text-sm  font-semibold">1 Day</span>,
+      label: <span className="text-xl  font-semibold">1 DAY</span>,
     },
 
     {
       value: 4320,
-      label: <span className="text-sm  font-semibold">3 Days</span>,
+      label: <span className="text-xl  font-semibold">3 DAY</span>,
     },
 
     {
       value: 10080,
-      label: <span className="text-sm  font-semibold">1 week</span>,
+      label: <span className="text-xl  font-semibold">1 WEEK</span>,
     },
 
     {
       value: 43200,
-      label: <span className="text-sm font-semibold">1 Month</span>,
+      label: <span className="text-xl font-semibold">1 MONTH</span>,
     },
     
   ];
+
+  // Rise and Fall timeframes complete
   const options3 = [
     {
       value: 2,
-      label: <span className=" text-sm font-semibold">1 min</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">1 MINUTE</span>,
     },
 
     {
       value: 3,
-      label: <span className="text-sm  font-semibold">3 mins</span>,
+      label: <span className="text-xl font-semibold whitespace-nowrap">3 MINUTES</span>,
     },
 
     {
       value: 5,
-      label: <span className=" text-sm font-semibold">5 mins</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">5 MINUTES</span>,
     },
 
     {
       value: 10,
-      label: <span className=" text-sm font-semibold">10 mins</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">10 MINUTES</span>,
     },
+
     {
       value: 15,
-      label: <span className="text-sm  font-semibold">15 mins</span>,
+      label: <span className="text-xl font-semibold whitespace-nowrap">15 MINUTES</span>,
     },
 
     {
       value: 30,
-      label: <span className=" text-sm font-semibold whitespace-nowrap">30 mins</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">30 MINUTES</span>,
     },
     {
       value: 45,
-      label: <span className="text-sm  font-semibold">45 mins</span>,
+      label: <span className="text-xl  font-semibold whitespace-nowrap">45 MINUTES</span>,
     },
     {
       value: 60,
-      label: <span className=" text-sm font-semibold  whitespace-nowrap ">1 hrs</span>,
+      label: <span className=" text-xl font-semibold  whitespace-nowrap ">1 HOUR</span>,
     },
     {
       value: 120,
-      label: <span className=" text-sm font-semibold  whitespace-nowrap">2 hrs</span>,
+      label: <span className=" text-xl font-semibold  whitespace-nowrap">2 HOURS</span>,
     },
     {
       value: 240,
-      label: <span className=" text-sm font-semibold  whitespace-nowrap">4 hrs</span>,
+      label: <span className=" text-xl font-semibold  whitespace-nowrap">4 HOURS</span>,
     },
     {
       value: 360,
-      label: <span className=" text-sm font-semibold  whitespace-nowrap">6 hrs</span>,
+      label: <span className=" text-xl font-semibold  whitespace-nowrap">6 HOURS</span>,
     },
     {
       value: 480,
-      label: <span className="text-sm  font-semibold  whitespace-nowrap">8 hrs</span>,
+      label: <span className="text-xl  font-semibold  whitespace-nowrap">8 HOURS</span>,
     },
     {
       value: '12h',
-      label: <span className=" text-sm font-semibold">12 hrs</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">12 HOURS</span>,
     },
 
      {
       value: '1d',
-      label: <span className=" text-sm font-semibold">1 day</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">1 DAY</span>,
     },
 
      {
       value: '3d',
-      label: <span className=" text-sm font-semibold">3 days</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">3 DAYS</span>,
     },
 
      {
       value: '1w',
-      label: <span className=" text-sm font-semibold">1 week</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">1 WEEK</span>,
     },
 
      {
       value: '1M',
-      label: <span className=" text-sm font-semibold">1 month</span>,
+      label: <span className=" text-xl font-semibold whitespace-nowrap">1 MONTH</span>,
     },
     
   ];
+
+  // Watchlist timeframes
+  const options4 = [
+    {
+      value: 1,
+      label: <span className="text-white font-semibold whitespace-nowrap">AVERAGE</span>,
+      label2: 'Average',
+    },
+    {
+      value: 2,
+      label: <span className="text-white font-semibold whitespace-nowrap">1 MINUTE</span>,
+      label2: '1m',
+    },
+
+    {
+      value: 3,
+      label: <span className="text-white font-semibold whitespace-nowrap">3 MINUTES</span>,
+      label2: '3m',
+    },
+
+    {
+      value: 5,
+      label: <span className="text-white font-semibold whitespace-nowrap">5 MINUTES</span>,
+      label2: '5m',
+    },
+
+    {
+      value: 10,
+      label: <span className="text-white font-semibold whitespace-nowrap">10 MINUTES</span>,
+      label2: '10m',
+    },
+
+    {
+      value: 15,
+      label: <span className="text-white font-semibold whitespace-nowrap">15 MINUTES</span>,
+      label2: '15m',
+    },
+
+    {
+      value: 30,
+      label: <span className="text-white font-semibold whitespace-nowrap">30 MINUTES</span>,
+      label2: '30m',
+    },
+    {
+      value: 45,
+      label: <span className="text-white font-semibold whitespace-nowrap">45 MINUTES</span>,
+      label2: '45m',
+    },
+    {
+      value: 60,
+      label: <span className="text-white font-semibold  whitespace-nowrap ">1 HOUR</span>,
+      label2: '1h',
+    },
+    {
+      value: 120,
+      label: <span className="text-white font-semibold  whitespace-nowrap">2 HOURS</span>,
+      label2: '2h',
+    },
+    {
+      value: 240,
+      label: <span className="text-white font-semibold  whitespace-nowrap">4 HOURS</span>,
+      label2: '4h',
+    },
+    {
+      value: 360,
+      label: <span className="text-white font-semibold  whitespace-nowrap">6 HOURS</span>,
+      label2: '6h',
+    },
+    {
+      value: 480,
+      label: <span className="text-white font-semibold  whitespace-nowrap">8 HOURS</span>,
+      label2: '8h',
+    },
+    {
+      value: '12h',
+      label: <span className="text-white font-semibold whitespace-nowrap">12 HOURS</span>,
+      label2: '12h',
+    },
+
+     {
+      value: '1d',
+      label: <span className="text-white font-semibold whitespace-nowrap">1 DAY</span>,
+      label2: '1d',
+    },
+
+     {
+      value: '3d',
+      label: <span className="text-white font-semibold whitespace-nowrap">3 DAYS</span>,
+      label2: '3d',
+    },
+
+     {
+      value: '1w',
+      label: <span className="text-white font-semibold whitespace-nowrap">1 WEEK</span>,
+      label2: '1w',
+    },
+
+     {
+      value: '1M',
+      label: <span className="text-white font-semibold whitespace-nowrap">1 MONTH</span>,
+      label2: '1M',
+    },
+    
+  ];
+
+  // Sort value
+  const options5 = [
+    {
+      value: 1,
+      label: <span className=" text-sm font-semibold">Bullish</span>,
+    },
+
+    {
+      value: 2,
+      label: <span className="text-sm  font-semibold">Bearish</span>,
+    },
+
+    {
+      value: 3,
+      label: <span className=" text-sm font-semibold">Fastest</span>,
+    }, 
+    {
+      value: 4,
+      label: <span className=" text-sm font-semibold">Slowest</span>,
+    }, 
+  ]
+
+  // WL Pulse timeframe
+  const options6 = [
+    {
+      value: 2,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">1 Min</span>,
+    },
+
+    {
+      value: 3,
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 Min</span>,
+    },
+
+    {
+      value: 5,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">5 Min</span>,
+    },
+
+    {
+      value: 10,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">10 Min</span>,
+    },
+
+    {
+      value: 15,
+      label: <span className="text-lg font-semibold whitespace-nowrap">15 Min</span>,
+    },
+
+    {
+      value: 30,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">30 Min</span>,
+    },
+    {
+      value: 45,
+      label: <span className="text-lg  font-semibold whitespace-nowrap">45 Min</span>,
+    },
+    {
+      value: 60,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
+    },
+    {
+      value: 120,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
+    },
+    {
+      value: 240,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
+    },
+    {
+      value: 360,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
+    },
+    {
+      value: 480,
+      label: <span className="text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
+    },
+    {
+      value: '12h',
+      label: <span className=" text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+    },
+
+    {
+      value: '1d',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Day</span>,
+    },
+
+     {
+      value: '3d',
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 Days</span>,
+    },
+
+     {
+      value: '1w',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Week</span>,
+    },
+
+     {
+      value: '1M',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Month</span>,
+    },
+    
+  ];
+
+  // WL Shift timeframe
+  const options7 = [
+    {
+      value: 2,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">1 Min</span>,
+    },
+    {
+      value: 3,
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 Min</span>,
+    },
+
+    {
+      value: 5,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">5 Min</span>,
+    },
+    {
+      value: 10,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">10 Min</span>,
+    },
+
+    {
+      value: 15,
+      label: <span className="text-lg font-semibold whitespace-nowrap">15 Min</span>,
+    },
+
+    {
+      value: 30,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">30 Min</span>,
+    },
+    {
+      value: 45,
+      label: <span className="text-lg  font-semibold whitespace-nowrap">45 Min</span>,
+    },
+    {
+      value: 60,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
+    },
+    {
+      value: 120,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
+    },
+    {
+      value: 240,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
+    },
+    {
+      value: 360,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
+    },
+    {
+      value: 480,
+      label: <span className="text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
+    },
+    {
+      value: '12h',
+      label: <span className=" text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+    },
+    {
+      value: '1d',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Day</span>,
+    },
+    {
+      value: '3d',
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 Days</span>,
+    },
+    {
+      value: '1w',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Week</span>,
+    },
+    {
+      value: '1M',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Month</span>,
+    },
+    
+  ];
+
+  // Shift timeframes
+  const options8 = [
+    {
+      value: 2,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">1 Mins</span>,
+    },
+
+    {
+      value: 3,
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 Mins</span>,
+    },
+
+    {
+      value: 5,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">5 Mins</span>,
+    },
+
+    {
+      value: 10,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">10 Mins</span>,
+    },
+
+    {
+      value: 15,
+      label: <span className="text-lg font-semibold whitespace-nowrap">15 Mins</span>,
+    },
+
+    {
+      value: 30,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">30 Mins</span>,
+    },
+    {
+      value: 45,
+      label: <span className="text-lg  font-semibold whitespace-nowrap">45 Mins</span>,
+    },
+    {
+      value: 60,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
+    },
+    {
+      value: 120,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
+    },
+    {
+      value: 240,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
+    },
+    {
+      value: 360,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
+    },
+    {
+      value: 480,
+      label: <span className="text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
+    },
+    {
+      value: '12h',
+      label: <span className=" text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+    },
+
+    {
+      value: '1d',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Day</span>,
+    },
+
+     {
+      value: '3d',
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 Days</span>,
+    },
+
+     {
+      value: '1w',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Week</span>,
+    },
+
+     {
+      value: '1M',
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Month</span>,
+    },
+    
+  ];
+
+  const [getTf, setTf] = useState(options4[4]);
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
-  const [getShiftFrame, setShiftFrame] = useState(options1[4]);
+  const [getShiftFrame, setShiftFrame] = useState(options1[3]);
+
+  const [getSortValue, setSortValue] = useState(options5[1]);
   const [coinName, setCoinName] = useState("SOL");
+  const [createWatchlist, setCreateWatchlist] = useState("");
+  const [isFormDisabled, setFormDisabled] = useState(false);
+  const [storedInputValue, setStoredInputValue] = useState("");
 
-  const defaultOption = options[4];
-  const { theme, setTheme } = useTheme();
-  const [listDay, seyListDay] = useState(6);
-  const [timeLeft,setTimeLeft] =useState(options2[1])
-  //
-     //  this for Pules TimeFrame 
-  const [day1,setDay1]=useState({label:<span className="flex whitespace-nowrap">DAY</span>,value:'1440'})
-  const [fourHours,setFourHours]=useState({label:<span className="flex whitespace-nowrap">4 hrs</span>,value:'240'});
-  const [oneHour,setOneHours] =useState({label:<span className="flex whitespace-nowrap">1 Hr</span>,value:'60'})
-  const [fifteenMin,setFifteenMin] =useState({label:<span className="flex whitespace-nowrap">15 Min</span>,value:'15'});
-  const [fiveMin,setFiveMin]=useState({label:<span className="flex whitespace-nowrap">5 Min</span>,value:'5'})
-  // 
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions2, setSelectedOptions2] = useState([]);
 
-  const [day1b,setDay1b]=useState({label:<span className="flex whitespace-nowrap px-0 mx-0">DAY</span>,value:'1d'})
-  const [fourHoursb,setFourHoursb]=useState({label:<span className="flex whitespace-nowrap">4 hrs</span>,value:'240'});
-  const [oneHourb,setOneHoursb] =useState({label:<span className="flex whitespace-nowrap">1 Hr</span>,value:'60'})
-  const [fifteenMinb,setFifteenMinb] =useState({label:<span className="flex whitespace-nowrap">15 Min</span>,value:'15'});
-  const [fiveMinb,setFiveMinb]=useState({label:<span className="flex whitespace-nowrap">5 Min</span>,value:'5'})
-// /
+  const selectedVal = selectedOptions.map((item) => item.value);
+  const selectedVal2 = selectedOptions2.map((item) => item.value);
 
+  const [timeLeft, setTimeLeft] = useState(options3[1]);
 
+  // FOR PULSE TIMEFRAME
+  
+  const [day1, setDay1]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">DAY</span>, value:'1440'})
+  const [fourHours, setFourHours]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">4 HOUR</span>, value:'240'});
+  const [oneHour, setOneHours] =useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">1 HOUR</span>, value:'60'})
+  const [fifteenMin, setFifteenMin] =useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">15 MINUTE</span>, value:'15'});
+  const [fiveMin, setFiveMin]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">5 MINUTE</span>, value:'5'})
 
-  const { data: Day1, isLoading: Day1Loader, isFetching:Day1IsFetching } = useTimeFrameQuery({
+  // FOR PULSE TIMEFRAME
+
+  const [day1b,setDay1b]=useState({label:<span className="text-lg flex whitespace-nowrap px-0 mx-0">Day</span>,value:'1d'})
+  const [fourHoursb,setFourHoursb]=useState({label:<span className="text-lg flex whitespace-nowrap">4 Hours</span>,value:'240'});
+  const [oneHourb,setOneHoursb] =useState({label:<span className="text-lg flex whitespace-nowrap">1 Hour</span>,value:'60'})
+  const [fifteenMinb,setFifteenMinb] =useState({label:<span className="text-lg flex whitespace-nowrap">15 Mins</span>,value:'15'});
+  const [fiveMinb,setFiveMinb]=useState({label:<span className="text-lg flex whitespace-nowrap">5 Mins</span>,value:'5'})
+
+  const { 
+    data: Day1, 
+    isLoading: Day1Loader, 
+    isFetching:Day1IsFetching 
+  } = useTimeFrameQuery({
     id: day1b?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true,skip:!coinName});
-  const { data: FourHours, isLoading: FourHoursLoader,isFetching:FourHoursLoaderIsFetching } = useTimeFrameQuery({
+  }, { 
+    refetchOnMountOrArgChange: true,
+    skip:!coinName
+  });
+
+  const { 
+    data: FourHours, 
+    isLoading: FourHoursLoader,
+    isFetching:FourHoursLoaderIsFetching 
+  } = useTimeFrameQuery({
     id: fourHoursb?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true,skip:!coinName });
-  const { data: OneHours, isLoading: OneHoursLoader,isFetching:OneHoursIsFetching } = useTimeFrameQuery({
+  }, { 
+    refetchOnMountOrArgChange: true,
+    skip:!coinName 
+  });
+
+  const { 
+    data: OneHours, 
+    isLoading: OneHoursLoader,
+    isFetching:OneHoursIsFetching 
+  } = useTimeFrameQuery({
     id: oneHourb?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true,skip:!coinName });
-  const { data: FifteenMin, isLoading: FifteenMinLoader,isFetching:FifteenMinIsFetching } = useTimeFrameQuery({
+  }, { 
+    refetchOnMountOrArgChange: true,
+    skip:!coinName 
+  });
+
+  const { 
+    data: FifteenMin, 
+    isLoading: FifteenMinLoader,
+    isFetching:FifteenMinIsFetching 
+  } = useTimeFrameQuery({
     id: fifteenMinb?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true,skip:!coinName });
-  const { data: FiveMin, isLoading: FiveMinLoader,isFetching:FiveMinIsFetching } = useTimeFrameQuery(
-    { id: fiveMinb?.value, coinName },
-    { refetchOnMountOrArgChange: true ,skip:!coinName}
-  );
-  //
-  const { data: Day1Color, isLoading: Day1LoaderColor, isFetching:Day1IsFetchingColor } = useSearchCoinPriceQuery(day1?.value && coinName&&{
+  }, { 
+    refetchOnMountOrArgChange: true,
+    skip:!coinName 
+  });
+
+  const { 
+    data: FiveMin, 
+    isLoading: FiveMinLoader,
+    isFetching:FiveMinIsFetching 
+  } = useTimeFrameQuery(
+    { 
+      id: fiveMinb?.value, 
+      coinName,
+    },
+    { 
+      refetchOnMountOrArgChange: true ,
+      skip:!coinName
+    });
+
+  const { 
+    data: Day1Color, 
+    isLoading: Day1LoaderColor, 
+    isFetching:Day1IsFetchingColor 
+  } = useSearchCoinPriceQuery(
+    day1?.value && coinName && {
     id: day1?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true });
-  const { data: FourHoursColor, isLoading: FourHoursLoaderColor,isFetching:FourHoursLoaderIsFetchingColor } = useSearchCoinPriceQuery(
-    {
+  }, { 
+    refetchOnMountOrArgChange: true 
+  });
+
+  const { 
+    data: FourHoursColor, 
+    isLoading: FourHoursLoaderColor,
+    isFetching:FourHoursLoaderIsFetchingColor 
+  } = useSearchCoinPriceQuery({
     id: fourHours?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true ,skip:!fourHours?.value || !coinName });
-  const { data: OneHoursColor, isLoading: OneHoursLoaderColor,isFetching:OneHoursIsFetchingColor } = useSearchCoinPriceQuery(
-    {
+  }, { 
+    refetchOnMountOrArgChange: true , 
+    skip:!fourHours?.value || !coinName 
+  });
+  
+  const { 
+    data: OneHoursColor, 
+    isLoading: OneHoursLoaderColor,
+    isFetching:OneHoursIsFetchingColor 
+  } = useSearchCoinPriceQuery({
     id: oneHour?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true,skip:!oneHour?.value || !coinName});
-  const { data: FifteenMinColor, isLoading: FifteenMinLoaderColor,isFetching:FifteenMinIsFetchingColor } = useSearchCoinPriceQuery(
-   {
+  }, { 
+    refetchOnMountOrArgChange: true,
+    skip:!oneHour?.value || !coinName
+  });
+
+  const { 
+    data: FifteenMinColor, 
+    isLoading: FifteenMinLoaderColor, 
+    isFetching:FifteenMinIsFetchingColor 
+  } = useSearchCoinPriceQuery({
     id: fifteenMin?.value,
     coinName,
-  },   { refetchOnMountOrArgChange: true,skip:!fifteenMin?.value || !coinName });
-  const { data: FiveMinColor, isLoading: FiveMinLoaderColor,isFetching:FiveMinIsFetchingColor } = useSearchCoinPriceQuery(
-    { id: fiveMin?.value, coinName },
-    { refetchOnMountOrArgChange: true,skip:!fiveMin?.value || !coinName }
-  );
+  }, { 
+    refetchOnMountOrArgChange: true,
+    skip:!fifteenMin?.value || !coinName 
+  });
+
+  const { 
+    data: FiveMinColor, 
+    isLoading: FiveMinLoaderColor,
+    isFetching:FiveMinIsFetchingColor 
+  } = useSearchCoinPriceQuery(
+    { 
+      id: fiveMin?.value, 
+      coinName,
+    },
+    { 
+      refetchOnMountOrArgChange: true,
+      skip:!fiveMin?.value || !coinName 
+    });
 
 
   const {
     data,
     isLoading: FindCoinLoader,
     isFetching,
-  } = useSearchCoinsQuery({coinName,timeLeft:timeLeft?.value}, {
-    // pollingInterval: 3000,
+  } = useSearchCoinsQuery({
+    coinName,
+    timeLeft:timeLeft?.value,
+    }, {
     refetchOnMountOrArgChange: true,
     skip:!timeLeft?.value || !coinName
-    // skip: false,
   });
 
-  console.log(getUserDataS()?.userId,'getUserDataS')
+  const [addToWatchlist] = useAddToWatchListMutation();
+  const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
+  const [removeAssetsFromWatchlist] = useRemoveAssetsFromWatchlistMutation();
+  // const [deleteWatchlist] = useDeleteWatchlistMutation();
+  const [removeFromWatchlist] = useRemoveFromWatchListMutation();
 
-  const ConvertObject =(object=[]) => {
+  const {
+    data: WatchList,
+    isLoading: WatchListIsLoading,
+    isFetching: WatchListIsFetching,
+  } = useGetAllWatchListQuery({ 
+    sortNumber: getSortValue?.value, 
+    shift: selectedVal2, 
+    pulse: selectedVal,
+    wltf: getTf?.value,
+    createWatchlist
+  }, { 
+    refetchOnMountOrArgChange: true 
+  });
+
+  const {
+    data: AllAssets,
+  } = useGetAllAssetQuery({ 
+    refetchOnMountOrArgChange: true 
+  });
+
+  const arrOfAssetsData = Object.entries(AllAssets?.assets ?? {}).map(([key, value]) => ({ 
+    value: key,
+    label: key,
+  }));
+
+  const loadOptions = (inputValue, callback) => {
+    const filteredOptions = arrOfAssetsData.filter(
+      (option) =>
+        option.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+
+    callback(filteredOptions);
+  };
+
+  const totalAverageValue = WatchList?.data?.find(item => item.totalAverage !== undefined);
+
+  const ConvertObject = (object=[]) => {
     return Object?.values(object)
   }
 
+  // DROPDOWN ITEM FOR PULSE ITEMS
   const List = [
     { 
-      time: <DropDownItem borderRadius='10px'   options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
-      time2: <DropDownItem borderRadius='10px' options={options3} value={day1b} onChange={(e)=>setDay1b(e)}/>,
+      time: <DropDownItem noIcon={true} options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
+      time2: <DropDownItem noIcon={true} padding={"0px 20px 0px 5px"} options={options8} value={day1b} onChange={(e)=>setDay1b(e)}/>,
       time1:'1 day',
-     data: Day1?.data?.average,
+      data: Day1?.data?.average,
       loading: Day1IsFetchingColor,
-     loading1: Day1Loader||Day1IsFetching,
-        //  this for Pules TimeFrame
-     pulseColor:ConvertObject(Day1Color?.data)[0],
+      loading1: Day1Loader||Day1IsFetching,
+        //  this for Pulse TimeFrame
+      pulseColor:ConvertObject(Day1Color?.data)[0],
     },
-    
     {
-      time: <DropDownItem borderRadius='10px' options={options2} value={fourHours} onChange={(e)=>setFourHours(e)}/>,
-      time2: <DropDownItem borderRadius='10px' padding={"5px"} options={options3} value={fourHoursb} onChange={(e)=>setFourHoursb(e)}/>,
+      time: <DropDownItem noIcon={true} options={options2} value={fourHours} onChange={(e)=>setFourHours(e)}/>,
+      time2: <DropDownItem noIcon={true} padding={"0px 20px 0px 5px"} options={options8} value={fourHoursb} onChange={(e)=>setFourHoursb(e)}/>,
       data: FourHours?.data?.average,
       time1:fourHoursb?.label,
       loading: FourHoursLoaderIsFetchingColor,
@@ -345,19 +839,18 @@ export default function DashBoardHome() {
 
     },
     { 
-      time: <DropDownItem borderRadius='10px' options={options2} value={oneHour}  onChange={(e)=>setOneHours(e)}/>,
-      time2: <DropDownItem borderRadius='10px' options={options3} value={oneHourb}  onChange={(e)=>setOneHoursb(e)}/>,
+      time: <DropDownItem noIcon={true} options={options2} value={oneHour}  onChange={(e)=>setOneHours(e)}/>,
+      time2: <DropDownItem noIcon={true} padding={"0px 20px 0px 5px"} options={options8} value={oneHourb}  onChange={(e)=>setOneHoursb(e)}/>,
       time1:oneHourb?.label,
-     data: OneHours?.data?.average, 
-     loading: OneHoursIsFetchingColor,
-     loading1: OneHoursLoader||OneHoursIsFetching,
+      data: OneHours?.data?.average, 
+      loading: OneHoursIsFetchingColor,
+      loading1: OneHoursLoader||OneHoursIsFetching,
         //  this for Pules TimeFrame
-     pulseColor:ConvertObject(OneHoursColor?.data)[0],
-
+      pulseColor:ConvertObject(OneHoursColor?.data)[0],
     },
     {
-      time: <DropDownItem borderRadius='10px' options={options2} value={fifteenMin}  onChange={(e)=>setFifteenMin(e)}/>,
-      time2: <DropDownItem borderRadius='10px' padding={"5px"} options={options3} value={fifteenMinb}  onChange={(e)=>setFifteenMinb(e)}/>,
+      time: <DropDownItem noIcon={true} options={options2} value={fifteenMin}  onChange={(e)=>setFifteenMin(e)}/>,
+      time2: <DropDownItem noIcon={true} padding={"0px 20px 0px 5px"} options={options8} value={fifteenMinb}  onChange={(e)=>setFifteenMinb(e)}/>,
       time1:fifteenMinb?.label,
       data: FifteenMin?.data?.average,
       loading:FifteenMinIsFetchingColor,
@@ -367,72 +860,195 @@ export default function DashBoardHome() {
 
     },
     { 
-      time: <DropDownItem borderRadius='10px' options={options2} value={fiveMin}  onChange={(e)=>setFiveMin(e)}/>,
-      time2: <DropDownItem borderRadius='10px' options={options3} value={fiveMinb}  onChange={(e)=>setFiveMinb(e)}/>,
+      time: <DropDownItem noIcon={true} options={options2} value={fiveMin}  onChange={(e)=>setFiveMin(e)}/>,
+      time2: <DropDownItem noIcon={true} padding={"0px 20px 0px 5px"} options={options8} value={fiveMinb}  onChange={(e)=>setFiveMinb(e)}/>,
       time1:fiveMinb?.label,
-     data: FiveMin?.data?.average, 
-     loading: FiveMinIsFetchingColor,
-     loading1: FiveMinLoader||FiveMinIsFetching,
-    //  this for Pules TimeFrame
-     pulseColor:ConvertObject(FiveMinColor?.data)[0],
+      data: FiveMin?.data?.average, 
+      loading: FiveMinIsFetchingColor,
+      loading1: FiveMinLoader||FiveMinIsFetching,
+      //  this for Pules TimeFrame
+      pulseColor:ConvertObject(FiveMinColor?.data)[0],
     },
      
   ];
 
-  const toThreeFig = (nums,places=3) => {
+  const toThreeFig = (nums, places=3) => {
     let myNum = parseFloat(nums);
     let roundedNum = myNum.toFixed(places);
     return roundedNum;
   };
-  const { control, handleSubmit, reset } = useForm({
+
+  const { control, reset } = useForm({
     defaultValues: {
       coinname: "",
+      watchlist: "",
     },
   });
 
-  const handleClick = (data) => {
-    // console.log(data)
-    setCoinName(data?.coinName);
-    if (data?.coinname) {
-      // console.log(data,'data2')
-      setCoinName(data?.coinname);
+  const addToWatchlistHandle = async () => {
+    try {
+      const payload = {
+        asset: data.asset,
+        createWatchlist: createWatchlist,
+      };
+      addToWatchlist(payload);
+    } catch (error) {
+      console.error('addToWatchlist error:', error);
     }
   };
 
-   const handleColor =(no) =>{
+  const removeFromWatchlistHandle = async (name) => {
+    try {
+      const payload = {
+        asset: name,
+        createWatchlist: createWatchlist,
+      }
+      removeFromWatchlist(payload);
+    } catch (error) {
+      console.error('removeFromWatchlist error:', error);
+    }
+  }
+
+  const createWatchlistHolderHandle = async (payload) => {
+    try {
+        setWatchlist(payload);
+        localStorage.setItem("textboxInput", payload)
+        const payloadData = getWatchlist(payload);
+        createWatchlistHolder(payloadData);
+        setCreateWatchlist(payloadData);
+        toast.success(`Watchlist ${payload} created successfully, you can now add to watchlist`, {
+          duration: 4000,
+        });
+        // reset("");
+        setFormDisabled(true);
+    } catch (error) {
+      console.error('addToWatchlist error:', error);
+    }
+  }
+
+  const deleteWatchlistHolderHandle = async (payload) => {
+    try {
+        removeAssetsFromWatchlist(payload);
+    } catch (error) {
+      console.error('addToWatchlist error:', error);
+    } finally {
+      // call delete watchlist
+      // deleteWatchlist(payload);
+
+      // remove from local storage
+      removeWatchlist(payload);
+      toast.success(`Watchlist ${payload || storedInputValue} Deleted.`, {
+        duration: 4000,
+      });
+      reset("");
+      setFormDisabled(false);
+    }
+  }
+
+  const handleOnClickWatchlist = async (name) => {
+    const a = name.split("/")[0];
+    setCoinName(a);
+    if (name) {
+      // console.log('data name', a)
+      setCoinName(a);
+    }
+  }
+
+  useEffect(() => {
+    const createWatchlistAccount = getWatchlist("createWatchlistAccount");
+
+    if (createWatchlistAccount) {
+      setCreateWatchlist(createWatchlistAccount);
+    }
+  }, []);
+
+  useEffect(() => {
+    const storedInput = localStorage.getItem("textboxInput");
+
+    if (storedInput) {
+      setStoredInputValue(storedInput);
+    }
+  }, []);
+
+  // GRADIENT COLORS;
+   const handleColor = (no) => {
     //console.log(no,'DFGHJKL')
     switch (no) {
       case 1:
         return "back1 animate__animated animate__fadeIn my-element"
       case 2:
-        return "deepGreen animate__animated animate__fadeIn my-element"
+        return "back3 animate__animated animate__fadeIn my-element"
       case -1:
-        return "back2 animate__animated animate__fadeIn my-element"
-      case -2:
         return "deepRed animate__animated animate__fadeIn my-element"
-      
-    
+      case -2:
+        return "deepRed2 animate__animated animate__fadeIn my-element"
       default:
         return  "back1 animate__animated animate__fadeIn my-element";
     }
   }
-//console.log(data,timeLeft?.value,'timeLeft')
 
-  let coinsName=data?.asset?.split("U")[1]?`U${data?.asset?.split("U")[1]}`:''
+  // Select dropdown styling
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: '#343334', // customize background color of input field
+      border: 'none', // remove border
+      outline: 'none',
+      textColor: 'white', // customize text color
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: '#343334', // customize background color of dropdown menu
+      textColor: 'white', // customize text color
+      border: '1px solid #343334', // customize border color
+    }),
+    multiValue: (provided) => ({
+      ...provided,
+      backgroundColor: 'gray', // customize background color of selected options
+    }),
+  };
+
+  const customStyles2 = {
+    container: (provided, state) => ({
+      ...provided,
+      color: "white",
+    }),
+    input: (provided, state) => ({
+      ...provided,
+      color: "white",
+      fontSize: "18px",
+    }),
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "#343334",
+      border: "none",
+      boxShadow: "none",
+      color: "white",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: "#343334",
+      color: "white",
+      fontSize: "18px",
+    }),
+  };
 
   return (
     <section className="relative">
-      <div className="flex px-3 lg:px-8 flex-wrap">
-        <div className="flex-grow w-[100%] xl:w-[67%] mb-4 xl:mb-0  ">
-          <div className="flex items-center justify-between flex-wrap mb-3">
+      <div className="flex px-3 flex-wrap">
+        <div className="flex-grow w-[100%] xl:w-[67%] mb-4 xl:mb-0">
+
+          {/* TOP BAR AFTER DASHBOARD NAVBAR */}
+          <div className="flex items-center justify-between space-x-3 flex-wrap mb-3">
             <div className="flex items-center gap-2 flex-wrap">
+              {/* SEARCH BUTTON */}
               <Controller
                 name="coinname"
                 control={control}
                 rules={{
                   required: "Coin Name is required",
                   // pattern: REGEX_PATTERNS?.EMAIL,
-                  maxLength: generateMaxLength(5),
+                  maxLength: generateMaxLength(10),
                 }}
                 render={({
                   field: { value, onChange },
@@ -440,25 +1056,31 @@ export default function DashBoardHome() {
                 }) => {
                   const errorMessage = errors?.coinname?.message;
                   return (
-                    <TextInput
-                      //  containerClassName={'text-[#1E1D20]'}
-                      inputClassName={"backText"}
-                      suffixIcon={
-                        <TbSearch
-                          size={25}
-                          wrapperClassName=" xl:w-[29%]"
-                          color="text-[#fff"
-                          className="cursor-pointer"
-                          onClick={handleSubmit(handleClick)}
-                        />
-                      }
-                      prefixIcon={FindCoinLoader || (isFetching && <Spinner />)}
-                      name="coinname"
-                      {...{ value, onChange, errors: [errorMessage] }}
-                    />
+                    <div className="w-[15rem]">
+                      <AsyncSelect
+                        placeholder="Select Asset..."
+                        value={coinName}
+                        onChange={(e) => {
+                          // console.log(e?.value,'set Asset')
+                          const word = e?.value;
+                          const index = word?.indexOf("USDT");
+                          const firstHalf = word?.slice(0, index);
+                          // const secondHalf = word.slice(index);
+                          // console.log(firstHalf, secondHalf, 'firstHalf, secondHalf')
+                          setCoinName(firstHalf);
+                        }}
+                        isClearable={true}
+                        styles={customStyles2}
+                        cacheOptions
+                        loadOptions={loadOptions}
+                        defaultOptions
+                      />
+                    </div>
                   );
                 }}
               />
+
+              {/* FALLBACK IMAGE AND ASSET */}
               <div className="flex gap-1 items-center">
                 <FallBackImage
                   src={"/Images/Dashboard/coin.png"}
@@ -466,10 +1088,14 @@ export default function DashBoardHome() {
                   height={34}
                 />
                 <h1 className="text-[25px] lg:text-[32px] font-bold textI">
-                  {`${data?.asset?.split("U")[0]||" "}/${coinsName}`}
+                  {`${data?.asset?.split("U")[0]||" "}/${data?.asset?.split("U")[1]&&'U'}${
+                    data?.asset?.split("U")[1]||' '
+                  }`}
                 </h1>
               </div>
             </div>
+
+            {/* PRICE */}
             <div className="leading-[1.4rem]">
               <div className="gray mb-0">Price</div>
               <div className="primaryText text-[20px] lg:text-[24px] font-bold">
@@ -477,73 +1103,112 @@ export default function DashBoardHome() {
               </div>
             </div>
 
+            {/* WATCHLIST */}
             <div>
               <ButtonComp
                 btnText={
                   <span className="flex items-center text-white">
-                    <HiPlus className="mr-3" color="white" /> Watchlist
+                    <HiPlus className="mr-3" color="white" /> 
+                    Watchlist
                   </span>
                 }
-                btnTextClassName="rounded-3xl px-8 font-semibold  py-[10px] btnWaitlist "
+                btnTextClassName="rounded-3xl px-8 font-semibold py-[10px]
+                text-white font-bold py-2 px-4 rounded transition-colors duration-300 bg-gradient-to-r from-red-500 to-indigo-500 
+                hover:from-red-600 hover:to-indigo-600 scale-100 duration-200 active:scale-95"
+                onClick={() => addToWatchlistHandle()}
               />
             </div>
           </div>
-          {/*  */}
-          <div className="flex flex-wrap mt-5">
+
+          {/* SIDEBAR */}
+          <div className="flex flex-wrap mt-[3.5rem]">
             <div className="flex-grow w-full md:w-[39%] xl:w-[24%] ">
-            <div className=" whitespace-normal font-semibold text-[13px] priceText mb-4 flex items-center w-fit mx-auto ">
-                    Last<DropDownItem
-                    padding={'0px 30px 0px 3px'}
-                    onChange={(e)=>setTimeLeft(e)}
-                    options={options3}
-                    noIcon={true}
-                    value={timeLeft}
-                    />                  </div>
-              <div className="bg-white py-3 px-3  rounded-lg">
-                 <div >
-                 High price:{" "}  <span className="font-bold secondary">
+
+            {/* CHOOSE TIMEFRAME FOR WHOLE APP */}
+
+            <div className=" whitespace-nowrap font-semibold text-xl priceText mb-4 -mt-10 flex items-center w-fit mx-auto ">
+              <DropDownItem
+              // padding={'0px 40px 0px 3px'}
+              padding={'0px 20px 0px 8px'}
+              onChange={(e)=>setTimeLeft(e)}
+              options={options3}
+              noIcon={true}
+              value={timeLeft}
+              />                  
+            </div>
+
+              <div className="p-2">
+
+                {/* CURRENT PRICE CARD */}
+                {/* HIGH PRICE */}
+
+                <div className="mb-5 text-center">
+                  <p className="font-semibold mt-3 mb-2 text-lg tracking-tighter leading-6"> High Price:{" "}   
+                    <span className="font-semibold secondary ml-1">
                       {" "}
                       {toThreeFig(data?.high || 0)}
                     </span>
-                  <div className="h-[200px] md:h-[250px] bg-[#16C782] rounded-xl mb-2 text-white text-[24px] font-bold flex justify-center items-center">
-                    {toThreeFig(data?.rise || 0)}%
-                  </div>
-                  <div className=" whitespace-normal text-[14px] font-semibold priceText mb-4">
-                   
-                   
-                  </div>
-                  <div className="text-[16px] font-semibold priceText mb-4">
+                  </p>
+                 
+                  <div className="h-[200px] md:h-[250px] bg-[#EA3943] rounded
+                  text-white text-[24px] font-bold flex justify-center items-center
+                  transition duration-300 ease-in-out"
+                  style={{
+                    height: data?.rise + data?.fall === 0 ? '200px' :
+                    data?.rise === 0 && data?.fall < 0 ? '440px' :
+                    data?.fall === 0 && data?.rise > 0 ? '100px' :
+                    data?.rise + data?.fall > 0 && data?.fall < 0 ? '200px' :
+                    data?.rise + data?.fall < 0 && data?.rise > 0 ? '350px' :
+                    '250px'
+                  }}>{" "}
+                    {toThreeFig(data?.fall || 0)}%
+                  </div> 
+                </div>
+
+                {/* CURRENT PRICE */}
+
+                <div className="text-lg text-center font-semibold priceText mb-4 tracking-tighter leading-6">
                     Current Price :{" "}
-                    <span className="font-bold secondary">
+                    <span className="font-semibold secondary">
                       {toThreeFig(data?.currentPrice || 0)}
                     </span>
                   </div>
-                </div>
-                {/*  */}
-                <div className="mb-5">
-                 
-                  <div className="h-[200px] md:h-[250px] bg-[#EA3943] rounded-xl text-white text-[24px] font-bold flex justify-center items-center">{" "}
-                    {toThreeFig(data?.fall || 0)}%
-                    
-                  </div> 
-                   <p className="flex mt-2 ">   Low price:{" "}   <span className="font-bold secondary ml-1">
+                
+                {/* LOW PRICE */}
+
+                <div >
+                  <div className="h-[200px] md:h-[250px] bg-[#16C782] rounded mb-2 
+                  text-white text-[24px] font-bold flex justify-center items-center
+                  transition duration-300 ease-in-out"
+                  style={{
+                    height: data?.rise + data?.fall === 0 ? '200px' :
+                    data?.rise === 0 && data?.fall < 0 ? '100px' :
+                    data?.fall === 0 && data?.rise > 0 ? '440px' :
+                    data?.rise + data?.fall > 0 && data?.fall < 0 ? '350px' :
+                    data?.rise + data?.fall < 0 && data?.rise > 0 ? '200px' :
+                    '250px'
+                  }}>{" "}
+                    {toThreeFig(data?.rise || 0)}% 
+                  </div>
+                  <p className="font-semibold mt-2 text-center mb-2 text-lg tracking-tighter leading-6">Low Price:{" "}  
+                    <span className="font-semibold secondary ml-1">
                       {" "}
                       {toThreeFig(data?.low || 0)}
                     </span>
-                  </p>
+                  </p>  
+              
                 </div>
-
-               
-
               </div>
             </div>
-            {/*  */}
+
+            {/* PULSE COLOR */}
             <div className="flex-grow w-full md:w-[60%] xl:w-[74%]">
               <div className="flex gap-2 h-[415px] mx-3 flex-wrap mb-3">
                 {List?.slice(0, getTimeFrame?.value)?.map((item, i) => (
                   <div
                     key={i}
-                    className={`${handleColor(item?.pulseColor )}  flex-grow  font-bold text-white flex justify-center items-center text-[20px] xl:text-[20px] w-full md:w-[24%] xl:w-[18%] rounded`}
+                    className={`${handleColor(item?.pulseColor )} flex-grow font-bold text-white flex justify-center items-center 
+                    text-2xl w-full md:w-[24%] xl:w-[18%] rounded`}
                   >
                  
                     {item?.loading ? <Spinner /> : item?.time || item}
@@ -551,12 +1216,12 @@ export default function DashBoardHome() {
                 ))}
               </div>
 
-              <div className="flex  h-min-[216px] mx-3 flex-wrap mb-3 mt-6">
-                {/*  */}
+              <div className="flex h-min-[216px] flex-wrap mb-3 mt-6">
+                {/* TIMEFRAME COLOR */}
 
                 {List?.slice(0, getShiftFrame?.value)?.map((item) => (
                   <div
-                    className={`flex-grow h-[230px] flex w-[100%] md:w-[50%]  lg:w-[20%] ${
+                    className={`flex-grow h-[250px] flex w-[163px] md:w-[30%] lg:w-[20%] ${
                       item?.loading1 && "blur-2xl"
                     } `}
                   >
@@ -564,16 +1229,16 @@ export default function DashBoardHome() {
                       wrapperContainer={`${
                         item?.data > 0 ? "greenAverage" : "back2"
                       }  flex justify-center w-full mr-2 py-6 rounded-xl`}
-                      innerContainer={`flex justify-center gap-3 item-center rounded-xl border-[${
+                      innerContainer={`flex justify-center gap-1 item-center rounded-md border-[${
                         item?.data > 0 ? "#26A17B" : "#EA3943"
                       }] border-[1px] bgList w-full`}
                     >
                       <div className="p-3 flex flex-col justify-around item-center ">
-                        <div className="text3 text-[14px] flex gap-1 items-center justify-center text-center font-semibold font-1 whitespace-nowrap">
+                        {/* <div className="text3 text-[14px] flex gap-1 items-center justify-center text-center font-semibold font-1 whitespace-nowrap">
                           Last {item?.time1}
-                        </div>
-                        <div>
-                        {item?.time2}
+                        </div> */}
+                        <div className="text3 flex items-center justify-center text-center font-semibold whitespace-nowrap">
+                          <span className="text-lg font-semibold text-center ml-5">Last</span>{item?.time2}
                         </div>
                         <div
                           className={`${
@@ -587,16 +1252,15 @@ export default function DashBoardHome() {
                   </div>
                 ))}
 
-                {/*  */}
-
-                {/*  */}
               </div>
+              
             </div>
           </div>
           {/*  */}
         </div>
-        {/*  */}
-        <div className="flex-grow    xl:w-[33%]">
+
+        {/* SIDEBAR TO THE RIGHT */}
+        <div className="flex-grow xl:w-[25rem]">
           <div className="mx-3 ">
             <Accordance
               options={options}
@@ -604,98 +1268,182 @@ export default function DashBoardHome() {
               seyListDay={setTimeFrame}
               options1={options1}
               seyListDay1={setShiftFrame}
-              value1={getShiftFrame}
-              
+              value1={getShiftFrame}      
             />
-            <Accordance
-              options={options1}
-              seyListDay={setShiftFrame}
-              value={getShiftFrame}
-              title="Watchlist Timeframe Settings"
+            <Accordance2
+              options6={options6}
+              options7={options7}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+              selectedOptions2={selectedOptions2}
+              setSelectedOptions2={setSelectedOptions2}
+              title="TrendScan Timeframe Settings"
             />
-            <div className="bg-white  py-3 px-3">
+            <div className="bg-white py-3 px-3">
+              <div className="secondary text-2xl font-bold mb-3 xl:mb-0">TrendScan</div>
               <TwoSides
                 WrapperClassName={"mb-5 flex-wrap"}
-                sideA={"Watchlist"}
-                sideAClassName={"secondary text-[22px] font-bold mb-3 xl:mb-0"}
+                sideA={"Change(%) Timeframe:"}
+                sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
                 sideB={
-                  <ButtonComp
-                    btnTextClassName={"rounded-md btn2"}
-                    btnText={
-                      <span className="text-[13px] text-white">
-                        Current Time Change(%):{" "}
-                        <span className="text-[#50AF95]">5min</span>
-                      </span>
-                    }
+                  <Select 
+                    options={options4}
+                    onChange={(e) => {
+                      console.log(e,'setTf')
+                      setTf(e)
+                    }}
+                    value={getTf}
+                    styles={customStyles}
                   />
                 }
               />
               <TwoSides
-                WrapperClassName={"mb-5"}
-                sideA={<DropDownItem placeholder={"Crypto"} />}
+                WrapperClassName={"mb-5 space-x-10"}
+                sideA={
+                  <Controller
+                  name="watchlist"
+                  control={control}
+                  rules={{
+                    required: "Create Watchlist",
+                    maxLength: generateMaxLength(20),
+                  }}
+                  render={({
+                    field: { value, onChange },
+                    formState: { errors },
+                  }) => {
+                    // const storedInput = localStorage.getItem("textboxInput");
+                    const payloadData = getWatchlist(value);
+                    const errorMessage = errors?.watchlist?.message;    
+                    return (
+                      <TextInput
+                        disabled={payloadData ? true : false}
+                        placeholder={payloadData ? 
+                          'Delete Watchlist' : 'Create Watchlist'
+                        }
+                        inputClassName={"backText"}
+                        suffixIcon={
+                           payloadData ? (
+                            <MdOutlineDisabledByDefault 
+                              size={20}
+                              wrapperClassName="xl:w-[20%]"
+                              className="cursor-pointer"
+                              onClick={() => deleteWatchlistHolderHandle(value)}
+                            />
+                          ) : (
+                            <FiPlus
+                            size={20}
+                            wrapperClassName="xl:w-[20%]"
+                            className="cursor-pointer"
+                            onClick={() => createWatchlistHolderHandle(value)}
+                          />
+                          )  
+                        }
+                        // prefixIcon={(addToWatchListLoader || removeFromWatchListLoader) && <Spinner />}
+                        name="watchlist"
+                        {...{ value, onChange, errors: [errorMessage] }}
+                      />
+                      );
+                    }}
+                  />
+                }
                 sideB={
                   <span className="flex gap-2 items-center">
                     <MdSort className="text2" size={20} />{" "}
                     <span className="text2">Sort:</span>
-                    <DropDownItem placeholder={"Bullish"} />
+                    <DropDownItem
+                      options={options5}
+                      onChange={(e) => {
+                        // console.log(e,'sort value')
+                        setSortValue(e)
+                      }}
+                      value={getSortValue}
+                    />
                   </span>
                 }
               />
 
               {/*  */}
-              <div className="text-[#EA3943] p-2 font-bold borderColor border-[1px] rounded-md mb-5">
-                Watchlist 5m Average (%) Change: -8%
+              <div className={`${totalAverageValue?.totalAverage > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold borderColor border-[1px] rounded-md mb-5`}>
+                {
+                  `Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue?.totalAverage || 0.000)}%`
+                }
               </div>
-              {/*  */}
-              <div class="overflow-x-auto whitespace-no-wrap bg-white ">
-                <div className="flex justify-between items-center tableHeaderText text-[13px] mb-3 borderColor border-b-[1px] pb-2">
-                  <div>Symbol</div>
-                  <div>Price</div>
-                  <div>Pulse</div>
-                  <div>Shift</div>
-                  <div>Change</div>
-                </div>
-                <div className="flex justify-between items-center   whitespace-nowrap borderColor border-b-[1px] pb-3 mb-3">
-                  <div>
-                    CRV/
-                    <br />
-                    USDT
-                  </div>
-                  <div>$0.096</div>
-                  <div>
-                    {" "}
-                    <div className="w-[20px] h-[10px] bg-[#EA3943]"></div>
-                  </div>
-                  <div>
-                    <div className="w-[20px] h-[10px] bg-[#26A17B]"></div>
-                  </div>
-                  <div>
-                    {" "}
-                    <div className="text-[#EA3943] font-semibold">-34.5%</div>
-                  </div>
-                </div>
-                {/*  */}
-                <div className="flex justify-between items-center   whitespace-nowrap borderColor border-b-[1px] pb-3 mb-3">
-                  <div>
-                    CRV/
-                    <br />
-                    USDT
-                  </div>
-                  <div>$0.096</div>
-                  <div>
-                    {" "}
-                    <div className="w-[20px] h-[10px] bg-[#EA3943]"></div>
-                  </div>
-                  <div>
-                    <div className="w-[20px] h-[10px] bg-[#26A17B]"></div>
-                  </div>
-                  <div>
-                    {" "}
-                    <div className="text-[#EA3943] font-semibold">-34.5%</div>
-                  </div>
-                </div>
+              
+              {/* GET ALL FROM WATCHLIST */}
+              <div className="grid grid-cols-6 gap-[4rem] justify-between items-center tableHeaderText text-sm mb-3 borderColor border-b-[1px] pb-2">
+                  <div className="col-span-1">Symbol</div>
+                  <div className="col-span-1">Price</div>
+                  <div className="col-span-1">Pulse</div>
+                  <div className="col-span-1">Shift</div>
+                  <div className="col-span-1">Change%</div>
+                  <div className="col-span-1"></div>
               </div>
-              {/*  */}
+              <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
+                  {WatchListIsLoading ? (
+                    <p className="text-center">Loading <Spinner /></p>
+                  ) : WatchListIsFetching ? (
+                    <Spinner />
+                  ) : (
+                    WatchList?.data?.map((item, i) => {
+                      let priceColor = item.average > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+
+                      let pulseColor;
+                      let shiftColor;
+
+                      if (item.pulse === 2) {
+                        pulseColor = "bg-[#26A17B]";
+                      } else if (item.pulse === -2) {
+                        pulseColor = "bg-[#EA3943]";
+                      } else {
+                        pulseColor = "bg-[#d1d5db]";
+                      }
+
+                      if (item.shift === 2) {
+                        shiftColor = "bg-[#26A17B]";
+                      } else if (item.shift === -2) {
+                        shiftColor = "bg-[#EA3943]";
+                      } else {
+                        shiftColor = "bg-[#d1d5db]";
+                      }
+
+                      return (
+                        <div className="flex">
+                          <div className="grid grid-cols-6 gap-[4rem] justify-between 
+                          items-center whitespace-nowrap borderColor border-b-[1px] 
+                          pb-3 mb-3 cursor-pointer"
+                          onClick={() => handleOnClickWatchlist(item.name)}
+                          >
+                            <div className="col-span-1">
+                              {item?.name?.split("/")[0]}/
+                              <br />
+                              {item?.name?.split("/")[1]}
+                            </div>
+                            <div className="col-span-1">${toThreeFig(item.price)}</div>
+                            <div className={`col-span-1 ${pulseColor} ml-4 w-[20px] h-[10px]`}>
+                              {/* PULSE */}
+                            </div>
+                            <div className={`col-span-1 ${shiftColor} ml-4 w-[20px] h-[10px]`}>
+                              {/* SHIFT */}
+                            </div>
+                            <div className="col-span-1 ml-4">
+                              <div className={`${priceColor} font-semibold`}>{toThreeFig(item.average)}%</div>
+                            </div>
+                            
+                          </div>
+                          <div className="mt-4">
+                              <div className="">
+                                <MdCancel
+                                  color="gray"
+                                  cursor="pointer"
+                                  onClick={() => removeFromWatchlistHandle(item.name)}
+                                />
+                              </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  )}
+              </div>
             </div>
           </div>
         </div>

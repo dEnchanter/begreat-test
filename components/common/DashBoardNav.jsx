@@ -11,18 +11,19 @@ import { useDispatch } from 'react-redux'
 import { logout } from "../../store/auth";
 import { logoutUser, logoutUserI } from '../../store/auth/';
 import Link from 'next/link';
-export default function DashBoardNav({change}) {
-    const { theme, setTheme } = useTheme();
-     const [showDropdown, setShowDropdown] = useState(false);
-    const router =useRouter();
-    const dispatch  =useDispatch();
 
-     const handleLogoutClick = () => {
+export default function DashBoardNav({change}) {
+  const { theme, setTheme } = useTheme();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const router = useRouter();
+  const dispatch  = useDispatch();
+
+  const handleLogoutClick = () => {
     dispatch(logoutUser());
      router.push('/login');
   };
 
-    const toggleDropdown = () => {
+  const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
     

@@ -48,7 +48,6 @@ export const userApi = createApi({
       transformResponse: (response) => response.data,
     }),
     //
-   
     changeUserPassword: builder.mutation({
       query: (payload) => ({
         url: "/change-user-password",
@@ -62,7 +61,6 @@ export const userApi = createApi({
 
 export const {
   useGetUserProfileQuery,
-  
   useUpdateUserMutation,
   useUpdateProfilePicMutation,
   useRemoveProfilePicMutation,
