@@ -9,6 +9,7 @@ import { HiOutlineMoon } from "react-icons/hi";
 import { useRouter } from "next/router";
 import DropDownItem from "./ui/DropDownItem";
 import NavDropDownItem from "./ui/NavDropDownItem";
+import Image from "next/image";
 
 
 
@@ -46,7 +47,7 @@ export default function Navbar({ fixed }) {
   <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
     <Link href='/'>
-       <img src={theme=="light"?"/images/homepage/logoD.png":"/images/homepage/logoW.png" } alt="logo" className="h-10  "/> 
+       <Image width="150" height="200" src={theme=="light"?"/Images/homepage/logoD.png":"/Images/homepage/logoW.png" } alt="logo" className="h-10  "/> 
     </Link>
       <button
         className="text-white cursor-pointer text-xl leading-none px-4  mt-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none  "

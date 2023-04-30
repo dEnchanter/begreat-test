@@ -16,7 +16,7 @@ const Tools = () => {
            <div className='mt-2 text-center lg:text-start'>
               <h1 className='font-bold   uppercase  text-transparent text-sm bg-clip-text bg-gradient-to-r from-[#D32652] to-[#8466E1] '>Tools </h1>
               <h1 className='font-bold  md:text-2xl text-secondary text-xl mt-2 w-full mx-auto md:w-[70%]  lg:w-[22rem] smallTextI'> Empower Your Trading Strategy with Our Suite of Advanced Tools </h1>
-              <img className='w-[13rem] lg:ml-2 lg:mt-4  mx-auto' src='./images/homepage/globe.png' alt='globe'/>
+              <img className='w-[13rem] lg:ml-2 lg:mt-4  mx-auto' src='./Images/homepage/globe.png' alt='globe'/>
            </div>
 
            <div  className='grid  sm:grid-cols-2 gap-5 lg:mx-0  mx-auto w-fit mt-6 lg:px-2'> 
