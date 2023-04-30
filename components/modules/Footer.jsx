@@ -5,6 +5,7 @@ import { Button } from '../styles/Button'
 import Link from 'next/link'
 import { useTheme } from "next-themes";
 import { TwitterFollowButton } from 'react-twitter-embed';
+import {FaTwitter} from "react-icons/fa"
 
 const Footer = () => {
     const { theme, setTheme } = useTheme();
@@ -42,7 +43,13 @@ const Footer = () => {
             </div> */}
             <div className="bg-transparent w-fit mx-auto lg:mx-0 text-center lg:text-start mt-4 lg:mt-0  ">
                 <p className="mb-2 uppercase font-bold text-sm text-gray-500 "> Stay Updated: </p>
-                <TwitterFollowButton screenName={'begreat_finance'}   />
+                {/* <TwitterFollowButton screenName={'begreat_finance'}   /> */}
+               <Link href="https://twitter.com/begreat_finance">
+               <div className='text-xs flex space-x-1 items-center bg-[#1d9bf0] rounded-full px-2 py-1 text-white'> 
+                    <FaTwitter/>
+                   <span>  Follow @begreat_finance </span>
+                </div>
+               </Link>
             </div>
             
 
