@@ -11,9 +11,9 @@ const HowItWorks = () => {
     <div> 
     <div className={theme=="light"?"bg-[#FFFCFB] ":"processbg "}> 
     <Container id='how-it-works' className='pt-20   md:pt-20 lg:pb-10 pb-2'>
-        <img className='h-6 absolute mt-12 left-[15rem] hidden xl:flex 2xl:left-[35rem]' src='./images/homepage/binance.png' alt=' ' />
-        <img className='h-10 absolute mt-[17rem] left-[10rem] hidden xl:flex 2xl:left-[25rem]' src='./images/homepage/ether2.png' alt='' />
-        <img className='h-8 absolute mt-[25rem] right-[18rem] hidden xl:flex 2xl:right-[34rem]' src='./images/homepage/security.png' alt=' ' />
+        <img className='h-6 absolute mt-12 left-[15rem] hidden xl:flex 2xl:left-[35rem]' src='./Images/homepage/binance.png' alt=' ' />
+        <img className='h-10 absolute mt-[17rem] left-[10rem] hidden xl:flex 2xl:left-[25rem]' src='./Images/homepage/ether2.png' alt='' />
+        <img className='h-8 absolute mt-[25rem] right-[18rem] hidden xl:flex 2xl:right-[34rem]' src='./Images/homepage/security.png' alt=' ' />
       <div  className='  '>
 
           <div className='text-center '> 
@@ -103,7 +103,7 @@ const HowItWorks = () => {
       
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10 lg:px-10'> 
               <div className='sm:flex sm:space-x-2'> 
-                  <img className='w-[2rem mx-auto sm:mx-0] h-[2rem]' src='./images/homepage/main.png' alt=''/>
+                  <img className='w-[2rem mx-auto sm:mx-0] h-[2rem]' src='./Images/homepage/main.png' alt=''/>
 
                   <div className='text-center sm:text-start'> 
                     <h1 className='foreground font-semibold' > Multi-timeframe Analysis </h1>
@@ -116,7 +116,7 @@ const HowItWorks = () => {
               </div>
 
                <div className='sm:flex sm:space-x-2'> 
-                  <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./images/homepage/updates.png' alt=''/>
+                  <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./Images/homepage/updates.png' alt=''/>
 
                   <div className='text-center sm:text-start'> 
                     <h1 className='foreground font-semibold ' > Individualized Market Analytics </h1>
@@ -129,7 +129,7 @@ const HowItWorks = () => {
               </div>
 
                <div className='sm:flex sm:space-x-2'> 
-                  <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./images/homepage/trend.png' alt=''/>
+                  <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./Images/homepage/trend.png' alt=''/>
 
                   <div className='text-center sm:text-start'> 
                     <h1 className='foreground font-semibold ' > Trade the trend </h1>
@@ -141,7 +141,7 @@ const HowItWorks = () => {
               </div>
 
                <div className='sm:flex sm:space-x-2'> 
-                  <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./images/homepage/price.png' alt=''/>
+                  <img className='w-[2rem] mx-auto sm:mx-0 h-[2rem]' src='./Images/homepage/price.png' alt=''/>
 
                   <div className='text-center sm:text-start'> 
                     <h1 className='foreground font-semibold ' > Data VIsualization </h1>

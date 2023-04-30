@@ -11,12 +11,12 @@ const Pricing = () => {
   return (
     <div className={theme=="light"?"bg-[#FFF]":"pricebg"}> 
     <Container id='pricing' >
-  <img className='h-5 absolute mt-[2rem] lg:left-[30rem] 2xl:left-[37rem] hidden xl:flex' src='./images/homepage/btc.png' alt=' ' />
-  <img className='h-20 absolute mt-[rem] lg:right-[20rem] 2xl:right-[35rem] hidden xl:flex' src='./images/homepage/red.png' alt=' ' />
-  <img className='h-5 absolute mt-[10rem] lg:right-[20rem] 2xl:right-[35rem] hidden xl:flex' src='./images/homepage/dash.png' alt=' ' />
-  <img className='h-20 absolute mt-[10rem] lg:left-[15rem] 2xl:left-[30rem] hidden xl:flex'  src='./images/homepage/green.png' alt=' ' />
-  <img className='h-5 absolute mt-[17rem] lg:left-[27rem] 2xl:left-[40rem] hidden xl:flex'  src='./images/homepage/tether.png' alt=' ' />
-   <img className='h-5 absolute mt-[18rem] lg:right-[27rem] 2xl:right-[40rem] hidden xl:flex'  src='./images/homepage/ether.png' alt=' ' />
+  <img className='h-5 absolute mt-[2rem] lg:left-[30rem] 2xl:left-[37rem] hidden xl:flex' src='./Images/homepage/btc.png' alt=' ' />
+  <img className='h-20 absolute mt-[rem] lg:right-[20rem] 2xl:right-[35rem] hidden xl:flex' src='./Images/homepage/red.png' alt=' ' />
+  <img className='h-5 absolute mt-[10rem] lg:right-[20rem] 2xl:right-[35rem] hidden xl:flex' src='./Images/homepage/dash.png' alt=' ' />
+  <img className='h-20 absolute mt-[10rem] lg:left-[15rem] 2xl:left-[30rem] hidden xl:flex'  src='./Images/homepage/green.png' alt=' ' />
+  <img className='h-5 absolute mt-[17rem] lg:left-[27rem] 2xl:left-[40rem] hidden xl:flex'  src='./Images/homepage/tether.png' alt=' ' />
+   <img className='h-5 absolute mt-[18rem] lg:right-[27rem] 2xl:right-[40rem] hidden xl:flex'  src='./Images/homepage/ether.png' alt=' ' />
   <div className='  text-center pt-10 pb-10 '> 
             <h1 className='uppercase mt-10 font-bold text-center text-sm text-transparent  bg-clip-text bg-gradient-to-r from-[#fc0542] to-[#8a76c7]'> Pricing </h1>
 

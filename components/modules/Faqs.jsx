@@ -35,7 +35,7 @@ const Faqs = () => {
        
 
    <div id='faqs'> 
-     <img className='h-8 absolute mt-[23rem] lg:left-[23rem] 2xl:left-[45rem] hidden lg:flex'  src='./images/homepage/faqstar.png' alt=' ' />
+     <img className='h-8 absolute mt-[23rem] lg:left-[23rem] 2xl:left-[45rem] hidden lg:flex'  src='./Images/homepage/faqstar.png' alt=' ' />
        <div  className={theme=="light"?"bg-[#FFFCFB] lg:mt-162  pb-20":"faqbg lg:mt-16  pb-20"}> 
          <Container className=''> 
          <div className=' md:flex lg:px-10 justify-between pt-16  '> 
@@ -43,7 +43,7 @@ const Faqs = () => {
                 <h1 className='font-bold text-2xl '> Frequently asked <br/> Questions </h1>
                 <p className='lg:text-sm text-base mt-2 sm:w-[70%] sm:mx-auto md:w-full lg:mx-0'>Can’t find the answer you’re looking for? Reach out to our customer support team at
                 <span className='underline'>  <a to='support@begreat.finance'> support@begreat.finance </a> </span> </p>
-                <img  className='w-[10rem] mx-auto md:ml-6 md:mt-6 mt-8' src='./images/homepage/faqs.png' alt='faqs'/>
+                <img  className='w-[10rem] mx-auto md:ml-6 md:mt-6 mt-8' src='./Images/homepage/faqs.png' alt='faqs'/>
             </div>
 
 
@@ -63,8 +63,8 @@ const Faqs = () => {
     {/* <div  className={theme=="light"?"bg-[#FEF3F2]":"worksbg mt-20"}>  */}
     <div className='divebg'>
         <Container> 
-             <img className='h-[10rem] absolute mt-[2rem] lg:left-[10rem] 2xl:left-[20rem] hidden xl:flex' src='./images/homepage/bigether.png' alt=' ' />
-             <img className='h-[10rem] absolute mt-[6rem] lg:right-[7rem] 2xl:right-[14rem] hidden xl:flex' src='./images/homepage/biglite.png' alt=' ' />
+             <img className='h-[10rem] absolute mt-[2rem] lg:left-[10rem] 2xl:left-[20rem] hidden xl:flex' src='./Images/homepage/bigether.png' alt=' ' />
+             <img className='h-[10rem] absolute mt-[6rem] lg:right-[7rem] 2xl:right-[14rem] hidden xl:flex' src='./Images/homepage/biglite.png' alt=' ' />
                   <div className='text-center text-gray-300 font-bold text-xl md:text-2xl pb-20 pt-14 mt-20 mb-20'>
             <h1> Ready to dive in? </h1>
             <h1> Start with a plan today. </h1> 
