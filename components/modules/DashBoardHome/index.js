@@ -609,6 +609,7 @@ export default function DashBoardHome() {
   const [createWatchlist, setCreateWatchlist] = useState("");
   const [isFormDisabled, setFormDisabled] = useState(false);
   const [storedInputValue, setStoredInputValue] = useState("");
+  const [placeholderItem, setPlaceholderItem] = useState("");
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedOptions2, setSelectedOptions2] = useState([]);
@@ -1344,14 +1345,14 @@ export default function DashBoardHome() {
                     field: { value, onChange },
                     formState: { errors },
                   }) => {
-                    // const storedInput = localStorage.getItem("textboxInput");
                     const payloadData = getWatchlist(value);
+                    setPlaceholderItem(payloadData);
                     const errorMessage = errors?.watchlist?.message;    
                     return (
                       <TextInput
                         disabled={payloadData ? true : false}
                         placeholder={payloadData ? 
-                          'Delete Watchlist' : 'Create Watchlist'
+                          placeholderItem : 'Create Watchlist'
                         }
                         inputClassName={"backText"}
                         suffixIcon={
