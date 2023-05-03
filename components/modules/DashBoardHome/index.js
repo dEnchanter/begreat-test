@@ -810,6 +810,7 @@ export default function DashBoardHome() {
     data: WatchList,
     isLoading: WatchListIsLoading,
     isFetching: WatchListIsFetching,
+    refetch
   } = useGetAllWatchListQuery({ 
     sortNumber: getSortValue?.value, 
     shift: selectedVal2, 
@@ -841,7 +842,7 @@ export default function DashBoardHome() {
     callback(filteredOptions);
   };
 
-  const totalAverageValue = WatchList?.data?.find(item => item.totalAverage !== undefined);
+  const totalAverageValue = WatchList?.totalAverage;
 
   const ConvertObject = (object=[]) => {
     return Object?.values(object)
@@ -960,7 +961,7 @@ export default function DashBoardHome() {
 
   const deleteWatchlistHolderHandle = async (payload) => {
     try {
-        removeAssetsFromWatchlist(payload);
+      removeAssetsFromWatchlist(payload);
     } catch (error) {
       console.error('addToWatchlist error:', error);
     } finally {
@@ -1409,9 +1410,9 @@ export default function DashBoardHome() {
               />
 
               {/*  */}
-              <div className={`${totalAverageValue?.totalAverage > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold borderColor border-[1px] rounded-md mb-5`}>
+              <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold borderColor border-[1px] rounded-md mb-5`}>
                 {
-                  `Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue?.totalAverage || 0.000)}%`
+                  `Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue || 0.000)}%`
                 }
               </div>
               

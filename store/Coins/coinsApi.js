@@ -71,6 +71,10 @@ export const coinsApi = createApi({
           method: "DELETE",
         }),
       invalidatesTags: ["Watchlist"],
+      // Define the onSuccess callback function to refetch the getAllWatchList query
+      // onSuccess: (_, { dispatch }) => {
+      //   dispatch(getAllWatchList.refetch());
+      // },
     }),
     DeleteWatchlist: builder.mutation({
       query: (payload) => (
@@ -128,7 +132,6 @@ export const coinsApi = createApi({
         body,
       }),
     }),
-
     forgetPassword: builder.mutation({
       query: (body) => ({
         url: "/passwordreset",
