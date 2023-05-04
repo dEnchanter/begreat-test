@@ -30,18 +30,6 @@ export default function Accordance2({
     setSelectedOptions2(selectedOptions2);
   }
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   // Extract the values of selected options
-  //   const selectedValues = selectedOptions.map(option => option.value);
-
-  //   // Pass the selected values as parameters to your endpoint
-  //   // e.g., fetch(`/api/endpoint?selectedValues=${selectedValues.join(',')}`)
-  //   console.log('Selected Values:', selectedValues);
-  // }
-
-  
   // Custom styles for react-select
   
   const customStyles = {
