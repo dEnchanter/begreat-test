@@ -73,7 +73,7 @@ console.log(data,getPath(),'userInfoLoginData');
     }
     if(data?.payload?.email){
       // console.log(data.payload)
-       router.push('https://app.begreat.finance')
+       router.push('/dashboard')
     }
   });
 
