@@ -1,15 +1,5 @@
 {
   "projects": {
     "default": "be-great-finance"
-  },
-  "targets": {
-    "be-great-finance": {
-      "hosting": {
-        "public": [
-          "be-great-finance"
-        ]
-      }
-    }
-  },
-  "etags": {}
+  }
 }
