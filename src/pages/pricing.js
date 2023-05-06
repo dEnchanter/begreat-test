@@ -16,11 +16,11 @@ export default function pricing() {
 
   const handlePayment =(paymentId) =>{
     const payload ={
-      link:'dashboard/settings?path=subscription',
+      link:'https://app.begreat.finance',
       payment:paymentId
     }
     if(data?.userRecord?.email){
-      router.push('dashboard/settings?path=subscription')
+      router.push('https://app.begreat.finance')
     }
     else{
       toast.error('You have to Sign In to Buy Plan')

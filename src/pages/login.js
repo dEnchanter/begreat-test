@@ -73,7 +73,7 @@ console.log(data,getPath(),'userInfoLoginData');
     }
     if(data?.payload?.email){
       // console.log(data.payload)
-       router.push('/dashboard')
+       router.push('https://app.begreat.finance')
     }
   });
 
@@ -177,7 +177,7 @@ const handleCredentialResponse = (response) => {
       setToken(data?.accessToken?.split('Bearer ')?.join(""))
       dispatch(googleAuth(data))
       toast.success(data?.message);
-      router.push('/dashboard')
+      router.push('https://app.begreat.finance')
     console.log('Token sent successfully!',data,'data1');
   })
   .catch((err) => {
