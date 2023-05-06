@@ -803,7 +803,7 @@ export default function DashBoardHome() {
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
   const [removeAssetsFromWatchlist] = useRemoveAssetsFromWatchlistMutation();
-  // const [deleteWatchlist] = useDeleteWatchlistMutation();
+  const [deleteWatchlist] = useDeleteWatchlistMutation();
   const [removeFromWatchlist] = useRemoveFromWatchListMutation();
 
   const {
@@ -961,13 +961,12 @@ export default function DashBoardHome() {
 
   const deleteWatchlistHolderHandle = async (payload) => {
     try {
-      removeAssetsFromWatchlist(payload);
+      deleteWatchlist(payload);
+      // removeAssetsFromWatchlist(payload);
     } catch (error) {
       console.error('addToWatchlist error:', error);
     } finally {
       // call delete watchlist
-      // deleteWatchlist(payload);
-
       // remove from local storage
       removeWatchlist(payload);
       toast.success(`Watchlist ${payload || storedInputValue} Deleted.`, {
@@ -1432,7 +1431,7 @@ export default function DashBoardHome() {
                     <Spinner />
                   ) : (
                     WatchList?.data?.map((item, i) => {
-                      let priceColor = item.average > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+                      let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
 
                       let pulseColor;
                       let shiftColor;
@@ -1473,7 +1472,7 @@ export default function DashBoardHome() {
                               {/* SHIFT */}
                             </div>
                             <div className="col-span-1 ml-4">
-                              <div className={`${priceColor} font-semibold`}>{toThreeFig(item.average)}%</div>
+                              <div className={`${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</div>
                             </div>
                             
                           </div>

@@ -106,9 +106,9 @@ export const coinsApi = createApi({
         const defaultPulse = `pulse[]=1`;	
         const defaultShift = `shift[]=2`;
 
-        // if (createWatchlist === localStorage.getItem("createWatchlist")) {
-        //   return null;
-        // }
+        if (!createWatchlist) {
+          return [];
+        }
 
         if (wltf !== 1) {
           return {
