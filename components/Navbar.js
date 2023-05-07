@@ -215,12 +215,15 @@ export default function Navbar({ fixed }) {
                   {" "}
                   <Link  onClick={handleNav} href={"/register"}>Sign Up</Link>{" "}
                 </h1>
+                <Link href="https://app.begreat.finance">
                 <Button
                   className="px-4 text-white -ml-1  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
-                  onClick={() => router.push("/login")}
+                  
                 >
                  Launch App 
                 </Button>
+                </Link>
+                
               </div>
 
               <div className="bg-modeBackground px-[8px] -ml-5 mt-4 lg:ml-0 rounded-xl hover:cursor-pointer gap-2  w-fit items-center whitespace-nowrap flex lg:mt-8 lg:hidden">
