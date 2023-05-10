@@ -168,7 +168,7 @@ export default function Navbar({ fixed }) {
                         ? "text-red-500 "
                         : "text-secondary"
                     } transition ease-in duration-300`}
-                    href="https://docs.begreat.finance"
+                    href="https:/docs.begreat.finance"
                     scroll={false}
                     onClick={() => setActiveLink("Docs")}
                   >
