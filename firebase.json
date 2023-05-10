@@ -1,6 +1,14 @@
+
 {
   "hosting": {
+    "cleanUrls": true,
     "public": "out",
+    "rewrites": [
+      {
+        "source": "/**", 
+        "dynamicLinks": true
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",

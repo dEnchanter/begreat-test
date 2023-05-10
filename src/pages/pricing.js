@@ -25,7 +25,7 @@ export default function pricing() {
     else{
       toast.error('You have to Sign In to Buy Plan')
       setPath(payload)
-      router.push('/login')
+      router.push('https://app.begreat.finance')
     }
   }
   return (
