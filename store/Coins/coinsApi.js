@@ -71,10 +71,6 @@ export const coinsApi = createApi({
           method: "DELETE",
         }),
       invalidatesTags: ["Watchlist"],
-      // Define the onSuccess callback function to refetch the getAllWatchList query
-      // onSuccess: (_, { dispatch }) => {
-      //   dispatch(getAllWatchList.refetch());
-      // },
     }),
     DeleteWatchlist: builder.mutation({
       query: (payload) => (
@@ -106,20 +102,30 @@ export const coinsApi = createApi({
         const defaultPulse = `pulse[]=1`;	
         const defaultShift = `shift[]=2`;
 
-        if (!createWatchlist) {
-          return [];
-        }
-
         if (wltf !== 1) {
-          return {
-            url: `${token?.userId}/watchlist/${createWatchlist}/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}`,
-            method: "GET",
+          if (createWatchlist) {
+            return {
+              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}&watchlistName=${createWatchlist}`,
+              method: "GET",
+            } 
+          } else {
+            return {
+              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}`,
+              method: "GET",
+            }  
           } 
         } else {
-          return {
-            url: `${token?.userId}/watchlist/${createWatchlist}/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}`,
-            method: "GET",
-          } 
+          if (createWatchlist) {
+            return {
+              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&watchlistName=${createWatchlist}`,
+              method: "GET",
+            } 
+          } else {
+            return {
+              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}`,
+              method: "GET",
+            } 
+          }
         }
       },
       providesTags: ["Watchlist"],

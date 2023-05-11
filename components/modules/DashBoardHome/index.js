@@ -802,7 +802,7 @@ export default function DashBoardHome() {
 
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
-  const [removeAssetsFromWatchlist] = useRemoveAssetsFromWatchlistMutation();
+  // const [removeAssetsFromWatchlist] = useRemoveAssetsFromWatchlistMutation();
   const [deleteWatchlist] = useDeleteWatchlistMutation();
   const [removeFromWatchlist] = useRemoveFromWatchListMutation();
 
@@ -810,7 +810,6 @@ export default function DashBoardHome() {
     data: WatchList,
     isLoading: WatchListIsLoading,
     isFetching: WatchListIsFetching,
-    refetch
   } = useGetAllWatchListQuery({ 
     sortNumber: getSortValue?.value, 
     shift: selectedVal2, 
@@ -961,14 +960,15 @@ export default function DashBoardHome() {
 
   const deleteWatchlistHolderHandle = async (payload) => {
     try {
+      // remove from payload
+      removeWatchlist(payload);
+      // Call delete endpoint
       deleteWatchlist(payload);
-      // removeAssetsFromWatchlist(payload);
+      // set createwatchlist to empty
+      setCreateWatchlist("");
     } catch (error) {
       console.error('addToWatchlist error:', error);
     } finally {
-      // call delete watchlist
-      // remove from local storage
-      removeWatchlist(payload);
       toast.success(`Watchlist ${payload || storedInputValue} Deleted.`, {
         duration: 4000,
       });
