@@ -27,6 +27,7 @@ import {
   useRemoveWatchlistHolderMutation,
   useRemoveAssetsFromWatchlistMutation,
   useDeleteWatchlistMutation,
+  useGetWatchListNameQuery,
 } from "../../../store/Coins/coinsApi";
 import Spinner from "../../common/Spinner";
 import { Controller, useForm } from "react-hook-form";
@@ -822,6 +823,16 @@ export default function DashBoardHome() {
   });
 
   const {
+    data: WatchListName
+  } = useGetWatchListNameQuery({ 
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(() => {
+    setCreateWatchlist(WatchListName?.watchlist)
+  }, []);
+
+  const {
     data: AllAssets,
   } = useGetAllAssetQuery({ 
     refetchOnMountOrArgChange: true 
@@ -958,22 +969,17 @@ export default function DashBoardHome() {
     }
   }
 
-  const deleteWatchlistHolderHandle = async (payload) => {
+  const deleteWatchlistHolderHandle = async () => {
     try {
-      // remove from payload
-      removeWatchlist(payload);
-      // Call delete endpoint
-      deleteWatchlist(payload);
-      // set createwatchlist to empty
-      setCreateWatchlist("");
-    } catch (error) {
-      console.error('addToWatchlist error:', error);
-    } finally {
-      toast.success(`Watchlist ${payload || storedInputValue} Deleted.`, {
+      deleteWatchlist(WatchListName?.watchlist); // Call delete endpoint
+      setCreateWatchlist(""); // set createwatchlist to empty
+      toast.success(`Watchlist Deleted.`, {
         duration: 4000,
       });
       reset("");
       setFormDisabled(false);
+    } catch (error) {
+      console.error('addToWatchlist error:', error);
     }
   }
 
@@ -1357,23 +1363,23 @@ export default function DashBoardHome() {
                     field: { value, onChange },
                     formState: { errors },
                   }) => {
-                    const payloadData = getWatchlist(value);
-                    setPlaceholderItem(payloadData);
+
+                    setPlaceholderItem(WatchListName?.watchlist);
                     const errorMessage = errors?.watchlist?.message;    
                     return (
                       <TextInput
-                        disabled={payloadData ? true : false}
-                        placeholder={payloadData ? 
+                        disabled={WatchListName?.watchlist.length > 0 ? true : false}
+                        placeholder={WatchListName?.watchlist.length > 0 ? 
                           placeholderItem : 'Create Watchlist'
                         }
                         inputClassName={"backText"}
                         suffixIcon={
-                           payloadData ? (
+                          WatchListName?.watchlist.length > 0 ? (
                             <MdOutlineDisabledByDefault 
                               size={20}
                               wrapperClassName="xl:w-[20%]"
                               className="cursor-pointer"
-                              onClick={() => deleteWatchlistHolderHandle(value)}
+                              onClick={() => deleteWatchlistHolderHandle()}
                             />
                           ) : (
                             <FiPlus

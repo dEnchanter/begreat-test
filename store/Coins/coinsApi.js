@@ -130,7 +130,13 @@ export const coinsApi = createApi({
       },
       providesTags: ["Watchlist"],
     }),
-
+    getWatchListName: builder.query({
+      query: () => ({
+        url: `${token?.userId}/watchlist`,
+        method: "GET",
+      }),
+      providesTags: ["Watchlist"],
+    }),
     userLoginGoogleAuth: builder.mutation({
       query: (body) => ({
         url: "users/signinwithgoogle",
@@ -160,6 +166,7 @@ export const {
   useDeleteWatchlistMutation,
   useRemoveFromWatchListMutation,
   useGetAllWatchListQuery,
+  useGetWatchListNameQuery,
   useUserLoginGoogleAuthMutation,
   useForgetPasswordMutation
 } = coinsApi;
