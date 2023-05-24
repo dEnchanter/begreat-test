@@ -4,8 +4,9 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import TwoSides from "./TwoSides";
 import DropDownItem from "../ui/DropDownItem";
 import Select from 'react-select';
+import { setPulseTimeframe, setShiftTimeframe } from "../../helper";
 
-export default function Accordance({ title, options, value, seyListDay,options1, value1, seyListDay1 }) {
+export default function Accordance({ title, options, value, seyListDay, options1, value1, seyListDay1 }) {
   // Select dropdown styling
   const customStyles = {
     control: (provided) => ({
@@ -26,6 +27,8 @@ export default function Accordance({ title, options, value, seyListDay,options1,
       backgroundColor: 'gray', // customize background color of selected options
     }),
   };
+
+  // setPulseTimeframe(value?.value);
 
   const [toggle, setToggle] = useState(false);
   return (
@@ -92,6 +95,7 @@ export default function Accordance({ title, options, value, seyListDay,options1,
               onChange={(e) => {
                 console.log(e,'data454')
                 seyListDay1(e)
+                setShiftTimeframe(e)
               }}
               value={value1}
               styles={customStyles}

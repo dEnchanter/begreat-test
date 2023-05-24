@@ -35,7 +35,7 @@ import {
   generateMaxLength,
 } from "../../../constants/errors";
 import Accordance2 from "../../common/Accordiance2";
-import { getWatchlist, removeWatchlist, setWatchlist } from "../../../helper";
+import { getCurrency, getWatchlist, removeWatchlist, setCurrency, setWatchlist } from "../../../helper";
 
 export default function DashBoardHome() {
   const options = [
@@ -209,27 +209,27 @@ export default function DashBoardHome() {
       label: <span className="text-xl  font-semibold  whitespace-nowrap">8 HOURS</span>,
     },
     {
-      value: '12h',
+      value: 720,
       label: <span className=" text-xl font-semibold whitespace-nowrap">12 HOURS</span>,
     },
 
      {
-      value: '1d',
+      value: 1440,
       label: <span className=" text-xl font-semibold whitespace-nowrap">1 DAY</span>,
     },
 
      {
-      value: '3d',
+      value: 4320,
       label: <span className=" text-xl font-semibold whitespace-nowrap">3 DAYS</span>,
     },
 
      {
-      value: '1w',
+      value: 10080,
       label: <span className=" text-xl font-semibold whitespace-nowrap">1 WEEK</span>,
     },
 
      {
-      value: '1M',
+      value: 43800,
       label: <span className=" text-xl font-semibold whitespace-nowrap">1 MONTH</span>,
     },
     
@@ -308,31 +308,31 @@ export default function DashBoardHome() {
       label2: '8h',
     },
     {
-      value: '12h',
+      value: 720,
       label: <span className="text-white font-semibold whitespace-nowrap">12 HOURS</span>,
       label2: '12h',
     },
 
      {
-      value: '1d',
+      value: 1440,
       label: <span className="text-white font-semibold whitespace-nowrap">1 DAY</span>,
       label2: '1d',
     },
 
      {
-      value: '3d',
+      value: 4320,
       label: <span className="text-white font-semibold whitespace-nowrap">3 DAYS</span>,
       label2: '3d',
     },
 
      {
-      value: '1w',
+      value: 10080,
       label: <span className="text-white font-semibold whitespace-nowrap">1 WEEK</span>,
       label2: '1w',
     },
 
      {
-      value: '1M',
+      value: 43800,
       label: <span className="text-white font-semibold whitespace-nowrap">1 MONTH</span>,
       label2: '1M',
     },
@@ -417,27 +417,27 @@ export default function DashBoardHome() {
       label: <span className="text-white text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
     },
     {
-      value: '12h',
+      value: 720,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
 
     {
-      value: '1d',
+      value: 1440,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
 
      {
-      value: '3d',
+      value: 4320,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
 
      {
-      value: '1w',
+      value: 10080,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
 
      {
-      value: '1M',
+      value: 43800,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
@@ -497,23 +497,23 @@ export default function DashBoardHome() {
       label: <span className="text-white text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
     },
     {
-      value: '12h',
+      value: 720,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
     {
-      value: '1d',
+      value: 1440,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
     {
-      value: '3d',
+      value: 4320,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
     {
-      value: '1w',
+      value: 10080,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
     {
-      value: '1M',
+      value: 43800,
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
@@ -575,27 +575,27 @@ export default function DashBoardHome() {
       label: <span className="text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
     },
     {
-      value: '12h',
+      value: 720,
       label: <span className=" text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
 
     {
-      value: '1d',
+      value: 1440,
       label: <span className="text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
 
      {
-      value: '3d',
+      value: 4320,
       label: <span className="text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
 
      {
-      value: '1w',
+      value: 10080,
       label: <span className="text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
 
      {
-      value: '1M',
+      value: 43800,
       label: <span className="text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
@@ -619,6 +619,22 @@ export default function DashBoardHome() {
   const selectedVal2 = selectedOptions2.map((item) => item.value);
 
   const [timeLeft, setTimeLeft] = useState(options3[1]);
+
+  useEffect(() => {
+    const currency = localStorage.getItem("currencyName");
+    if (currency) {
+      setCoinName(currency);
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   const b = localStorage.getItem("sortValue");
+
+  //   if (b) {
+  //     setSortValue(b)
+  //   }
+
+  // }, []);
 
   const fetcher1 = async (url) => {
     const response = await axios.get(url);
@@ -986,9 +1002,11 @@ export default function DashBoardHome() {
   const handleOnClickWatchlist = async (name) => {
     const a = name.split("/")[0];
     setCoinName(a);
+    setCurrency(a);
     if (name) {
       // console.log('data name', a)
       setCoinName(a);
+      setCurrency(a)
     }
   }
 
@@ -1106,6 +1124,7 @@ export default function DashBoardHome() {
                           // const secondHalf = word.slice(index);
                           // console.log(firstHalf, secondHalf, 'firstHalf, secondHalf')
                           setCoinName(firstHalf);
+                          setCurrency(firstHalf);
                         }}
                         isClearable={true}
                         styles={customStyles2}
@@ -1259,11 +1278,10 @@ export default function DashBoardHome() {
                 {List?.slice(0, getTimeFrame?.value)?.map((item, i) => (
                   <div
                     key={i}
-                    className={`${handleColor(item?.pulseColor )} flex-grow font-bold text-white flex justify-center items-center 
-                    text-2xl w-full md:w-[24%] xl:w-[18%] rounded`}
-                  >
-                 
-                    {item?.loading ? <Spinner /> : item?.time || item}
+                    className={`${handleColor(item?.pulseColor)} flex-grow font-bold text-white flex justify-center items-center 
+                    text-2xl w-full md:w-[24%] xl:w-[18%] rounded ${item?.loading1 && "blur-sm"}`
+                  }>
+                    {item?.time || item}
                   </div>
                 ))}
               </div>
@@ -1274,7 +1292,7 @@ export default function DashBoardHome() {
                 {List?.slice(0, getShiftFrame?.value)?.map((item) => (
                   <div
                     className={`flex-grow h-[250px] flex w-[163px] md:w-[30%] lg:w-[20%] ${
-                      item?.loading1 && "blur-2xl"
+                      item?.loading1 && "blur-sm"
                     } `}
                   >
                     <FlexContainer
@@ -1365,6 +1383,7 @@ export default function DashBoardHome() {
                   }) => {
 
                     setPlaceholderItem(WatchListName?.watchlist);
+                    
                     const errorMessage = errors?.watchlist?.message;    
                     return (
                       <TextInput
@@ -1386,7 +1405,8 @@ export default function DashBoardHome() {
                             size={20}
                             wrapperClassName="xl:w-[20%]"
                             className="cursor-pointer"
-                            onClick={() => createWatchlistHolderHandle(value)}
+                            // onClick={value ? () => createWatchlistHolderHandle(value): null}
+                            onClick={value ? () => createWatchlistHolderHandle(value) : null}
                           />
                           )  
                         }
@@ -1405,8 +1425,9 @@ export default function DashBoardHome() {
                     <DropDownItem
                       options={options5}
                       onChange={(e) => {
-                        // console.log(e,'sort value')
+                        console.log(e?.value,'sort value')
                         setSortValue(e)
+                        localStorage.setItem("sortValue", e?.value)
                       }}
                       value={getSortValue}
                     />
