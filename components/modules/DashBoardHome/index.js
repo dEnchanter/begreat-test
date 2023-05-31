@@ -36,8 +36,12 @@ import {
 } from "../../../constants/errors";
 import Accordance2 from "../../common/Accordiance2";
 import { getCurrency, getWatchlist, removeWatchlist, setCurrency, setWatchlist } from "../../../helper";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { logoutUser, logoutUserI } from "../../../store/auth";
 
 export default function DashBoardHome() {
+  // Controls the no of Pulse cards you see on the dashboard
   const options = [
     {
       value: 1,
@@ -61,6 +65,7 @@ export default function DashBoardHome() {
     },
   ];
 
+  // Controls the no of Shift cards you see on the dashboard
   const options1 = [
     {
       value: 1,
@@ -84,7 +89,7 @@ export default function DashBoardHome() {
     },
   ];
 
-  // Pulse timeframes
+  // Pulse timeframes on Dashboard Card
   const options2 = [
     {
       value: 1,
@@ -153,7 +158,7 @@ export default function DashBoardHome() {
     
   ];
 
-  // Rise and Fall timeframes complete
+  // Rise and Fall timeframes
   const options3 = [
     {
       value: 2,
@@ -209,33 +214,29 @@ export default function DashBoardHome() {
       label: <span className="text-xl  font-semibold  whitespace-nowrap">8 HOURS</span>,
     },
     {
-      value: 720,
+      value: '12h',
       label: <span className=" text-xl font-semibold whitespace-nowrap">12 HOURS</span>,
     },
-
-     {
-      value: 1440,
+    {
+      value: '1d',
       label: <span className=" text-xl font-semibold whitespace-nowrap">1 DAY</span>,
     },
-
-     {
-      value: 4320,
+    {
+      value: '3d',
       label: <span className=" text-xl font-semibold whitespace-nowrap">3 DAYS</span>,
     },
-
-     {
-      value: 10080,
+    {
+      value: '1w',
       label: <span className=" text-xl font-semibold whitespace-nowrap">1 WEEK</span>,
     },
-
-     {
-      value: 43800,
+    {
+      value: '1M',
       label: <span className=" text-xl font-semibold whitespace-nowrap">1 MONTH</span>,
     },
     
   ];
 
-  // Watchlist timeframes
+  // Change% timeframes
   const options4 = [
     {
       value: 1,
@@ -308,31 +309,31 @@ export default function DashBoardHome() {
       label2: '8h',
     },
     {
-      value: 720,
+      value: '12h',
       label: <span className="text-white font-semibold whitespace-nowrap">12 HOURS</span>,
       label2: '12h',
     },
 
      {
-      value: 1440,
+      value: '1d',
       label: <span className="text-white font-semibold whitespace-nowrap">1 DAY</span>,
       label2: '1d',
     },
 
      {
-      value: 4320,
+      value: '3d',
       label: <span className="text-white font-semibold whitespace-nowrap">3 DAYS</span>,
       label2: '3d',
     },
 
      {
-      value: 10080,
+      value: '1w',
       label: <span className="text-white font-semibold whitespace-nowrap">1 WEEK</span>,
       label2: '1w',
     },
 
      {
-      value: 43800,
+      value: '1M',
       label: <span className="text-white font-semibold whitespace-nowrap">1 MONTH</span>,
       label2: '1M',
     },
@@ -497,29 +498,29 @@ export default function DashBoardHome() {
       label: <span className="text-white text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
     },
     {
-      value: 720,
+      value: '12h',
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
     {
-      value: 1440,
+      value: '1d',
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
     {
-      value: 4320,
+      value: '3d',
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
     {
-      value: 10080,
+      value: '1w',
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
     {
-      value: 43800,
+      value: '1M',
       label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
   ];
 
-  // Shift timeframes
+  // Shift timeframes on Dashboard Card
   const options8 = [
     {
       value: 2,
@@ -575,28 +576,24 @@ export default function DashBoardHome() {
       label: <span className="text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
     },
     {
-      value: 720,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+      value: '12h',
+      label: <span className="text-white text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
-
     {
-      value: 1440,
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 Day</span>,
+      value: '1d',
+      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
-
-     {
-      value: 4320,
-      label: <span className="text-lg font-semibold whitespace-nowrap">3 Days</span>,
+    {
+      value: '3d',
+      label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
-
-     {
-      value: 10080,
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 Week</span>,
+    {
+      value: '1w',
+      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
-
-     {
-      value: 43800,
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 Month</span>,
+    {
+      value: '1M',
+      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
   ];
@@ -608,9 +605,14 @@ export default function DashBoardHome() {
   const [getSortValue, setSortValue] = useState(options5[1]);
   const [coinName, setCoinName] = useState("SOL");
   const [createWatchlist, setCreateWatchlist] = useState("");
+
   const [isFormDisabled, setFormDisabled] = useState(false);
   const [storedInputValue, setStoredInputValue] = useState("");
   const [placeholderItem, setPlaceholderItem] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
+  const [countdown, setCountdown] = useState(60);
+  const [userActive, setUserActive] = useState(true);
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedOptions2, setSelectedOptions2] = useState([]);
@@ -619,7 +621,10 @@ export default function DashBoardHome() {
   const selectedVal2 = selectedOptions2.map((item) => item.value);
 
   const [timeLeft, setTimeLeft] = useState(options3[1]);
+  const router = useRouter();
+  const dispatch  = useDispatch();
 
+  // Persists the Asset Currency you're on in the local storage
   useEffect(() => {
     const currency = localStorage.getItem("currencyName");
     if (currency) {
@@ -627,15 +632,7 @@ export default function DashBoardHome() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const b = localStorage.getItem("sortValue");
-
-  //   if (b) {
-  //     setSortValue(b)
-  //   }
-
-  // }, []);
-
+  // fetcher 1 and 2 for fetching the svg icons for each Asset Currency
   const fetcher1 = async (url) => {
     const response = await axios.get(url);
     return response.data;
@@ -661,7 +658,7 @@ export default function DashBoardHome() {
   const [fifteenMin, setFifteenMin] =useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">15 MINUTE</span>, value:'15'});
   const [fiveMin, setFiveMin]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">5 MINUTE</span>, value:'5'})
 
-  // FOR PULSE TIMEFRAME
+  // FOR SHIFT TIMEFRAME
 
   const [day1b,setDay1b]=useState({label:<span className="text-lg flex whitespace-nowrap px-0 mx-0">Day</span>,value:'1d'})
   const [fourHoursb,setFourHoursb]=useState({label:<span className="text-lg flex whitespace-nowrap">4 Hours</span>,value:'240'});
@@ -669,6 +666,7 @@ export default function DashBoardHome() {
   const [fifteenMinb,setFifteenMinb] =useState({label:<span className="text-lg flex whitespace-nowrap">15 Mins</span>,value:'15'});
   const [fiveMinb,setFiveMinb]=useState({label:<span className="text-lg flex whitespace-nowrap">5 Mins</span>,value:'5'})
 
+  // Data calls
   const { 
     data: Day1, 
     isLoading: Day1Loader, 
@@ -679,7 +677,7 @@ export default function DashBoardHome() {
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
-    pollingInterval: 30000, // 30secs
+    pollingInterval: 30000, // refetch after 30secs
   });
 
   const { 
@@ -874,7 +872,7 @@ export default function DashBoardHome() {
     return Object?.values(object)
   }
 
-  // DROPDOWN ITEM FOR PULSE ITEMS
+  // DROPDOWN ITEM FOR PULSE and SHIFT ITEM CARDS
   const List = [
     { 
       time: <DropDownItem noIcon={true} options={options2} value={day1} onChange={(e)=>setDay1(e)}/>,
@@ -944,6 +942,7 @@ export default function DashBoardHome() {
     },
   });
 
+  // Add to watchlist handle
   const addToWatchlistHandle = async () => {
     try {
       const payload = {
@@ -956,6 +955,7 @@ export default function DashBoardHome() {
     }
   };
 
+  // Remove from watchlist handle
   const removeFromWatchlistHandle = async (name) => {
     try {
       const payload = {
@@ -968,6 +968,7 @@ export default function DashBoardHome() {
     }
   }
 
+  // Create watchlist handle
   const createWatchlistHolderHandle = async (payload) => {
     try {
         setWatchlist(payload);
@@ -985,6 +986,7 @@ export default function DashBoardHome() {
     }
   }
 
+  // Delete watchlist handle
   const deleteWatchlistHolderHandle = async () => {
     try {
       deleteWatchlist(WatchListName?.watchlist); // Call delete endpoint
@@ -999,6 +1001,7 @@ export default function DashBoardHome() {
     }
   }
 
+  // Click on asset currency in the watchlist to set the whole app to that currency
   const handleOnClickWatchlist = async (name) => {
     const a = name.split("/")[0];
     setCoinName(a);
@@ -1025,6 +1028,68 @@ export default function DashBoardHome() {
       setStoredInputValue(storedInput);
     }
   }, []);
+
+  // Implement Auto Logout
+  useEffect(() => {
+    let inactivityTimeout;
+
+    const resetTimer = () => {
+      clearTimeout(inactivityTimeout);
+      inactivityTimeout = setTimeout(() => {
+        setUserActive(false);
+        setShowModal(true);
+      }, 300000); //5mins
+    };
+
+    const handleActivity = () => {
+      setUserActive(true);
+      resetTimer();
+    };
+
+    // Add event listeners for user activity
+    document.addEventListener('mousemove', handleActivity);
+    document.addEventListener('keydown', handleActivity);
+    // document.addEventListener('touchstart', handleActivity);
+
+    resetTimer();
+
+    // Clean up event listeners on component unmount
+    return () => {
+      clearTimeout(inactivityTimeout);
+      document.removeEventListener('mousemove', handleActivity);
+      document.removeEventListener('keydown', handleActivity);
+      // document.removeEventListener('touchstart', handleActivity);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showModal) {
+      const countdownInterval = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+
+      if (countdown === 0) {
+        clearInterval(countdownInterval);
+        dispatch(logoutUser());
+        router.push('/login');
+      }
+
+      return () => {
+        clearInterval(countdownInterval);
+      };
+    }
+  }, [showModal, countdown]);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    router.push('/login');
+
+  };
+
+  const handleContinueWorking = () => {
+    setShowModal(false);
+    setCountdown(60);
+  };
 
   // GRADIENT COLORS;
    const handleColor = (no) => {
@@ -1091,6 +1156,31 @@ export default function DashBoardHome() {
 
   return (
     <section className="relative">
+      {/* Auto Logout Modal */}
+      {showModal && (
+        <div className="fixed inset-1 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-[25rem] h-[17rem]">
+            <h2 className="text-xl font-bold mb-4 text-center">Session will expire soon!</h2>
+            <p className="mb-4 text-center text-lg">You will be automatically logged out for security reasons in:</p>
+            <p className="mb-4 text-center text-2xl">{countdown}</p>
+            <div className="flex justify-center">
+              <button
+                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mr-2"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                onClick={handleContinueWorking}
+              >
+                Keep Working
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex px-3 flex-wrap">
         <div className="flex-grow w-[100%] xl:w-[67%] mb-4 xl:mb-0">
 
@@ -1332,6 +1422,7 @@ export default function DashBoardHome() {
         {/* SIDEBAR TO THE RIGHT */}
         <div className="flex-grow xl:w-[25rem]">
           <div className="mx-3 ">
+            {/* DASHBOARD TIMEFRAME SETTINGS */}
             <Accordance
               options={options}
               value={getTimeFrame}
@@ -1340,6 +1431,7 @@ export default function DashBoardHome() {
               seyListDay1={setShiftFrame}
               value1={getShiftFrame}      
             />
+            {/* TRENDSCAN TIMEFRAME SETTINGS */}
             <Accordance2
               options6={options6}
               options7={options7}
