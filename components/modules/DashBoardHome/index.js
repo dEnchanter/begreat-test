@@ -1038,7 +1038,7 @@ export default function DashBoardHome() {
       inactivityTimeout = setTimeout(() => {
         setUserActive(false);
         setShowModal(true);
-      }, 300000); //5mins
+      }, 900000); //15mins
     };
 
     const handleActivity = () => {
