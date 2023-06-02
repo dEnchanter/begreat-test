@@ -577,23 +577,23 @@ export default function DashBoardHome() {
     },
     {
       value: '12h',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
     {
       value: '1d',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Day</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
     {
       value: '3d',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Days</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
     {
       value: '1w',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Week</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
     {
       value: '1M',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Month</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
   ];
