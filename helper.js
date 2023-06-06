@@ -9,7 +9,19 @@ export const setToken = (token) =>{
     localStorage.setItem("begreatFinace:accesskey", token);
 }
 
-export const setWatchlist = (token) =>{
+export const setCurrency = (name) =>{
+    localStorage.setItem("currencyName", name);
+}
+
+export const setPulseTimeframe = (name) =>{
+    localStorage.setItem("pulseName", name);
+}
+
+export const setShiftTimeframe = (name) =>{
+    localStorage.setItem("shiftName", name);
+}
+
+export const setWatchlist = (token) => {
     localStorage.setItem("createWatchlist", token);
 }
 
@@ -44,12 +56,12 @@ export const getUserDataS = () => {
 
 export const setUserDataS = (userData) =>{
     localStorage.setItem("begreatFinace:user", JSON.stringify(userData));
-}
-    
+}  
     
 export const DeleteAuthToken = (token) =>{
     localStorage.removeItem("user:token");
 }
+
 export const DeleteAuthTokenMaster = (name) =>{
     localStorage.removeItem(name);
 }
