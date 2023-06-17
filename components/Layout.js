@@ -7,7 +7,7 @@ const Layout = ({ children,title='' }) => {
   return (
     <>
     <Head>
-        <title> {`Be-great Finance | ${title}`} </title>
+        <title> {`Be Great Finance | ${title}`} </title>
         {/* <script src="https://accounts.google.com/gsi/client" async defer></script> */}
       </Head>
       <Navbar /> <div className="herobg"> {children} </div>

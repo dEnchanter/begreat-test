@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title> Be-great Finance</title>
+        <title> Be Great Finance</title>
         <link rel="icon" href="/Bicon.png" />
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}></script>
         <script>
