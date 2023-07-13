@@ -5,6 +5,12 @@ export const getToken = () => {
     }
 };
 
+export const getToken2 = () => {
+    if(typeof window !== 'undefined'){
+        return localStorage.getItem("token2");
+    }
+};
+
 export const setToken = (token) =>{
     localStorage.setItem("begreatFinace:accesskey", token);
 }

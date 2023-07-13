@@ -606,8 +606,6 @@ export default function DashBoardHome() {
   const [coinName, setCoinName] = useState("SOL");
   const [createWatchlist, setCreateWatchlist] = useState("");
 
-  console.log("create Watchlist", createWatchlist);
-
   const [isFormDisabled, setFormDisabled] = useState(false);
   const [storedInputValue, setStoredInputValue] = useState("");
   const [placeholderItem, setPlaceholderItem] = useState("");
@@ -681,6 +679,8 @@ export default function DashBoardHome() {
     skip:!coinName,
     pollingInterval: 30000, // refetch after 30secs
   });
+
+  localStorage.setItem("token2", Day1?.token);
 
   const { 
     data: FourHours, 
@@ -838,15 +838,11 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  console.log("Watchlist", WatchList)
-
   const {
     data: WatchListName
   } = useGetWatchListNameQuery({ 
     refetchOnMountOrArgChange: true,
   });
-
-  console.log("Watchist Name", WatchListName?.watchlist)
 
   useEffect(() => {
     setCreateWatchlist(WatchListName?.watchlist)
@@ -1204,7 +1200,7 @@ export default function DashBoardHome() {
                   maxLength: generateMaxLength(10),
                 }}
                 render={({
-                  field: { value, onChange },
+                  // field: { value, onChange },
                   formState: { errors },
                 }) => {
                   const errorMessage = errors?.coinname?.message;
