@@ -3,7 +3,7 @@ import { baseQuery } from "../api";
 import { getUserDataS, getWatchlist } from "../../helper";
 
 const token = getUserDataS();
-const createWatchlistLocal = getWatchlist();
+// const createWatchlistLocal = getWatchlist();
 
 export const coinsApi = createApi({
   reducerPath: "coinsApi",
