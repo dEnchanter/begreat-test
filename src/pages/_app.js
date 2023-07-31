@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }) {
     <Toaster
   position='top-right'
   />
-      <GoogleAnalytics measurementId='G-DQXFFNZWXG' />
+      <GoogleAnalytics measurementId='G-0QGJRJW4GG' />
 
       {/* Add your app components here */}
       <Component {...pageProps} />
