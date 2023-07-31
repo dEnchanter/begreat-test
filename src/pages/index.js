@@ -7,6 +7,7 @@ import Hero from '../../components/modules/Hero';
 import HowItWorks from '../../components/modules/HowItWorks';
 import Pricing from '../../components/modules/Pricing';
 import Tools from '../../components/modules/Tools';
+import GoogleAnalytics from "@bradgarropy/next-google-analytics";
 
 
 
@@ -17,6 +18,8 @@ export default function Home() {
       <Head>
         <title> Be Great Finance</title>
         <link rel="icon" href="/Bicon.png" />
+
+        <GoogleAnalytics measurementId='G-DQXFFNZWXG' />
       </Head>
       
       <main>
