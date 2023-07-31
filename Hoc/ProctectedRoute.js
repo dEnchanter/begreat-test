@@ -27,7 +27,7 @@ export const ProtectedRoute = ({ children, type }) => {
 
   const { data, isLoading, error,refetch,isError, status} = useGetUserProfileQuery(); // Use the generated hook
   const { data:dataStatus, isLoading:statusLoader, error:errorLoader,isError:statusIsError} = useCheckStatusQuery(); // Use the generated hook
-  console.log(dataStatus?.status,'isLoggedIn')
+  // console.log(dataStatus?.status,'isLoggedIn')
   
   useEffect(() => {
     if (dataStatus?.status&&dataStatus?.status!=="active") {
