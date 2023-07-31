@@ -681,8 +681,6 @@ export default function DashBoardHome() {
   });
 
   localStorage.setItem("token2", Day1?.token);
-  const token2 = localStorage.getItem("begreatFinace:user");
-  console.log(token2);
 
   const { 
     data: FourHours, 
