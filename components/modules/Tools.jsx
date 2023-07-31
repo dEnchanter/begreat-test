@@ -2,10 +2,6 @@ import React from 'react'
 import { Container } from '../styles/Container'
 import { useTheme } from "next-themes";
 
-
-
-
-
 const Tools = () => {
     const { theme, setTheme } = useTheme();
   return (
