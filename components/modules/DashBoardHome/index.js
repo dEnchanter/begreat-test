@@ -1532,9 +1532,9 @@ export default function DashBoardHome() {
 
               {/*  */}
               <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold borderColor border-[1px] rounded-md mb-5`}>
-                {
+                {/* {
                   `Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue || 0.000)}%`
-                }
+                } */}
               </div>
               
               {/* GET ALL FROM WATCHLIST */}
