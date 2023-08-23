@@ -10,7 +10,7 @@
     },
     {
       "site": "be-great-finance-dashboardmain",
-      "public": "dashboard/out",
+      "public": "out",
       "ignore": [
         "firebase.json",
         "**/node_modules/**"
