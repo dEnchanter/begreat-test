@@ -1,18 +1,20 @@
-
 {
-  "hosting": {
-    "cleanUrls": true,
-    "public": "out",
-    "rewrites": [
-      {
-        "source": "/**", 
-        "dynamicLinks": true
-      }
-    ],
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+  "hosting": [
+    {
+      "site": "be-great-finance",
+      "public": "main-site/out", 
+      "ignore": [
+        "firebase.json",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "site": "be-great-finance-dashboardmain",
+      "public": "dashboard/out",
+      "ignore": [
+        "firebase.json",
+        "**/node_modules/**"
+      ]
+    }
+  ]
 }
