@@ -6,9 +6,11 @@
     "be-great-finance": {
       "hosting": {
         "main-site": [
-          "be-great-finance"
+          "be-great-finance",
+          "begreat.finance"
         ],
         "dashboard": [
+          "app.begreat.finance",
           "be-great-finance-dashboardmain"
         ]
       }
