@@ -57,7 +57,6 @@ export const getUserDataS = () => {
     if(typeof window !== 'undefined'){
         return JSON.parse(localStorage.getItem("begreatFinace:user"));
     }
-    return JSON.parse(localStorage.getItem("begreatFinace:user"))
 };
 
 export const setUserDataS = (userData) =>{
