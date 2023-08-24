@@ -7,8 +7,13 @@ const nextConfig = {
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
       config.plugins.push(new webpack.IgnorePlugin({
-        // Ignore all pages except dashboard/index.js
-        resourceRegExp: /^\.\/pages\/(?!dashboard\/index\.js$)/,
+        // This regex is crafted to match:
+        // 1. Anything inside the pages/dashboard directory
+        // 2. The _app.js and _document.js files in the pages directory
+        // It then uses a negative lookahead to ensure it doesn't match 
+        // any other file directly inside the pages directory.
+        resourceRegExp: /^\.\/pages\/((dashboard\/.*)|(?!\w+\/)(?!_app\.js|_document\.js).*)$/,
+        contextRegExp: /pages$/,
       }));
 
     return config;
