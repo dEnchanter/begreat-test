@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 8081",
-    "build": "next build /dashboard && next export /dashboard",
+    "build": "next build pages/dashboard && next export pages/dashboard",
     "start": "next start",
     "lint": "next lint"
   },
