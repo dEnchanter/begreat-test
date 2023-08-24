@@ -1,0 +1,48 @@
+{
+  "name": "be-great-finance-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8082",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@bradgarropy/next-google-analytics": "^1.0.2",
+    "@material-tailwind/react": "^1.4.2",
+    "@netlify/plugin-nextjs": "^4.32.2",
+    "@react-oauth/google": "^0.9.0",
+    "@reduxjs/toolkit": "^1.9.3",
+    "animate.css": "^4.1.1",
+    "axios": "^1.4.0",
+    "babel-plugin-styled-components": "^2.0.7",
+    "gapi": "^0.0.3",
+    "next": "13.2.4",
+    "next-themes": "^0.2.1",
+    "react": "18.2.0",
+    "react-data-table-component": "^7.5.3",
+    "react-dom": "18.2.0",
+    "react-dropdown": "^1.11.0",
+    "react-google-login": "^5.2.2",
+    "react-hash-scroll": "^1.4.7",
+    "react-hook-form": "^7.43.7",
+    "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.8.0",
+    "react-payment-inputs": "^1.1.9",
+    "react-redux": "^8.0.5",
+    "react-select": "^5.7.2",
+    "react-twitter-embed": "^4.0.4",
+    "styled-components": "^5.3.9",
+    "swr": "^2.1.5",
+    "tailwind-scrollbar": "^3.0.0",
+    "tailwind-styled-components": "^2.2.0",
+    "tailwindcss-border-gradient-radius": "^3.0.1",
+    "text-encoding": "^0.7.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
+  }
+}
