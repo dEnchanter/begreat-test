@@ -220,7 +220,7 @@ const handleCredentialResponse = (response) => {
               {/* Revolutionize Your <span className="check">Finances </span>with{" "}
               <br className="hidden lg:block" /> Our Powerful Platform */}
 
-              Simplify Your Investments, <br className=" hidden lg:block" /> <span className="check"> Maximize </span>Your Profits
+              Simplify Investments, <br className=" hidden lg:block" /> <span className="check"> Maximize </span>Your Profits
             </div>
           </section>
           {/*  */}
