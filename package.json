@@ -4,8 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 8081",
-    "build-export": "next build && next export -o out",
-    "build-export:dashboard": "next build -c next.dashboard.config.js && next export -c next.dashboard.config.js -o build/dashboard/out",
+    
+    "prebuild-main": "mv pages/dashboard ./dashboard-tmp",
+    "build-export:main": "npm run prebuild-main && next build && next export -o out && npm run postbuild-main",
+    "postbuild-main": "mv ./dashboard-tmp pages/dashboard",
+    
+    "prebuild-dashboard": "mv pages/index.js ./index-tmp.js",
+    "build-export:dashboard": "npm run prebuild-dashboard && next build && next export -o dashboard_out && npm run postbuild-dashboard",
+    "postbuild-dashboard": "mv ./index-tmp.js pages/index.js",
+
     "start": "next start",
     "lint": "next lint"
   },

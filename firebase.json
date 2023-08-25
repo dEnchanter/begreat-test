@@ -11,7 +11,7 @@
     },
     {
       "site": "be-great-finance-dashboardmain",
-      "public": "build/dashboard/out",
+      "public": "dashboard_out",
       "ignore": [
         "firebase.json",
         "**/.*",
