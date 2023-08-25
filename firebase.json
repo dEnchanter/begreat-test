@@ -2,7 +2,7 @@
   "hosting": [
     {
       "site": "be-great-finance",
-      "public": "out", 
+      "public": "out_main", 
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -11,7 +11,7 @@
     },
     {
       "site": "be-great-finance-dashboardmain",
-      "public": "dashboard_out",
+      "public": "out_dashboard",
       "ignore": [
         "firebase.json",
         "**/.*",

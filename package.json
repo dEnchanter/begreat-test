@@ -4,17 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 8081",
-    
-    "prebuild-main": "mv pages/dashboard ./dashboard-tmp && rm -rf pages/* && mv ./index-tmp.js pages/index.js",
-    "build-export:main": "npm run prebuild-main && next build && next export -o out && npm run postbuild-main",
-    "postbuild-main": "mv pages/index.js ./index-tmp.js && mv ./dashboard-tmp pages/dashboard",
-    
-    "prebuild-dashboard": "mv pages/index.js ./index-tmp.js",
-    "build-export:dashboard": "npm run prebuild-dashboard && next build && next export -o dashboard_out && npm run postbuild-dashboard",
-    "postbuild-dashboard": "mv ./index-tmp.js pages/index.js",
-
+    "build": "next build && next export",
+    "build:main": "NEXT_CONFIG_PATH=next.config.js next build && NEXT_CONFIG_PATH=next.config.js next export -o out_main",
+    "build:dashboard": "NEXT_CONFIG_PATH=next.dashboard.config.js next build && NEXT_CONFIG_PATH=next.dashboard.config.js next export -o out_dashboard",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:main": "firebase deploy --only hosting:be-great-finance",
+    "deploy:dashboard": "firebase deploy --only hosting:be-great-finance-dashboardmain"
+
   },
   "dependencies": {
     "@bradgarropy/next-google-analytics": "^1.0.2",
