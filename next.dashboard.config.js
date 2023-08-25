@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 const dashboardConfig = {
   reactStrictMode: true,
   images: {
