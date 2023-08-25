@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev -p 8081",
     "build": "next build && next export",
-    "build:main": "next.config.js next build && next.config.js next export -o out_main",
-    "build:dashboard": "next.dashboard.config.js next build && next.dashboard.config.js next export -o out_dashboard",
+    "build:main": "node buildMain.js && next export -o out_main",
+    "build:dashboard": "node buildDashboard.js && next export -o out_dashboard",
     "start": "next start",
     "lint": "next lint",
     "deploy:main": "firebase deploy --only hosting:be-great-finance",
