@@ -5,13 +5,12 @@
   "scripts": {
     "dev": "next dev -p 8081",
     "build": "next build && next export",
-    "build:main": "NEXT_CONFIG_PATH=next.config.js next build && NEXT_CONFIG_PATH=next.config.js next export -o out_main",
-    "build:dashboard": "NEXT_CONFIG_PATH=next.dashboard.config.js next build && NEXT_CONFIG_PATH=next.dashboard.config.js next export -o out_dashboard",
+    "build:main": "next.config.js next build && next.config.js next export -o out_main",
+    "build:dashboard": "next.dashboard.config.js next build && next.dashboard.config.js next export -o out_dashboard",
     "start": "next start",
     "lint": "next lint",
     "deploy:main": "firebase deploy --only hosting:be-great-finance",
     "deploy:dashboard": "firebase deploy --only hosting:be-great-finance-dashboardmain"
-
   },
   "dependencies": {
     "@bradgarropy/next-google-analytics": "^1.0.2",
@@ -22,6 +21,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
     "babel-plugin-styled-components": "^2.0.7",
+    "cross-env": "^7.0.3",
     "gapi": "^0.0.3",
     "next": "13.2.4",
     "next-themes": "^0.2.1",
