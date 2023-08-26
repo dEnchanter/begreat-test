@@ -851,7 +851,7 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  console.log("watchlist", WatchList);
+  // console.log("watchlist", WatchList);
 
   const {
     data: WatchListName
@@ -861,7 +861,7 @@ export default function DashBoardHome() {
     refetchOnMountOrArgChange: true,
   });
 
-  console.log("WatchlistName", WatchListName);
+  // console.log("WatchlistName", WatchListName);
 
   useEffect(() => {
     setCreateWatchlist(WatchListName?.watchlist)
