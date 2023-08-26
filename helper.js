@@ -54,8 +54,14 @@ export const setPath = (path) =>{
 }
 
 export const getUserDataS = () => {
-    if(typeof window !== 'undefined'){
-        return JSON.parse(localStorage.getItem("begreatFinace:user"));
+    try {
+        if (typeof window !== 'undefined') {
+            const data = localStorage.getItem("begreatFinace:user");
+            return data ? JSON.parse(data) : null;
+        }
+    } catch (error) {
+        console.error("Error retrieving user data from local storage:", error);
+        return null;
     }
 };
 

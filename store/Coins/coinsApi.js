@@ -12,15 +12,15 @@ export const coinsApi = createApi({
 
   endpoints: (builder) => ({
     timeFrame: builder.query({
-      query: ({id, coinName}) => ({
-        url: `${token?.userId}/ca/${coinName}USDT?tf[]=${id}`,
+      query: ({id, coinName, userId}) => ({
+        url: `${userId || token?.userId}/ca/${coinName}USDT?tf[]=${id}`,
         method: "GET",
       }),
       providesTags: ["Watchlist"],
     }),
     searchCoins: builder.query({
-      query: ({coinName,timeLeft}) => ({
-        url: `${token?.userId}/rf/${coinName}USDT?tf[]=${timeLeft}`,
+      query: ({coinName,timeLeft, userId}) => ({
+        url: `${userId || token?.userId}/rf/${coinName}USDT?tf[]=${timeLeft}`,
         method: "GET",
       }),
       providesTags: ["Watchlist"],
@@ -33,16 +33,16 @@ export const coinsApi = createApi({
       providesTags: ["Watchlist"],
     }),
     searchCoinPrice: builder.query({
-      query: ({coinName, id}) => ({
-        url: `${token?.userId}/ham/${coinName}USDT?tf[]=${id}`,
+      query: ({coinName, id, userId}) => ({
+        url: `${userId || token?.userId}/ham/${coinName}USDT?tf[]=${id}`,
         method: "GET",
       }),
       providesTags: ["Watchlist"],
     }),
     addToWatchList: builder.mutation({
-      query: (payload) => (
+      query: (payload, userId) => (
         {
-          url: `${token?.userId}/watchlist/${payload.asset}`,
+          url: `${userId || token?.userId}/watchlist/${payload.asset}`,
           body: {
             watchlistName: `${payload.createWatchlist}`,
           },
@@ -51,9 +51,9 @@ export const coinsApi = createApi({
       invalidatesTags: ["Watchlist"],
     }),
     createWatchlistHolder: builder.mutation({
-      query: (payload) => (
+      query: (payload, userId) => (
         {
-          url: `${token?.userId}/watchlist/create`,
+          url: `${userId || token?.userId}/watchlist/create`,
           body: {
             watchlistName: `${payload}`,
           },
@@ -62,9 +62,9 @@ export const coinsApi = createApi({
       invalidatesTags: ["Watchlist"],
     }),
     removeAssetsFromWatchlist: builder.mutation({
-      query: (payload) => (
+      query: (payload, userId) => (
         {
-          url: `${token?.userId}/watchlist/removeassets`,
+          url: `${userId || token?.userId}/watchlist/removeassets`,
           body: {
             watchlistName: `${payload}`,
           },
@@ -73,9 +73,9 @@ export const coinsApi = createApi({
       invalidatesTags: ["Watchlist"],
     }),
     DeleteWatchlist: builder.mutation({
-      query: (payload) => (
+      query: (payload, userId) => (
         {
-          url: `${token?.userId}/watchlist/removewatchlist`,
+          url: `${userId || token?.userId}/watchlist/removewatchlist`,
           body: {
             watchlistName: `${payload}`,
           },
@@ -84,8 +84,8 @@ export const coinsApi = createApi({
       invalidatesTags: ["Watchlist"],
     }),
     removeFromWatchList: builder.mutation({
-      query: (payload) => ({
-        url: `${token?.userId}/watchlist/${payload?.asset.split('/').join('')}`,
+      query: (payload, userId) => ({
+        url: `${userId || token?.userId}/watchlist/${payload?.asset.split('/').join('')}`,
         body: {
           watchlistName: `${payload.createWatchlist}`,
         },
@@ -94,7 +94,7 @@ export const coinsApi = createApi({
       invalidatesTags: ["Watchlist"],
     }),
     getAllWatchList: builder.query({
-      query: ({ sortNumber, pulse, shift, wltf, createWatchlist }) => {
+      query: ({ sortNumber, pulse, shift, wltf, createWatchlist, userId }) => {
 
         const pulseParams = Array.isArray(pulse) ? pulse.map((val) => `pulse[]=${val}`).join('&') : '';
         const shiftParams = Array.isArray(shift) ? shift.map((val) => `shift[]=${val}`).join('&') : '';
@@ -105,24 +105,24 @@ export const coinsApi = createApi({
         if (wltf !== 1) {
           if (createWatchlist) {
             return {
-              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}&watchlistName=${createWatchlist}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}&watchlistName=${createWatchlist}`,
               method: "GET",
             } 
           } else {
             return {
-              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}`,
               method: "GET",
             }  
           } 
         } else {
           if (createWatchlist) {
             return {
-              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&watchlistName=${createWatchlist}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&watchlistName=${createWatchlist}`,
               method: "GET",
             } 
           } else {
             return {
-              url: `${token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}`,
               method: "GET",
             } 
           }
@@ -131,8 +131,8 @@ export const coinsApi = createApi({
       providesTags: ["Watchlist"],
     }),
     getWatchListName: builder.query({
-      query: () => ({
-        url: `${token?.userId}/watchlist`,
+      query: ({ userId }) => ({
+        url: `${userId || token?.userId}/watchlist`,
         method: "GET",
       }),
       providesTags: ["Watchlist"],
