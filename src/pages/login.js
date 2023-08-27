@@ -54,10 +54,10 @@ const [
   subscribePlan,
   { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
 ] = useSubscribeMutation();
-//console.log(all,userInfo,loading,error,'userInfo')
-console.log(data,getPath(),'userInfoLoginData');
- const HandleSubmit = async (data) => {
-  const {email,password} =data;
+  //console.log(all,userInfo,loading,error,'userInfo')
+  //console.log(data,getPath(),'userInfoLoginData');
+  const HandleSubmit = async (data) => {
+  const { email, password } = data;
   // console.log(data,'userInfoLoginData');
   await dispatch(loginUser({ email, password })).then((data)=>{
    
@@ -87,10 +87,10 @@ console.log(data,getPath(),'userInfoLoginData');
   //   token :'eyJhbGciOiJSUzI1NiIsImtpZCI6ImFjZGEzNjBmYjM2Y2QxNWZmODNhZjgzZTE3M2Y0N2ZmYzM2ZDExMWMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODA4OTk0NzIsImF1ZCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMDU1MTQwMjAyNTc4OTQyNzI4MiIsImVtYWlsIjoiZGFtbXltb3NlczIwMDFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF6cCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsIm5hbWUiOiJEYW1teSBNb3NlcyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BR05teXhZdkxuSlFZRlFWWVAtdXRSVnFFTE52MDNiTUVUVUZJRVRsT3ZxeT1zOTYtYyIsImdpdmVuX25hbWUiOiJEYW1teSIsImZhbWlseV9uYW1lIjoiTW9zZXMiLCJpYXQiOjE2ODA4OTk3NzIsImV4cCI6MTY4MDkwMzM3MiwianRpIjoiZWRiMDVjMDc4NTc2MTg3ZTE5OGI0YmVlODc2OGZlNWJhZjdmZWRiYiJ9.VdOfQKC9LMsEnFxV3ANNnjnbBEyuHjQXdjKSZgKm8ZriCgjx_DWR8dqiSBAKRiIAed8PqYMRsLs43cQ6iY6k4Lko92oqY6qK8FkATQMgKJIBSlXZCHEtXnnpcoRfW5Oc24iIjDoerQuavGZcvKzbEV41o46RX24S-nQzcPbSoyah8LfT7F7JXJKLl0_eJ2iiMnj82YKAoCpjd7m_bkDOnv4cFYo9fsKYXSvYMvU7ehuliYyFl1fmumAMCoRVnQvQgnMSKKEbF22HMpg5mBNadNX-Zxup9XmnS63SB9loMLIW4g1YKUBvhVP8Beruyc1k3zT3tqiILuflLN4VbOX33g'
   // },   { refetchOnMountOrArgChange: true,skip:false});
 
-  const [sendToken, { isLoading, isError, error:AuthGoogleError,isSuccess }] = useUserLoginGoogleAuthMutation();
+  const [sendToken, { isLoading, isError, error:AuthGoogleError, isSuccess }] = useUserLoginGoogleAuthMutation();
 
 
-  console.log(isError,isLoading,IsAuthenticated,'IsAuthenticated')
+  // console.log(isError,isLoading,IsAuthenticated,'IsAuthenticated')
 
   useEffect(() => {
     if(isSuccess){
@@ -101,17 +101,17 @@ console.log(data,getPath(),'userInfoLoginData');
     }
   }, [])
   
-  useEffect(() => {
-    if (isLoggedIn) {
+  // useEffect(() => {
+  //   if (isLoggedIn) {
       
-    }
-  }, [router, isLoggedIn])
+  //   }
+  // }, [router, isLoggedIn])
 
-  useEffect(() => {
-    if (error) {
-      // toast.error(error)
-    }
-  }, [error])
+  // useEffect(() => {
+  //   if (error) {
+  //     // toast.error(error)
+  //   }
+  // }, [error])
 
   const handleGoogleSignInSuccess = (token) => {
     // Send the token to your server for authentication
@@ -141,20 +141,22 @@ console.log(data,getPath(),'userInfoLoginData');
   //   gapi.load('client:auth2',start)
   // }, [])
   
-  const responseMessage = (response) => {
-    console.log(response);
-};
-const errorMessage = (error) => {
-    console.log(error);
-};
+  // const responseMessage = (response) => {
+  //     console.log(response);
+  // };
+  // const errorMessage = (error) => {
+  //     console.log(error);
+  // };
 
-const GoogleLoginButton = () => {
- 
-}
-const userId =getUserDataS()?.userId
+  // const GoogleLoginButton = () => {
+  
+  // }
+
+const userId = getUserDataS()?.userId
+// console.log("userId", userId)
 
 const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
-console.log(data,'datadata')
+// console.log(data,'datadata')
 // useEffect(() => {
 //   if (error?.status === 401) {
 //     // router.push("/login");
@@ -166,7 +168,7 @@ console.log(data,'datadata')
 // }, [error])
 
 
-console.log(userError,data,'userError')
+// console.log(userError,data,'userError')
 const handleCredentialResponse = (response) => {
   // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
   console.log("Encoded JWT ID token: " + response?.credential);
@@ -178,7 +180,7 @@ const handleCredentialResponse = (response) => {
       dispatch(googleAuth(data))
       toast.success(data?.message);
       router.push('/dashboard')
-    console.log('Token sent successfully!',data,'data1');
+      console.log('Token sent successfully!',data,'data1');
   })
   .catch((err) => {
     console.error('Failed to send token:', err);

@@ -19,7 +19,7 @@ export const ProtectedRoute = ({ children, type }) => {
   const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
 
-  const userId =getUserDataS()?.userId
+  const userId = getUserDataS()?.userId
  
   // const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store

@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk(
       // Extract relevant data from response
       const { accessToken, userData,message } = response.data;
       // Store token and user data in Redux store
-      console.log(response.data,'>>>>>>>>>>>>userData')
+      // console.log(response.data,'>>>>>>>>>>>>userData')
       setToken(accessToken?.split('Bearer ')?.join(""));
       setUserDataS(response?.data);
       // toast.success(message);

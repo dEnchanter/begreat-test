@@ -35,7 +35,7 @@ import {
   generateMaxLength,
 } from "../../../constants/errors";
 import Accordance2 from "../../common/Accordiance2";
-import { getCurrency, getWatchlist, removeWatchlist, setCurrency, setWatchlist } from "../../../helper";
+import { getCurrency, getWatchlist, removeWatchlist, setCurrency, setWatchlist, getUserDataS, setUserDataS } from "../../../helper";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { logoutUser, logoutUserI } from "../../../store/auth";
@@ -674,6 +674,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: day1b?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -681,6 +682,7 @@ export default function DashBoardHome() {
   });
 
   localStorage.setItem("token2", Day1?.token);
+  // console.log("get user data", getUserDataS().userId);
 
   const { 
     data: FourHours, 
@@ -689,6 +691,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: fourHoursb?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -702,6 +705,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: oneHourb?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -715,6 +719,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: fifteenMinb?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -729,6 +734,7 @@ export default function DashBoardHome() {
     { 
       id: fiveMinb?.value, 
       coinName,
+      userId: getUserDataS().userId
     },
     { 
       refetchOnMountOrArgChange: true ,
@@ -744,6 +750,7 @@ export default function DashBoardHome() {
     day1?.value && coinName && {
     id: day1?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000, // 30secs
@@ -756,6 +763,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: fourHours?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true , 
     skip:!fourHours?.value || !coinName,
@@ -769,6 +777,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: oneHour?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!oneHour?.value || !coinName,
@@ -782,6 +791,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: fifteenMin?.value,
     coinName,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!fifteenMin?.value || !coinName,
@@ -796,6 +806,7 @@ export default function DashBoardHome() {
     { 
       id: fiveMin?.value, 
       coinName,
+      userId: getUserDataS().userId
     },
     { 
       refetchOnMountOrArgChange: true,
@@ -811,6 +822,7 @@ export default function DashBoardHome() {
   } = useSearchCoinsQuery({
     coinName,
     timeLeft:timeLeft?.value,
+    userId: getUserDataS().userId
     }, {
     refetchOnMountOrArgChange: true,
     skip:!timeLeft?.value || !coinName,
@@ -832,21 +844,30 @@ export default function DashBoardHome() {
     shift: selectedVal2, 
     pulse: selectedVal,
     wltf: getTf?.value,
-    createWatchlist
+    createWatchlist,
+    userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000, // 30secs
   });
 
+  // console.log("watchlist", WatchList);
+
   const {
     data: WatchListName
-  } = useGetWatchListNameQuery({ 
+  } = useGetWatchListNameQuery({
+    userId: getUserDataS().userId
+  },{ 
     refetchOnMountOrArgChange: true,
   });
 
   useEffect(() => {
     setCreateWatchlist(WatchListName?.watchlist)
-  }, []);
+  });
+
+  // useEffect(() => {
+  //   setCreateWatchlist(WatchListName?.watchlist)
+  // }, []);
 
   const {
     data: AllAssets,
@@ -951,7 +972,9 @@ export default function DashBoardHome() {
         asset: data.asset,
         createWatchlist: createWatchlist,
       };
-      addToWatchlist(payload);
+      addToWatchlist(payload, {
+        userId: getUserDataS().userId
+      });
     } catch (error) {
       console.error('addToWatchlist error:', error);
     }
@@ -964,7 +987,9 @@ export default function DashBoardHome() {
         asset: name,
         createWatchlist: createWatchlist,
       }
-      removeFromWatchlist(payload);
+      removeFromWatchlist(payload, {
+        userId: getUserDataS().userId
+      });
     } catch (error) {
       console.error('removeFromWatchlist error:', error);
     }
@@ -976,7 +1001,9 @@ export default function DashBoardHome() {
         setWatchlist(payload);
         localStorage.setItem("textboxInput", payload)
         const payloadData = getWatchlist(payload);
-        createWatchlistHolder(payloadData);
+        createWatchlistHolder(payloadData, {
+          userId: getUserDataS().userId
+        });
         setCreateWatchlist(payloadData);
         toast.success(`Watchlist ${payload} created successfully, you can now add to watchlist`, {
           duration: 4000,
@@ -991,7 +1018,9 @@ export default function DashBoardHome() {
   // Delete watchlist handle
   const deleteWatchlistHolderHandle = async () => {
     try {
-      deleteWatchlist(WatchListName?.watchlist); // Call delete endpoint
+      deleteWatchlist(WatchListName?.watchlist, {
+        userId: getUserDataS().userId
+      }); // Call delete endpoint
       setCreateWatchlist(""); // set createwatchlist to empty
       toast.success(`Watchlist Deleted.`, {
         duration: 4000,
