@@ -682,7 +682,7 @@ export default function DashBoardHome() {
   });
 
   localStorage.setItem("token2", Day1?.token);
-  console.log("get user data", getUserDataS().userId);
+  // console.log("get user data", getUserDataS().userId);
 
   const { 
     data: FourHours, 
@@ -861,11 +861,13 @@ export default function DashBoardHome() {
     refetchOnMountOrArgChange: true,
   });
 
-  // console.log("WatchlistName", WatchListName);
-
   useEffect(() => {
     setCreateWatchlist(WatchListName?.watchlist)
-  }, []);
+  });
+
+  // useEffect(() => {
+  //   setCreateWatchlist(WatchListName?.watchlist)
+  // }, []);
 
   const {
     data: AllAssets,
