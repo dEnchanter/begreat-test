@@ -46,7 +46,7 @@ export default function Navbar({ fixed }) {
      <nav className="fixed w-full herobg top-0 z-50 flex flex-wrap items-center justify-between pb-4    lg:py-3   mb-3">
   <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
-    <Link href='/'>
+    <Link href='https://begreat.finance'>
        <Image width="150" height="200" src={theme=="light"?"/Images/homepage/logoD.png":"/Images/homepage/logoW.png" } alt="logo" className="h-10  "/> 
     </Link>
       <button
@@ -92,7 +92,7 @@ export default function Navbar({ fixed }) {
                         ? "text-red-500"
                         : "text-secondary"
                     } transition ease-in duration-300`}
-                    href="/#how-it-works"
+                    href="https://begreat.finance/#how-it-works"
                     scroll={false}
                     onClick={() => setActiveLink("how-it-works")}
                   >
@@ -107,7 +107,7 @@ export default function Navbar({ fixed }) {
                         ? "text-red-500 "
                         : "text-secondary"
                     } transition ease-in duration-300`}
-                    href="/#tools"
+                    href="https://begreat.finance/#tools"
                     scroll={false}
                     onClick={() => setActiveLink("tools")}
                   >
@@ -122,7 +122,7 @@ export default function Navbar({ fixed }) {
                         ? "text-red-500 "
                         : "text-secondary"
                     } transition ease-in duration-300`}
-                    href="/#pricing"
+                    href="https://begreat.finance/#pricing"
                     scroll={false}
                     onClick={() => setActiveLink("pricing")}
                   >
@@ -163,7 +163,7 @@ export default function Navbar({ fixed }) {
 
                <li  onClick={handleNav} className="nav-item">
                   <Link
-                    className={`py-2  flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
+                    className={`py-2 flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
                       activeLink === "docs"
                         ? "text-red-500 "
                         : "text-secondary"

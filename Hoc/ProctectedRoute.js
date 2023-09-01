@@ -20,6 +20,7 @@ export const ProtectedRoute = ({ children, type }) => {
   const [getData, setGetData] = useState(isLoggedIn || false);
 
   const userId = getUserDataS()?.userId
+  // console.log("userId", userId)
  
   // const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
@@ -27,13 +28,19 @@ export const ProtectedRoute = ({ children, type }) => {
 
   const { data, isLoading, error,refetch,isError, status} = useGetUserProfileQuery(); // Use the generated hook
   const { data:dataStatus, isLoading:statusLoader, error:errorLoader,isError:statusIsError} = useCheckStatusQuery(); // Use the generated hook
+  // console.log("data status", dataStatus)
   // console.log(dataStatus?.status,'isLoggedIn')
   
   useEffect(() => {
-    if (dataStatus?.status&&dataStatus?.status!=="active") {
+    if (dataStatus === undefined) {
+      // Redirect to pricing if dataStatus is undefined
+      router.push('/pricing');
+      toast.error('Please buy a plan');
+      dispatch(logoutUser());
+    } else if (dataStatus?.status && dataStatus?.status!=="active") {
       // alert('seen')
       router.push('/pricing');
-      toast.error('Please buy a plan')
+      // toast.error('Please buy a plan')
       // toast.error('')
       dispatch(logoutUser());
     }
