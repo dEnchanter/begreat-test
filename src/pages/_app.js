@@ -27,24 +27,24 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ThemeProvider
-   defaultTheme={'dark'}
-   // attribute="class"
-    // enableSystem={false}
-    // storageKey="theme"
-  >
-        <GoogleOAuthProvider clientId={'835111729100-862akcf0948la5pfj0892g8v55tbuva8.apps.googleusercontent.com'}>
+      defaultTheme={'dark'}
+      // attribute="class"
+      // enableSystem={false}
+      // storageKey="theme"
+    >
+      <GoogleOAuthProvider clientId={'835111729100-862akcf0948la5pfj0892g8v55tbuva8.apps.googleusercontent.com'}>
 
-    <Provider store={store}>
+        <Provider store={store}>
    
-    <Toaster
-  position='top-right'
-  />
-      <GoogleAnalytics measurementId='G-0QGJRJW4GG' />
+          <Toaster
+            position='top-right'
+          />
+          <GoogleAnalytics measurementId='G-0QGJRJW4GG' />
 
-      {/* Add your app components here */}
-      <Component {...pageProps} />
-      {/* <button onClick={toggleTheme}>Toggle theme</button> */}
-      </Provider>
+            {/* Add your app components here */}
+            <Component {...pageProps} />
+            {/* <button onClick={toggleTheme}>Toggle theme</button> */}
+        </Provider>
       </GoogleOAuthProvider>
     </ThemeProvider>
   );

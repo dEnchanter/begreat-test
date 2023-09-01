@@ -15,6 +15,8 @@ import TwoSides from "../../common/TwoSides";
 import Accordance from "../../common/Accordiance";
 import FlexContainer from "../../common/FlexContainer";
 import ButtonComp from "../../ui/ButtonComp";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   useAddToWatchListMutation,
   useGetAllWatchListQuery,
@@ -1313,22 +1315,22 @@ export default function DashBoardHome() {
             </div>
           </div>
 
-          {/* SIDEBAR */}
+          {/* SIDEBAR AND CENTER */}
           <div className="flex flex-wrap mt-[3.5rem]">
             <div className="flex-grow w-full md:w-[39%] xl:w-[24%] ">
 
             {/* CHOOSE TIMEFRAME FOR WHOLE APP */}
 
-            <div className=" whitespace-nowrap font-semibold text-xl priceText mb-4 -mt-10 flex items-center w-fit mx-auto ">
-              <DropDownItem
-              // padding={'0px 40px 0px 3px'}
-              padding={'0px 20px 0px 8px'}
-              onChange={(e)=>setTimeLeft(e)}
-              options={options3}
-              noIcon={true}
-              value={timeLeft}
-              />                  
-            </div>
+              <div className=" whitespace-nowrap font-semibold text-xl priceText mb-4 -mt-10 flex items-center w-fit mx-auto ">
+                <DropDownItem
+                // padding={'0px 40px 0px 3px'}
+                padding={'0px 20px 0px 8px'}
+                onChange={(e)=>setTimeLeft(e)}
+                options={options3}
+                noIcon={true}
+                value={timeLeft}
+                />                  
+              </div>
 
               <div className="p-2">
 
@@ -1445,6 +1447,82 @@ export default function DashBoardHome() {
                 ))}
 
               </div>
+
+              {/* New Feature */}
+              {/* Risk Management Tools */}
+              <div className="flex space-x-5 h-min-[216px] flex-wrap mb-3 mt-6 -ml-[18rem]">
+                <div className="flex flex-col space-y-3">
+                  <div className="flex">
+                    <Card className="bg-header p-2 flex items-center justify-center border-none">
+                      <div>
+                        <Tabs defaultValue="Long" className="w-[300px]">
+                          <TabsList>
+                            <TabsTrigger className="w-[8rem]" value="Long">Long</TabsTrigger>
+                            <TabsTrigger className="w-[8rem]" value="Short">Short</TabsTrigger>
+                          </TabsList>
+                        </Tabs>
+                      </div>
+                      <div>
+                        <TwoSides
+                          WrapperClassName={"flex-wrap space-x-2"}
+                          sideA={"Position Size:"}
+                          sideAClassName={"secondary gray text-md font-medium xl:mb-0"}
+                          sideB={
+                            <TextInput
+                              wrapperClassName="bg-[#343334] rounded-lg"
+                              borderColor="border-none"
+                              placeholder="$0.00"
+                            />
+                          }
+                        />
+                      </div>
+                    </Card>
+                  </div>
+
+                  <div>
+                    <Card className="bg-header p-2 flex items-center justify-center border-none">
+                      <div>
+                        
+                      </div>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Surge TF */}
+                <div className="flex flex-col flex-1">
+                  <div>
+                    <Card className="bg-header p-2 items-center justify-between border-none">
+                      <CardHeader>
+                        <TwoSides
+                            WrapperClassName={"flex-wrap"}
+                            sideA={"Surge TimeFrame:"}
+                            sideAClassName={"secondary gray text-md font-medium xl:mb-0"}
+                        />
+                        <TwoSides
+                          WrapperClassName={"flex-wrap"}
+                          sideB={
+                            <Select 
+                              options={options4}
+                              onChange={(e) => {
+                                console.log(e,'setTf')
+                                setTf(e)
+                              }}
+                              value={getTf}
+                              styles={customStyles}
+                            />
+                          }
+                        />
+                      </CardHeader>
+                      <CardContent>
+                        
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <div></div>
+                </div>
+
+              </div>
               
             </div>
           </div>
@@ -1475,6 +1553,7 @@ export default function DashBoardHome() {
             />
             <div className="bg-white py-3 px-3">
               <div className="secondary text-2xl font-bold mb-3 xl:mb-0">TrendScan</div>
+              
               <TwoSides
                 WrapperClassName={"mb-5 flex-wrap"}
                 sideA={"Change(%) Timeframe:"}
@@ -1491,6 +1570,7 @@ export default function DashBoardHome() {
                   />
                 }
               />
+
               <TwoSides
                 WrapperClassName={"mb-5 space-x-10"}
                 sideA={

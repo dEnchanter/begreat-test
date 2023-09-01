@@ -54,36 +54,36 @@ const [
   subscribePlan,
   { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
 ] = useSubscribeMutation();
+
   //console.log(all,userInfo,loading,error,'userInfo')
   //console.log(data,getPath(),'userInfoLoginData');
   const HandleSubmit = async (data) => {
-  const { email, password } = data;
-  // console.log(data,'userInfoLoginData');
-  await dispatch(loginUser({ email, password })).then((data)=>{
-   
-    // router.push('/dashboard')
-    if(getPath()?.link){
-      const payload={
-        priceId:getPath()?.payment
-    }
-    subscribePlan(payload).unwrap().then((data)=>{
-         window.location.href = data?.sessionURL;
-         DeleteAuthTokenMaster('begreatFinace:pathlink')
-    }).catch((err)=>console.log(err))
-    }
-    if(data?.payload?.email){
-      // console.log(data.payload)
-       router.push('/dashboard')
-    }
+    const { email, password } = data;
+    // console.log(data,'userInfoLoginData');
+    await dispatch(loginUser({ email, password })).then((data)=>{ 
+      // router.push('/dashboard')
+      if(getPath()?.link){
+        const payload={
+          priceId:getPath()?.payment
+        }
+        subscribePlan(payload).unwrap().then((data)=>{
+          window.location.href = data?.sessionURL;
+          DeleteAuthTokenMaster('begreatFinace:pathlink')
+        }).catch((err)=>console.log(err))
+      }
+      if(data?.payload?.email){
+        // console.log(data.payload)
+        router.push('/dashboard')
+      }
   });
 
   if (rememberMe) {
     localStorage.setItem("userEmail", data.email);
     localStorage.setItem("userPassword", data.password);
   }
-};
+  };
 
-  // const { data} = useUserLoginGoogleAuthMutation({
+  // const { data } = useUserLoginGoogleAuthMutation({
   //   token :'eyJhbGciOiJSUzI1NiIsImtpZCI6ImFjZGEzNjBmYjM2Y2QxNWZmODNhZjgzZTE3M2Y0N2ZmYzM2ZDExMWMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODA4OTk0NzIsImF1ZCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMDU1MTQwMjAyNTc4OTQyNzI4MiIsImVtYWlsIjoiZGFtbXltb3NlczIwMDFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF6cCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsIm5hbWUiOiJEYW1teSBNb3NlcyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BR05teXhZdkxuSlFZRlFWWVAtdXRSVnFFTE52MDNiTUVUVUZJRVRsT3ZxeT1zOTYtYyIsImdpdmVuX25hbWUiOiJEYW1teSIsImZhbWlseV9uYW1lIjoiTW9zZXMiLCJpYXQiOjE2ODA4OTk3NzIsImV4cCI6MTY4MDkwMzM3MiwianRpIjoiZWRiMDVjMDc4NTc2MTg3ZTE5OGI0YmVlODc2OGZlNWJhZjdmZWRiYiJ9.VdOfQKC9LMsEnFxV3ANNnjnbBEyuHjQXdjKSZgKm8ZriCgjx_DWR8dqiSBAKRiIAed8PqYMRsLs43cQ6iY6k4Lko92oqY6qK8FkATQMgKJIBSlXZCHEtXnnpcoRfW5Oc24iIjDoerQuavGZcvKzbEV41o46RX24S-nQzcPbSoyah8LfT7F7JXJKLl0_eJ2iiMnj82YKAoCpjd7m_bkDOnv4cFYo9fsKYXSvYMvU7ehuliYyFl1fmumAMCoRVnQvQgnMSKKEbF22HMpg5mBNadNX-Zxup9XmnS63SB9loMLIW4g1YKUBvhVP8Beruyc1k3zT3tqiILuflLN4VbOX33g'
   // },   { refetchOnMountOrArgChange: true,skip:false});
 
@@ -100,18 +100,6 @@ const [
       // toast.success(data?.message);
     }
   }, [])
-  
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-      
-  //   }
-  // }, [router, isLoggedIn])
-
-  // useEffect(() => {
-  //   if (error) {
-  //     // toast.error(error)
-  //   }
-  // }, [error])
 
   const handleGoogleSignInSuccess = (token) => {
     // Send the token to your server for authentication
@@ -120,15 +108,15 @@ const [
   }
 
   useEffect(() => {
-  const userEmail = localStorage.getItem("userEmail");
-  const userPassword = localStorage.getItem("userPassword");
+    const userEmail = localStorage.getItem("userEmail");
+    const userPassword = localStorage.getItem("userPassword");
 
-  if (userEmail && userPassword) {
-    setRememberMe(true);
-    setValue("email", userEmail);
-    setValue("password", userPassword);
-  }
-}, []);
+    if (userEmail && userPassword) {
+      setRememberMe(true);
+      setValue("email", userEmail);
+      setValue("password", userPassword);
+    }
+  }, []);
 
 
   // useEffect(() => {
