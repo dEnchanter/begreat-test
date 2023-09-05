@@ -17,7 +17,7 @@ const Pricing = () => {
   <img className='h-20 absolute mt-[10rem] lg:left-[15rem] 2xl:left-[30rem] hidden xl:flex'  src='./Images/homepage/green.png' alt=' ' />
   <img className='h-5 absolute mt-[17rem] lg:left-[27rem] 2xl:left-[40rem] hidden xl:flex'  src='./Images/homepage/tether.png' alt=' ' />
    <img className='h-5 absolute mt-[18rem] lg:right-[27rem] 2xl:right-[40rem] hidden xl:flex'  src='./Images/homepage/ether.png' alt=' ' />
-  <div className='  text-center pt-10 pb-10 '> 
+  <div className='text-center pt-10 pb-10 '> 
             <h1 className='uppercase mt-10 font-bold text-center text-sm text-transparent  bg-clip-text bg-gradient-to-r from-[#fc0542] to-[#8a76c7]'> Pricing </h1>
 
             <h1 className='leading-normal smallTextI text-xl lg:text-2xl lg:w-[40rem] mt-4 font-bold mx-auto md:w-[70%] sm:mx-auto '> Unlock the Power of Advanced Analytics with Our Premium Plans  </h1>
