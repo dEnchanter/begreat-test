@@ -14,7 +14,7 @@ import Link from "next/link";
 import Footer from "../../components/modules/Footer";
 import { toast } from "react-hot-toast";
 import GoogleSignInButton from "../../components/common/GoogleSignInButton";
-// import { gapi } from "gapi-script";
+import { gapi } from "gapi-script";
 import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
 import { useGetUserProfileQuery, useSubscribeMutation, useUserLoginGoogleMutation } from "../../store/auth/authApi";
@@ -27,33 +27,33 @@ import { googleAuth } from "../../store/auth";
 export default function Login() {
   const { theme, setTheme } = useTheme();
   const router = useRouter();
-  const {loading,userInfo,isLoggedIn,error,} = useSelector((state) => state.auth)
+  const {loading, userInfo, isLoggedIn, error} = useSelector((state) => state.auth)
   const all = useSelector((state) => state.auth);
   const [userData, setUserData] = useState();
-  const dispatch  =useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
 
-const togglePasswordVisibility = () => {
-  setShowPassword(!showPassword);
-};
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-const handleRememberMe = (event) => {
-  setRememberMe(event.target.checked);
-};
+  const handleRememberMe = (event) => {
+    setRememberMe(event.target.checked);
+  };
 
   const { control, handleSubmit, setValue } = useForm({
-  defaultValues: {
-    email: "",
-    password: "",
-  },
-});
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-const [
-  subscribePlan,
-  { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
-] = useSubscribeMutation();
+  const [
+    subscribePlan,
+    { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
+  ] = useSubscribeMutation();
 
   //console.log(all,userInfo,loading,error,'userInfo')
   //console.log(data,getPath(),'userInfoLoginData');
@@ -75,12 +75,12 @@ const [
         // console.log(data.payload)
         router.push('/dashboard')
       }
-  });
+    });
 
-  if (rememberMe) {
-    localStorage.setItem("userEmail", data.email);
-    localStorage.setItem("userPassword", data.password);
-  }
+    if (rememberMe) {
+      localStorage.setItem("userEmail", data.email);
+      localStorage.setItem("userPassword", data.password);
+    }
   };
 
   // const { data } = useUserLoginGoogleAuthMutation({
@@ -101,11 +101,10 @@ const [
     }
   }, [])
 
-  const handleGoogleSignInSuccess = (token) => {
-    // Send the token to your server for authentication
-    console.log("Encoded JWT ID token: " + token);
-   
-  }
+  // const handleGoogleSignInSuccess = (token) => {
+  //   // Send the token to your server for authentication
+  //   console.log("Encoded JWT ID token: " + token);
+  // }
 
   useEffect(() => {
     const userEmail = localStorage.getItem("userEmail");
@@ -119,61 +118,62 @@ const [
   }, []);
 
 
-  // useEffect(() => {
-  //   function start(){
-  //     gapi.client.init({
-  //       client_id:clientId,
-  //       scope:""
-  //     })
-  //   };
-  //   gapi.load('client:auth2',start)
-  // }, [])
+  useEffect(() => {
+    function start(){
+      gapi.client.init({
+        client_id:clientId,
+        scope:""
+      })
+    };
+    gapi.load('client:auth2',start)
+  }, [])
   
   // const responseMessage = (response) => {
   //     console.log(response);
   // };
+
   // const errorMessage = (error) => {
   //     console.log(error);
   // };
 
   // const GoogleLoginButton = () => {
-  
   // }
 
 const userId = getUserDataS()?.userId
 // console.log("userId", userId)
 
 const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
-// console.log(data,'datadata')
-// useEffect(() => {
-//   if (error?.status === 401) {
-//     // router.push("/login");
-//     DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
-//     DeleteAuthTokenMaster('begreatFinace:user') 
-//     setGetData(false)
-//     dispatch(logout());
-//   }
-// }, [error])
+
+  console.log(data,'GetUserProfile')
+  useEffect(() => {
+    if (error?.status === 401) {
+      // router.push("/login");
+      DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+      DeleteAuthTokenMaster('begreatFinace:user') 
+      setGetData(false)
+      dispatch(logout());
+    }
+  }, [error])
 
 
-// console.log(userError,data,'userError')
-const handleCredentialResponse = (response) => {
-  // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
-  console.log("Encoded JWT ID token: " + response?.credential);
-  // setToken(response.credential)
-  sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
-  .then((data) => {
-      setUserDataS(data)
-      setToken(data?.accessToken?.split('Bearer ')?.join(""))
-      dispatch(googleAuth(data))
-      toast.success(data?.message);
-      router.push('/dashboard')
-      console.log('Token sent successfully!',data,'data1');
-  })
-  .catch((err) => {
-    console.error('Failed to send token:', err);
-  });
-};
+  // console.log(userError,data,'userError')
+  const handleCredentialResponse = (response) => {
+    // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
+    console.log("Encoded JWT ID token: " + response?.credential);
+    // setToken(response.credential)
+    sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
+    .then((data) => {
+        setUserDataS(data)
+        setToken(data?.accessToken?.split('Bearer ')?.join(""))
+        dispatch(googleAuth(data))
+        toast.success(data?.message);
+        router.push('/dashboard')
+        console.log('Token sent successfully!',data,'data1');
+    })
+    .catch((err) => {
+      console.error('Failed to send token:', err);
+    });
+  };
 
   useEffect(() => {
     if(!isLoggedIn){
@@ -222,7 +222,7 @@ const handleCredentialResponse = (response) => {
                   Login to your Account
                 </div>
                 <div className="smallText text-[14px] mb-3">
-                 Fill in your details to access your account.
+                  Fill in your details to access your account.
                 </div>
                 <div className="mb-5">
                   <ButtonComp
