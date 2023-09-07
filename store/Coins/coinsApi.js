@@ -94,7 +94,7 @@ export const coinsApi = createApi({
       invalidatesTags: ["Watchlist"],
     }),
     getAllWatchList: builder.query({
-      query: ({ sortNumber, pulse, shift, wltf, createWatchlist, userId }) => {
+      query: ({ sortNumber, pulse, shift, wltf, createWatchlist, userId, rank, rf, sortrfc }) => {
 
         const pulseParams = Array.isArray(pulse) ? pulse.map((val) => `pulse[]=${val}`).join('&') : '';
         const shiftParams = Array.isArray(shift) ? shift.map((val) => `shift[]=${val}`).join('&') : '';
@@ -105,24 +105,24 @@ export const coinsApi = createApi({
         if (wltf !== 1) {
           if (createWatchlist) {
             return {
-              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}&watchlistName=${createWatchlist}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}&watchlistName=${createWatchlist}&rf=${rf}&rank=${rank}&sortrfc=${sortrfc}`,
               method: "GET",
             } 
           } else {
             return {
-              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&wltf=${wltf}&rf=${rf}&rank=${rank}&sortrfc=${sortrfc}`,
               method: "GET",
             }  
           } 
         } else {
           if (createWatchlist) {
             return {
-              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&watchlistName=${createWatchlist}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&watchlistName=${createWatchlist}&rf=${rf}&rank=${rank}&sortrfc=${sortrfc}`,
               method: "GET",
             } 
           } else {
             return {
-              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}`,
+              url: `${userId || token?.userId}/watchlist/${sortNumber}?${pulseParams || defaultPulse}&${shiftParams || defaultShift}&rf=${rf}&rank=${rank}&sortrfc=${sortrfc}`,
               method: "GET",
             } 
           }
@@ -133,6 +133,29 @@ export const coinsApi = createApi({
     getWatchListName: builder.query({
       query: ({ userId }) => ({
         url: `${userId || token?.userId}/watchlist`,
+        method: "GET",
+      }),
+      providesTags: ["Watchlist"],
+    }),
+    getStretchRange: builder.query({
+      query: ({coinName, range, stretch, lookback, size, direction, custom }) => {
+        if(custom) {
+          return {
+            url: `/stretchrange/${coinName}USDT?range=${range}&stretch=${stretch}&lookback=${lookback}&size=${size}&direction=${direction}&custom=${custom}`,
+            method: "GET",
+          }
+        } else {
+          return {
+            url: `/stretchrange/${coinName}USDT?range=${range}&stretch=${stretch}&lookback=${lookback}&size=${size}&direction=${direction}`,
+            method: "GET",
+          }
+        }
+      },
+      providesTags: ["Watchlist"],
+    }),
+    getSurgeLevel: builder.query({
+      query: ({ coinName, id, userId }) => ({
+        url: `/surge/${coinName}USDT?tf=${id}`,
         method: "GET",
       }),
       providesTags: ["Watchlist"],
@@ -167,6 +190,8 @@ export const {
   useRemoveFromWatchListMutation,
   useGetAllWatchListQuery,
   useGetWatchListNameQuery,
+  useGetStretchRangeQuery,
+  useGetSurgeLevelQuery,
   useUserLoginGoogleAuthMutation,
   useForgetPasswordMutation
 } = coinsApi;

@@ -57,6 +57,7 @@ export default function Login() {
 
   //console.log(all,userInfo,loading,error,'userInfo')
   //console.log(data,getPath(),'userInfoLoginData');
+  
   const HandleSubmit = async (data) => {
     const { email, password } = data;
     // console.log(data,'userInfoLoginData');
@@ -95,9 +96,9 @@ export default function Login() {
   useEffect(() => {
     if(isSuccess){
       dispatch(googleAuth())
-      // setToken(data?.accessToken)
-      // setUserDataS(data?.user)
-      // toast.success(data?.message);
+      setToken(data?.accessToken)
+      setUserDataS(data?.user)
+      toast.success(data?.message);
     }
   }, [])
 
@@ -118,15 +119,15 @@ export default function Login() {
   }, []);
 
 
-  useEffect(() => {
-    function start(){
-      gapi.client.init({
-        client_id:clientId,
-        scope:""
-      })
-    };
-    gapi.load('client:auth2',start)
-  }, [])
+  // useEffect(() => {
+  //   function start(){
+  //     gapi.client.init({
+  //       client_id:clientId,
+  //       scope:""
+  //     })
+  //   };
+  //   gapi.load('client:auth2',start)
+  // }, [])
   
   // const responseMessage = (response) => {
   //     console.log(response);
@@ -139,21 +140,18 @@ export default function Login() {
   // const GoogleLoginButton = () => {
   // }
 
-const userId = getUserDataS()?.userId
-// console.log("userId", userId)
+  const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
+  // console.log(data,'datadata')
 
-const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
-
-  console.log(data,'GetUserProfile')
-  useEffect(() => {
-    if (error?.status === 401) {
-      // router.push("/login");
-      DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
-      DeleteAuthTokenMaster('begreatFinace:user') 
-      setGetData(false)
-      dispatch(logout());
-    }
-  }, [error])
+// useEffect(() => {
+//   if (error?.status === 401) {
+//     // router.push("/login");
+//     DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+//     DeleteAuthTokenMaster('begreatFinace:user') 
+//     setGetData(false)
+//     dispatch(logout());
+//   }
+// }, [error])
 
 
   // console.log(userError,data,'userError')

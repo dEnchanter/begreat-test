@@ -15,8 +15,14 @@ import TwoSides from "../../common/TwoSides";
 import Accordance from "../../common/Accordiance";
 import FlexContainer from "../../common/FlexContainer";
 import ButtonComp from "../../ui/ButtonComp";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { Slider } from "@/components/ui/slider"
+import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   useAddToWatchListMutation,
   useGetAllWatchListQuery,
@@ -26,10 +32,12 @@ import {
   useSearchCoinsQuery,
   useTimeFrameQuery,
   useCreateWatchlistHolderMutation,
-  useRemoveWatchlistHolderMutation,
-  useRemoveAssetsFromWatchlistMutation,
+  // useRemoveWatchlistHolderMutation,
+  // useRemoveAssetsFromWatchlistMutation,
   useDeleteWatchlistMutation,
   useGetWatchListNameQuery,
+  useGetStretchRangeQuery,
+  useGetSurgeLevelQuery
 } from "../../../store/Coins/coinsApi";
 import Spinner from "../../common/Spinner";
 import { Controller, useForm } from "react-hook-form";
@@ -40,9 +48,12 @@ import Accordance2 from "../../common/Accordiance2";
 import { getCurrency, getWatchlist, removeWatchlist, setCurrency, setWatchlist, getUserDataS, setUserDataS } from "../../../helper";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { logoutUser, logoutUserI } from "../../../store/auth";
+import { logoutUser } from "../../../store/auth";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { AiFillSetting } from "react-icons/ai";
 
 export default function DashBoardHome() {
+
   // Controls the no of Pulse cards you see on the dashboard
   const options = [
     {
@@ -526,83 +537,380 @@ export default function DashBoardHome() {
   const options8 = [
     {
       value: 2,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">1 Mins</span>,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">1 MIN</span>,
     },
 
     {
       value: 3,
-      label: <span className="text-lg font-semibold whitespace-nowrap">3 Mins</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 MINS</span>,
     },
 
     {
       value: 5,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">5 Mins</span>,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">5 MINS</span>,
     },
 
     {
       value: 10,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">10 Mins</span>,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">10 MINS</span>,
     },
 
     {
       value: 15,
-      label: <span className="text-lg font-semibold whitespace-nowrap">15 Mins</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">15 MINS</span>,
     },
 
     {
       value: 30,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">30 Mins</span>,
+      label: <span className=" text-lg font-semibold whitespace-nowrap">30 MINS</span>,
     },
     {
       value: 45,
-      label: <span className="text-lg  font-semibold whitespace-nowrap">45 Mins</span>,
+      label: <span className="text-lg  font-semibold whitespace-nowrap">45 MINS</span>,
     },
     {
       value: 60,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap ">1 HOUR</span>,
     },
     {
       value: 120,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">2 HOURS</span>,
     },
     {
       value: 240,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">4 HOURS</span>,
     },
     {
       value: 360,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
+      label: <span className=" text-lg font-semibold  whitespace-nowrap">6 HOURS</span>,
     },
     {
       value: 480,
-      label: <span className="text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
+      label: <span className="text-lg  font-semibold  whitespace-nowrap">8 HOURS</span>,
     },
     {
       value: '12h',
-      label: <span className="text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">12 HOURS</span>,
     },
     {
       value: '1d',
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 Day</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 DAY</span>,
     },
     {
       value: '3d',
-      label: <span className="text-lg font-semibold whitespace-nowrap">3 Days</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">3 DAYS</span>,
     },
     {
       value: '1w',
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 Week</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 WEEK</span>,
     },
     {
       value: '1M',
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 Month</span>,
+      label: <span className="text-lg font-semibold whitespace-nowrap">1 MONTH</span>,
+    },
+    
+  ];
+
+  // Surge TF
+  const options9 = [
+    {
+      value: 2,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 MINUTE</span>,
+    },
+
+    {
+      value: 3,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 MINUTES</span>,
+    },
+
+    {
+      value: 5,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">5 MINUTES</span>,
+    },
+
+    {
+      value: 10,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">10 MINUTES</span>,
+    },
+
+    {
+      value: 15,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">15 MINUTES</span>,
+    },
+
+    {
+      value: 30,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">30 MINUTES</span>,
+    },
+    {
+      value: 45,
+      label: <span className="text-white text-lg  font-medium whitespace-nowrap">45 MINUTES</span>,
+    },
+    {
+      value: 60,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap ">1 HOUR</span>,
+    },
+    {
+      value: 120,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">2 HOURS</span>,
+    },
+    {
+      value: 240,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">4 HOURS</span>,
+    },
+    {
+      value: 360,
+      label: <span className="text-white text-lg font-medium  whitespace-nowrap">6 HOURS</span>,
+    },
+    {
+      value: 480,
+      label: <span className="text-lg text-white font-medium  whitespace-nowrap">8 HOURS</span>,
+    },
+    {
+      value: 720,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">12 HOURS</span>,
+    },
+    {
+      value: 1440,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 DAY</span>,
+    },
+    {
+      value: 4320,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 DAYS</span>,
+    },
+    {
+      value: 10080,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 WEEK</span>,
+    },
+    {
+      value: 43800,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 MONTH</span>,
+    },
+    
+  ];
+
+  // ATR
+  const options10 = [
+    {
+      value: 2,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Min</span>,
+    },
+
+    {
+      value: 3,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 Min</span>,
+    },
+
+    {
+      value: 5,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">5 Min</span>,
+    },
+
+    {
+      value: 10,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">10 Min</span>,
+    },
+
+    {
+      value: 15,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">15 Min</span>,
+    },
+
+    {
+      value: 30,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">30 Min</span>,
+    },
+    {
+      value: 45,
+      label: <span className="text-white text-lg  font-medium whitespace-nowrap">45 Min</span>,
+    },
+    {
+      value: '1h',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap ">1 Hour</span>,
+    },
+    {
+      value: '2h',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">2 Hours</span>,
+    },
+    {
+      value: '4h',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">4 Hours</span>,
+    },
+    {
+      value: '6h',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">6 Hours</span>,
+    },
+    {
+      value: '8h',
+      label: <span className="text-white text-lg  font-medium whitespace-nowrap">8 Hours</span>,
+    },
+    {
+      value: '12h',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">12 Hours</span>,
+    },
+
+    {
+      value: '1d',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Day</span>,
+    },
+
+     {
+      value: '3d',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 Days</span>,
+    },
+    {
+      value: '1w',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Week</span>,
+    },
+    {
+      value: '1m',
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Month</span>,
+    },
+    
+  ];
+
+  // LookBack
+  const options11 = [
+    {
+      value: 7,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">Short</span>,
+    },
+
+    {
+      value: 14,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">Regular</span>,
+    },
+
+    {
+      value: 50,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">Long</span>,
+    },
+
+    {
+      value: 100,
+      label: <span className="text-white text-lg font-medium whitespace-nowrap">Extreme</span>,
+    }
+  ];
+
+   // Rise/Fall% timeframes
+   const options12 = [
+    {
+      value: 1,
+      label: <span className="text-white font-semibold whitespace-nowrap">AVERAGE</span>,
+      label2: 'Average',
+    },
+    {
+      value: 2,
+      label: <span className="text-white font-semibold whitespace-nowrap">1 MINUTE</span>,
+      label2: '1m',
+    },
+
+    {
+      value: 3,
+      label: <span className="text-white font-semibold whitespace-nowrap">3 MINUTES</span>,
+      label2: '3m',
+    },
+
+    {
+      value: 5,
+      label: <span className="text-white font-semibold whitespace-nowrap">5 MINUTES</span>,
+      label2: '5m',
+    },
+
+    {
+      value: 10,
+      label: <span className="text-white font-semibold whitespace-nowrap">10 MINUTES</span>,
+      label2: '10m',
+    },
+
+    {
+      value: 15,
+      label: <span className="text-white font-semibold whitespace-nowrap">15 MINUTES</span>,
+      label2: '15m',
+    },
+
+    {
+      value: 30,
+      label: <span className="text-white font-semibold whitespace-nowrap">30 MINUTES</span>,
+      label2: '30m',
+    },
+    {
+      value: 45,
+      label: <span className="text-white font-semibold whitespace-nowrap">45 MINUTES</span>,
+      label2: '45m',
+    },
+    {
+      value: 60,
+      label: <span className="text-white font-semibold  whitespace-nowrap ">1 HOUR</span>,
+      label2: '1h',
+    },
+    {
+      value: 120,
+      label: <span className="text-white font-semibold  whitespace-nowrap">2 HOURS</span>,
+      label2: '2h',
+    },
+    {
+      value: 240,
+      label: <span className="text-white font-semibold  whitespace-nowrap">4 HOURS</span>,
+      label2: '4h',
+    },
+    {
+      value: 360,
+      label: <span className="text-white font-semibold  whitespace-nowrap">6 HOURS</span>,
+      label2: '6h',
+    },
+    {
+      value: 480,
+      label: <span className="text-white font-semibold  whitespace-nowrap">8 HOURS</span>,
+      label2: '8h',
+    },
+    {
+      value: '12h',
+      label: <span className="text-white font-semibold whitespace-nowrap">12 HOURS</span>,
+      label2: '12h',
+    },
+    {
+      value: '1d',
+      label: <span className="text-white font-semibold whitespace-nowrap">1 DAY</span>,
+      label2: '1d',
+    },
+    {
+      value: '3d',
+      label: <span className="text-white font-semibold whitespace-nowrap">3 DAYS</span>,
+      label2: '3d',
+    },
+    {
+      value: '1w',
+      label: <span className="text-white font-semibold whitespace-nowrap">1 WEEK</span>,
+      label2: '1w',
+    },
+    {
+      value: '1M',
+      label: <span className="text-white font-semibold whitespace-nowrap">1 MONTH</span>,
+      label2: '1M',
     },
     
   ];
 
   const [getTf, setTf] = useState(options4[4]);
+  const [getRf, setRf] = useState(options12[4]);
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
   const [getShiftFrame, setShiftFrame] = useState(options1[3]);
+
+  // New states i introduced for Risk Management
+  const [getSurgeTf, setSurgeTf] = useState(options9[8]);
+  const [getATRtf, setATRtf] = useState(options10[9]);
+  const [getLookBackTf, setLookBackTf] = useState(options11[3]);
+  const [currentValue, setCurrentValue] = useState("long");
+  const [currentRfcValue, setCurrentRfcValue] = useState(0);
+  const [inputValue, setInputValue] = useState(150);
+  const [customInputValue, setCustomInputValue] = useState(data?.currentPrice);
+  const [isInputDisabled, setIsInputDisabled] = useState(false);
+  const [switchValue, setSwitchValue] = useState(0);
+  const [expandedChild, setExpandedChild] = useState("secondChild");
+  const [toggle, setToggle] = useState(false);
+  // const [snap, setSnap] = useState("400px");
+  // const [isExpanded, setIsExpanded] = useState(true);
 
   const [getSortValue, setSortValue] = useState(options5[1]);
   const [coinName, setCoinName] = useState("SOL");
@@ -819,8 +1127,8 @@ export default function DashBoardHome() {
 
   const {
     data,
-    isLoading: FindCoinLoader,
-    isFetching,
+    // isLoading: FindCoinLoader,
+    // isFetching,
   } = useSearchCoinsQuery({
     coinName,
     timeLeft:timeLeft?.value,
@@ -846,14 +1154,15 @@ export default function DashBoardHome() {
     shift: selectedVal2, 
     pulse: selectedVal,
     wltf: getTf?.value,
+    rf: getRf?.value,
+    rank: switchValue,
+    sortrfc: currentRfcValue,
     createWatchlist,
     userId: getUserDataS().userId
   }, { 
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000, // 30secs
   });
-
-  // console.log("watchlist", WatchList);
 
   const {
     data: WatchListName
@@ -867,14 +1176,39 @@ export default function DashBoardHome() {
     setCreateWatchlist(WatchListName?.watchlist)
   });
 
-  // useEffect(() => {
-  //   setCreateWatchlist(WatchListName?.watchlist)
-  // }, []);
-
   const {
     data: AllAssets,
   } = useGetAllAssetQuery({ 
     refetchOnMountOrArgChange: true 
+  });
+
+  const {
+    data: StretchRange,
+  } = useGetStretchRangeQuery({ 
+    // userId: getUserDataS().userId,
+    coinName,
+    range: getATRtf?.value,
+    stretch: timeLeft?.value,
+    lookback: getLookBackTf?.value,
+    size: inputValue,
+    direction: currentValue,
+    custom: customInputValue
+
+  }, { 
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 30000, // 30secs
+  });
+
+  // console.log("Stretch", StretchRange?.data)
+
+  const {
+    data: SurgeLevel
+  } = useGetSurgeLevelQuery({ 
+    id: getSurgeTf?.value,
+    coinName,
+  }, { 
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 30000, // 30secs
   });
 
   const arrOfAssetsData = Object.entries(AllAssets?.assets ?? {}).map(([key, value]) => ({ 
@@ -892,6 +1226,7 @@ export default function DashBoardHome() {
   };
 
   const totalAverageValue = WatchList?.totalAverage;
+  const averageRiseRatio = WatchList?.averageRiseRatio;
 
   const ConvertObject = (object=[]) => {
     return Object?.values(object)
@@ -954,6 +1289,7 @@ export default function DashBoardHome() {
      
   ];
 
+  // Function to convert values with plenty decimals into 3 decimal places
   const toThreeFig = (nums, places=3) => {
     let myNum = parseFloat(nums);
     let roundedNum = myNum.toFixed(places);
@@ -1117,7 +1453,6 @@ export default function DashBoardHome() {
   const handleLogout = () => {
     dispatch(logoutUser());
     router.push('/login');
-
   };
 
   const handleContinueWorking = () => {
@@ -1186,6 +1521,29 @@ export default function DashBoardHome() {
       color: "white",
       fontSize: "18px",
     }),
+  };
+
+  // Function to determine the background color of Surge
+  const getBackgroundColor = (priceBreak) => {
+    if (priceBreak === 'highLevel') {
+      return 'bg-[#16C782]';
+    } else if (priceBreak === 'lowLevel') {
+      return 'bg-[#EA3943]';
+    }
+  };
+
+  const toggleInput = () => {
+    const newState = !isInputDisabled;
+    setIsInputDisabled(newState);
+    
+    if (newState) {  // if the input is now disabled
+      setCustomInputValue("");  // reset the custom input value to empty
+    }
+  }; 
+  
+  // Function to toggle the switch value
+  const toggleSwitch = () => {
+    setSwitchValue(1 - switchValue);
   };
 
   return (
@@ -1396,6 +1754,7 @@ export default function DashBoardHome() {
               </div>
             </div>
 
+            {/* CENTER AREA OF UI */}
             {/* PULSE COLOR */}
             <div className="flex-grow w-full md:w-[60%] xl:w-[74%]">
               <div className="flex gap-2 h-[415px] mx-3 flex-wrap mb-3">
@@ -1411,6 +1770,7 @@ export default function DashBoardHome() {
               </div>
 
               <div className="flex h-min-[216px] flex-wrap mb-3 mt-6">
+                
                 {/* TIMEFRAME COLOR */}
 
                 {List?.slice(0, getShiftFrame?.value)?.map((item) => (
@@ -1451,14 +1811,16 @@ export default function DashBoardHome() {
               {/* New Feature */}
               {/* Risk Management Tools */}
               <div className="flex space-x-5 h-min-[216px] flex-wrap mb-3 mt-6 -ml-[18rem]">
+                
+                {/* TABLE */}
                 <div className="flex flex-col space-y-3">
                   <div className="flex">
                     <Card className="bg-header p-2 flex items-center justify-center border-none">
                       <div>
-                        <Tabs defaultValue="Long" className="w-[300px]">
-                          <TabsList>
-                            <TabsTrigger className="w-[8rem]" value="Long">Long</TabsTrigger>
-                            <TabsTrigger className="w-[8rem]" value="Short">Short</TabsTrigger>
+                        <Tabs defaultValue="long" className="w-[300px]">
+                          <TabsList className="bg-black p-1">
+                            <TabsTrigger className={`w-[8rem] ${currentValue == 'long' ? 'data-[state=active]:bg-[#16C782]' : 'bg-[#16C782]/8'}`} value="long" onClick={() => setCurrentValue('long')}>Long</TabsTrigger>
+                            <TabsTrigger className={`w-[8rem] ${currentValue == 'short' ? 'data-[state=active]:bg-[#EA3943]' : 'bg-[#EA3943]/8'}`} value="short" onClick={() => setCurrentValue('short')}>Short</TabsTrigger>
                           </TabsList>
                         </Tabs>
                       </div>
@@ -1470,8 +1832,12 @@ export default function DashBoardHome() {
                           sideB={
                             <TextInput
                               wrapperClassName="bg-[#343334] rounded-lg"
+                              suffixIcon={"$"}
                               borderColor="border-none"
-                              placeholder="$0.00"
+                              placeholder="0.00"
+                              value={inputValue}  // set the value
+                              onChange={(e) => setInputValue(e.target.value)}  // update the state value when the input changes
+                              
                             />
                           }
                         />
@@ -1480,49 +1846,458 @@ export default function DashBoardHome() {
                   </div>
 
                   <div>
-                    <Card className="bg-header p-2 flex items-center justify-center border-none">
-                      <div>
-                        
-                      </div>
+                    <Card className="bg-header p-2 flex flex-col items-center border-none">
+                      <TableHeader className="bg-black">
+                        <TableRow className="hover:bg-header">
+                          <TableHead className="text-left w-[13rem] text-gray-200">%Change</TableHead>
+                          <TableHead className="w-[13rem] text-gray-200">Price</TableHead>
+                          <TableHead className="w-[13rem] text-gray-200">P/L</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                      {
+                        StretchRange?.data?.stretches && 
+                        Object.keys(StretchRange?.data?.stretches)
+                        .sort((a, b) => StretchRange?.data?.stretches[b].percentageChange - StretchRange?.data?.stretches[a].percentageChange)
+                        .map((level, index, array) => {
+
+                          const isStretchHigh = toThreeFig(StretchRange?.data?.stretchHigh) === toThreeFig(StretchRange?.data?.stretches[level]?.price);
+                          const isStretchLow = toThreeFig(StretchRange?.data?.stretchLow) === toThreeFig(StretchRange?.data?.stretches[level]?.price);
+
+                          if (level === "level_5") {
+                            // Special row for level 5
+                            return (
+                              <>
+                                <Separator className="bg-gray-600"/>
+                                <TableRow className="hover:bg-header">
+                                  <TableCell className="font-medium text-left w-[13rem]">
+                                    <Button 
+                                      className={`bg-gray-400 text-white hover:bg-gray-500 ${isInputDisabled ? "opacity-50" : "opacity-100"}`}
+                                      onClick={toggleInput}
+                                    >
+                                      Current Price
+                                    </Button>
+                                  </TableCell>
+                                  <TableCell className="w-[13rem]">
+                                    <TextInput 
+                                      type="text" 
+                                      placeholder={toThreeFig(data?.currentPrice)}
+                                      wrapperClassName={`p-1`}
+                                      inputClassName={`${isInputDisabled ? 'cursor-not-allowed' : ''}`}
+                                      value={customInputValue} 
+                                      onChange={(e) => setCustomInputValue(e.target.value)} 
+                                      disabled={isInputDisabled}  
+                                    />
+                                  </TableCell>
+                                  <TableCell className="w-[13rem]">
+                                    $0.00
+                                  </TableCell>
+                                </TableRow>
+                                <Separator className="bg-gray-600"/>
+                              </>
+                            );
+                          }                      
+
+                          return (
+                            <>
+                              <TableRow 
+                                key={level} 
+                                className={`hover:bg-header ${isStretchHigh ? 'border border-green-500' : ''} ${isStretchLow ? 'border border-red-500' : ''}`}
+                              >
+                                <TableCell className={`font-medium text-left w-[13rem] ${StretchRange?.data.stretches[level].percentageChange < 0 ? 'text-red-700' : 'text-green-700'}`}>
+                                  {StretchRange?.data?.stretches[level]?.percentageChange?.toFixed(2) + '%' || 0.00}
+                                </TableCell>
+                                <TableCell className="w-[13rem] text-gray-100">
+                                  {'$' + StretchRange?.data?.stretches[level].price.toFixed(2) || 0.00}
+                                </TableCell>
+                                <TableCell className={`w-[13rem] ${StretchRange?.data.stretches[level].profit < 0 ? 'text-red-700' : 'text-green-700'}`}>
+                                  {'$' + StretchRange?.data?.stretches[level]?.profit?.toFixed(2) || 0.00}
+                                </TableCell>
+                              </TableRow>
+
+                              {index < array.length - 1 && <Separator className="bg-gray-600" />}
+                            </>
+                          )
+                        })
+                      }
+                      </TableBody>
                     </Card>
                   </div>
                 </div>
 
                 {/* Surge TF */}
-                <div className="flex flex-col flex-1">
-                  <div>
-                    <Card className="bg-header p-2 items-center justify-between border-none">
-                      <CardHeader>
-                        <TwoSides
-                            WrapperClassName={"flex-wrap"}
-                            sideA={"Surge TimeFrame:"}
-                            sideAClassName={"secondary gray text-md font-medium xl:mb-0"}
-                        />
-                        <TwoSides
-                          WrapperClassName={"flex-wrap"}
-                          sideB={
-                            <Select 
-                              options={options4}
-                              onChange={(e) => {
-                                console.log(e,'setTf')
-                                setTf(e)
+                <div className="flex flex-col flex-1 space-y-[1.6rem]">
+                  
+                  <Card className="bg-header p-2 border-none">
+                    <CardHeader className="flex">
+                      <TwoSides
+                        WrapperClassName={"flex-wrap"}
+                        sideA={"Surge Timeframe:"}
+                        sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
+                        sideB={
+                          <Select 
+                            options={options9}
+                            onChange={(e) => {
+                              console.log(e,'setSurge')
+                              setSurgeTf(e)
+                            }}
+                            value={getSurgeTf}
+                            styles={customStyles}
+                          />
+                        }
+                      />
+                    </CardHeader>
+                    <Separator className="bg-gray-600" />
+                    <CardContent className="flex flex-col space-y-2 mt-2 pt-4">
+                      {
+                        SurgeLevel?.percentChange > '0' ? (
+                          <>
+                            <Button className="min-h-[6rem] back3">
+                              <p className="text-lg font-medium">
+                                {SurgeLevel?.percentChange || 0.00}
+                              </p>
+                            </Button>
+                            <Button className={`min-h-[6rem] ${getBackgroundColor(SurgeLevel?.priceBreak)} hover:${getBackgroundColor(SurgeLevel?.priceBreak)}`}>
+                              <p className="text-lg font-medium">
+                                {toThreeFig(SurgeLevel?.surge || 0)}
+                              </p>
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <Button className={`min-h-[5rem] ${getBackgroundColor(SurgeLevel?.priceBreak)} hover:${getBackgroundColor(SurgeLevel?.priceBreak)}`}>
+                              <p className="text-lg font-medium">
+                                {toThreeFig(SurgeLevel?.surge || 0)}
+                              </p>
+                            </Button>
+                            <Button className="min-h-[5rem] deepRed2">
+                              <p className="text-lg font-medium">
+                                {SurgeLevel?.percentChange || 0.00}
+                              </p>
+                            </Button>
+                          </>
+                        )
+                      }
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-header p-2 border-none">
+                    <CardHeader className="flex">
+                    <TwoSides
+                        WrapperClassName={"mb-5 flex-wrap"}
+                        sideA={"Average True Range:"}
+                        sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
+                        sideB={
+                          <Select 
+                            options={options10}
+                            onChange={(e) => {
+                              console.log(e,'setATR')
+                              setATRtf(e)
+                            }}
+                            value={getATRtf}
+                            styles={customStyles}
+                          />
+                        }
+                      />
+                      <TwoSides
+                        WrapperClassName={"mb-5 flex-wrap"}
+                        sideA={"LookBack:"}
+                        sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
+                        sideB={
+                          <Select 
+                            options={options11}
+                            onChange={(e) => {
+                              console.log(e,'setLookBack')
+                              setLookBackTf(e)
+                            }}
+                            value={getLookBackTf}
+                            styles={customStyles}
+                          />
+                        }
+                      />
+                    </CardHeader>
+                    <Separator className="bg-gray-600" />
+                    <CardContent className="flex justify-around items-center mt-2 p-10">
+                      <div className="text-5xl">{toThreeFig(StretchRange?.data.atr || 0)}</div>
+                      <Separator orientation="vertical" className="bg-gray-200 h-[3.5rem]" />
+                      <div className="text-5xl">{toThreeFig(StretchRange?.data.atrPercentage || 0)}%</div>
+                    </CardContent>
+                  </Card>
+                  
+                </div>
+              </div>
+
+              {
+                expandedChild === 'firstChild' && (
+                  <div className="-ml-[18rem]">
+                    <Card className="bg-header p-2 border-none">
+                      <div className="flex items-center justify-between pb-3 pt-3 border-b-[1px] borderColor">
+                        <div className="flex items-center ">
+                          <AiFillSetting size={30} className="mr-3" />{" "}
+                          <div className="secondary text-[16px] lg:text-[20px] font-semibold">
+                            {"TrendScan"}
+                          </div>
+                        </div>
+                        <div onClick={() => setToggle(!toggle)} >
+                          {
+                            toggle ? <IoIosArrowDown size={20} /> : <IoIosArrowUp size={20}/>
+                          }  
+                        </div>
+                      </div>
+                      <div
+                        className={`p-2 space-y-3 ${
+                          toggle
+                            ? "h-0 transition-all mt-1 overflow-hidden"
+                            : "h-auto transition-all mt-4"
+                        } `}
+                      >
+                        <div className="flex justify-between items-center">
+                          {/* CREATE WATCHLIST TEXTINPUT */}
+                          <div className="mb-5 space-x-10">
+                            <Controller
+                              name="watchlist"
+                              control={control}
+                              rules={{
+                                required: "Create Watchlist",
+                                maxLength: generateMaxLength(20),
                               }}
-                              value={getTf}
-                              styles={customStyles}
+                              render={({
+                                field: { value, onChange },
+                                formState: { errors },
+                              }) => {
+                                setPlaceholderItem(WatchListName?.watchlist);
+                                const errorMessage = errors?.watchlist?.message;
+
+                                return (
+                                  <div>
+                                    <TextInput
+                                      disabled={WatchListName?.watchlist.length > 0 ? true : false}
+                                      placeholder={WatchListName?.watchlist.length > 0 ? 
+                                        placeholderItem : 'Create Watchlist'
+                                      }
+                                      inputClassName={`backText ${WatchListName?.watchlist.length > 0 ? 'cursor-not-allowed' : ''}`}
+                                      suffixIcon={
+                                        WatchListName?.watchlist.length > 0 ? (
+                                          <MdOutlineDisabledByDefault 
+                                            size={20}
+                                            wrapperClassName="w-full"
+                                            className="cursor-pointer"
+                                            onClick={() => deleteWatchlistHolderHandle()}
+                                          />
+                                        ) : (
+                                          <FiPlus
+                                            size={20}
+                                            wrapperClassName="w-full"
+                                            className="cursor-pointer"
+                                            onClick={value ? () => createWatchlistHolderHandle(value) : null}
+                                          />
+                                        )  
+                                      }
+                                      // prefixIcon={(addToWatchListLoader || removeFromWatchListLoader) && <Spinner />}
+                                      name="watchlist"
+                                      {...{ value, onChange, errors: [errorMessage] }}
+                                    />
+                                  </div>
+                                );
+                              }}
                             />
-                          }
-                        />
-                      </CardHeader>
-                      <CardContent>
-                        
-                      </CardContent>
+                          </div>
+
+                          {/* EXPAND BUTTON AND EXPAND DRAWER COMPONENT */}
+                          <div className="text-right mb-5">
+                            <Button 
+                              className="bg-gray-400 text-gray-300 hover:bg-gray-500"
+                              // onClick={() => setIsExpanded(false)} // set isExpanded to false when clicked
+                              onClick={() => setExpandedChild(expandedChild === 'firstChild' ? 'secondChild' : 'firstChild')}
+                            >
+                              Reduce Watchlist
+                            </Button>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          {/* FLOW TAB */}
+                          <div className="flex items-center space-x-5">
+                            <span>Flow</span>
+
+                            <Tabs 
+                              defaultValue="%Change" 
+                              className="w-[400px]"
+                            >
+                              <TabsList className="bg-black/8">
+                                <TabsTrigger value="%Change" onClick={() => setCurrentRfcValue(1)} className="text-gray-400 bg-gray-600">%Change</TabsTrigger>
+                                <TabsTrigger value="Rise/Fall" onClick={() => setCurrentRfcValue(0)} className="text-gray-400 bg-gray-600">Rise/Fall</TabsTrigger>
+                              </TabsList>
+                            </Tabs>
+                          </div>
+
+                          {/* CHANGE PERCENT TIMEFRAME */}
+                          <TwoSides
+                            WrapperClassName={"flex-wrap space-x-3"}
+                            sideA={"Change(%) Timeframe:"}
+                            sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
+                            sideB={
+                              <Select 
+                                options={options4}
+                                onChange={(e) => {
+                                  console.log(e,'setTf')
+                                  setTf(e)
+                                }}
+                                value={getTf}
+                                styles={customStyles}
+                              />
+                            }
+                          />
+
+                          {/* SCORE RANK AND SORT COMPONENT */}
+                          <TwoSides
+                            WrapperClassName={"space-x-10"}
+                            sideB={
+                              <span className="flex gap-2 items-center">
+                                <MdSort className="text2" size={20} />{" "}
+                                <span className="text2">Sort:</span>
+                                <DropDownItem
+                                  options={options5}
+                                  onChange={(e) => {
+                                    console.log(e?.value,'sort value')
+                                    setSortValue(e)
+                                    localStorage.setItem("sortValue", e?.value)
+                                  }}
+                                  value={getSortValue}
+                                />
+                              </span>
+                            }
+                          />
+
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          {/* FLOW TAB */}
+                          <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold borderColor border-[1px] rounded-md`}>
+                            {`Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue || 0.000)}%`}
+                          </div>
+
+                          {/* RISE / FALL PERCENT TIMEFRAME */}
+                          <TwoSides
+                            WrapperClassName={"flex-wrap space-x-3 ml-[3rem]"}
+                            sideA={"Rise/Fall(%) Timeframe:"}
+                            sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
+                            sideB={
+                              <Select 
+                                options={options12}
+                                onChange={(e) => {
+                                  console.log(e,'setRF')
+                                  setRf(e)
+                                }}
+                                value={getRf}
+                                styles={customStyles}
+                              />
+                            }
+                          />
+
+                          {/* SCORE RANK AND SORT COMPONENT */}
+                          <TwoSides
+                            WrapperClassName={"space-x-10"}
+                            sideA={
+                              <span className="flex gap-2 items-center">
+                                <Label htmlFor="airplane-mode" className="text2">Score Rank:</Label>
+                                <Switch 
+                                  id="airplane-mode" 
+                                  className="bg-gray-400" 
+                                  checked={switchValue}
+                                  onCheckedChange={toggleSwitch}
+                                />
+                              </span>
+                            }
+                          />
+                        </div>
+
+                        <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold rounded-md mt-3 mb-5`}>
+                          <Slider 
+                            defaultValue={[averageRiseRatio]} 
+                            value={[averageRiseRatio]}
+                            max={100} 
+                            step={1} 
+                          />
+                        </div>
+
+                        <div>
+                          <Card className="bg-header p-2 flex flex-col items-center border-none">
+                            <TableHeader className="bg-black">
+                              <TableRow className="hover:bg-black">
+                                <TableHead className="text-left w-[10rem] text-gray-200">Symbol</TableHead>
+                                <TableHead className="w-[10rem] text-gray-200">Price</TableHead>
+                                <TableHead className="w-[10rem] text-gray-200">%Change</TableHead>
+                                <TableHead className="w-[10rem] text-gray-200">Pulse</TableHead>
+                                <TableHead className="w-[10rem] text-gray-200">Shift</TableHead>
+                                <TableHead className="w-[10rem] text-gray-200">Rise</TableHead>
+                                <TableHead className="w-[10rem] text-gray-200">Fall</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody className="">
+                              <TableRow className="hover:bg-header">
+                                <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
+                                  {WatchList?.data?.map((item, i) => {
+                                      let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+
+                                      let pulseColor;
+                                      let shiftColor;
+
+                                      if (item.pulse === 2) {
+                                        pulseColor = "bg-[#26A17B]";
+                                      } else if (item.pulse === -2) {
+                                        pulseColor = "bg-[#EA3943]";
+                                      } else {
+                                        pulseColor = "bg-[#d1d5db]";
+                                      }
+
+                                      if (item.shift === 2) {
+                                        shiftColor = "bg-[#26A17B]";
+                                      } else if (item.shift === -2) {
+                                        shiftColor = "bg-[#EA3943]";
+                                      } else {
+                                        shiftColor = "bg-[#d1d5db]";
+                                      }
+
+                                      return (
+                                        <div className="flex">
+                                          <div className="grid grid-cols-7 gap-[4.7rem] justify-between 
+                                          items-center whitespace-nowrap borderColor border-b-[1px] 
+                                          p-4 mb-3 cursor-pointer mr-10"
+                                          onClick={() => handleOnClickWatchlist(item.name)}
+                                          >
+                                            <div className="col-span-1">
+                                              {item?.name}
+                                            </div>
+                                            <div className="col-span-1">${toThreeFig(item.price)}</div>
+                                            <div className="col-span-1">
+                                              <div className={`${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</div>
+                                            </div>
+                                            <div className={`col-span-1 ${pulseColor} w-[20px] h-[10px]`}>
+                                              {/* PULSE */}
+                                            </div>
+                                            <div className={`col-span-1 ${shiftColor} w-[20px] h-[10px]`}>
+                                              {/* SHIFT */}
+                                            </div>
+                                            <div className={`col-span-1 text-[#26A17B]`}>{toThreeFig(item.rise)}%</div>
+                                            <div className={`col-span-1 text-[#EA3943]`}>{toThreeFig(item.fall)}%</div>
+                                            
+                                          </div>
+                                        </div>
+                                      );
+                                    }
+                                  )}
+                                </div>
+                              </TableRow>
+                            </TableBody>
+                          </Card>  
+                        </div>    
+
+                      </div>
                     </Card>
                   </div>
-
-                  <div></div>
-                </div>
-
-              </div>
+                )
+              }
               
             </div>
           </div>
@@ -1551,177 +2326,254 @@ export default function DashBoardHome() {
               setSelectedOptions2={setSelectedOptions2}
               title="TrendScan Timeframe Settings"
             />
-            <div className="bg-white py-3 px-3">
-              <div className="secondary text-2xl font-bold mb-3 xl:mb-0">TrendScan</div>
+
+            {/* TrendScan */}
+            {
+              expandedChild === 'secondChild' && (
+                <div className="bg-white py-3 px-3">
+                  <div className="secondary text-2xl font-bold mb-5 xl:mb-5">TrendScan</div>
               
-              <TwoSides
-                WrapperClassName={"mb-5 flex-wrap"}
-                sideA={"Change(%) Timeframe:"}
-                sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
-                sideB={
-                  <Select 
-                    options={options4}
-                    onChange={(e) => {
-                      console.log(e,'setTf')
-                      setTf(e)
-                    }}
-                    value={getTf}
-                    styles={customStyles}
-                  />
-                }
-              />
+                  {/* EXPAND BUTTON */}
+                  <div className="text-right mb-5">
+                    <Button 
+                      className="bg-gray-400 text-gray-300 hover:bg-gray-500"
+                      // onClick={() => setIsExpanded(true)} 
+                      onClick={() => setExpandedChild(expandedChild === 'secondChild' ? 'firstChild' : 'secondChild')}
+                    >
+                      Expand Watchlist
+                    </Button>
+                  </div>
 
-              <TwoSides
-                WrapperClassName={"mb-5 space-x-10"}
-                sideA={
-                  <Controller
-                  name="watchlist"
-                  control={control}
-                  rules={{
-                    required: "Create Watchlist",
-                    maxLength: generateMaxLength(20),
-                  }}
-                  render={({
-                    field: { value, onChange },
-                    formState: { errors },
-                  }) => {
-
-                    setPlaceholderItem(WatchListName?.watchlist);
-                    
-                    const errorMessage = errors?.watchlist?.message;    
-                    return (
-                      <TextInput
-                        disabled={WatchListName?.watchlist.length > 0 ? true : false}
-                        placeholder={WatchListName?.watchlist.length > 0 ? 
-                          placeholderItem : 'Create Watchlist'
-                        }
-                        inputClassName={"backText"}
-                        suffixIcon={
-                          WatchListName?.watchlist.length > 0 ? (
-                            <MdOutlineDisabledByDefault 
-                              size={20}
-                              wrapperClassName="xl:w-[20%]"
-                              className="cursor-pointer"
-                              onClick={() => deleteWatchlistHolderHandle()}
-                            />
-                          ) : (
-                            <FiPlus
-                            size={20}
-                            wrapperClassName="xl:w-[20%]"
-                            className="cursor-pointer"
-                            // onClick={value ? () => createWatchlistHolderHandle(value): null}
-                            onClick={value ? () => createWatchlistHolderHandle(value) : null}
-                          />
-                          )  
-                        }
-                        // prefixIcon={(addToWatchListLoader || removeFromWatchListLoader) && <Spinner />}
-                        name="watchlist"
-                        {...{ value, onChange, errors: [errorMessage] }}
-                      />
-                      );
-                    }}
-                  />
-                }
-                sideB={
-                  <span className="flex gap-2 items-center">
-                    <MdSort className="text2" size={20} />{" "}
-                    <span className="text2">Sort:</span>
-                    <DropDownItem
-                      options={options5}
-                      onChange={(e) => {
-                        console.log(e?.value,'sort value')
-                        setSortValue(e)
-                        localStorage.setItem("sortValue", e?.value)
+                  {/* CREATE WATCHLIST TEXTINPUT */}
+                  <div className="mb-5 space-x-10">
+                    <Controller
+                      name="watchlist"
+                      control={control}
+                      rules={{
+                        required: "Create Watchlist",
+                        maxLength: generateMaxLength(20),
                       }}
-                      value={getSortValue}
+                      render={({
+                        field: { value, onChange },
+                        formState: { errors },
+                      }) => {
+                        setPlaceholderItem(WatchListName?.watchlist);
+                        const errorMessage = errors?.watchlist?.message;
+
+                        return (
+                          <div>
+                            <TextInput
+                              disabled={WatchListName?.watchlist.length > 0 ? true : false}
+                              placeholder={WatchListName?.watchlist.length > 0 ? 
+                                placeholderItem : 'Create Watchlist'
+                              }
+                              inputClassName={`backText ${WatchListName?.watchlist.length > 0 ? 'cursor-not-allowed' : ''}`}
+                              suffixIcon={
+                                WatchListName?.watchlist.length > 0 ? (
+                                  <MdOutlineDisabledByDefault 
+                                    size={20}
+                                    wrapperClassName="w-full"
+                                    className="cursor-pointer"
+                                    onClick={() => deleteWatchlistHolderHandle()}
+                                  />
+                                ) : (
+                                  <FiPlus
+                                    size={20}
+                                    wrapperClassName="w-full"
+                                    className="cursor-pointer"
+                                    onClick={value ? () => createWatchlistHolderHandle(value) : null}
+                                  />
+                                )  
+                              }
+                              // prefixIcon={(addToWatchListLoader || removeFromWatchListLoader) && <Spinner />}
+                              name="watchlist"
+                              {...{ value, onChange, errors: [errorMessage] }}
+                            />
+                          </div>
+                        );
+                      }}
                     />
-                  </span>
-                }
-              />
-
-              {/*  */}
-              <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold borderColor border-[1px] rounded-md mb-5`}>
-                {
-                  `Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue || 0.000)}%`
-                }
-              </div>
+                  </div>
               
-              {/* GET ALL FROM WATCHLIST */}
-              <div className="grid grid-cols-6 gap-[4rem] justify-between items-center tableHeaderText text-sm mb-3 borderColor border-b-[1px] pb-2">
-                  <div className="col-span-1">Symbol</div>
-                  <div className="col-span-1">Price</div>
-                  <div className="col-span-1">Pulse</div>
-                  <div className="col-span-1">Shift</div>
-                  <div className="col-span-1">Change%</div>
-                  <div className="col-span-1"></div>
-              </div>
-              <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
-                  {WatchListIsLoading ? (
-                    <p className="text-center">Loading <Spinner /></p>
-                  ) : WatchListIsFetching ? (
-                    <Spinner />
-                  ) : (
-                    WatchList?.data?.map((item, i) => {
-                      let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+                  {/* CHANGE PERCENT TIMEFRAME */}
+                  <TwoSides
+                    WrapperClassName={"mb-5 flex-wrap"}
+                    sideA={"Change(%) Timeframe:"}
+                    sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
+                    sideB={
+                      <Select 
+                        options={options4}
+                        onChange={(e) => {
+                          console.log(e,'setTf')
+                          setTf(e)
+                        }}
+                        value={getTf}
+                        styles={customStyles}
+                      />
+                    }
+                  />
 
-                      let pulseColor;
-                      let shiftColor;
+                  {/* RISE / FALL PERCENT TIMEFRAME */}
+                  <TwoSides
+                    WrapperClassName={"mb-5 flex-wrap"}
+                    sideA={"Rise/Fall(%) Timeframe:"}
+                    sideAClassName={"secondary gray text-lg font-medium mb-3 xl:mb-0"}
+                    sideB={
+                      <Select 
+                        options={options12}
+                        onChange={(e) => {
+                          console.log(e,'setRF')
+                          setRf(e)
+                        }}
+                        value={getRf}
+                        styles={customStyles}
+                      />
+                    }
+                  />
 
-                      if (item.pulse === 2) {
-                        pulseColor = "bg-[#26A17B]";
-                      } else if (item.pulse === -2) {
-                        pulseColor = "bg-[#EA3943]";
-                      } else {
-                        pulseColor = "bg-[#d1d5db]";
-                      }
+                  {/* SCORE RANK AND SORT COMPONENT */}
+                  <TwoSides
+                    WrapperClassName={"mb-5 space-x-10"}
+                    sideA={
+                      <span className="flex gap-2 items-center">
+                        <Label htmlFor="airplane-mode" className="text2">Score Rank:</Label>
+                        <Switch 
+                          id="airplane-mode" 
+                          className={`transition duration-300 ease-in-out ${switchValue ? 'bg-green-400' : 'bg-gray-400'}`} 
+                          checked={switchValue}
+                          onCheckedChange={toggleSwitch}
+                        />
+                      </span>
+                    }
+                    sideB={
+                      <span className="flex gap-2 items-center">
+                        <MdSort className="text2" size={20} />{" "}
+                        <span className="text2">Sort:</span>
+                        <DropDownItem
+                          options={options5}
+                          onChange={(e) => {
+                            console.log(e?.value,'sort value')
+                            setSortValue(e)
+                            localStorage.setItem("sortValue", e?.value)
+                          }}
+                          value={getSortValue}
+                        />
+                      </span>
+                    }
+                  />
+              
+                  {/* FLOW TAB */}
+                  <div className="flex justify-around items-center space-x-3 mb-5">
+                    <span>Flow</span>
 
-                      if (item.shift === 2) {
-                        shiftColor = "bg-[#26A17B]";
-                      } else if (item.shift === -2) {
-                        shiftColor = "bg-[#EA3943]";
-                      } else {
-                        shiftColor = "bg-[#d1d5db]";
-                      }
+                    <Tabs 
+                      defaultValue="Rise/Fall" 
+                      className="w-[400px]"
+                    >
+                      <TabsList className="bg-black/8">
+                        <TabsTrigger value="%Change" onClick={() => setCurrentRfcValue(1)} className="text-gray-400 bg-gray-600">%Change</TabsTrigger>
+                        <TabsTrigger value="Rise/Fall" onClick={() => setCurrentRfcValue(0)} className="text-gray-400 bg-gray-600">Rise/Fall</TabsTrigger>
+                      </TabsList>
+                    </Tabs>
+                  </div>
 
-                      return (
-                        <div className="flex">
-                          <div className="grid grid-cols-6 gap-[4rem] justify-between 
-                          items-center whitespace-nowrap borderColor border-b-[1px] 
-                          pb-3 mb-3 cursor-pointer"
-                          onClick={() => handleOnClickWatchlist(item.name)}
-                          >
-                            <div className="col-span-1">
-                              {item?.name?.split("/")[0]}/
-                              <br />
-                              {item?.name?.split("/")[1]}
-                            </div>
-                            <div className="col-span-1">${toThreeFig(item.price)}</div>
-                            <div className={`col-span-1 ${pulseColor} ml-4 w-[20px] h-[10px]`}>
-                              {/* PULSE */}
-                            </div>
-                            <div className={`col-span-1 ${shiftColor} ml-4 w-[20px] h-[10px]`}>
-                              {/* SHIFT */}
-                            </div>
-                            <div className="col-span-1 ml-4">
-                              <div className={`${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</div>
-                            </div>
-                            
-                          </div>
-                          <div className="mt-4">
-                              <div className="">
-                                <MdCancel
-                                  color="gray"
-                                  cursor="pointer"
-                                  onClick={() => removeFromWatchlistHandle(item.name)}
-                                />
+                  {/*  */}
+                  {
+                    currentRfcValue === 1 ? (
+                      <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold borderColor border-[1px] rounded-md mb-5`}>
+                        {`Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue || 0.000)}%`}
+                      </div>
+                    ) : (
+                      <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold rounded-md mb-5`}>
+                        <Slider 
+                          defaultValue={[averageRiseRatio]} 
+                          value={[averageRiseRatio]}
+                          max={100} 
+                          step={1} 
+                          className={""}
+                        />
+                      </div>
+                    )
+                  }
+              
+                  {/* GET ALL FROM WATCHLIST */}
+                  <div className="grid grid-cols-6 gap-[4rem] justify-between items-center tableHeaderText text-sm mb-3 borderColor border-b-[1px] pb-2">
+                      <div className="col-span-1">Symbol</div>
+                      <div className="col-span-1">Price</div>
+                      <div className="col-span-1">Pulse</div>
+                      <div className="col-span-1">Shift</div>
+                      <div className="col-span-1">Change%</div>
+                      <div className="col-span-1"></div>
+                  </div>
+                  <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
+                      {WatchListIsLoading ? (
+                        <p className="text-center">Loading <Spinner /></p>
+                      ) : WatchListIsFetching ? (
+                        <Spinner />
+                      ) : (
+                        WatchList?.data?.map((item, i) => {
+                          let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+
+                          let pulseColor;
+                          let shiftColor;
+
+                          if (item.pulse === 2) {
+                            pulseColor = "bg-[#26A17B]";
+                          } else if (item.pulse === -2) {
+                            pulseColor = "bg-[#EA3943]";
+                          } else {
+                            pulseColor = "bg-[#d1d5db]";
+                          }
+
+                          if (item.shift === 2) {
+                            shiftColor = "bg-[#26A17B]";
+                          } else if (item.shift === -2) {
+                            shiftColor = "bg-[#EA3943]";
+                          } else {
+                            shiftColor = "bg-[#d1d5db]";
+                          }
+
+                          return (
+                            <div className="flex">
+                              <div className="grid grid-cols-6 gap-[4rem] justify-between 
+                              items-center whitespace-nowrap borderColor border-b-[1px] 
+                              pb-3 mb-3 cursor-pointer"
+                              onClick={() => handleOnClickWatchlist(item.name)}
+                              >
+                                <div className="col-span-1">
+                                  {item?.name?.split("/")[0]}/
+                                  <br />
+                                  {item?.name?.split("/")[1]}
+                                </div>
+                                <div className="col-span-1">${toThreeFig(item.price)}</div>
+                                <div className={`col-span-1 ${pulseColor} ml-4 w-[20px] h-[10px]`}>
+                                  {/* PULSE */}
+                                </div>
+                                <div className={`col-span-1 ${shiftColor} ml-4 w-[20px] h-[10px]`}>
+                                  {/* SHIFT */}
+                                </div>
+                                <div className="col-span-1 ml-4">
+                                  <div className={`${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</div>
+                                </div>
+                                
                               </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                  )}
-              </div>
-            </div>
+                              <div className="mt-4">
+                                  <div className="">
+                                    <MdCancel
+                                      color="gray"
+                                      cursor="pointer"
+                                      onClick={() => removeFromWatchlistHandle(item.name)}
+                                    />
+                                  </div>
+                              </div>
+                            </div>
+                          );
+                        })
+                      )}
+                  </div>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
