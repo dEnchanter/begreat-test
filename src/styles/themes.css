@@ -33,6 +33,7 @@
     --List1: #EA3943;
     --List2: #26A17B;
     --gradient1: linear-gradient(360deg, #16C782 -10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 200.49%);
+    --gradient11: linear-gradient(360deg, #16C782 -20.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 200.49%);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
     --gradient3: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 100.47%, rgba(234, 57, 67, 0) 200.49%);
     --deepGreen: linear-gradient(180deg, #16C782 75%, rgba(22, 199, 130, 0) 118.38%);
@@ -257,6 +258,10 @@ body {
 
 .back1 {
     background: var(--gradient1);
+}
+
+.back11 {
+    background: var(--gradient11);
 }
 
 .back2 {

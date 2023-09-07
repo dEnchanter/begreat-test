@@ -14,7 +14,7 @@ export default function pricing() {
   const router = useRouter();
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
   
-  console.log(data?.userRecord?.email,'isLoggedIn')
+  // console.log(data?.userRecord?.email,'isLoggedIn')
 
   const handlePayment1 =(paymentId) =>{
     const payload ={

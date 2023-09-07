@@ -1881,7 +1881,7 @@ export default function DashBoardHome() {
                                   <TableCell className="w-[13rem]">
                                     <TextInput 
                                       type="text" 
-                                      placeholder={toThreeFig(data?.currentPrice)}
+                                      placeholder={toThreeFig(data?.currentPrice || 0)}
                                       wrapperClassName={`p-1`}
                                       inputClassName={`${isInputDisabled ? 'cursor-not-allowed' : ''}`}
                                       value={customInputValue} 
@@ -1902,7 +1902,7 @@ export default function DashBoardHome() {
                             <>
                               <TableRow 
                                 key={level} 
-                                className={`hover:bg-header ${isStretchHigh ? 'border border-green-500' : ''} ${isStretchLow ? 'border border-red-500' : ''}`}
+                                className={`hover:bg-header ${isStretchHigh ? 'back11' : ''} ${isStretchLow ? 'deepRed' : ''}`}
                               >
                                 <TableCell className={`font-medium text-left w-[13rem] ${StretchRange?.data.stretches[level].percentageChange < 0 ? 'text-red-700' : 'text-green-700'}`}>
                                   {StretchRange?.data?.stretches[level]?.percentageChange?.toFixed(2) + '%' || 0.00}
