@@ -26,7 +26,7 @@ const GoogleButton = () => {
       dispatch(googleAuth(data))
       toast.success(data?.message);
       router.push('/dashboard')
-    console.log('Token sent successfully!',data,'data1');
+      console.log('Token sent successfully!',data,'data1');
   })
   .catch((err) => {
     console.error('Failed to send token:', err);
