@@ -14,7 +14,7 @@ import Link from "next/link";
 import Footer from "../../components/modules/Footer";
 import { toast } from "react-hot-toast";
 import GoogleSignInButton from "../../components/common/GoogleSignInButton";
-import { gapi } from "gapi-script";
+// import { gapi } from "gapi-script";
 import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
 import { useGetUserProfileQuery, useSubscribeMutation, useUserLoginGoogleMutation } from "../../store/auth/authApi";
