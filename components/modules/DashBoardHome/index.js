@@ -901,7 +901,7 @@ export default function DashBoardHome() {
   const [getSurgeTf, setSurgeTf] = useState(options9[8]);
   const [getATRtf, setATRtf] = useState(options10[9]);
   const [getLookBackTf, setLookBackTf] = useState(options11[3]);
-  const [currentValue, setCurrentValue] = useState("Long");
+  const [currentValue, setCurrentValue] = useState("long");
   const [currentRfcValue, setCurrentRfcValue] = useState(0);
   const [inputValue, setInputValue] = useState(150);
   const [customInputValue, setCustomInputValue] = useState(data?.currentPrice);
@@ -1817,10 +1817,10 @@ export default function DashBoardHome() {
                   <div className="flex">
                     <Card className="bg-header p-2 flex items-center justify-center border-none">
                       <div>
-                        <Tabs defaultValue="Long" className="w-[300px]">
+                        <Tabs defaultValue="long" className="w-[300px]">
                           <TabsList className="bg-black p-1">
-                            <TabsTrigger className={`w-[8rem] ${currentValue == 'Long' ? 'data-[state=active]:bg-[#16C782]' : 'bg-[#16C782]/8'}`} value="Long" onClick={() => setCurrentValue('Long')}>Long</TabsTrigger>
-                            <TabsTrigger className={`w-[8rem] ${currentValue == 'Short' ? 'data-[state=active]:bg-[#EA3943]' : 'bg-[#EA3943]/8'}`} value="Short" onClick={() => setCurrentValue('Short')}>Short</TabsTrigger>
+                            <TabsTrigger className={`w-[8rem] ${currentValue == 'long' ? 'data-[state=active]:bg-[#16C782]' : 'bg-[#16C782]/8'}`} value="long" onClick={() => setCurrentValue('long')}>Long</TabsTrigger>
+                            <TabsTrigger className={`w-[8rem] ${currentValue == 'short' ? 'data-[state=active]:bg-[#EA3943]' : 'bg-[#EA3943]/8'}`} value="short" onClick={() => setCurrentValue('short')}>Short</TabsTrigger>
                           </TabsList>
                         </Tabs>
                       </div>
@@ -1902,7 +1902,7 @@ export default function DashBoardHome() {
                             <>
                               <TableRow 
                                 key={level} 
-                                className={`hover:bg-header ${isStretchHigh ? 'outline-green-500' : ''} ${isStretchLow ? 'outline-red-500' : ''}`}
+                                className={`hover:bg-header ${isStretchHigh ? 'border border-green-500' : ''} ${isStretchLow ? 'border border-red-500' : ''}`}
                               >
                                 <TableCell className={`font-medium text-left w-[13rem] ${StretchRange?.data.stretches[level].percentageChange < 0 ? 'text-red-700' : 'text-green-700'}`}>
                                   {StretchRange?.data?.stretches[level]?.percentageChange?.toFixed(2) + '%' || 0.00}
@@ -2025,7 +2025,6 @@ export default function DashBoardHome() {
                   </Card>
                   
                 </div>
-
               </div>
 
               {
@@ -2225,7 +2224,7 @@ export default function DashBoardHome() {
                         <div>
                           <Card className="bg-header p-2 flex flex-col items-center border-none">
                             <TableHeader className="bg-black">
-                              <TableRow>
+                              <TableRow className="hover:bg-black">
                                 <TableHead className="text-left w-[10rem] text-gray-200">Symbol</TableHead>
                                 <TableHead className="w-[10rem] text-gray-200">Price</TableHead>
                                 <TableHead className="w-[10rem] text-gray-200">%Change</TableHead>
@@ -2262,7 +2261,7 @@ export default function DashBoardHome() {
 
                                       return (
                                         <div className="flex">
-                                          <div className="grid grid-cols-7 gap-[5rem] justify-between 
+                                          <div className="grid grid-cols-7 gap-[4.7rem] justify-between 
                                           items-center whitespace-nowrap borderColor border-b-[1px] 
                                           p-4 mb-3 cursor-pointer mr-10"
                                           onClick={() => handleOnClickWatchlist(item.name)}
@@ -2280,8 +2279,8 @@ export default function DashBoardHome() {
                                             <div className={`col-span-1 ${shiftColor} w-[20px] h-[10px]`}>
                                               {/* SHIFT */}
                                             </div>
-                                            <div className={`col-span-1`}>{toThreeFig(item.rise)}</div>
-                                            <div className={`col-span-1`}>{toThreeFig(item.fall)}</div>
+                                            <div className={`col-span-1 text-[#26A17B]`}>{toThreeFig(item.rise)}%</div>
+                                            <div className={`col-span-1 text-[#EA3943]`}>{toThreeFig(item.fall)}%</div>
                                             
                                           </div>
                                         </div>

@@ -14,7 +14,7 @@ import Link from "next/link";
 import Footer from "../../components/modules/Footer";
 import { toast } from "react-hot-toast";
 import GoogleSignInButton from "../../components/common/GoogleSignInButton";
-// import { gapi } from "gapi-script";
+import { gapi } from "gapi-script";
 import { LoginGoogle } from "../../components/common/Login";
 import { GoogleLogin } from "@react-oauth/google";
 import { useGetUserProfileQuery, useSubscribeMutation, useUserLoginGoogleMutation } from "../../store/auth/authApi";
@@ -35,28 +35,31 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
 
-const togglePasswordVisibility = () => {
-  setShowPassword(!showPassword);
-};
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-const handleRememberMe = (event) => {
-  setRememberMe(event.target.checked);
-};
+  const handleRememberMe = (event) => {
+    setRememberMe(event.target.checked);
+  };
 
   const { control, handleSubmit, setValue } = useForm({
-  defaultValues: {
-    email: "",
-    password: "",
-  },
-});
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-const [
-  subscribePlan,
-  { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
-] = useSubscribeMutation();
+  const [
+    subscribePlan,
+    { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
+  ] = useSubscribeMutation();
+
+  // console.log("sub plan", subscribePlan)
 
   //console.log(all,userInfo,loading,error,'userInfo')
   //console.log(data,getPath(),'userInfoLoginData');
+  
   const HandleSubmit = async (data) => {
     const { email, password } = data;
     // console.log(data,'userInfoLoginData');
@@ -95,9 +98,9 @@ const [
   useEffect(() => {
     if(isSuccess){
       dispatch(googleAuth())
-      // setToken(data?.accessToken)
-      // setUserDataS(data?.user)
-      // toast.success(data?.message);
+      setToken(data?.accessToken)
+      setUserDataS(data?.user)
+      toast.success(data?.message);
     }
   }, [])
 
@@ -128,23 +131,13 @@ const [
   //   };
   //   gapi.load('client:auth2',start)
   // }, [])
-  
-  // const responseMessage = (response) => {
-  //     console.log(response);
-  // };
-  // const errorMessage = (error) => {
-  //     console.log(error);
-  // };
 
-  // const GoogleLoginButton = () => {
-  
-  // }
+  const userId = getUserDataS()?.userId
+  // console.log("userId", userId)
 
-const userId = getUserDataS()?.userId
-// console.log("userId", userId)
+  const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
+  // console.log(data,'datadata')
 
-const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
-// console.log(data,'datadata')
 // useEffect(() => {
 //   if (error?.status === 401) {
 //     // router.push("/login");
