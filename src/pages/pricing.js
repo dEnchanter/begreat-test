@@ -10,13 +10,15 @@ import { setPath } from '../../helper'
 import { toast } from 'react-hot-toast'
 
 export default function pricing() {
-  const router =useRouter();
-  const { data, isLoading, error,refetch,isError, status} = useGetUserProfileQuery(); // Use the generated hook
-  console.log(data?.userRecord?.email,isError,status,error,isLoading,'isLoggedIn')
 
-  const handlePayment =(paymentId) =>{
+  const router = useRouter();
+  const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
+  
+  console.log(data?.userRecord?.email,'isLoggedIn')
+
+  const handlePayment1 =(paymentId) =>{
     const payload ={
-      link:'https://app.begreat.finance',
+      link:'https://payments.begreat.finance/b/eVa3fNdHr5lr8N24gg',
       payment:paymentId
     }
     if(data?.userRecord?.email){
@@ -28,6 +30,23 @@ export default function pricing() {
       router.push('https://app.begreat.finance')
     }
   }
+
+  const handlePayment2 =(paymentId) =>{
+    const payload ={
+      link:'https://payments.begreat.finance/b/aEU5nV32NbJP1kA289',
+      payment:paymentId
+    }
+    if(data?.userRecord?.email){
+      router.push('https://app.begreat.finance')
+      //router.push('https://payments.begreat.finance/b/aEU5nV32NbJP1kA289')
+    }
+    else{
+      toast.error('You have to Sign In to Buy Plan')
+      setPath(payload)
+      router.push('https://app.begreat.finance')
+    }
+  }
+
   return (
     <Layout>
        <Container> 
@@ -44,7 +63,7 @@ export default function pricing() {
           <h1 className='font-bold text-xl pt-4'>Monthly Plan </h1>
           <p className='text-xs mt-2 h-[4rem] flex items-center'> <span> <RxDotFilled className='text-[1.7rem]'/>  </span>Everything you need to navigate the markets successfully </p>
           <h1 className='mt-3 text-xs'> <span className='text-3xl font-bold'>$50</span>/MO </h1>
-          <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in' onClick={()=>handlePayment(process.env.NEXT_PUBLIC_PAYMENTI)}> Buy Plan </button> 
+          <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in' onClick={()=>handlePayment1(process.env.NEXT_PUBLIC_PAYMENTI)}> Buy Plan </button> 
           <div className='mt-5 text-xs space-y-3 '> 
              <p className='uppercase font-semibold'> What's Included </p>
                <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Pulse Tool </p>
@@ -62,7 +81,7 @@ export default function pricing() {
           <p className='text-xs mt-2  flex items-center'> <span> <RxDotFilled className='text-[1.7rem]'/> </span> Save over 15% on the premium plan over the course of one year </p>
          </div>
           <h1 className='mt-3 text-xs'> <span className='text-3xl font-bold'>$500</span>/YR </h1>
-          <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in' onClick={()=>handlePayment(process.env.NEXT_PUBLIC_PAYMENTII)}> Buy Plan </button> 
+          <button className='border border-[#4F46E5] text-white hover:text-white  bg-[#4F46E5] mt-4 rounded-md py-2 text-xs w-full hover:bg-[#635ce9] transition duration-300 ease-in' onClick={()=>handlePayment2(process.env.NEXT_PUBLIC_PAYMENTII)}> Buy Plan </button> 
           <div className='mt-5 text-xs space-y-3 '> 
              <p className='uppercase font-semibold'> What's Included </p>
              <p className='flex items-center'> <span> <FcCheckmark className='mr-3'/> </span> Pulse Tool </p>
