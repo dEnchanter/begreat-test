@@ -33,12 +33,14 @@
     --List1: #EA3943;
     --List2: #26A17B;
     --gradient1: linear-gradient(360deg, #16C782 -10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 200.49%);
-    --gradient11: linear-gradient(360deg, #16C782 -20.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 200.49%);
+    --gradient11: linear-gradient(360deg, rgba(22, 199, 130, 0.7) -20.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 200.49%);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
     --gradient3: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 100.47%, rgba(234, 57, 67, 0) 200.49%);
     --deepGreen: linear-gradient(180deg, #16C782 75%, rgba(22, 199, 130, 0) 118.38%);
     --deepRed: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
+    --deepRed11: linear-gradient(179.93deg, rgba(250, 7, 21, 0.7) -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
     --deepRed2: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 100.37%, rgba(255, 202, 205, 0) 98.39%);
+    --combinedGradient11: linear-gradient(360deg, #16C782 -20.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 200.49%), linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
 
     --text-sm: 14px;
     --currentPlanBtnBg: #FF0000;
@@ -448,6 +450,14 @@ body {
 
 .deepRed2 {
     background: var(--deepRed2);
+}
+
+.deepRed11 {
+    background: var(--deepRed11);
+}
+
+.combo11 {
+    background: var(--combinedGradient11);
 }
 
 /*  */

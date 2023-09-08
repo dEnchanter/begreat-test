@@ -794,11 +794,11 @@ export default function DashBoardHome() {
 
    // Rise/Fall% timeframes
    const options12 = [
-    {
-      value: 1,
-      label: <span className="text-white font-semibold whitespace-nowrap">AVERAGE</span>,
-      label2: 'Average',
-    },
+    // {
+    //   value: 1,
+    //   label: <span className="text-white font-semibold whitespace-nowrap">AVERAGE</span>,
+    //   label2: 'Average',
+    // },
     {
       value: 2,
       label: <span className="text-white font-semibold whitespace-nowrap">1 MINUTE</span>,
@@ -1832,12 +1832,18 @@ export default function DashBoardHome() {
                           sideB={
                             <TextInput
                               wrapperClassName="bg-[#343334] rounded-lg"
+                              inputClassName={"text-white"}
+                              suffixIconClassName="text-white"
                               suffixIcon={"$"}
                               borderColor="border-none"
                               placeholder="0.00"
                               value={inputValue}  // set the value
-                              onChange={(e) => setInputValue(e.target.value)}  // update the state value when the input changes
-                              
+                              onChange={(e) => {
+                                // Check if the input is only numbers or a floating point
+                                if (/^\d*\.?\d*$/.test(e.target.value)) {
+                                  setInputValue(e.target.value);
+                                }
+                              }} // update the state value when the input changes
                             />
                           }
                         />
@@ -1883,10 +1889,16 @@ export default function DashBoardHome() {
                                       type="text" 
                                       placeholder={toThreeFig(data?.currentPrice || 0)}
                                       wrapperClassName={`p-1`}
-                                      inputClassName={`${isInputDisabled ? 'cursor-not-allowed' : ''}`}
+                                      // inputClassName={`${isInputDisabled ? '' : ''}`}
                                       value={customInputValue} 
-                                      onChange={(e) => setCustomInputValue(e.target.value)} 
-                                      disabled={isInputDisabled}  
+                                      // onChange={(e) => setCustomInputValue(e.target.value)} 
+                                      onChange={(e) => {
+                                        // Check if the input is only numbers or a floating point
+                                        if (/^\d*\.?\d*$/.test(e.target.value)) {
+                                          setCustomInputValue(e.target.value);
+                                        }
+                                      }}
+                                      // disabled={isInputDisabled}  
                                     />
                                   </TableCell>
                                   <TableCell className="w-[13rem]">
@@ -1902,12 +1914,15 @@ export default function DashBoardHome() {
                             <>
                               <TableRow 
                                 key={level} 
-                                className={`hover:bg-header ${isStretchHigh ? 'back11' : ''} ${isStretchLow ? 'deepRed' : ''}`}
-                              >
+                                className={`hover:bg-header 
+                                  ${isStretchHigh && isStretchLow ? 'combo11' : 
+                                  isStretchHigh ? 'back11' : 
+                                  isStretchLow ? 'deepRed11' : ''}`}
+                                >
                                 <TableCell className={`font-medium text-left w-[13rem] ${StretchRange?.data.stretches[level].percentageChange < 0 ? 'text-red-700' : 'text-green-700'}`}>
                                   {StretchRange?.data?.stretches[level]?.percentageChange?.toFixed(2) + '%' || 0.00}
                                 </TableCell>
-                                <TableCell className="w-[13rem] text-gray-100">
+                                <TableCell className="w-[13rem] primaryText">
                                   {'$' + StretchRange?.data?.stretches[level].price.toFixed(2) || 0.00}
                                 </TableCell>
                                 <TableCell className={`w-[13rem] ${StretchRange?.data.stretches[level].profit < 0 ? 'text-red-700' : 'text-green-700'}`}>
@@ -2118,7 +2133,7 @@ export default function DashBoardHome() {
                         <div className="flex items-center justify-between">
                           {/* FLOW TAB */}
                           <div className="flex items-center space-x-5">
-                            <span>Flow</span>
+                            <span className="text2">Flow:</span>
 
                             <Tabs 
                               defaultValue="%Change" 
@@ -2330,8 +2345,8 @@ export default function DashBoardHome() {
             {/* TrendScan */}
             {
               expandedChild === 'secondChild' && (
-                <div className="bg-white py-3 px-3">
-                  <div className="secondary text-2xl font-bold mb-5 xl:mb-5">TrendScan</div>
+                <div className="bg-white h-[68rem] py-3 px-3">
+                  <div className="secondary flex-grow text-2xl font-bold mb-5 xl:mb-5">TrendScan</div>
               
                   {/* EXPAND BUTTON */}
                   <div className="text-right mb-5">
@@ -2464,7 +2479,7 @@ export default function DashBoardHome() {
               
                   {/* FLOW TAB */}
                   <div className="flex justify-around items-center space-x-3 mb-5">
-                    <span>Flow</span>
+                    <span className="text2">Flow:</span>
 
                     <Tabs 
                       defaultValue="Rise/Fall" 
