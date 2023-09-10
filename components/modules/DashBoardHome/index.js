@@ -14,6 +14,7 @@ import DropDownItem from "../../ui/DropDownItem";
 import TwoSides from "../../common/TwoSides";
 import Accordance from "../../common/Accordiance";
 import FlexContainer from "../../common/FlexContainer";
+import Slider from '../../common/Slider';
 import ButtonComp from "../../ui/ButtonComp";
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -21,7 +22,7 @@ import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
+// import { Slider } from "@/components/ui/slider"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   useAddToWatchListMutation,
@@ -2238,54 +2239,60 @@ export default function DashBoardHome() {
                         </div>
 
                         <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold rounded-md mt-3 mb-5`}>
-                          <Slider 
-                            defaultValue={[averageRiseRatio]} 
-                            value={[averageRiseRatio]}
-                            max={100} 
-                            step={1} 
+                          <Slider
+                            initialValue={averageRiseRatio}
                           />
                         </div>
 
                         {/* WATCHLIST */}
                         <div>
-                          <Card className="bg-header p-2 flex flex-col items-center border-none">
-                            <TableHeader className="bg-black">
-                              <TableRow className="hover:bg-black">
-                                {['Symbol', 'Price', '%Change', 'Pulse', 'Shift', 'Rise', 'Fall'].map((header) => (
-                                  <TableHead className="text-left w-[10rem] text-gray-200" key={header}>
-                                    {header}
-                                  </TableHead>
-                                ))}
-                              </TableRow>
-                            </TableHeader>
-                            <TableBody className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
-                              {WatchList?.data?.map((item, index, array) => {
-                                const priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
-                                const pulseColor = item.pulse === 2 ? "bg-[#26A17B]" : item.pulse === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
-                                const shiftColor = item.shift === 2 ? "bg-[#26A17B]" : item.shift === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
-                                
-                                return (
-                                  <>
-                                    <TableRow key={item.name} className="hover:bg-header borderColor border-b-[1px] p-4 mb-3 cursor-pointer" onClick={() => handleOnClickWatchlist(item.name)}>
-                                      <TableCell className="text-left w-[10rem]">{item?.name}</TableCell>
-                                      <TableCell className="text-left w-[10rem]">${toThreeFig(item.price)}</TableCell>
-                                      <TableCell className={`text-left w-[10rem] ${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</TableCell>
-                                      <TableCell className="text-right w-[10rem]">
-                                        <div className={`${pulseColor} w-[20px] h-[10px] ml-5`}></div>
-                                      </TableCell>
-                                      <TableCell className="text-right w-[10rem]">
-                                        <div className={`${shiftColor} w-[20px] h-[10px] ml-5`}></div>
-                                      </TableCell>
-                                      <TableCell className="text-left w-[10rem] text-[#26A17B]">{toThreeFig(item.rise)}%</TableCell>
-                                      <TableCell className="text-left w-[10rem] text-[#EA3943]">{toThreeFig(item.fall)}%</TableCell>
-                                    </TableRow>
-                                    {index < array.length - 1 && <Separator className="bg-gray-600" />}
-                                  </>
+                          {WatchListIsLoading ? (
+                            <p className="text-center">Loading <Spinner /></p>
+                          ) : WatchListIsFetching ? (
+                            <div className="h-[20rem]">
+                               <Spinner />
+                            </div>
+                          ) : (
+                            <Card className="bg-header p-2 flex flex-col items-center border-none">
+                              <TableHeader className="bg-black">
+                                <TableRow className="hover:bg-black">
+                                  {['Symbol', 'Price', '%Change', 'Pulse', 'Shift', 'Rise', 'Fall'].map((header) => (
+                                    <TableHead className="text-left w-[10rem] text-gray-200" key={header}>
+                                      {header}
+                                    </TableHead>
+                                  ))}
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
+                                {WatchList?.data?.map((item, index, array) => {
+                                  const priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+                                  const pulseColor = item.pulse === 2 ? "bg-[#26A17B]" : item.pulse === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
+                                  const shiftColor = item.shift === 2 ? "bg-[#26A17B]" : item.shift === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
                                   
-                                );
-                              })}
-                            </TableBody>
-                          </Card>
+                                  return (
+                                    <>
+                                      <TableRow key={item.name} className="hover:bg-header borderColor border-b-[1px] p-4 mb-3 cursor-pointer" onClick={() => handleOnClickWatchlist(item.name)}>
+                                        <TableCell className="text-left w-[10rem]">{item?.name}</TableCell>
+                                        <TableCell className="text-left w-[10rem]">${toThreeFig(item.price)}</TableCell>
+                                        <TableCell className={`text-left w-[10rem] ${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</TableCell>
+                                        <TableCell className="text-right w-[10rem]">
+                                          <div className={`${pulseColor} w-[20px] h-[10px] ml-5`}></div>
+                                        </TableCell>
+                                        <TableCell className="text-right w-[10rem]">
+                                          <div className={`${shiftColor} w-[20px] h-[10px] ml-5`}></div>
+                                        </TableCell>
+                                        <TableCell className="text-left w-[10rem] text-[#26A17B]">{toThreeFig(item.rise)}%</TableCell>
+                                        <TableCell className="text-left w-[10rem] text-[#EA3943]">{toThreeFig(item.fall)}%</TableCell>
+                                      </TableRow>
+                                      {index < array.length - 1 && <Separator className="bg-gray-600" />}
+                                    </>
+                                    
+                                  );
+                                })}
+                              </TableBody>
+                            </Card>
+                          )}
+                          
                         </div>    
 
                       </div>
@@ -2479,13 +2486,9 @@ export default function DashBoardHome() {
                         {`Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue || 0.000)}%`}
                       </div>
                     ) : (
-                      <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold rounded-md mb-5`}>
-                        <Slider 
-                          defaultValue={[averageRiseRatio]} 
-                          value={[averageRiseRatio]}
-                          max={100} 
-                          step={1} 
-                          className={""}
+                      <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center p-2 font-bold rounded-md mb-5`}>
+                        <Slider
+                          initialValue={averageRiseRatio}
                         />
                       </div>
                     )
