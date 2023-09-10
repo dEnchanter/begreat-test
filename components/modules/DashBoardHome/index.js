@@ -2229,7 +2229,7 @@ export default function DashBoardHome() {
                                 <Label htmlFor="airplane-mode" className="text2">Score Rank:</Label>
                                 <Switch 
                                   id="airplane-mode" 
-                                  className="bg-gray-400" 
+                                  className="data-[state=checked]:bg-gray-500 data-[state=unchecked]:bg-gray-300" 
                                   checked={switchValue}
                                   onCheckedChange={toggleSwitch}
                                 />
@@ -2441,7 +2441,7 @@ export default function DashBoardHome() {
                         <Label htmlFor="airplane-mode" className="text2">Score Rank:</Label>
                         <Switch 
                           id="airplane-mode" 
-                          className={`transition duration-300 ease-in-out ${switchValue ? 'bg-green-400' : 'bg-gray-400'}`} 
+                          className="data-[state=checked]:bg-gray-500 data-[state=unchecked]:bg-gray-300"
                           checked={switchValue}
                           onCheckedChange={toggleSwitch}
                         />
