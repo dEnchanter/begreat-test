@@ -1140,6 +1140,8 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
+  // console.log("data current price", data?.currentPrice)
+
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
   // const [removeAssetsFromWatchlist] = useRemoveAssetsFromWatchlistMutation();
@@ -1661,7 +1663,8 @@ export default function DashBoardHome() {
             <div className="leading-[1.4rem]">
               <div className="gray mb-0">Price</div>
               <div className="primaryText text-[20px] lg:text-[24px] font-bold">
-                {toThreeFig(data?.currentPrice||0)}
+                {/* {toThreeFig(data?.currentPrice||0)} */}
+                {data?.currentPrice || 0}
               </div>
             </div>
 
@@ -1690,12 +1693,12 @@ export default function DashBoardHome() {
 
               <div className=" whitespace-nowrap font-semibold text-xl priceText mb-4 -mt-10 flex items-center w-fit mx-auto ">
                 <DropDownItem
-                // padding={'0px 40px 0px 3px'}
-                padding={'0px 20px 0px 8px'}
-                onChange={(e)=>setTimeLeft(e)}
-                options={options3}
-                noIcon={true}
-                value={timeLeft}
+                  // padding={'0px 40px 0px 3px'}
+                  padding={'0px 20px 0px 8px'}
+                  onChange={(e)=>setTimeLeft(e)}
+                  options={options3}
+                  noIcon={true}
+                  value={timeLeft}
                 />                  
               </div>
 
@@ -1708,7 +1711,8 @@ export default function DashBoardHome() {
                   <p className="font-semibold mt-3 mb-2 text-lg tracking-tighter leading-6"> High Price:{" "}   
                     <span className="font-semibold secondary ml-1">
                       {" "}
-                      {toThreeFig(data?.high || 0)}
+                      {/* {toThreeFig(data?.high || 0)} */}
+                      {data?.high || 0}
                     </span>
                   </p>
                  
@@ -1732,7 +1736,8 @@ export default function DashBoardHome() {
                 <div className="text-lg text-center font-semibold priceText mb-4 tracking-tighter leading-6">
                     Current Price :{" "}
                     <span className="font-semibold secondary">
-                      {toThreeFig(data?.currentPrice || 0)}
+                      {/* {toThreeFig(data?.currentPrice || 0)} */}
+                      {data?.currentPrice || 0}
                     </span>
                   </div>
                 
@@ -1755,7 +1760,8 @@ export default function DashBoardHome() {
                   <p className="font-semibold mt-2 text-center mb-2 text-lg tracking-tighter leading-6">Low Price:{" "}  
                     <span className="font-semibold secondary ml-1">
                       {" "}
-                      {toThreeFig(data?.low || 0)}
+                      {/* {toThreeFig(data?.low || 0)} */}
+                      {data?.low || 0}
                     </span>
                   </p>  
               
@@ -1934,7 +1940,7 @@ export default function DashBoardHome() {
                                   {StretchRange?.data?.stretches[level]?.percentageChange?.toFixed(2) + '%' || 0.00}
                                 </TableCell>
                                 <TableCell className="w-[13rem] primaryText">
-                                  {'$' + StretchRange?.data?.stretches[level].price.toFixed(2) || 0.00}
+                                  {'$' + StretchRange?.data?.stretches[level].price || 0.00}
                                 </TableCell>
                                 <TableCell className={`w-[13rem] ${StretchRange?.data.stretches[level].profit < 0 ? 'text-red-700' : 'text-green-700'}`}>
                                   {'$' + StretchRange?.data?.stretches[level]?.profit?.toFixed(2) || 0.00}
@@ -1985,7 +1991,8 @@ export default function DashBoardHome() {
                             </Button>
                             <Button className={`min-h-[6rem] ${getBackgroundColor(SurgeLevel?.priceBreak)} hover:${getBackgroundColor(SurgeLevel?.priceBreak)}`}>
                               <p className="text-lg font-medium">
-                                {toThreeFig(SurgeLevel?.surge || 0)}
+                                {/* {toThreeFig(SurgeLevel?.surge || 0)} */}
+                                {SurgeLevel?.surge || 0}
                               </p>
                             </Button>
                           </>
@@ -1993,7 +2000,8 @@ export default function DashBoardHome() {
                           <>
                             <Button className={`min-h-[5rem] ${getBackgroundColor(SurgeLevel?.priceBreak)} hover:${getBackgroundColor(SurgeLevel?.priceBreak)}`}>
                               <p className="text-lg font-medium">
-                                {toThreeFig(SurgeLevel?.surge || 0)}
+                                {/* {toThreeFig(SurgeLevel?.surge || 0)} */}
+                                {SurgeLevel?.surge || 0}
                               </p>
                             </Button>
                             <Button className="min-h-[5rem] deepRed2">
