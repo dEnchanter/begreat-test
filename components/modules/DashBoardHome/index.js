@@ -692,38 +692,38 @@ export default function DashBoardHome() {
   // ATR
   const options10 = [
     {
-      value: 2,
+      value: '1m',
       label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Min</span>,
     },
 
     {
-      value: 3,
+      value: '3m',
       label: <span className="text-white text-lg font-medium whitespace-nowrap">3 Min</span>,
     },
 
     {
-      value: 5,
+      value: '5m',
       label: <span className="text-white text-lg font-medium whitespace-nowrap">5 Min</span>,
     },
 
-    {
-      value: 10,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">10 Min</span>,
-    },
+    // {
+    //   value: '10m',
+    //   label: <span className="text-white text-lg font-medium whitespace-nowrap">10 Min</span>,
+    // },
 
     {
-      value: 15,
+      value: '15m',
       label: <span className="text-white text-lg font-medium whitespace-nowrap">15 Min</span>,
     },
 
     {
-      value: 30,
+      value: '30m',
       label: <span className="text-white text-lg font-medium whitespace-nowrap">30 Min</span>,
     },
-    {
-      value: 45,
-      label: <span className="text-white text-lg  font-medium whitespace-nowrap">45 Min</span>,
-    },
+    // {
+    //   value: '45m',
+    //   label: <span className="text-white text-lg  font-medium whitespace-nowrap">45 Min</span>,
+    // },
     {
       value: '1h',
       label: <span className="text-white text-lg font-medium whitespace-nowrap ">1 Hour</span>,
@@ -763,7 +763,7 @@ export default function DashBoardHome() {
       label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Week</span>,
     },
     {
-      value: '1m',
+      value: '1M',
       label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Month</span>,
     },
     
@@ -903,7 +903,7 @@ export default function DashBoardHome() {
   const [getLookBackTf, setLookBackTf] = useState(options11[3]);
   const [currentValue, setCurrentValue] = useState("long");
   const [currentRfcValue, setCurrentRfcValue] = useState(0);
-  const [inputValue, setInputValue] = useState(150);
+  const [inputValue, setInputValue] = useState('150');
   const [customInputValue, setCustomInputValue] = useState(data?.currentPrice);
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   const [switchValue, setSwitchValue] = useState(0);
@@ -1450,6 +1450,14 @@ export default function DashBoardHome() {
     }
   }, [showModal, countdown]);
 
+  useEffect(() => {
+    if (currentValue === 'short' && !inputValue.startsWith('-')) {
+      setInputValue('-' + inputValue);
+    } else if (currentValue === 'long' && inputValue.startsWith('-')) {
+      setInputValue(inputValue.substring(1));
+    }
+  }, [currentValue]);
+
   const handleLogout = () => {
     dispatch(logoutUser());
     router.push('/login');
@@ -1810,7 +1818,7 @@ export default function DashBoardHome() {
 
               {/* New Feature */}
               {/* Risk Management Tools */}
-              <div className="flex space-x-5 h-min-[216px] flex-wrap mb-3 mt-6 -ml-[18rem]">
+              <div className="flex space-x-5 h-min-[216px] flex-wrap mb-3 mt-6 -ml-[18rem] lg:-ml-[17rem]">
                 
                 {/* TABLE */}
                 <div className="flex flex-col space-y-3">
@@ -1839,11 +1847,13 @@ export default function DashBoardHome() {
                               placeholder="0.00"
                               value={inputValue}  // set the value
                               onChange={(e) => {
-                                // Check if the input is only numbers or a floating point
-                                if (/^\d*\.?\d*$/.test(e.target.value)) {
-                                  setInputValue(e.target.value);
+                                const newInputValue = e.target.value;
+                                if (currentValue === 'short' && !newInputValue.startsWith('-')) {
+                                  setInputValue('-' + newInputValue);
+                                } else if (/^\d*\.?\d*$/.test(newInputValue) || (currentValue === 'short' && /^-\d*\.?\d*$/.test(newInputValue))) {
+                                  setInputValue(newInputValue);
                                 }
-                              }} // update the state value when the input changes
+                              }}
                             />
                           }
                         />
@@ -2236,76 +2246,46 @@ export default function DashBoardHome() {
                           />
                         </div>
 
+                        {/* WATCHLIST */}
                         <div>
                           <Card className="bg-header p-2 flex flex-col items-center border-none">
                             <TableHeader className="bg-black">
                               <TableRow className="hover:bg-black">
-                                <TableHead className="text-left w-[10rem] text-gray-200">Symbol</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Price</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">%Change</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Pulse</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Shift</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Rise</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Fall</TableHead>
+                                {['Symbol', 'Price', '%Change', 'Pulse', 'Shift', 'Rise', 'Fall'].map((header) => (
+                                  <TableHead className="text-left w-[10rem] text-gray-200" key={header}>
+                                    {header}
+                                  </TableHead>
+                                ))}
                               </TableRow>
                             </TableHeader>
-                            <TableBody className="">
-                              <TableRow className="hover:bg-header">
-                                <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
-                                  {WatchList?.data?.map((item, i) => {
-                                      let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
-
-                                      let pulseColor;
-                                      let shiftColor;
-
-                                      if (item.pulse === 2) {
-                                        pulseColor = "bg-[#26A17B]";
-                                      } else if (item.pulse === -2) {
-                                        pulseColor = "bg-[#EA3943]";
-                                      } else {
-                                        pulseColor = "bg-[#d1d5db]";
-                                      }
-
-                                      if (item.shift === 2) {
-                                        shiftColor = "bg-[#26A17B]";
-                                      } else if (item.shift === -2) {
-                                        shiftColor = "bg-[#EA3943]";
-                                      } else {
-                                        shiftColor = "bg-[#d1d5db]";
-                                      }
-
-                                      return (
-                                        <div className="flex">
-                                          <div className="grid grid-cols-7 gap-[4.7rem] justify-between 
-                                          items-center whitespace-nowrap borderColor border-b-[1px] 
-                                          p-4 mb-3 cursor-pointer mr-10"
-                                          onClick={() => handleOnClickWatchlist(item.name)}
-                                          >
-                                            <div className="col-span-1">
-                                              {item?.name}
-                                            </div>
-                                            <div className="col-span-1">${toThreeFig(item.price)}</div>
-                                            <div className="col-span-1">
-                                              <div className={`${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</div>
-                                            </div>
-                                            <div className={`col-span-1 ${pulseColor} w-[20px] h-[10px]`}>
-                                              {/* PULSE */}
-                                            </div>
-                                            <div className={`col-span-1 ${shiftColor} w-[20px] h-[10px]`}>
-                                              {/* SHIFT */}
-                                            </div>
-                                            <div className={`col-span-1 text-[#26A17B]`}>{toThreeFig(item.rise)}%</div>
-                                            <div className={`col-span-1 text-[#EA3943]`}>{toThreeFig(item.fall)}%</div>
-                                            
-                                          </div>
-                                        </div>
-                                      );
-                                    }
-                                  )}
-                                </div>
-                              </TableRow>
+                            <TableBody className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
+                              {WatchList?.data?.map((item, index, array) => {
+                                const priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+                                const pulseColor = item.pulse === 2 ? "bg-[#26A17B]" : item.pulse === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
+                                const shiftColor = item.shift === 2 ? "bg-[#26A17B]" : item.shift === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
+                                
+                                return (
+                                  <>
+                                    <TableRow key={item.name} className="hover:bg-header borderColor border-b-[1px] p-4 mb-3 cursor-pointer" onClick={() => handleOnClickWatchlist(item.name)}>
+                                      <TableCell className="text-left w-[10rem]">{item?.name}</TableCell>
+                                      <TableCell className="text-left w-[10rem]">${toThreeFig(item.price)}</TableCell>
+                                      <TableCell className={`text-left w-[10rem] ${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</TableCell>
+                                      <TableCell className="text-right w-[10rem]">
+                                        <div className={`${pulseColor} w-[20px] h-[10px] ml-5`}></div>
+                                      </TableCell>
+                                      <TableCell className="text-right w-[10rem]">
+                                        <div className={`${shiftColor} w-[20px] h-[10px] ml-5`}></div>
+                                      </TableCell>
+                                      <TableCell className="text-left w-[10rem] text-[#26A17B]">{toThreeFig(item.rise)}%</TableCell>
+                                      <TableCell className="text-left w-[10rem] text-[#EA3943]">{toThreeFig(item.fall)}%</TableCell>
+                                    </TableRow>
+                                    {index < array.length - 1 && <Separator className="bg-gray-600" />}
+                                  </>
+                                  
+                                );
+                              })}
                             </TableBody>
-                          </Card>  
+                          </Card>
                         </div>    
 
                       </div>
@@ -2351,7 +2331,7 @@ export default function DashBoardHome() {
                   {/* EXPAND BUTTON */}
                   <div className="text-right mb-5">
                     <Button 
-                      className="bg-gray-400 text-gray-300 hover:bg-gray-500"
+                      className="bg-gray-400 primaryText hover:bg-gray-500"
                       // onClick={() => setIsExpanded(true)} 
                       onClick={() => setExpandedChild(expandedChild === 'secondChild' ? 'firstChild' : 'secondChild')}
                     >
@@ -2520,7 +2500,7 @@ export default function DashBoardHome() {
                       <div className="col-span-1">Change%</div>
                       <div className="col-span-1"></div>
                   </div>
-                  <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
+                  <div className="h-[33rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
                       {WatchListIsLoading ? (
                         <p className="text-center">Loading <Spinner /></p>
                       ) : WatchListIsFetching ? (
