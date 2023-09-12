@@ -1141,7 +1141,7 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  console.log("data current price", data)
+  // console.log("data current price", data)
 
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
@@ -1938,13 +1938,13 @@ export default function DashBoardHome() {
                                   isStretchLow ? 'deepRed11' : ''}`}
                                 >
                                 <TableCell className={`font-medium text-left w-[13rem] ${StretchRange?.data.stretches[level].percentageChange < 0 ? 'text-red-700' : 'text-green-700'}`}>
-                                  {StretchRange?.data?.stretches[level]?.percentageChange?.toFixed(2) + '%' || 0.00}
+                                  {StretchRange?.data?.stretches[level]?.percentageChange + '%' || 0.00}
                                 </TableCell>
                                 <TableCell className="w-[13rem] primaryText">
                                   {'$' + StretchRange?.data?.stretches[level].price || 0.00}
                                 </TableCell>
                                 <TableCell className={`w-[13rem] ${StretchRange?.data.stretches[level].profit < 0 ? 'text-red-700' : 'text-green-700'}`}>
-                                  {'$' + StretchRange?.data?.stretches[level]?.profit?.toFixed(2) || 0.00}
+                                  {'$' + StretchRange?.data?.stretches[level]?.profit || 0.00}
                                 </TableCell>
                               </TableRow>
 
