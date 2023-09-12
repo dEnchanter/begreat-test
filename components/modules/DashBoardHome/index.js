@@ -910,6 +910,7 @@ export default function DashBoardHome() {
   const [switchValue, setSwitchValue] = useState(0);
   const [expandedChild, setExpandedChild] = useState("secondChild");
   const [toggle, setToggle] = useState(false);
+  const [sliderValue, setSliderValue] = useState("50");
   // const [snap, setSnap] = useState("400px");
   // const [isExpanded, setIsExpanded] = useState(true);
 
@@ -1140,7 +1141,7 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  // console.log("data current price", data?.currentPrice)
+  console.log("data current price", data)
 
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
@@ -1454,12 +1455,8 @@ export default function DashBoardHome() {
   }, [showModal, countdown]);
 
   useEffect(() => {
-    if (currentValue === 'short' && !inputValue.startsWith('-')) {
-      setInputValue('-' + inputValue);
-    } else if (currentValue === 'long' && inputValue.startsWith('-')) {
-      setInputValue(inputValue.substring(1));
-    }
-  }, [currentValue]);
+    setSliderValue(Number(averageRiseRatio));
+  }, [averageRiseRatio]);
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -1845,23 +1842,28 @@ export default function DashBoardHome() {
                           sideA={"Position Size:"}
                           sideAClassName={"secondary gray text-md font-medium xl:mb-0"}
                           sideB={
-                            <TextInput
-                              wrapperClassName="bg-[#343334] rounded-lg"
-                              inputClassName={"text-white"}
-                              suffixIconClassName="text-white"
-                              suffixIcon={"$"}
-                              borderColor="border-none"
-                              placeholder="0.00"
-                              value={inputValue}  // set the value
-                              onChange={(e) => {
-                                const newInputValue = e.target.value;
-                                if (currentValue === 'short' && !newInputValue.startsWith('-')) {
-                                  setInputValue('-' + newInputValue);
-                                } else if (/^\d*\.?\d*$/.test(newInputValue) || (currentValue === 'short' && /^-\d*\.?\d*$/.test(newInputValue))) {
-                                  setInputValue(newInputValue);
-                                }
-                              }}
-                            />
+                            <div className="relative">
+                                {currentValue === 'short' && (
+                                    <span className="absolute inset-y-0 left-0 pl-[1.4rem] flex items-center text-white">
+                                        -
+                                    </span>
+                                )}
+                                <TextInput
+                                    wrapperClassName="bg-[#343334] rounded-lg"
+                                    inputClassName={`text-white ${currentValue === 'short' ? 'pl-6' : ''}`}
+                                    suffixIconClassName="text-white"
+                                    suffixIcon={"$"}
+                                    borderColor="border-none"
+                                    placeholder="0.00"
+                                    value={inputValue}
+                                    onChange={(e) => {
+                                        const newInputValue = e.target.value;
+                                        if (/^\d*\.?\d*$/.test(newInputValue)) {
+                                            setInputValue(newInputValue);
+                                        }
+                                    }}
+                                />
+                            </div>
                           }
                         />
                       </div>
@@ -1907,8 +1909,7 @@ export default function DashBoardHome() {
                                       placeholder={toThreeFig(data?.currentPrice || 0)}
                                       wrapperClassName={`p-1`}
                                       // inputClassName={`${isInputDisabled ? '' : ''}`}
-                                      value={customInputValue} 
-                                      // onChange={(e) => setCustomInputValue(e.target.value)} 
+                                      value={customInputValue}
                                       onChange={(e) => {
                                         // Check if the input is only numbers or a floating point
                                         if (/^\d*\.?\d*$/.test(e.target.value)) {
@@ -2144,7 +2145,7 @@ export default function DashBoardHome() {
                               // onClick={() => setIsExpanded(false)} // set isExpanded to false when clicked
                               onClick={() => setExpandedChild(expandedChild === 'firstChild' ? 'secondChild' : 'firstChild')}
                             >
-                              Reduce Watchlist
+                              Reduce TrendScan
                             </Button>
                           </div>
                         </div>
@@ -2248,7 +2249,7 @@ export default function DashBoardHome() {
 
                         <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold rounded-md mt-3 mb-5`}>
                           <Slider
-                            initialValue={averageRiseRatio}
+                            initialValue={sliderValue}
                           />
                         </div>
 
@@ -2350,7 +2351,7 @@ export default function DashBoardHome() {
                       // onClick={() => setIsExpanded(true)} 
                       onClick={() => setExpandedChild(expandedChild === 'secondChild' ? 'firstChild' : 'secondChild')}
                     >
-                      Expand Watchlist
+                      Expand TrendScan
                     </Button>
                   </div>
 
@@ -2495,9 +2496,9 @@ export default function DashBoardHome() {
                       </div>
                     ) : (
                       <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center p-2 font-bold rounded-md mb-5`}>
-                        <Slider
-                          initialValue={averageRiseRatio}
-                        />
+                          <Slider
+                            initialValue={sliderValue}
+                          />
                       </div>
                     )
                   }
