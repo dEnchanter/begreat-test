@@ -7,25 +7,47 @@ import Select from 'react-select';
 import { setPulseTimeframe, setShiftTimeframe } from "../../helper";
 
 export default function Accordance({ title, options, value, seyListDay, options1, value1, seyListDay1 }) {
+  
   // Select dropdown styling
   const customStyles = {
-    control: (provided) => ({
+    control: (provided, state) => ({
       ...provided,
-      backgroundColor: '#343334', // customize background color of input field
-      border: 'none', // remove border
-      outline: 'none',
-      textColor: 'white', // customize text color
+      backgroundColor: 'var(--control-bg-color)',
+      borderColor: state.isFocused ? 'var(--focused-border-color)' : 'var(--control-border-color)',
+      color: 'var(--control-text-color)',
+      boxShadow: state.isFocused ? '0 0 0 1px var(--focused-border-color)' : 'none',
+      '&:hover': {
+        borderColor: 'var(--control-hover-border-color)'
+      }
     }),
-    menu: (provided) => ({
+    option: (provided, state) => ({
       ...provided,
-      backgroundColor: '#343334', // customize background color of dropdown menu
-      textColor: 'white', // customize text color
-      border: '1px solid #343334', // customize border color
+      backgroundColor: state.isSelected 
+        ? 'var(--selected-option-bg-color)' 
+        : state.isFocused 
+          ? 'var(--focused-option-bg-color)' 
+          : 'var(--option-bg-color)',
+      color: 'var(--option-text-color)',
+      '&:active': {
+        backgroundColor: 'var(--active-option-bg-color)'
+      }
     }),
-    multiValue: (provided) => ({
+    singleValue: (provided) => ({
       ...provided,
-      backgroundColor: 'gray', // customize background color of selected options
+      color: 'var(--control-text-color)'
     }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: 'var(--control-text-color)'
+    }),
+    indicatorSeparator: (provided) => ({
+      ...provided,
+      backgroundColor: 'var(--control-border-color)'
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: 'var(--placeholder-text-color)'
+    })
   };
 
   // setPulseTimeframe(value?.value);
