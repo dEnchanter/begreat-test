@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import { FiPlus } from "react-icons/fi";
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async'
+import ClipLoader from 'react-spinners/ClipLoader';
 import useSWR from 'swr';
 import axios from 'axios';
 import FallBackImage from "../../common/FallBackImage";
@@ -955,8 +956,20 @@ export default function DashBoardHome() {
     return response.data;
   }
 
-  const url = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/${coinName.toLowerCase()}.svg`;
+  let url;
+
+  if (coinName) {
+      url = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/${coinName.toLowerCase()}.svg`;
+  } else {
+      console.warn("coinName is undefined!");
+      url = null;  // No fetching will occur if the URL is null.
+  }
+
   const { data: svgData } = useSWR(url, fetcher1);
+  
+
+  // const url = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/${coinName.toLowerCase()}.svg`;
+  // const { data: svgData } = useSWR(url, fetcher1);
 
   const url2 = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/usdt.svg`;
   const { data: svgUSDT } = useSWR(url2, fetcher2);
@@ -1670,6 +1683,7 @@ export default function DashBoardHome() {
                         onChange={(e) => {
                           // console.log(e?.value,'set Asset')
                           const word = e?.value;
+                          
                           const index = word?.indexOf("USDT");
                           const firstHalf = word?.slice(0, index);
                           // const secondHalf = word.slice(index);
@@ -1917,11 +1931,11 @@ export default function DashBoardHome() {
 
                   <div>
                     <Card className="bg-header p-2 flex flex-col items-center border-none">
-                      <TableHeader className="bg-black">
+                      <TableHeader className="bg-header2">
                         <TableRow className="hover:bg-header">
-                          <TableHead className="text-left w-[13rem] text-gray-200">%Change</TableHead>
-                          <TableHead className="w-[13rem] text-gray-200">Price</TableHead>
-                          <TableHead className="w-[13rem] text-gray-200">P/L</TableHead>
+                          <TableHead className="text-left w-[13rem] primaryText">%Change</TableHead>
+                          <TableHead className="w-[13rem] primaryText">Price</TableHead>
+                          <TableHead className="w-[13rem] primaryText">P/L</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -1951,7 +1965,7 @@ export default function DashBoardHome() {
                                   <TableCell className="w-[13rem]">
                                     <TextInput 
                                       type="text" 
-                                      placeholder={toThreeFig(data?.currentPrice || 0)}
+                                      placeholder={data?.currentPrice || 0}
                                       wrapperClassName={`p-1`}
                                       // inputClassName={`${isInputDisabled ? '' : ''}`}
                                       value={customInputValue}
@@ -2301,17 +2315,21 @@ export default function DashBoardHome() {
                         {/* WATCHLIST */}
                         <div>
                           {WatchListIsLoading ? (
-                            <p className="text-center">Loading <Spinner /></p>
+                            <p className="text-center">
+                              <div className="flex justify-center items-center min-h-[20rem]">
+                                <ClipLoader color="#52bfd9" size={50}/>
+                              </div>
+                            </p>
                           ) : WatchListIsFetching ? (
-                            <div className="h-[20rem]">
-                               <Spinner />
+                            <div className="flex justify-center items-center min-h-[20rem]">
+                              <ClipLoader color="#52bfd9" size={50}/>
                             </div>
                           ) : (
                             <Card className="bg-header p-2 flex flex-col items-center border-none">
-                              <TableHeader className="bg-black">
+                              <TableHeader className="bg-header2">
                                 <TableRow className="hover:bg-black">
                                   {['Symbol', 'Price', '%Change', 'Pulse', 'Shift', 'Rise', 'Fall'].map((header) => (
-                                    <TableHead className="text-left w-[10rem] text-gray-200" key={header}>
+                                    <TableHead className="text-left w-[10rem] primaryText" key={header}>
                                       {header}
                                     </TableHead>
                                   ))}
@@ -2559,9 +2577,12 @@ export default function DashBoardHome() {
                   </div>
                   <div className="h-[33rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
                       {WatchListIsLoading ? (
-                        <p className="text-center">Loading <Spinner /></p>
+                        <p className="text-center"><div className="flex justify-center items-center"><ClipLoader color="#52bfd9" size={50}/></div></p>
                       ) : WatchListIsFetching ? (
-                        <Spinner />
+                        // <Spinner />
+                        <div className="flex justify-center items-center">
+                          <ClipLoader color="#52bfd9" size={50}/>
+                        </div>
                       ) : (
                         WatchList?.data?.map((item, i) => {
                           let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";

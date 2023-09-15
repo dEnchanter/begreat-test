@@ -17,6 +17,8 @@
     --text4: #0A0118;
     --textII: #fff;
     --textInput: #D2D3D9;
+    --bg-header2: #D2D3D9;
+    --text1: #0A0118;
     --gradient2: #EA3943;
     --modeBackground: #F4F4F4;
     --modeIconBackSelect: #FFFFFF;
@@ -111,6 +113,8 @@
     --text3: #fff;
     --text4: #fff;
     --textInput: #343334;
+    --bg-header2: #343334;
+    --text1: #fff;
     --textII: #0A0118;
     --gradient2: #EA3943;
     --secondary: #fff;
@@ -226,6 +230,11 @@ body {
 
 .bg-header {
     background-color: var(--foreground1);
+}
+
+.bg-header2 {
+    background-color: var(--bg-header2);
+    color: var(--primaryText);
 }
 
 .bg-white {
