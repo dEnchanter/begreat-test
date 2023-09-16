@@ -1945,8 +1945,8 @@ export default function DashBoardHome() {
                         .sort((a, b) => StretchRange?.data?.stretches[b].percentageChange - StretchRange?.data?.stretches[a].percentageChange)
                         .map((level, index, array) => {
 
-                          const isStretchHigh = toThreeFig(StretchRange?.data?.stretchHigh) === toThreeFig(StretchRange?.data?.stretches[level]?.price);
-                          const isStretchLow = toThreeFig(StretchRange?.data?.stretchLow) === toThreeFig(StretchRange?.data?.stretches[level]?.price);
+                          const isStretchHigh = StretchRange?.data?.stretchHigh === StretchRange?.data?.stretches[level]?.price;
+                          const isStretchLow = StretchRange?.data?.stretchLow === StretchRange?.data?.stretches[level]?.price;
 
                           if (level === "level_5") {
                             // Special row for level 5
