@@ -143,15 +143,15 @@ export default function Login() {
   const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
   // console.log(data,'datadata')
 
-// useEffect(() => {
-//   if (error?.status === 401) {
-//     // router.push("/login");
-//     DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
-//     DeleteAuthTokenMaster('begreatFinace:user') 
-//     setGetData(false)
-//     dispatch(logout());
-//   }
-// }, [error])
+  // useEffect(() => {
+  //   if (error?.status === 401) {
+  //     // router.push("/login");
+  //     DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
+  //     DeleteAuthTokenMaster('begreatFinace:user') 
+  //     setGetData(false)
+  //     dispatch(logout());
+  //   }
+  // }, [error])
 
 
   // console.log(userError,data,'userError')

@@ -51,7 +51,7 @@ const togglePasswordVisibility = () => {
     }
   }, [isSuccess, reset, router]);
 
- const handleSignUp = (data) => {
+  const handleSignUp = (data) => {
   // setHoldEmail(data?.email)
   userSignUp(data)
     .unwrap()
@@ -71,7 +71,7 @@ const togglePasswordVisibility = () => {
         error?.data?.errors?.map((item) => toast.error(item?.message));
       //  toast.error(error.data.message);
     });
-};
+  };
 
 
   const handleConfirmPassword = (value) => {

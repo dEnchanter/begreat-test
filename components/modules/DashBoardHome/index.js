@@ -1154,7 +1154,7 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  console.log("data current price", data)
+  // console.log("data current price", data)
 
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
