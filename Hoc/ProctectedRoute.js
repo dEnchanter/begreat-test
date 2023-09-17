@@ -26,23 +26,13 @@ export const ProtectedRoute = ({ children, type }) => {
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
-  const { data, isLoading, error,refetch,isError, status} = useGetUserProfileQuery(); // Use the generated hook
-  console.log("data", data, status)
-  const { data:dataStatus, isLoading:statusLoader, error:errorLoader,isError:statusIsError} = useCheckStatusQuery(); // Use the generated hook
-  console.log("data status", dataStatus)
-  // console.log(dataStatus?.status,'isLoggedIn')
+  const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
+  const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
   
   useEffect(() => {
-    if (dataStatus === undefined) {
-      // Redirect to pricing if dataStatus is undefined
-      // router.push('/pricing');
-      // toast.error('Please buy a plan');
-      // dispatch(logoutUser());
-    } else if (dataStatus?.status && dataStatus?.status!=="active") {
-      // alert('seen')
+    if(dataStatus && dataStatus?.status!=="active") {
+      toast.error('Please buy a plan')
       router.push('/pricing');
-      // toast.error('Please buy a plan')
-      // toast.error('')
       dispatch(logoutUser());
     }
   }, [dispatch, dataStatus?.status]);
@@ -53,14 +43,14 @@ export const ProtectedRoute = ({ children, type }) => {
       setGetData(false)
       dispatch(logoutUser());
       router.push("/login");
-      // localStorage.clear()
-      
+      // localStorage.clear() 
     }
 
     if(status==="rejected"&&!data?.userRecord?.email){
       dispatch(logoutUser());
       router.push("/login");
     }
+    
     if (error?.status === 401) {
       router.push("/login");
       dispatch(logoutUser());

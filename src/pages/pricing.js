@@ -10,14 +10,13 @@ import { setPath } from '../../helper'
 import { toast } from 'react-hot-toast'
 
 export default function pricing() {
+
   const router = useRouter();
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
+  
+  // console.log(data?.userRecord?.email,'isLoggedIn')
 
-  // console.log(data, "data")
-  // console.log(data, 'isLoggedIn')
-
-  const handlePayment1 = (paymentId) => {
-    
+  const handlePayment1 =(paymentId) =>{
     const payload ={
       link:'https://payments.begreat.finance/b/eVa3fNdHr5lr8N24gg',
       payment:paymentId
@@ -34,15 +33,14 @@ export default function pricing() {
     }
   }
 
-  const handlePayment2 = (paymentId) =>{
+  const handlePayment2 =(paymentId) =>{
     const payload ={
       link:'https://payments.begreat.finance/b/aEU5nV32NbJP1kA289',
       payment:paymentId
     }
-
-    if(!data?.userRecord?.email){
-      // router.push('https://app.begreat.finance')
-      router.push('https://payments.begreat.finance/b/aEU5nV32NbJP1kA289')
+    if(data?.userRecord?.email){
+      router.push('https://app.begreat.finance')
+      //router.push('https://payments.begreat.finance/b/aEU5nV32NbJP1kA289')
     }
     else{
       toast.error('You have to Sign In to Buy Plan')

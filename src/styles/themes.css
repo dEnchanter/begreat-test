@@ -14,7 +14,11 @@
     --btn2: #0A0118;
     --text2: #475467;
     --text3: #475467;
+    --text4: #0A0118;
     --textII: #fff;
+    --textInput: #D2D3D9;
+    --bg-header2: #D2D3D9;
+    --text1: #0A0118;
     --gradient2: #EA3943;
     --modeBackground: #F4F4F4;
     --modeIconBackSelect: #FFFFFF;
@@ -33,11 +37,14 @@
     --List1: #EA3943;
     --List2: #26A17B;
     --gradient1: linear-gradient(360deg, #16C782 -10.93%, rgba(234, 57, 67, 0.00520833) 70.47%, rgba(234, 57, 67, 0) 200.49%);
+    --gradient11: linear-gradient(360deg, rgba(22, 199, 130, 0.7) -20.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 200.49%);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
     --gradient3: linear-gradient(360deg, #16C782 10.93%, rgba(234, 57, 67, 0.00520833) 100.47%, rgba(234, 57, 67, 0) 200.49%);
     --deepGreen: linear-gradient(180deg, #16C782 75%, rgba(22, 199, 130, 0) 118.38%);
     --deepRed: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
+    --deepRed11: linear-gradient(179.93deg, rgba(250, 7, 21, 0.7) -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
     --deepRed2: linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 100.37%, rgba(255, 202, 205, 0) 98.39%);
+    --combinedGradient11: linear-gradient(360deg, #16C782 -20.93%, rgba(234, 57, 67, 0.00520833) 60.47%, rgba(234, 57, 67, 0) 200.49%), linear-gradient(179.93deg, #FA0715 -40.82%, rgba(255, 118, 126, 0.00520833) 65.37%, rgba(255, 202, 205, 0) 100.39%);
 
     --text-sm: 14px;
     --currentPlanBtnBg: #FF0000;
@@ -71,6 +78,18 @@
     --completered: #F9555F;
     --positive1: linear-gradient(179.93deg, #16C782 -40.82%, rgba(255, 118, 126, 0.00520833) 88.37%, rgba(255, 202, 205, 0) 88.39%);
     --greenAverage: #26A17B;
+
+    --control-bg-color: #f0f0f0;
+    --control-border-color: #ccc;
+    --focused-border-color: #aaa;
+    --control-text-color: #333;
+    --control-hover-border-color: #bbb;
+    --selected-option-bg-color: #e0e0e0;
+    --focused-option-bg-color: #f5f5f5;
+    --option-bg-color: white;
+    --option-text-color: #333;
+    --active-option-bg-color: #ddd;
+    --placeholder-text-color: #888;
 }
 
 [data-theme='dark'] {
@@ -92,6 +111,10 @@
     --btn2: #2D2C2F;
     --text2: #D1D1D1;
     --text3: #fff;
+    --text4: #fff;
+    --textInput: #343334;
+    --bg-header2: #343334;
+    --text1: #fff;
     --textII: #0A0118;
     --gradient2: #EA3943;
     --secondary: #fff;
@@ -147,6 +170,18 @@
     --positive1: linear-gradient(green, black);
     --gradient2: linear-gradient(180deg, #EA3943 -40.93%, rgba(234, 57, 67, 0.00520833) 125.47%, rgba(234, 57, 67, 0) 125.49%);
 
+    --control-bg-color: #333;
+    --control-border-color: #555;
+    --focused-border-color: #777;
+    --control-text-color: #fff;
+    --control-hover-border-color: #666;
+    --selected-option-bg-color: #444;
+    --focused-option-bg-color: #555;
+    --option-bg-color: #222;
+    --option-text-color: #fff;
+    --active-option-bg-color: #333;
+    --placeholder-text-color: #aaa;
+
 }
 
 .positive1 {
@@ -195,6 +230,11 @@ body {
 
 .bg-header {
     background-color: var(--foreground1);
+}
+
+.bg-header2 {
+    background-color: var(--bg-header2);
+    color: var(--primaryText);
 }
 
 .bg-white {
@@ -257,6 +297,10 @@ body {
 
 .back1 {
     background: var(--gradient1);
+}
+
+.back11 {
+    background: var(--gradient11);
 }
 
 .back2 {
@@ -328,6 +372,10 @@ body {
 /* Button */
 .btnWaitlist {
     background: var(--btnWaitlist);
+}
+
+.textInput {
+    background: var(--textInput);
 }
 
 
@@ -445,6 +493,14 @@ body {
     background: var(--deepRed2);
 }
 
+.deepRed11 {
+    background: var(--deepRed11);
+}
+
+.combo11 {
+    background: var(--combinedGradient11);
+}
+
 /*  */
 .borderColor {
     border-color: var(--borderColor);
@@ -539,8 +595,6 @@ body {
     background-repeat: no-repeat;
     background-size: 50rem;
     background-position: center;
-
-
 }
 
 .footerbg {
@@ -576,12 +630,8 @@ body {
 
 
 .border-gradient {
-
     border-image: linear-gradient(to right, #f00, #0f0, #00f) 1;
     background-color: transparent;
     border-radius: 25px;
-
-
 }
-
 

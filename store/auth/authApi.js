@@ -3,6 +3,8 @@ import { BASE_URL } from "../api/baseUrl";
 import { getUserDataS } from "../../helper";
 import { baseQuery } from "../api";
 
+const token = getUserDataS();
+
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: baseQuery,
@@ -106,7 +108,7 @@ export const authApi = createApi({
     ///api/:userId/checkstatus
     checkStatus: builder.query({
       query: (body) => ({
-        url: `/${getUserDataS()?.userId}/checkstatus`,
+        url: `/${getUserDataS()?.userId || token?.userId}/checkstatus`,
         method: "GET",
         body,
       }),

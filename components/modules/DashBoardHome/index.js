@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import { FiPlus } from "react-icons/fi";
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async'
+import ClipLoader from 'react-spinners/ClipLoader';
 import useSWR from 'swr';
 import axios from 'axios';
 import FallBackImage from "../../common/FallBackImage";
@@ -14,6 +15,7 @@ import DropDownItem from "../../ui/DropDownItem";
 import TwoSides from "../../common/TwoSides";
 import Accordance from "../../common/Accordiance";
 import FlexContainer from "../../common/FlexContainer";
+import Slider from '../../common/Slider';
 import ButtonComp from "../../ui/ButtonComp";
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -21,7 +23,7 @@ import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
+// import { Slider } from "@/components/ui/slider"
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   useAddToWatchListMutation,
@@ -58,23 +60,23 @@ export default function DashBoardHome() {
   const options = [
     {
       value: 1,
-      label: <span className="text-white text-xl font-semibold">1</span>,
+      label: <span className="primaryText text-xl font-semibold">1</span>,
     },
     {
       value: 2,
-      label: <span className="text-white text-xl font-semibold">2</span>,
+      label: <span className="primaryText text-xl font-semibold">2</span>,
     },
     {
       value: 3,
-      label: <span className="text-white text-xl font-semibold">3</span>,
+      label: <span className="primaryText text-xl font-semibold">3</span>,
     },
     {
       value: 4,
-      label: <span className="text-white text-xl font-semibold">4</span>,
+      label: <span className="primaryText text-xl font-semibold">4</span>,
     },
     {
       value: 5,
-      label: <span className="text-white text-xl font-semibold">5</span>,
+      label: <span className="primaryText text-xl font-semibold">5</span>,
     },
   ];
 
@@ -82,23 +84,23 @@ export default function DashBoardHome() {
   const options1 = [
     {
       value: 1,
-      label: <span className="text-white text-xl font-semibold">1</span>,
+      label: <span className="primaryText text-xl font-semibold">1</span>,
     },
     {
       value: 2,
-      label: <span className="text-white text-xl font-semibold">2</span>,
+      label: <span className="primaryText text-xl font-semibold">2</span>,
     },
     {
       value: 3,
-      label: <span className="text-white text-xl font-semibold">3</span>,
+      label: <span className="primaryText text-xl font-semibold">3</span>,
     },
     {
       value: 4,
-      label: <span className="text-white text-xl font-semibold">4</span>,
+      label: <span className="primaryText text-xl font-semibold">4</span>,
     },
     {
       value: 5,
-      label: <span className="text-white text-xl font-semibold">5</span>,
+      label: <span className="primaryText text-xl font-semibold">5</span>,
     },
   ];
 
@@ -106,67 +108,67 @@ export default function DashBoardHome() {
   const options2 = [
     {
       value: 1,
-      label: <span className=" text-xl font-semibold">1 MINUTE</span>,
+      label: <span className="primaryText text-xl font-semibold">1 MINUTE</span>,
     },
     {
       value: 3,
-      label: <span className=" text-xl font-semibold">3 MINUTE</span>,
+      label: <span className="primaryText text-xl font-semibold">3 MINUTE</span>,
     },
     {
       value: 5,
-      label: <span className=" text-xl font-semibold">5 MINUTE</span>,
+      label: <span className="primaryText text-xl font-semibold">5 MINUTE</span>,
     },
     {
       value: 15,
-      label: <span className="text-xl  font-semibold">15 MINUTE</span>,
+      label: <span className="primaryText text-xl font-semibold">15 MINUTE</span>,
     },
     {
       value: 30,
-      label: <span className=" text-xl font-semibold whitespace-nowrap">30 MINUTE</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">30 MINUTE</span>,
     },
     {
       value: 60,
-      label: <span className="text-xl  font-semibold  whitespace-nowrap ">1 HOUR</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">1 HOUR</span>,
     },
     {
       value: 120,
-      label: <span className=" text-xl  font-semibold  whitespace-nowrap">2 HOUR</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">2 HOUR</span>,
     },
     {
       value: 240,
-      label: <span className=" text-xl  font-semibold  whitespace-nowrap">4 HOUR</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">4 HOUR</span>,
     },
     {
       value: 360,
-      label: <span className="  text-xl font-semibold  whitespace-nowrap">6 HOUR</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">6 HOUR</span>,
     },
     {
       value: 480,
-      label: <span className="  text-xl font-semibold  whitespace-nowrap">8 HOUR</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">8 HOUR</span>,
     },
     {
       value: 720,
-      label: <span className=" text-xl font-semibold">12 HOUR</span>,
+      label: <span className="primaryText text-xl font-semibold">12 HOUR</span>,
     },
 
     {
       value: 1440,
-      label: <span className="text-xl  font-semibold">1 DAY</span>,
+      label: <span className="primaryText text-xl font-semibold">1 DAY</span>,
     },
 
     {
       value: 4320,
-      label: <span className="text-xl  font-semibold">3 DAY</span>,
+      label: <span className="primaryText text-xl font-semibold">3 DAY</span>,
     },
 
     {
       value: 10080,
-      label: <span className="text-xl  font-semibold">1 WEEK</span>,
+      label: <span className="primaryText text-xl font-semibold">1 WEEK</span>,
     },
 
     {
       value: 43200,
-      label: <span className="text-xl font-semibold">1 MONTH</span>,
+      label: <span className="primaryText text-xl font-semibold">1 MONTH</span>,
     },
     
   ];
@@ -175,76 +177,76 @@ export default function DashBoardHome() {
   const options3 = [
     {
       value: 2,
-      label: <span className=" text-xl font-semibold whitespace-nowrap">1 MINUTE</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">1 MINUTE</span>,
     },
 
     {
       value: 3,
-      label: <span className="text-xl font-semibold whitespace-nowrap">3 MINUTES</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">3 MINUTES</span>,
     },
 
     {
       value: 5,
-      label: <span className=" text-xl font-semibold whitespace-nowrap">5 MINUTES</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">5 MINUTES</span>,
     },
 
     {
       value: 10,
-      label: <span className=" text-xl font-semibold whitespace-nowrap">10 MINUTES</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">10 MINUTES</span>,
     },
 
     {
       value: 15,
-      label: <span className="text-xl font-semibold whitespace-nowrap">15 MINUTES</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">15 MINUTES</span>,
     },
 
     {
       value: 30,
-      label: <span className=" text-xl font-semibold whitespace-nowrap">30 MINUTES</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">30 MINUTES</span>,
     },
     {
       value: 45,
-      label: <span className="text-xl  font-semibold whitespace-nowrap">45 MINUTES</span>,
+      label: <span className="primaryText text-xl  font-semibold whitespace-nowrap">45 MINUTES</span>,
     },
     {
       value: 60,
-      label: <span className=" text-xl font-semibold  whitespace-nowrap ">1 HOUR</span>,
+      label: <span className="primaryText text-xl font-semibold  whitespace-nowrap ">1 HOUR</span>,
     },
     {
       value: 120,
-      label: <span className=" text-xl font-semibold  whitespace-nowrap">2 HOURS</span>,
+      label: <span className="primaryText text-xl font-semibold  whitespace-nowrap">2 HOURS</span>,
     },
     {
       value: 240,
-      label: <span className=" text-xl font-semibold  whitespace-nowrap">4 HOURS</span>,
+      label: <span className="primaryText text-xl font-semibold  whitespace-nowrap">4 HOURS</span>,
     },
     {
       value: 360,
-      label: <span className=" text-xl font-semibold  whitespace-nowrap">6 HOURS</span>,
+      label: <span className="primaryText text-xl font-semibold  whitespace-nowrap">6 HOURS</span>,
     },
     {
       value: 480,
-      label: <span className="text-xl  font-semibold  whitespace-nowrap">8 HOURS</span>,
+      label: <span className="primaryText text-xl font-semibold  whitespace-nowrap">8 HOURS</span>,
     },
     {
       value: '12h',
-      label: <span className=" text-xl font-semibold whitespace-nowrap">12 HOURS</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">12 HOURS</span>,
     },
     {
       value: '1d',
-      label: <span className=" text-xl font-semibold whitespace-nowrap">1 DAY</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">1 DAY</span>,
     },
     {
       value: '3d',
-      label: <span className=" text-xl font-semibold whitespace-nowrap">3 DAYS</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">3 DAYS</span>,
     },
     {
       value: '1w',
-      label: <span className=" text-xl font-semibold whitespace-nowrap">1 WEEK</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">1 WEEK</span>,
     },
     {
       value: '1M',
-      label: <span className=" text-xl font-semibold whitespace-nowrap">1 MONTH</span>,
+      label: <span className="primaryText text-xl font-semibold whitespace-nowrap">1 MONTH</span>,
     },
     
   ];
@@ -253,101 +255,101 @@ export default function DashBoardHome() {
   const options4 = [
     {
       value: 1,
-      label: <span className="text-white font-semibold whitespace-nowrap">AVERAGE</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">AVERAGE</span>,
       label2: 'Average',
     },
     {
       value: 2,
-      label: <span className="text-white font-semibold whitespace-nowrap">1 MINUTE</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 MINUTE</span>,
       label2: '1m',
     },
 
     {
       value: 3,
-      label: <span className="text-white font-semibold whitespace-nowrap">3 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">3 MINUTES</span>,
       label2: '3m',
     },
 
     {
       value: 5,
-      label: <span className="text-white font-semibold whitespace-nowrap">5 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">5 MINUTES</span>,
       label2: '5m',
     },
 
     {
       value: 10,
-      label: <span className="text-white font-semibold whitespace-nowrap">10 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">10 MINUTES</span>,
       label2: '10m',
     },
 
     {
       value: 15,
-      label: <span className="text-white font-semibold whitespace-nowrap">15 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">15 MINUTES</span>,
       label2: '15m',
     },
 
     {
       value: 30,
-      label: <span className="text-white font-semibold whitespace-nowrap">30 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">30 MINUTES</span>,
       label2: '30m',
     },
     {
       value: 45,
-      label: <span className="text-white font-semibold whitespace-nowrap">45 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">45 MINUTES</span>,
       label2: '45m',
     },
     {
       value: 60,
-      label: <span className="text-white font-semibold  whitespace-nowrap ">1 HOUR</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap ">1 HOUR</span>,
       label2: '1h',
     },
     {
       value: 120,
-      label: <span className="text-white font-semibold  whitespace-nowrap">2 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">2 HOURS</span>,
       label2: '2h',
     },
     {
       value: 240,
-      label: <span className="text-white font-semibold  whitespace-nowrap">4 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">4 HOURS</span>,
       label2: '4h',
     },
     {
       value: 360,
-      label: <span className="text-white font-semibold  whitespace-nowrap">6 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">6 HOURS</span>,
       label2: '6h',
     },
     {
       value: 480,
-      label: <span className="text-white font-semibold  whitespace-nowrap">8 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">8 HOURS</span>,
       label2: '8h',
     },
     {
       value: '12h',
-      label: <span className="text-white font-semibold whitespace-nowrap">12 HOURS</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">12 HOURS</span>,
       label2: '12h',
     },
 
      {
       value: '1d',
-      label: <span className="text-white font-semibold whitespace-nowrap">1 DAY</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 DAY</span>,
       label2: '1d',
     },
 
      {
       value: '3d',
-      label: <span className="text-white font-semibold whitespace-nowrap">3 DAYS</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">3 DAYS</span>,
       label2: '3d',
     },
 
      {
       value: '1w',
-      label: <span className="text-white font-semibold whitespace-nowrap">1 WEEK</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 WEEK</span>,
       label2: '1w',
     },
 
      {
       value: '1M',
-      label: <span className="text-white font-semibold whitespace-nowrap">1 MONTH</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 MONTH</span>,
       label2: '1M',
     },
     
@@ -357,21 +359,21 @@ export default function DashBoardHome() {
   const options5 = [
     {
       value: 1,
-      label: <span className=" text-sm font-semibold">Bullish</span>,
+      label: <span className="primaryText text-sm font-semibold">Bullish</span>,
     },
 
     {
       value: 2,
-      label: <span className="text-sm  font-semibold">Bearish</span>,
+      label: <span className="primaryText text-sm font-semibold">Bearish</span>,
     },
 
     {
       value: 3,
-      label: <span className=" text-sm font-semibold">Fastest</span>,
+      label: <span className="primaryText text-sm font-semibold">Fastest</span>,
     }, 
     {
       value: 4,
-      label: <span className=" text-sm font-semibold">Slowest</span>,
+      label: <span className="primaryText text-sm font-semibold">Slowest</span>,
     }, 
   ]
 
@@ -379,80 +381,80 @@ export default function DashBoardHome() {
   const options6 = [
     {
       value: 2,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Min</span>,
     },
 
     {
       value: 3,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">3 Min</span>,
     },
 
     {
       value: 5,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">5 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">5 Min</span>,
     },
 
     {
       value: 10,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">10 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">10 Min</span>,
     },
 
     {
       value: 15,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">15 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">15 Min</span>,
     },
 
     {
       value: 30,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">30 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">30 Min</span>,
     },
     {
       value: 45,
-      label: <span className="text-white text-lg  font-semibold whitespace-nowrap">45 Min</span>,
+      label: <span className="primaryText text-lg  font-semibold whitespace-nowrap">45 Min</span>,
     },
     {
       value: 60,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
     },
     {
       value: 120,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
     },
     {
       value: 240,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
     },
     {
       value: 360,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
     },
     {
       value: 480,
-      label: <span className="text-white text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
+      label: <span className="primaryText text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
     },
     {
       value: 720,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
 
     {
       value: 1440,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Day</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
 
      {
       value: 4320,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Days</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
 
      {
       value: 10080,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Week</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
 
      {
       value: 43800,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Month</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
   ];
@@ -461,74 +463,74 @@ export default function DashBoardHome() {
   const options7 = [
     {
       value: 2,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Min</span>,
     },
     {
       value: 3,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">3 Min</span>,
     },
 
     {
       value: 5,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">5 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">5 Min</span>,
     },
     {
       value: 10,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">10 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">10 Min</span>,
     },
 
     {
       value: 15,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">15 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">15 Min</span>,
     },
 
     {
       value: 30,
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">30 Min</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">30 Min</span>,
     },
     {
       value: 45,
-      label: <span className="text-white text-lg  font-semibold whitespace-nowrap">45 Min</span>,
+      label: <span className="primaryText text-lg  font-semibold whitespace-nowrap">45 Min</span>,
     },
     {
       value: 60,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap ">1 Hour</span>,
     },
     {
       value: 120,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">2 Hours</span>,
     },
     {
       value: 240,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">4 Hours</span>,
     },
     {
       value: 360,
-      label: <span className="text-white text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">6 Hours</span>,
     },
     {
       value: 480,
-      label: <span className="text-white text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
+      label: <span className="primaryText text-lg  font-semibold  whitespace-nowrap">8 Hours</span>,
     },
     {
       value: '12h',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">12 Hours</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">12 Hours</span>,
     },
     {
       value: '1d',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Day</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Day</span>,
     },
     {
       value: '3d',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">3 Days</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">3 Days</span>,
     },
     {
       value: '1w',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Week</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Week</span>,
     },
     {
       value: '1M',
-      label: <span className="text-white text-lg font-semibold whitespace-nowrap">1 Month</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 Month</span>,
     },
     
   ];
@@ -537,76 +539,76 @@ export default function DashBoardHome() {
   const options8 = [
     {
       value: 2,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">1 MIN</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 MIN</span>,
     },
 
     {
       value: 3,
-      label: <span className="text-lg font-semibold whitespace-nowrap">3 MINS</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">3 MINS</span>,
     },
 
     {
       value: 5,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">5 MINS</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">5 MINS</span>,
     },
 
     {
       value: 10,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">10 MINS</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">10 MINS</span>,
     },
 
     {
       value: 15,
-      label: <span className="text-lg font-semibold whitespace-nowrap">15 MINS</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">15 MINS</span>,
     },
 
     {
       value: 30,
-      label: <span className=" text-lg font-semibold whitespace-nowrap">30 MINS</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">30 MINS</span>,
     },
     {
       value: 45,
-      label: <span className="text-lg  font-semibold whitespace-nowrap">45 MINS</span>,
+      label: <span className="primaryText text-lg  font-semibold whitespace-nowrap">45 MINS</span>,
     },
     {
       value: 60,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap ">1 HOUR</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap ">1 HOUR</span>,
     },
     {
       value: 120,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap">2 HOURS</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">2 HOURS</span>,
     },
     {
       value: 240,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap">4 HOURS</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">4 HOURS</span>,
     },
     {
       value: 360,
-      label: <span className=" text-lg font-semibold  whitespace-nowrap">6 HOURS</span>,
+      label: <span className="primaryText text-lg font-semibold  whitespace-nowrap">6 HOURS</span>,
     },
     {
       value: 480,
-      label: <span className="text-lg  font-semibold  whitespace-nowrap">8 HOURS</span>,
+      label: <span className="primaryText text-lg  font-semibold  whitespace-nowrap">8 HOURS</span>,
     },
     {
       value: '12h',
-      label: <span className="text-lg font-semibold whitespace-nowrap">12 HOURS</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">12 HOURS</span>,
     },
     {
       value: '1d',
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 DAY</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 DAY</span>,
     },
     {
       value: '3d',
-      label: <span className="text-lg font-semibold whitespace-nowrap">3 DAYS</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">3 DAYS</span>,
     },
     {
       value: '1w',
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 WEEK</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 WEEK</span>,
     },
     {
       value: '1M',
-      label: <span className="text-lg font-semibold whitespace-nowrap">1 MONTH</span>,
+      label: <span className="primaryText text-lg font-semibold whitespace-nowrap">1 MONTH</span>,
     },
     
   ];
@@ -615,76 +617,76 @@ export default function DashBoardHome() {
   const options9 = [
     {
       value: 2,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 MINUTE</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 MINUTE</span>,
     },
 
     {
       value: 3,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 MINUTES</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">3 MINUTES</span>,
     },
 
     {
       value: 5,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">5 MINUTES</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">5 MINUTES</span>,
     },
 
     {
       value: 10,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">10 MINUTES</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">10 MINUTES</span>,
     },
 
     {
       value: 15,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">15 MINUTES</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">15 MINUTES</span>,
     },
 
     {
       value: 30,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">30 MINUTES</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">30 MINUTES</span>,
     },
     {
       value: 45,
-      label: <span className="text-white text-lg  font-medium whitespace-nowrap">45 MINUTES</span>,
+      label: <span className="primaryText text-lg  font-medium whitespace-nowrap">45 MINUTES</span>,
     },
     {
       value: 60,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap ">1 HOUR</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap ">1 HOUR</span>,
     },
     {
       value: 120,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">2 HOURS</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">2 HOURS</span>,
     },
     {
       value: 240,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">4 HOURS</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">4 HOURS</span>,
     },
     {
       value: 360,
-      label: <span className="text-white text-lg font-medium  whitespace-nowrap">6 HOURS</span>,
+      label: <span className="primaryText text-lg font-medium  whitespace-nowrap">6 HOURS</span>,
     },
     {
       value: 480,
-      label: <span className="text-lg text-white font-medium  whitespace-nowrap">8 HOURS</span>,
+      label: <span className="primaryText text-white font-medium  whitespace-nowrap">8 HOURS</span>,
     },
     {
       value: 720,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">12 HOURS</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">12 HOURS</span>,
     },
     {
       value: 1440,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 DAY</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 DAY</span>,
     },
     {
       value: 4320,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 DAYS</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">3 DAYS</span>,
     },
     {
       value: 10080,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 WEEK</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 WEEK</span>,
     },
     {
       value: 43800,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 MONTH</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 MONTH</span>,
     },
     
   ];
@@ -692,79 +694,79 @@ export default function DashBoardHome() {
   // ATR
   const options10 = [
     {
-      value: 2,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Min</span>,
+      value: '1m',
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 Min</span>,
     },
 
     {
-      value: 3,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 Min</span>,
+      value: '3m',
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">3 Min</span>,
     },
 
     {
-      value: 5,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">5 Min</span>,
+      value: '5m',
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">5 Min</span>,
+    },
+
+    // {
+    //   value: '10m',
+    //   label: <span className="text-white text-lg font-medium whitespace-nowrap">10 Min</span>,
+    // },
+
+    {
+      value: '15m',
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">15 Min</span>,
     },
 
     {
-      value: 10,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">10 Min</span>,
+      value: '30m',
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">30 Min</span>,
     },
-
-    {
-      value: 15,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">15 Min</span>,
-    },
-
-    {
-      value: 30,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">30 Min</span>,
-    },
-    {
-      value: 45,
-      label: <span className="text-white text-lg  font-medium whitespace-nowrap">45 Min</span>,
-    },
+    // {
+    //   value: '45m',
+    //   label: <span className="text-white text-lg  font-medium whitespace-nowrap">45 Min</span>,
+    // },
     {
       value: '1h',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap ">1 Hour</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap ">1 Hour</span>,
     },
     {
       value: '2h',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">2 Hours</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">2 Hours</span>,
     },
     {
       value: '4h',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">4 Hours</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">4 Hours</span>,
     },
     {
       value: '6h',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">6 Hours</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">6 Hours</span>,
     },
     {
       value: '8h',
-      label: <span className="text-white text-lg  font-medium whitespace-nowrap">8 Hours</span>,
+      label: <span className="primaryText text-lg  font-medium whitespace-nowrap">8 Hours</span>,
     },
     {
       value: '12h',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">12 Hours</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">12 Hours</span>,
     },
 
     {
       value: '1d',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Day</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 Day</span>,
     },
 
      {
       value: '3d',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">3 Days</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">3 Days</span>,
     },
     {
       value: '1w',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Week</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 Week</span>,
     },
     {
-      value: '1m',
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">1 Month</span>,
+      value: '1M',
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">1 Month</span>,
     },
     
   ];
@@ -773,146 +775,147 @@ export default function DashBoardHome() {
   const options11 = [
     {
       value: 7,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">Short</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">Short</span>,
     },
 
     {
       value: 14,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">Regular</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">Regular</span>,
     },
 
     {
       value: 50,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">Long</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">Long</span>,
     },
 
     {
       value: 100,
-      label: <span className="text-white text-lg font-medium whitespace-nowrap">Extreme</span>,
+      label: <span className="primaryText text-lg font-medium whitespace-nowrap">Extreme</span>,
     }
   ];
 
    // Rise/Fall% timeframes
    const options12 = [
-    {
-      value: 1,
-      label: <span className="text-white font-semibold whitespace-nowrap">AVERAGE</span>,
-      label2: 'Average',
-    },
+    // {
+    //   value: 1,
+    //   label: <span className="text-white font-semibold whitespace-nowrap">AVERAGE</span>,
+    //   label2: 'Average',
+    // },
     {
       value: 2,
-      label: <span className="text-white font-semibold whitespace-nowrap">1 MINUTE</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 MINUTE</span>,
       label2: '1m',
     },
 
     {
       value: 3,
-      label: <span className="text-white font-semibold whitespace-nowrap">3 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">3 MINUTES</span>,
       label2: '3m',
     },
 
     {
       value: 5,
-      label: <span className="text-white font-semibold whitespace-nowrap">5 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">5 MINUTES</span>,
       label2: '5m',
     },
 
     {
       value: 10,
-      label: <span className="text-white font-semibold whitespace-nowrap">10 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">10 MINUTES</span>,
       label2: '10m',
     },
 
     {
       value: 15,
-      label: <span className="text-white font-semibold whitespace-nowrap">15 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">15 MINUTES</span>,
       label2: '15m',
     },
 
     {
       value: 30,
-      label: <span className="text-white font-semibold whitespace-nowrap">30 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">30 MINUTES</span>,
       label2: '30m',
     },
     {
       value: 45,
-      label: <span className="text-white font-semibold whitespace-nowrap">45 MINUTES</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">45 MINUTES</span>,
       label2: '45m',
     },
     {
       value: 60,
-      label: <span className="text-white font-semibold  whitespace-nowrap ">1 HOUR</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap ">1 HOUR</span>,
       label2: '1h',
     },
     {
       value: 120,
-      label: <span className="text-white font-semibold  whitespace-nowrap">2 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">2 HOURS</span>,
       label2: '2h',
     },
     {
       value: 240,
-      label: <span className="text-white font-semibold  whitespace-nowrap">4 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">4 HOURS</span>,
       label2: '4h',
     },
     {
       value: 360,
-      label: <span className="text-white font-semibold  whitespace-nowrap">6 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">6 HOURS</span>,
       label2: '6h',
     },
     {
       value: 480,
-      label: <span className="text-white font-semibold  whitespace-nowrap">8 HOURS</span>,
+      label: <span className="primaryText font-semibold  whitespace-nowrap">8 HOURS</span>,
       label2: '8h',
     },
     {
       value: '12h',
-      label: <span className="text-white font-semibold whitespace-nowrap">12 HOURS</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">12 HOURS</span>,
       label2: '12h',
     },
     {
       value: '1d',
-      label: <span className="text-white font-semibold whitespace-nowrap">1 DAY</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 DAY</span>,
       label2: '1d',
     },
     {
       value: '3d',
-      label: <span className="text-white font-semibold whitespace-nowrap">3 DAYS</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">3 DAYS</span>,
       label2: '3d',
     },
     {
       value: '1w',
-      label: <span className="text-white font-semibold whitespace-nowrap">1 WEEK</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 WEEK</span>,
       label2: '1w',
     },
     {
       value: '1M',
-      label: <span className="text-white font-semibold whitespace-nowrap">1 MONTH</span>,
+      label: <span className="primaryText font-semibold whitespace-nowrap">1 MONTH</span>,
       label2: '1M',
     },
     
   ];
 
-  const [getTf, setTf] = useState(options4[4]);
-  const [getRf, setRf] = useState(options12[4]);
+  const [getTf, setTf] = useState(options4[6]);
+  const [getRf, setRf] = useState(options12[5]);
   const [getTimeFrame, setTimeFrame] = useState(options[4]);
   const [getShiftFrame, setShiftFrame] = useState(options1[3]);
 
   // New states i introduced for Risk Management
-  const [getSurgeTf, setSurgeTf] = useState(options9[8]);
-  const [getATRtf, setATRtf] = useState(options10[9]);
-  const [getLookBackTf, setLookBackTf] = useState(options11[3]);
+  const [getSurgeTf, setSurgeTf] = useState(options9[7]);
+  const [getATRtf, setATRtf] = useState(options10[3]);
+  const [getLookBackTf, setLookBackTf] = useState(options11[1]);
   const [currentValue, setCurrentValue] = useState("long");
   const [currentRfcValue, setCurrentRfcValue] = useState(0);
-  const [inputValue, setInputValue] = useState(150);
+  const [inputValue, setInputValue] = useState('1000');
   const [customInputValue, setCustomInputValue] = useState(data?.currentPrice);
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   const [switchValue, setSwitchValue] = useState(0);
   const [expandedChild, setExpandedChild] = useState("secondChild");
   const [toggle, setToggle] = useState(false);
+  const [sliderValue, setSliderValue] = useState("50");
   // const [snap, setSnap] = useState("400px");
   // const [isExpanded, setIsExpanded] = useState(true);
 
-  const [getSortValue, setSortValue] = useState(options5[1]);
+  const [getSortValue, setSortValue] = useState(options5[2]);
   const [coinName, setCoinName] = useState("SOL");
   const [createWatchlist, setCreateWatchlist] = useState("");
 
@@ -930,7 +933,7 @@ export default function DashBoardHome() {
   const selectedVal = selectedOptions.map((item) => item.value);
   const selectedVal2 = selectedOptions2.map((item) => item.value);
 
-  const [timeLeft, setTimeLeft] = useState(options3[1]);
+  const [timeLeft, setTimeLeft] = useState(options3[7]);
   const router = useRouter();
   const dispatch  = useDispatch();
 
@@ -953,8 +956,20 @@ export default function DashBoardHome() {
     return response.data;
   }
 
-  const url = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/${coinName.toLowerCase()}.svg`;
+  let url;
+
+  if (coinName) {
+      url = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/${coinName.toLowerCase()}.svg`;
+  } else {
+      console.warn("coinName is undefined!");
+      url = null;  // No fetching will occur if the URL is null.
+  }
+
   const { data: svgData } = useSWR(url, fetcher1);
+  
+
+  // const url = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/${coinName.toLowerCase()}.svg`;
+  // const { data: svgData } = useSWR(url, fetcher1);
 
   const url2 = `https://raw.githubusercontent.com/VadimMalykhin/binance-icons/main/crypto/usdt.svg`;
   const { data: svgUSDT } = useSWR(url2, fetcher2);
@@ -962,19 +977,19 @@ export default function DashBoardHome() {
 
   // FOR PULSE TIMEFRAME
   
-  const [day1, setDay1]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">DAY</span>, value:'1440'})
-  const [fourHours, setFourHours]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">4 HOUR</span>, value:'240'});
-  const [oneHour, setOneHours] =useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">1 HOUR</span>, value:'60'})
-  const [fifteenMin, setFifteenMin] =useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">15 MINUTE</span>, value:'15'});
-  const [fiveMin, setFiveMin]=useState({label:<span className="font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">5 MINUTE</span>, value:'5'})
+  const [day1, setDay1]=useState({label:<span className="primaryText font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">DAY</span>, value:'1440'})
+  const [fourHours, setFourHours]=useState({label:<span className="primaryText font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">4 HOUR</span>, value:'240'});
+  const [oneHour, setOneHours] =useState({label:<span className="primaryText font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">1 HOUR</span>, value:'60'})
+  const [fifteenMin, setFifteenMin] =useState({label:<span className="primaryText font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">15 MINUTE</span>, value:'15'});
+  const [fiveMin, setFiveMin]=useState({label:<span className="primaryText font-bold text-xl leading-6 tracking-tighter drop-shadow-lg">5 MINUTE</span>, value:'5'})
 
   // FOR SHIFT TIMEFRAME
 
-  const [day1b,setDay1b]=useState({label:<span className="text-lg flex whitespace-nowrap px-0 mx-0">Day</span>,value:'1d'})
-  const [fourHoursb,setFourHoursb]=useState({label:<span className="text-lg flex whitespace-nowrap">4 Hours</span>,value:'240'});
-  const [oneHourb,setOneHoursb] =useState({label:<span className="text-lg flex whitespace-nowrap">1 Hour</span>,value:'60'})
-  const [fifteenMinb,setFifteenMinb] =useState({label:<span className="text-lg flex whitespace-nowrap">15 Mins</span>,value:'15'});
-  const [fiveMinb,setFiveMinb]=useState({label:<span className="text-lg flex whitespace-nowrap">5 Mins</span>,value:'5'})
+  const [day1b,setDay1b]=useState({label:<span className="primaryText text-lg flex whitespace-nowrap px-0 mx-0">Day</span>,value:'1d'})
+  const [fourHoursb,setFourHoursb]=useState({label:<span className="primaryText text-lg flex whitespace-nowrap">4 Hours</span>,value:'240'});
+  const [oneHourb,setOneHoursb] =useState({label:<span className="primaryText text-lg flex whitespace-nowrap">1 Hour</span>,value:'60'})
+  const [fifteenMinb,setFifteenMinb] =useState({label:<span className="primaryText text-lg flex whitespace-nowrap">15 Mins</span>,value:'15'});
+  const [fiveMinb,setFiveMinb]=useState({label:<span className="primaryText text-lg flex whitespace-nowrap">5 Mins</span>,value:'5'})
 
   // Data calls
   const { 
@@ -1138,6 +1153,8 @@ export default function DashBoardHome() {
     skip:!timeLeft?.value || !coinName,
     pollingInterval: 30000, // 30secs
   });
+
+  console.log("data current price", data)
 
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
@@ -1450,6 +1467,10 @@ export default function DashBoardHome() {
     }
   }, [showModal, countdown]);
 
+  useEffect(() => {
+    setSliderValue(Number(averageRiseRatio));
+  }, [averageRiseRatio]);
+
   const handleLogout = () => {
     dispatch(logoutUser());
     router.push('/login');
@@ -1461,7 +1482,7 @@ export default function DashBoardHome() {
   };
 
   // GRADIENT COLORS;
-   const handleColor = (no) => {
+  const handleColor = (no) => {
     //console.log(no,'DFGHJKL')
     switch (no) {
       case 1:
@@ -1478,49 +1499,110 @@ export default function DashBoardHome() {
   }
 
   // Select dropdown styling
+  // const customStyles = {
+  //   control: (provided) => ({
+  //     ...provided,
+  //     backgroundColor: '#343334', // customize background color of input field
+  //     border: 'none', // remove border
+  //     outline: 'none',
+  //     textColor: 'white', // customize text color
+  //   }),
+  //   menu: (provided) => ({
+  //     ...provided,
+  //     backgroundColor: '#343334', // customize background color of dropdown menu
+  //     textColor: 'white', // customize text color
+  //     border: '1px solid #343334', // customize border color
+  //   }),
+  //   multiValue: (provided) => ({
+  //     ...provided,
+  //     backgroundColor: 'gray', // customize background color of selected options
+  //   }),
+  // };
+
   const customStyles = {
-    control: (provided) => ({
+    control: (provided, state) => ({
       ...provided,
-      backgroundColor: '#343334', // customize background color of input field
-      border: 'none', // remove border
-      outline: 'none',
-      textColor: 'white', // customize text color
+      backgroundColor: 'var(--control-bg-color)',
+      borderColor: state.isFocused ? 'var(--focused-border-color)' : 'var(--control-border-color)',
+      color: 'var(--control-text-color)',
+      boxShadow: state.isFocused ? '0 0 0 1px var(--focused-border-color)' : 'none',
+      '&:hover': {
+        borderColor: 'var(--control-hover-border-color)'
+      }
     }),
-    menu: (provided) => ({
+    option: (provided, state) => ({
       ...provided,
-      backgroundColor: '#343334', // customize background color of dropdown menu
-      textColor: 'white', // customize text color
-      border: '1px solid #343334', // customize border color
+      backgroundColor: state.isSelected 
+        ? 'var(--selected-option-bg-color)' 
+        : state.isFocused 
+          ? 'var(--focused-option-bg-color)' 
+          : 'var(--option-bg-color)',
+      color: 'var(--option-text-color)',
+      '&:active': {
+        backgroundColor: 'var(--active-option-bg-color)'
+      }
     }),
-    multiValue: (provided) => ({
+    singleValue: (provided) => ({
       ...provided,
-      backgroundColor: 'gray', // customize background color of selected options
+      color: 'var(--control-text-color)'
     }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: 'var(--control-text-color)'
+    }),
+    indicatorSeparator: (provided) => ({
+      ...provided,
+      backgroundColor: 'var(--control-border-color)'
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: 'var(--placeholder-text-color)'
+    })
   };
 
   const customStyles2 = {
     container: (provided, state) => ({
       ...provided,
-      color: "white",
+      backgroundColor: 'var(--control-bg-color)',
+      borderColor: 'var(--control-border-color)',
+      color: 'var(--control-text-color)',
     }),
     input: (provided, state) => ({
       ...provided,
-      color: "white",
+      color: 'var(--control-text-color)',
       fontSize: "18px",
     }),
     control: (provided) => ({
       ...provided,
-      backgroundColor: "#343334",
-      border: "none",
-      boxShadow: "none",
-      color: "white",
+      backgroundColor: 'var(--control-bg-color)',
+      borderColor: 'var(--control-border-color)',
+      boxShadow: 'none',
+      color: 'var(--control-text-color)',
+      '&:hover': {
+        borderColor: 'var(--control-hover-border-color)',
+      }
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: "#343334",
-      color: "white",
+      backgroundColor: state.isSelected
+        ? 'var(--selected-option-bg-color)'
+        : state.isFocused
+        ? 'var(--focused-option-bg-color)'
+        : 'var(--option-bg-color)',
+      color: 'var(--option-text-color)',
       fontSize: "18px",
+      ':active': {
+        backgroundColor: 'var(--active-option-bg-color)',
+      }
     }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: 'var(--control-text-color)',
+    }),
+    placeholder: (provided, state) => ({
+      ...provided,
+      color: 'var(--placeholder-text-color)',
+    })
   };
 
   // Function to determine the background color of Surge
@@ -1545,6 +1627,14 @@ export default function DashBoardHome() {
   const toggleSwitch = () => {
     setSwitchValue(1 - switchValue);
   };
+
+  // VARIABLES FOR DYNAMIC DIV FOR RISE AND FALL LEVELS
+
+  const BASE_HEIGHT = 550; // 200px for 100% rise or fall
+
+  // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
+  const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT;
+  const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT;
 
   return (
     <section className="relative">
@@ -1601,6 +1691,7 @@ export default function DashBoardHome() {
                         onChange={(e) => {
                           // console.log(e?.value,'set Asset')
                           const word = e?.value;
+                          
                           const index = word?.indexOf("USDT");
                           const firstHalf = word?.slice(0, index);
                           // const secondHalf = word.slice(index);
@@ -1652,7 +1743,8 @@ export default function DashBoardHome() {
             <div className="leading-[1.4rem]">
               <div className="gray mb-0">Price</div>
               <div className="primaryText text-[20px] lg:text-[24px] font-bold">
-                {toThreeFig(data?.currentPrice||0)}
+                {/* {toThreeFig(data?.currentPrice||0)} */}
+                {data?.currentPrice || 0}
               </div>
             </div>
 
@@ -1681,12 +1773,12 @@ export default function DashBoardHome() {
 
               <div className=" whitespace-nowrap font-semibold text-xl priceText mb-4 -mt-10 flex items-center w-fit mx-auto ">
                 <DropDownItem
-                // padding={'0px 40px 0px 3px'}
-                padding={'0px 20px 0px 8px'}
-                onChange={(e)=>setTimeLeft(e)}
-                options={options3}
-                noIcon={true}
-                value={timeLeft}
+                  // padding={'0px 40px 0px 3px'}
+                  padding={'0px 20px 0px 8px'}
+                  onChange={(e)=>setTimeLeft(e)}
+                  options={options3}
+                  noIcon={true}
+                  value={timeLeft}
                 />                  
               </div>
 
@@ -1694,27 +1786,22 @@ export default function DashBoardHome() {
 
                 {/* CURRENT PRICE CARD */}
                 {/* HIGH PRICE */}
+                
 
                 <div className="mb-5 text-center">
                   <p className="font-semibold mt-3 mb-2 text-lg tracking-tighter leading-6"> High Price:{" "}   
                     <span className="font-semibold secondary ml-1">
-                      {" "}
-                      {toThreeFig(data?.high || 0)}
+                      {data?.high || 0}
                     </span>
                   </p>
-                 
+
                   <div className="h-[200px] md:h-[250px] bg-[#EA3943] rounded
                   text-white text-[24px] font-bold flex justify-center items-center
                   transition duration-300 ease-in-out"
                   style={{
-                    height: data?.rise + data?.fall === 0 ? '200px' :
-                    data?.rise === 0 && data?.fall < 0 ? '440px' :
-                    data?.fall === 0 && data?.rise > 0 ? '100px' :
-                    data?.rise + data?.fall > 0 && data?.fall < 0 ? '200px' :
-                    data?.rise + data?.fall < 0 && data?.rise > 0 ? '350px' :
-                    '250px'
-                  }}>{" "}
-                    {toThreeFig(data?.fall || 0)}%
+                    height: `${fallHeight}px`
+                  }}>
+                    {data?.fall || 0}%
                   </div> 
                 </div>
 
@@ -1723,33 +1810,26 @@ export default function DashBoardHome() {
                 <div className="text-lg text-center font-semibold priceText mb-4 tracking-tighter leading-6">
                     Current Price :{" "}
                     <span className="font-semibold secondary">
-                      {toThreeFig(data?.currentPrice || 0)}
+                      {data?.currentPrice || 0}
                     </span>
-                  </div>
-                
+                </div>
+
                 {/* LOW PRICE */}
 
-                <div >
+                <div>
                   <div className="h-[200px] md:h-[250px] bg-[#16C782] rounded mb-2 
                   text-white text-[24px] font-bold flex justify-center items-center
                   transition duration-300 ease-in-out"
                   style={{
-                    height: data?.rise + data?.fall === 0 ? '200px' :
-                    data?.rise === 0 && data?.fall < 0 ? '100px' :
-                    data?.fall === 0 && data?.rise > 0 ? '440px' :
-                    data?.rise + data?.fall > 0 && data?.fall < 0 ? '350px' :
-                    data?.rise + data?.fall < 0 && data?.rise > 0 ? '200px' :
-                    '250px'
-                  }}>{" "}
-                    {toThreeFig(data?.rise || 0)}% 
+                    height: `${riseHeight}px`
+                  }}>
+                    {data?.rise || 0}% 
                   </div>
                   <p className="font-semibold mt-2 text-center mb-2 text-lg tracking-tighter leading-6">Low Price:{" "}  
                     <span className="font-semibold secondary ml-1">
-                      {" "}
-                      {toThreeFig(data?.low || 0)}
+                      {data?.low || 0}
                     </span>
                   </p>  
-              
                 </div>
               </div>
             </div>
@@ -1791,7 +1871,7 @@ export default function DashBoardHome() {
                         {/* <div className="text3 text-[14px] flex gap-1 items-center justify-center text-center font-semibold font-1 whitespace-nowrap">
                           Last {item?.time1}
                         </div> */}
-                        <div className="text3 flex items-center justify-center text-center font-semibold whitespace-nowrap">
+                        <div className="text4 flex items-center justify-center text-center font-semibold whitespace-nowrap">
                           <span className="text-lg font-semibold text-center ml-5">Last</span>{item?.time2}
                         </div>
                         <div
@@ -1810,7 +1890,7 @@ export default function DashBoardHome() {
 
               {/* New Feature */}
               {/* Risk Management Tools */}
-              <div className="flex space-x-5 h-min-[216px] flex-wrap mb-3 mt-6 -ml-[18rem]">
+              <div className="flex space-x-5 h-min-[216px] flex-wrap mb-3 mt-6 -ml-[18rem] lg:-ml-[17rem]">
                 
                 {/* TABLE */}
                 <div className="flex flex-col space-y-3">
@@ -1818,7 +1898,7 @@ export default function DashBoardHome() {
                     <Card className="bg-header p-2 flex items-center justify-center border-none">
                       <div>
                         <Tabs defaultValue="long" className="w-[300px]">
-                          <TabsList className="bg-black p-1">
+                          <TabsList className="textInput p-1">
                             <TabsTrigger className={`w-[8rem] ${currentValue == 'long' ? 'data-[state=active]:bg-[#16C782]' : 'bg-[#16C782]/8'}`} value="long" onClick={() => setCurrentValue('long')}>Long</TabsTrigger>
                             <TabsTrigger className={`w-[8rem] ${currentValue == 'short' ? 'data-[state=active]:bg-[#EA3943]' : 'bg-[#EA3943]/8'}`} value="short" onClick={() => setCurrentValue('short')}>Short</TabsTrigger>
                           </TabsList>
@@ -1830,15 +1910,28 @@ export default function DashBoardHome() {
                           sideA={"Position Size:"}
                           sideAClassName={"secondary gray text-md font-medium xl:mb-0"}
                           sideB={
-                            <TextInput
-                              wrapperClassName="bg-[#343334] rounded-lg"
-                              suffixIcon={"$"}
-                              borderColor="border-none"
-                              placeholder="0.00"
-                              value={inputValue}  // set the value
-                              onChange={(e) => setInputValue(e.target.value)}  // update the state value when the input changes
-                              
-                            />
+                            <div className="relative">
+                                {currentValue === 'short' && (
+                                    <span className="absolute inset-y-0 left-0 pl-[1.4rem] flex items-center text-white">
+                                        -
+                                    </span>
+                                )}
+                                <TextInput
+                                    wrapperClassName="textInput rounded-lg"
+                                    inputClassName={`primaryText ${currentValue === 'short' ? 'pl-6' : ''}`}
+                                    suffixIconClassName="primaryText"
+                                    suffixIcon={"$"}
+                                    borderColor="border-none"
+                                    placeholder="0.00"
+                                    value={inputValue}
+                                    onChange={(e) => {
+                                        const newInputValue = e.target.value;
+                                        if (/^\d*\.?\d*$/.test(newInputValue)) {
+                                            setInputValue(newInputValue);
+                                        }
+                                    }}
+                                />
+                            </div>
                           }
                         />
                       </div>
@@ -1847,11 +1940,11 @@ export default function DashBoardHome() {
 
                   <div>
                     <Card className="bg-header p-2 flex flex-col items-center border-none">
-                      <TableHeader className="bg-black">
+                      <TableHeader className="bg-header2">
                         <TableRow className="hover:bg-header">
-                          <TableHead className="text-left w-[13rem] text-gray-200">%Change</TableHead>
-                          <TableHead className="w-[13rem] text-gray-200">Price</TableHead>
-                          <TableHead className="w-[13rem] text-gray-200">P/L</TableHead>
+                          <TableHead className="text-left w-[13rem] primaryText">%Change</TableHead>
+                          <TableHead className="w-[13rem] primaryText">Price</TableHead>
+                          <TableHead className="w-[13rem] primaryText">P/L</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -1861,8 +1954,8 @@ export default function DashBoardHome() {
                         .sort((a, b) => StretchRange?.data?.stretches[b].percentageChange - StretchRange?.data?.stretches[a].percentageChange)
                         .map((level, index, array) => {
 
-                          const isStretchHigh = toThreeFig(StretchRange?.data?.stretchHigh) === toThreeFig(StretchRange?.data?.stretches[level]?.price);
-                          const isStretchLow = toThreeFig(StretchRange?.data?.stretchLow) === toThreeFig(StretchRange?.data?.stretches[level]?.price);
+                          const isStretchHigh = StretchRange?.data?.stretchHigh === StretchRange?.data?.stretches[level]?.price;
+                          const isStretchLow = StretchRange?.data?.stretchLow === StretchRange?.data?.stretches[level]?.price;
 
                           if (level === "level_5") {
                             // Special row for level 5
@@ -1881,12 +1974,17 @@ export default function DashBoardHome() {
                                   <TableCell className="w-[13rem]">
                                     <TextInput 
                                       type="text" 
-                                      placeholder={toThreeFig(data?.currentPrice)}
+                                      placeholder={data?.currentPrice || 0}
                                       wrapperClassName={`p-1`}
-                                      inputClassName={`${isInputDisabled ? 'cursor-not-allowed' : ''}`}
-                                      value={customInputValue} 
-                                      onChange={(e) => setCustomInputValue(e.target.value)} 
-                                      disabled={isInputDisabled}  
+                                      // inputClassName={`${isInputDisabled ? '' : ''}`}
+                                      value={customInputValue}
+                                      onChange={(e) => {
+                                        // Check if the input is only numbers or a floating point
+                                        if (/^\d*\.?\d*$/.test(e.target.value)) {
+                                          setCustomInputValue(e.target.value);
+                                        }
+                                      }}
+                                      // disabled={isInputDisabled}  
                                     />
                                   </TableCell>
                                   <TableCell className="w-[13rem]">
@@ -1902,16 +2000,19 @@ export default function DashBoardHome() {
                             <>
                               <TableRow 
                                 key={level} 
-                                className={`hover:bg-header ${isStretchHigh ? 'border border-green-500' : ''} ${isStretchLow ? 'border border-red-500' : ''}`}
-                              >
+                                className={`hover:bg-header 
+                                  ${isStretchHigh && isStretchLow ? 'combo11' : 
+                                  isStretchHigh ? 'back11' : 
+                                  isStretchLow ? 'deepRed11' : ''}`}
+                                >
                                 <TableCell className={`font-medium text-left w-[13rem] ${StretchRange?.data.stretches[level].percentageChange < 0 ? 'text-red-700' : 'text-green-700'}`}>
-                                  {StretchRange?.data?.stretches[level]?.percentageChange?.toFixed(2) + '%' || 0.00}
+                                  {StretchRange?.data?.stretches[level]?.percentageChange + '%' || 0.00}
                                 </TableCell>
-                                <TableCell className="w-[13rem] text-gray-100">
-                                  {'$' + StretchRange?.data?.stretches[level].price.toFixed(2) || 0.00}
+                                <TableCell className="w-[13rem] primaryText">
+                                  {'$' + StretchRange?.data?.stretches[level].price || 0.00}
                                 </TableCell>
                                 <TableCell className={`w-[13rem] ${StretchRange?.data.stretches[level].profit < 0 ? 'text-red-700' : 'text-green-700'}`}>
-                                  {'$' + StretchRange?.data?.stretches[level]?.profit?.toFixed(2) || 0.00}
+                                  {'$' + StretchRange?.data?.stretches[level]?.profit || 0.00}
                                 </TableCell>
                               </TableRow>
 
@@ -1938,7 +2039,7 @@ export default function DashBoardHome() {
                           <Select 
                             options={options9}
                             onChange={(e) => {
-                              console.log(e,'setSurge')
+                              // console.log(e,'setSurge')
                               setSurgeTf(e)
                             }}
                             value={getSurgeTf}
@@ -1959,7 +2060,8 @@ export default function DashBoardHome() {
                             </Button>
                             <Button className={`min-h-[6rem] ${getBackgroundColor(SurgeLevel?.priceBreak)} hover:${getBackgroundColor(SurgeLevel?.priceBreak)}`}>
                               <p className="text-lg font-medium">
-                                {toThreeFig(SurgeLevel?.surge || 0)}
+                                {/* {toThreeFig(SurgeLevel?.surge || 0)} */}
+                                {SurgeLevel?.surge || 0}
                               </p>
                             </Button>
                           </>
@@ -1967,7 +2069,8 @@ export default function DashBoardHome() {
                           <>
                             <Button className={`min-h-[5rem] ${getBackgroundColor(SurgeLevel?.priceBreak)} hover:${getBackgroundColor(SurgeLevel?.priceBreak)}`}>
                               <p className="text-lg font-medium">
-                                {toThreeFig(SurgeLevel?.surge || 0)}
+                                {/* {toThreeFig(SurgeLevel?.surge || 0)} */}
+                                {SurgeLevel?.surge || 0}
                               </p>
                             </Button>
                             <Button className="min-h-[5rem] deepRed2">
@@ -1991,7 +2094,7 @@ export default function DashBoardHome() {
                           <Select 
                             options={options10}
                             onChange={(e) => {
-                              console.log(e,'setATR')
+                              // console.log(e,'setATR')
                               setATRtf(e)
                             }}
                             value={getATRtf}
@@ -2007,7 +2110,7 @@ export default function DashBoardHome() {
                           <Select 
                             options={options11}
                             onChange={(e) => {
-                              console.log(e,'setLookBack')
+                              // console.log(e,'setLookBack')
                               setLookBackTf(e)
                             }}
                             value={getLookBackTf}
@@ -2110,7 +2213,7 @@ export default function DashBoardHome() {
                               // onClick={() => setIsExpanded(false)} // set isExpanded to false when clicked
                               onClick={() => setExpandedChild(expandedChild === 'firstChild' ? 'secondChild' : 'firstChild')}
                             >
-                              Reduce Watchlist
+                              Reduce TrendScan
                             </Button>
                           </div>
                         </div>
@@ -2118,7 +2221,7 @@ export default function DashBoardHome() {
                         <div className="flex items-center justify-between">
                           {/* FLOW TAB */}
                           <div className="flex items-center space-x-5">
-                            <span>Flow</span>
+                            <span className="text2">Flow:</span>
 
                             <Tabs 
                               defaultValue="%Change" 
@@ -2140,7 +2243,7 @@ export default function DashBoardHome() {
                               <Select 
                                 options={options4}
                                 onChange={(e) => {
-                                  console.log(e,'setTf')
+                                  // console.log(e,'setTf')
                                   setTf(e)
                                 }}
                                 value={getTf}
@@ -2159,7 +2262,7 @@ export default function DashBoardHome() {
                                 <DropDownItem
                                   options={options5}
                                   onChange={(e) => {
-                                    console.log(e?.value,'sort value')
+                                    // console.log(e?.value,'sort value')
                                     setSortValue(e)
                                     localStorage.setItem("sortValue", e?.value)
                                   }}
@@ -2186,7 +2289,7 @@ export default function DashBoardHome() {
                               <Select 
                                 options={options12}
                                 onChange={(e) => {
-                                  console.log(e,'setRF')
+                                  // console.log(e,'setRF')
                                   setRf(e)
                                 }}
                                 value={getRf}
@@ -2203,7 +2306,7 @@ export default function DashBoardHome() {
                                 <Label htmlFor="airplane-mode" className="text2">Score Rank:</Label>
                                 <Switch 
                                   id="airplane-mode" 
-                                  className="bg-gray-400" 
+                                  className="data-[state=checked]:bg-gray-500 data-[state=unchecked]:bg-gray-300" 
                                   checked={switchValue}
                                   onCheckedChange={toggleSwitch}
                                 />
@@ -2213,84 +2316,64 @@ export default function DashBoardHome() {
                         </div>
 
                         <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold rounded-md mt-3 mb-5`}>
-                          <Slider 
-                            defaultValue={[averageRiseRatio]} 
-                            value={[averageRiseRatio]}
-                            max={100} 
-                            step={1} 
+                          <Slider
+                            initialValue={sliderValue}
                           />
                         </div>
 
+                        {/* WATCHLIST */}
                         <div>
-                          <Card className="bg-header p-2 flex flex-col items-center border-none">
-                            <TableHeader className="bg-black">
-                              <TableRow className="hover:bg-black">
-                                <TableHead className="text-left w-[10rem] text-gray-200">Symbol</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Price</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">%Change</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Pulse</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Shift</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Rise</TableHead>
-                                <TableHead className="w-[10rem] text-gray-200">Fall</TableHead>
-                              </TableRow>
-                            </TableHeader>
-                            <TableBody className="">
-                              <TableRow className="hover:bg-header">
-                                <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
-                                  {WatchList?.data?.map((item, i) => {
-                                      let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
-
-                                      let pulseColor;
-                                      let shiftColor;
-
-                                      if (item.pulse === 2) {
-                                        pulseColor = "bg-[#26A17B]";
-                                      } else if (item.pulse === -2) {
-                                        pulseColor = "bg-[#EA3943]";
-                                      } else {
-                                        pulseColor = "bg-[#d1d5db]";
-                                      }
-
-                                      if (item.shift === 2) {
-                                        shiftColor = "bg-[#26A17B]";
-                                      } else if (item.shift === -2) {
-                                        shiftColor = "bg-[#EA3943]";
-                                      } else {
-                                        shiftColor = "bg-[#d1d5db]";
-                                      }
-
-                                      return (
-                                        <div className="flex">
-                                          <div className="grid grid-cols-7 gap-[4.7rem] justify-between 
-                                          items-center whitespace-nowrap borderColor border-b-[1px] 
-                                          p-4 mb-3 cursor-pointer mr-10"
-                                          onClick={() => handleOnClickWatchlist(item.name)}
-                                          >
-                                            <div className="col-span-1">
-                                              {item?.name}
-                                            </div>
-                                            <div className="col-span-1">${toThreeFig(item.price)}</div>
-                                            <div className="col-span-1">
-                                              <div className={`${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</div>
-                                            </div>
-                                            <div className={`col-span-1 ${pulseColor} w-[20px] h-[10px]`}>
-                                              {/* PULSE */}
-                                            </div>
-                                            <div className={`col-span-1 ${shiftColor} w-[20px] h-[10px]`}>
-                                              {/* SHIFT */}
-                                            </div>
-                                            <div className={`col-span-1 text-[#26A17B]`}>{toThreeFig(item.rise)}%</div>
-                                            <div className={`col-span-1 text-[#EA3943]`}>{toThreeFig(item.fall)}%</div>
-                                            
-                                          </div>
-                                        </div>
-                                      );
-                                    }
-                                  )}
-                                </div>
-                              </TableRow>
-                            </TableBody>
-                          </Card>  
+                          {WatchListIsLoading ? (
+                            <p className="text-center">
+                              <div className="flex justify-center items-center min-h-[20rem]">
+                                <ClipLoader color="#52bfd9" size={50}/>
+                              </div>
+                            </p>
+                          ) : WatchListIsFetching ? (
+                            <div className="flex justify-center items-center min-h-[20rem]">
+                              <ClipLoader color="#52bfd9" size={50}/>
+                            </div>
+                          ) : (
+                            <Card className="bg-header p-2 flex flex-col items-center border-none">
+                              <TableHeader className="bg-header2">
+                                <TableRow className="hover:bg-black">
+                                  {['Symbol', 'Price', '%Change', 'Pulse', 'Shift', 'Rise', 'Fall'].map((header) => (
+                                    <TableHead className="text-left w-[10rem] primaryText" key={header}>
+                                      {header}
+                                    </TableHead>
+                                  ))}
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
+                                {WatchList?.data?.map((item, index, array) => {
+                                  const priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
+                                  const pulseColor = item.pulse === 2 ? "bg-[#26A17B]" : item.pulse === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
+                                  const shiftColor = item.shift === 2 ? "bg-[#26A17B]" : item.shift === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
+                                  
+                                  return (
+                                    <>
+                                      <TableRow key={item.name} className="hover:bg-header borderColor border-b-[1px] p-4 mb-3 cursor-pointer" onClick={() => handleOnClickWatchlist(item.name)}>
+                                        <TableCell className="text-left w-[10rem]">{item?.name}</TableCell>
+                                        <TableCell className="text-left w-[10rem]">${item.price}</TableCell>
+                                        <TableCell className={`text-left w-[10rem] ${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</TableCell>
+                                        <TableCell className="text-right w-[10rem]">
+                                          <div className={`${pulseColor} w-[20px] h-[10px] ml-5`}></div>
+                                        </TableCell>
+                                        <TableCell className="text-right w-[10rem]">
+                                          <div className={`${shiftColor} w-[20px] h-[10px] ml-5`}></div>
+                                        </TableCell>
+                                        <TableCell className="text-left w-[10rem] text-[#26A17B]">{item.rise}%</TableCell>
+                                        <TableCell className="text-left w-[10rem] text-[#EA3943]">{item.fall}%</TableCell>
+                                      </TableRow>
+                                      {index < array.length - 1 && <Separator className="bg-gray-600" />}
+                                    </>
+                                    
+                                  );
+                                })}
+                              </TableBody>
+                            </Card>
+                          )}
+                          
                         </div>    
 
                       </div>
@@ -2330,17 +2413,17 @@ export default function DashBoardHome() {
             {/* TrendScan */}
             {
               expandedChild === 'secondChild' && (
-                <div className="bg-white py-3 px-3">
-                  <div className="secondary text-2xl font-bold mb-5 xl:mb-5">TrendScan</div>
+                <div className="bg-white h-[68rem] py-3 px-3">
+                  <div className="secondary flex-grow text-2xl font-bold mb-5 xl:mb-5">TrendScan</div>
               
                   {/* EXPAND BUTTON */}
                   <div className="text-right mb-5">
                     <Button 
-                      className="bg-gray-400 text-gray-300 hover:bg-gray-500"
+                      className="bg-gray-400 primaryText hover:bg-gray-500"
                       // onClick={() => setIsExpanded(true)} 
                       onClick={() => setExpandedChild(expandedChild === 'secondChild' ? 'firstChild' : 'secondChild')}
                     >
-                      Expand Watchlist
+                      Expand TrendScan
                     </Button>
                   </div>
 
@@ -2404,7 +2487,7 @@ export default function DashBoardHome() {
                       <Select 
                         options={options4}
                         onChange={(e) => {
-                          console.log(e,'setTf')
+                          // console.log(e,'setTf')
                           setTf(e)
                         }}
                         value={getTf}
@@ -2422,7 +2505,7 @@ export default function DashBoardHome() {
                       <Select 
                         options={options12}
                         onChange={(e) => {
-                          console.log(e,'setRF')
+                          // console.log(e,'setRF')
                           setRf(e)
                         }}
                         value={getRf}
@@ -2439,7 +2522,7 @@ export default function DashBoardHome() {
                         <Label htmlFor="airplane-mode" className="text2">Score Rank:</Label>
                         <Switch 
                           id="airplane-mode" 
-                          className={`transition duration-300 ease-in-out ${switchValue ? 'bg-green-400' : 'bg-gray-400'}`} 
+                          className="data-[state=checked]:bg-gray-500 data-[state=unchecked]:bg-gray-300"
                           checked={switchValue}
                           onCheckedChange={toggleSwitch}
                         />
@@ -2452,7 +2535,7 @@ export default function DashBoardHome() {
                         <DropDownItem
                           options={options5}
                           onChange={(e) => {
-                            console.log(e?.value,'sort value')
+                            // console.log(e?.value,'sort value')
                             setSortValue(e)
                             localStorage.setItem("sortValue", e?.value)
                           }}
@@ -2464,7 +2547,7 @@ export default function DashBoardHome() {
               
                   {/* FLOW TAB */}
                   <div className="flex justify-around items-center space-x-3 mb-5">
-                    <span>Flow</span>
+                    <span className="text2">Flow:</span>
 
                     <Tabs 
                       defaultValue="Rise/Fall" 
@@ -2484,14 +2567,10 @@ export default function DashBoardHome() {
                         {`Watchlist ${getTf.label2} Average (%) Change: ${toThreeFig(totalAverageValue || 0.000)}%`}
                       </div>
                     ) : (
-                      <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center  p-2 font-bold rounded-md mb-5`}>
-                        <Slider 
-                          defaultValue={[averageRiseRatio]} 
-                          value={[averageRiseRatio]}
-                          max={100} 
-                          step={1} 
-                          className={""}
-                        />
+                      <div className={`${totalAverageValue > 0 ? "text-[#26A17B]" : "text-[#EA3943]"} text-center p-2 font-bold rounded-md mb-5`}>
+                          <Slider
+                            initialValue={sliderValue}
+                          />
                       </div>
                     )
                   }
@@ -2505,11 +2584,14 @@ export default function DashBoardHome() {
                       <div className="col-span-1">Change%</div>
                       <div className="col-span-1"></div>
                   </div>
-                  <div className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
+                  <div className="h-[33rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
                       {WatchListIsLoading ? (
-                        <p className="text-center">Loading <Spinner /></p>
+                        <p className="text-center"><div className="flex justify-center items-center"><ClipLoader color="#52bfd9" size={50}/></div></p>
                       ) : WatchListIsFetching ? (
-                        <Spinner />
+                        // <Spinner />
+                        <div className="flex justify-center items-center">
+                          <ClipLoader color="#52bfd9" size={50}/>
+                        </div>
                       ) : (
                         WatchList?.data?.map((item, i) => {
                           let priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
