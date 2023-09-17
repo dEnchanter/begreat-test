@@ -30,7 +30,7 @@ export default function DashBoardNav({change}) {
   return (
     <nav>
         <div className='flex justify-between items-center px-3 xl:px-5 pt-4  pb-8 shadow-xl bg-header '>
-            <div  className="hover:cursor-pointer"  onClick={()=>router.push('/dashboard')}>
+            <div  className="hover:cursor-pointer"  onClick={()=>router.push('https://begreat.finance')}>
                 <img
                 // src={'/Images/Dashboard/Logo1.png'}
                  src={theme=="dark"?'/Images/Dashboard/Logo1.png':'/Images/Dashboard/logo.png'}
