@@ -115,7 +115,7 @@ import { toast } from 'react-hot-toast'
 export default function pricing() {
   const router =useRouter();
   const { data, isLoading, error,refetch,isError, status} = useGetUserProfileQuery(); // Use the generated hook
-  console.log(data?.userRecord?.email,isError,status,error,isLoading,'isLoggedIn')
+  console.log(data, data?.userRecord?.email,isError,status,error,isLoading,'isLoggedIn')
 
   const handlePayment =(paymentId) =>{
     console.log("paymentId", paymentId)
