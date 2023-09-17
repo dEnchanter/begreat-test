@@ -32,12 +32,12 @@ export const ProtectedRoute = ({ children, type }) => {
   console.log("user subscription", dataStatus);
   
   useEffect(() => {
-    if(dataStatus && dataStatus?.status!=="active") {
+    if(dataStatus && dataStatus?.status!="active") {
       toast.error('Please buy a plan')
       router.push('/pricing');
       dispatch(logoutUser());
     }
-  }, [dispatch, dataStatus?.status]);
+  });
 
   useEffect(() => {
     setGetData(true)
