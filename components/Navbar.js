@@ -143,20 +143,18 @@ export default function Navbar({ fixed }) {
                 
                   </div> */}
                   <li  onClick={handleNav} className="nav-item">
-                  <Link
-                    className={`py-2  flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
-                      activeLink === "discord"
-                        ? "text-red-500 "
-                        : "text-secondary"
-                    } transition ease-in duration-300`}
-                    href="https://discord.gg/2n5X59eeg2"
-                    scroll={false}
-                    onClick={() => setActiveLink("Discord")}
-                  >
-                    Discord
-                  </Link>
-
-                 
+                    <Link
+                      className={`py-2  flex items-center text-xs hover:text-red-500 uppercase  leading-snug hover:cursor-pointer ${
+                        activeLink === "discord"
+                          ? "text-red-500 "
+                          : "text-secondary"
+                      } transition ease-in duration-300`}
+                      href="https://discord.gg/2n5X59eeg2"
+                      scroll={false}
+                      onClick={() => setActiveLink("Discord")}
+                    >
+                      Discord
+                    </Link>                 
                   </li>
 
                   <li  onClick={handleNav} className="nav-item">
@@ -172,8 +170,6 @@ export default function Navbar({ fixed }) {
                     >
                       Docs
                     </Link>
-
-                  
                   </li>
 
     
@@ -205,7 +201,7 @@ export default function Navbar({ fixed }) {
                   </div>
               </div>
 
-              <div className="flex   lg:space-x-4  lg:items-center flex-col lg:flex-row ">
+              <div className="flex lg:space-x-4  lg:items-center flex-col lg:flex-row ">
                 <h1 className="mt-2 lg:mt-0 text-sm font-semibold hover:cursor-pointer hover:text-[#FF0000] transition  ease-in duration-300">
                   {" "}
                   <Link  onClick={handleNav} href="https://app.begreat.finance/register">Sign Up</Link>{" "}
@@ -223,7 +219,7 @@ export default function Navbar({ fixed }) {
 
               <div className="bg-modeBackground px-[8px] -ml-5 mt-4 lg:ml-0 rounded-xl hover:cursor-pointer gap-2  w-fit items-center whitespace-nowrap flex lg:mt-8 lg:hidden">
                 <div
-                  className={`   ${
+                  className={`${
                     theme === "light" &&
                     "hover:cursor-pointer bg-modeIconBackSelect  px-2 my-1 rounded-lg text-center "
                   }`}
@@ -235,7 +231,7 @@ export default function Navbar({ fixed }) {
                   />
                 </div>
                 <div
-                  className={`   rounded-lg ${
+                  className={`rounded-lg ${
                     theme === "dark" &&
                     "bg-modeIconBackSelect hover:cursor-pointer my-1 px-2 rounded-lg text-center "
                   }`}
