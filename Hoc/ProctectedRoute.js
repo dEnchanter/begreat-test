@@ -27,7 +27,9 @@ export const ProtectedRoute = ({ children, type }) => {
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
+  console.log("user data", data);
   const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
+  console.log("user subscription", dataStatus);
   
   useEffect(() => {
     if(dataStatus && dataStatus?.status!=="active") {
