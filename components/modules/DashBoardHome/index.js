@@ -1154,7 +1154,7 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  // console.log("data current price", data)
+  console.log("data current price", data)
 
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
@@ -1482,7 +1482,7 @@ export default function DashBoardHome() {
   };
 
   // GRADIENT COLORS;
-   const handleColor = (no) => {
+  const handleColor = (no) => {
     //console.log(no,'DFGHJKL')
     switch (no) {
       case 1:
@@ -1627,6 +1627,14 @@ export default function DashBoardHome() {
   const toggleSwitch = () => {
     setSwitchValue(1 - switchValue);
   };
+
+  // VARIABLES FOR DYNAMIC DIV FOR RISE AND FALL LEVELS
+
+  const BASE_HEIGHT = 550; // 200px for 100% rise or fall
+
+  // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
+  const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT;
+  const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT;
 
   return (
     <section className="relative">
@@ -1778,6 +1786,7 @@ export default function DashBoardHome() {
 
                 {/* CURRENT PRICE CARD */}
                 {/* HIGH PRICE */}
+                
 
                 <div className="mb-5 text-center">
                   <p className="font-semibold mt-3 mb-2 text-lg tracking-tighter leading-6"> High Price:{" "}   
@@ -1790,7 +1799,7 @@ export default function DashBoardHome() {
                   text-white text-[24px] font-bold flex justify-center items-center
                   transition duration-300 ease-in-out"
                   style={{
-                    height: `${200 + (1.5 * parseFloat(data?.fallRatio || 0))}px`
+                    height: `${fallHeight}px`
                   }}>
                     {data?.fall || 0}%
                   </div> 
@@ -1812,7 +1821,7 @@ export default function DashBoardHome() {
                   text-white text-[24px] font-bold flex justify-center items-center
                   transition duration-300 ease-in-out"
                   style={{
-                    height: `${200 + (1.5 * parseFloat(data?.riseRatio || 0))}px`
+                    height: `${riseHeight}px`
                   }}>
                     {data?.rise || 0}% 
                   </div>
@@ -2030,7 +2039,7 @@ export default function DashBoardHome() {
                           <Select 
                             options={options9}
                             onChange={(e) => {
-                              console.log(e,'setSurge')
+                              // console.log(e,'setSurge')
                               setSurgeTf(e)
                             }}
                             value={getSurgeTf}
@@ -2085,7 +2094,7 @@ export default function DashBoardHome() {
                           <Select 
                             options={options10}
                             onChange={(e) => {
-                              console.log(e,'setATR')
+                              // console.log(e,'setATR')
                               setATRtf(e)
                             }}
                             value={getATRtf}
@@ -2101,7 +2110,7 @@ export default function DashBoardHome() {
                           <Select 
                             options={options11}
                             onChange={(e) => {
-                              console.log(e,'setLookBack')
+                              // console.log(e,'setLookBack')
                               setLookBackTf(e)
                             }}
                             value={getLookBackTf}
@@ -2234,7 +2243,7 @@ export default function DashBoardHome() {
                               <Select 
                                 options={options4}
                                 onChange={(e) => {
-                                  console.log(e,'setTf')
+                                  // console.log(e,'setTf')
                                   setTf(e)
                                 }}
                                 value={getTf}
@@ -2253,7 +2262,7 @@ export default function DashBoardHome() {
                                 <DropDownItem
                                   options={options5}
                                   onChange={(e) => {
-                                    console.log(e?.value,'sort value')
+                                    // console.log(e?.value,'sort value')
                                     setSortValue(e)
                                     localStorage.setItem("sortValue", e?.value)
                                   }}
@@ -2280,7 +2289,7 @@ export default function DashBoardHome() {
                               <Select 
                                 options={options12}
                                 onChange={(e) => {
-                                  console.log(e,'setRF')
+                                  // console.log(e,'setRF')
                                   setRf(e)
                                 }}
                                 value={getRf}
@@ -2345,7 +2354,7 @@ export default function DashBoardHome() {
                                     <>
                                       <TableRow key={item.name} className="hover:bg-header borderColor border-b-[1px] p-4 mb-3 cursor-pointer" onClick={() => handleOnClickWatchlist(item.name)}>
                                         <TableCell className="text-left w-[10rem]">{item?.name}</TableCell>
-                                        <TableCell className="text-left w-[10rem]">${toThreeFig(item.price)}</TableCell>
+                                        <TableCell className="text-left w-[10rem]">${item.price}</TableCell>
                                         <TableCell className={`text-left w-[10rem] ${priceColor} font-semibold`}>{toThreeFig(item.wltf)}%</TableCell>
                                         <TableCell className="text-right w-[10rem]">
                                           <div className={`${pulseColor} w-[20px] h-[10px] ml-5`}></div>
@@ -2353,8 +2362,8 @@ export default function DashBoardHome() {
                                         <TableCell className="text-right w-[10rem]">
                                           <div className={`${shiftColor} w-[20px] h-[10px] ml-5`}></div>
                                         </TableCell>
-                                        <TableCell className="text-left w-[10rem] text-[#26A17B]">{toThreeFig(item.rise)}%</TableCell>
-                                        <TableCell className="text-left w-[10rem] text-[#EA3943]">{toThreeFig(item.fall)}%</TableCell>
+                                        <TableCell className="text-left w-[10rem] text-[#26A17B]">{item.rise}%</TableCell>
+                                        <TableCell className="text-left w-[10rem] text-[#EA3943]">{item.fall}%</TableCell>
                                       </TableRow>
                                       {index < array.length - 1 && <Separator className="bg-gray-600" />}
                                     </>
@@ -2478,7 +2487,7 @@ export default function DashBoardHome() {
                       <Select 
                         options={options4}
                         onChange={(e) => {
-                          console.log(e,'setTf')
+                          // console.log(e,'setTf')
                           setTf(e)
                         }}
                         value={getTf}
@@ -2496,7 +2505,7 @@ export default function DashBoardHome() {
                       <Select 
                         options={options12}
                         onChange={(e) => {
-                          console.log(e,'setRF')
+                          // console.log(e,'setRF')
                           setRf(e)
                         }}
                         value={getRf}
@@ -2526,7 +2535,7 @@ export default function DashBoardHome() {
                         <DropDownItem
                           options={options5}
                           onChange={(e) => {
-                            console.log(e?.value,'sort value')
+                            // console.log(e?.value,'sort value')
                             setSortValue(e)
                             localStorage.setItem("sortValue", e?.value)
                           }}
