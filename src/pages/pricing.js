@@ -131,8 +131,8 @@ export default function pricing() {
         duration: 5000,
       })
       setPath(payload)
-      router.push('/login')
-      // router.push('https://app.begreat.finance')
+      // router.push('/login')
+      router.push('https://app.begreat.finance')
     }
   }
   return (
