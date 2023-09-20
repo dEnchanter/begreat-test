@@ -54,9 +54,6 @@ export default function Login() {
     subscribePlan,
     { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
   ] = useSubscribeMutation();
-
-  //console.log(all,userInfo,loading,error,'userInfo')
-  //console.log(data,getPath(),'userInfoLoginData');
   
   const HandleSubmit = async (data) => {
     const { email, password } = data;
@@ -73,7 +70,6 @@ export default function Login() {
         }).catch((err)=>console.log(err))
       }
       if(data?.payload?.email){
-        // console.log(data.payload)
         router.push('/dashboard')
       }
     });
@@ -90,9 +86,6 @@ export default function Login() {
 
   const [sendToken, { isLoading, isError, error:AuthGoogleError, isSuccess }] = useUserLoginGoogleAuthMutation();
 
-
-  // console.log(isError,isLoading,IsAuthenticated,'IsAuthenticated')
-
   useEffect(() => {
     if(isSuccess){
       dispatch(googleAuth())
@@ -101,11 +94,6 @@ export default function Login() {
       toast.success(data?.message);
     }
   }, [])
-
-  // const handleGoogleSignInSuccess = (token) => {
-  //   // Send the token to your server for authentication
-  //   console.log("Encoded JWT ID token: " + token);
-  // }
 
   useEffect(() => {
     const userEmail = localStorage.getItem("userEmail");
@@ -118,43 +106,8 @@ export default function Login() {
     }
   }, []);
 
+  // const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
 
-  // useEffect(() => {
-  //   function start(){
-  //     gapi.client.init({
-  //       client_id:clientId,
-  //       scope:""
-  //     })
-  //   };
-  //   gapi.load('client:auth2',start)
-  // }, [])
-  
-  // const responseMessage = (response) => {
-  //     console.log(response);
-  // };
-
-  // const errorMessage = (error) => {
-  //     console.log(error);
-  // };
-
-  // const GoogleLoginButton = () => {
-  // }
-
-  const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
-  // console.log(data,'datadata')
-
-  // useEffect(() => {
-  //   if (error?.status === 401) {
-  //     // router.push("/login");
-  //     DeleteAuthTokenMaster('begreatFinace:accesskey') // deletes token from storage
-  //     DeleteAuthTokenMaster('begreatFinace:user') 
-  //     setGetData(false)
-  //     dispatch(logout());
-  //   }
-  // }, [error])
-
-
-  // console.log(userError,data,'userError')
   const handleCredentialResponse = (response) => {
     // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
     console.log("Encoded JWT ID token: " + response?.credential);
@@ -166,7 +119,7 @@ export default function Login() {
         dispatch(googleAuth(data))
         toast.success(data?.message);
         router.push('/dashboard')
-        console.log('Token sent successfully!',data,'data1');
+        // console.log('Token sent successfully!',data,'data1');
     })
     .catch((err) => {
       console.error('Failed to send token:', err);
