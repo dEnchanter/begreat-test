@@ -999,7 +999,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: day1b?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1007,6 +1007,7 @@ export default function DashBoardHome() {
   });
 
   localStorage.setItem("token2", Day1?.token);
+  // console.log("Item", Day1, Day1?.token)
   // console.log("get user data", getUserDataS().userId);
 
   const { 
@@ -1630,11 +1631,12 @@ export default function DashBoardHome() {
 
   // VARIABLES FOR DYNAMIC DIV FOR RISE AND FALL LEVELS
 
+  const MIN_HEIGHT = 50; // For instance, 50 pixels as minimum height
   const BASE_HEIGHT = 550; // 200px for 100% rise or fall
 
   // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
-  const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT;
-  const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT;
+  const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
 
   return (
     <section className="relative">
@@ -1825,6 +1827,10 @@ export default function DashBoardHome() {
                   }}>
                     {data?.rise || 0}% 
                   </div>
+
+                  {/* Spacer to push the Low Price text to the bottom */}
+                  <div className="flex-grow"></div>
+                  
                   <p className="font-semibold mt-2 text-center mb-2 text-lg tracking-tighter leading-6">Low Price:{" "}  
                     <span className="font-semibold secondary ml-1">
                       {data?.low || 0}
