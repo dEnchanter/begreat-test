@@ -999,7 +999,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: day1b?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1007,6 +1007,7 @@ export default function DashBoardHome() {
   });
 
   localStorage.setItem("token2", Day1?.token);
+  // console.log("Item", Day1, Day1?.token)
   // console.log("get user data", getUserDataS().userId);
 
   const { 
