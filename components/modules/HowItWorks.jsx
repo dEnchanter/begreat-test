@@ -121,10 +121,10 @@ const HowItWorks = () => {
 
                 <div className='text-center sm:text-start'>
                   <h1 className='foreground font-semibold ' > Individualized Market Analytics </h1>
-                  <p className='text-xs leading-5 workstext'> Our dashboard is fully customizable to fit your risk management and trading speed
-                    preferences. With over 700,000 possible dashboard combinations across multiple
-                    tools and timeframes, confidently adapt your style to any strategy or market
-                    condition.
+                  <p className='text-xs leading-5 workstext'> 
+                    Our dashboard is fully customizable to fit your trading speed and risk management
+                    preferences. With over 10,000,000 possible dashboard combinations across multiple
+                    tools and timeframes, confidently adapt your style to any strategy or market condition. 
                   </p>
                 </div>
               </div>
