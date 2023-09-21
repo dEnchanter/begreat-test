@@ -17,7 +17,8 @@ const GoogleButton = () => {
 
   const handleCredentialResponse = (response) => {
   // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
-  console.log("Encoded JWT ID token: " + response);
+  // console.log("Encoded JWT ID token: " + response);
+  
   // setToken(response.credential)
   sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
   .then((data) => {
@@ -26,7 +27,7 @@ const GoogleButton = () => {
       dispatch(googleAuth(data))
       toast.success(data?.message);
       router.push('/dashboard')
-      console.log('Token sent successfully!',data,'data1');
+      // console.log('Token sent successfully!',data,'data1');
   })
   .catch((err) => {
     console.error('Failed to send token:', err);

@@ -110,7 +110,8 @@ export default function Login() {
 
   const handleCredentialResponse = (response) => {
     // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
-    console.log("Encoded JWT ID token: " + response?.credential);
+    // console.log("Encoded JWT ID token: " + JSON.stringify(response));
+
     // setToken(response.credential)
     sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
     .then((data) => {
