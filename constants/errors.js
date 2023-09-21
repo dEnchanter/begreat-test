@@ -10,6 +10,7 @@ export const ERRORS = {
     ONLY_NUMBERS: "Only numbers are allowed",
     NUMBER_INVALID: "Number is not valid",
     ALPHA_LETTERS: "Only combinations of numbers and letters are allowed",
+    ETHEREUM_ADDRESS_INVALID: "Invalid Ethereum address."
   };
   
   export const REGEX_VALIDATION = {
@@ -20,6 +21,7 @@ export const ERRORS = {
     ALPHANUMERIC: /[a-z]/gi,
     ALPHANUMERIC_WITH_SPACE_OR_DASH: /^[a-zA-Z0-9- ]*$/,
     ALPHA_WITH_SPACE: /^[a-zA-Z\s]*$/,
+    ETHEREUM_ADDRESS: /^0x[a-fA-F0-9]{40}$/,
   };
   
   export const REGEX_PATTERNS = {
@@ -46,6 +48,10 @@ export const ERRORS = {
     ALPHA_WITH_SPACE: {
       value: REGEX_VALIDATION.ALPHA_WITH_SPACE,
       message: ERRORS.ONLY_LETTERS,
+    },
+    ETHEREUM_ADDRESS: {
+      value: REGEX_VALIDATION.ETHEREUM_ADDRESS,
+      message: ERRORS.ETHEREUM_ADDRESS_INVALID,
     },
   };
   

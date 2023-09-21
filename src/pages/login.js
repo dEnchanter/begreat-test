@@ -110,7 +110,8 @@ export default function Login() {
 
   const handleCredentialResponse = (response) => {
     // send a POST request to /api/signinWithGoogle with the token (response.credential) in the req.body
-    console.log("Encoded JWT ID token: " + response?.credential);
+    // console.log("Encoded JWT ID token: " + JSON.stringify(response));
+
     // setToken(response.credential)
     sendToken({token:response.credential}).unwrap() // Unwrap the response to handle success and error cases
     .then((data) => {
@@ -135,7 +136,7 @@ export default function Login() {
       script.onload = () => {
         google.accounts.id.initialize({
           // client id should be stored in an environment variable
-          client_id: "835111729100-862akcf0948la5pfj0892g8v55tbuva8.apps.googleusercontent.com",
+          client_id: "878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com",
           callback: handleCredentialResponse
         });
         google.accounts.id.renderButton(
