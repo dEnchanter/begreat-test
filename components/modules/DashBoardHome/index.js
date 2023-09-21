@@ -1631,12 +1631,36 @@ export default function DashBoardHome() {
 
   // VARIABLES FOR DYNAMIC DIV FOR RISE AND FALL LEVELS
 
-  const MIN_HEIGHT = 50; // For instance, 50 pixels as minimum height
-  const BASE_HEIGHT = 550; // 200px for 100% rise or fall
+  // const MIN_HEIGHT = 50; // For instance, 50 pixels as minimum height
+  // const BASE_HEIGHT = 550; // 200px for 100% rise or fall
 
-  // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
-  const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
-  const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  // // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
+  // const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  // const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+
+  const MIN_HEIGHT = 50; 
+  const BASE_HEIGHT = 550; 
+
+  let riseHeight = MIN_HEIGHT;
+  let fallHeight = MIN_HEIGHT;
+
+  if (data?.riseRatio >= 96 && data?.riseRatio <= 99 && data?.fallRatio <= 4) {
+    riseHeight = BASE_HEIGHT - MIN_HEIGHT;
+    fallHeight = MIN_HEIGHT;
+  } else if (data?.fallRatio >= 96 && data?.fallRatio <= 99 && data?.riseRatio <= 1) {
+    fallHeight = BASE_HEIGHT - MIN_HEIGHT;
+    riseHeight = MIN_HEIGHT;
+  } else if (data?.riseRatio === 0 && data?.fallRatio) {
+    fallHeight = BASE_HEIGHT;
+  } else if (data?.fallRatio === 0 && data?.riseRatio) {
+    riseHeight = BASE_HEIGHT;
+  } else if (data?.riseRatio === 0 && data?.fallRatio === 0) {
+    riseHeight = BASE_HEIGHT / 2;  // dividing the space equally
+    fallHeight = BASE_HEIGHT / 2;  // dividing the space equally
+  } else {
+    riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+    fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  }
 
   return (
     <section className="relative">
