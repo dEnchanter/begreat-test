@@ -1818,7 +1818,7 @@ export default function DashBoardHome() {
 
                 {/* LOW PRICE */}
 
-                <div>
+                <div className={`flex flex-col ${riseHeight <= 50 ? 'h-[520px]' : ''}`}>
                   <div className="h-[200px] md:h-[250px] bg-[#16C782] rounded mb-2 
                   text-white text-[24px] font-bold flex justify-center items-center
                   transition duration-300 ease-in-out"
@@ -1835,7 +1835,7 @@ export default function DashBoardHome() {
                     <span className="font-semibold secondary ml-1">
                       {data?.low || 0}
                     </span>
-                  </p>  
+                  </p>
                 </div>
               </div>
             </div>

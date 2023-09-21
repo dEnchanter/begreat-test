@@ -15,10 +15,10 @@ export default function Profile({data,refetch}) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl,setImageUrl] =useState()
 
-  console.log(imageUrl,'imageUrl')
+  // console.log(imageUrl,'imageUrl')
 
   const handleFileSelect = (event) => {
-    console.log(event)
+    // console.log(event)
     setSelectedFile(event.target.files[0]);
     const reader = new FileReader();
 
@@ -32,7 +32,7 @@ export default function Profile({data,refetch}) {
         // Make sure the image has loaded before using the URL
         const imageUrl = img.src;
         setImageUrl(imageUrl)
-        console.log('Image URL:', imageUrl);
+        // console.log('Image URL:', imageUrl);
         // Use the imageUrl in your code
       };
       img.onerror = (error) => {
@@ -53,17 +53,18 @@ export default function Profile({data,refetch}) {
   ] = useUpdateUserEmailMutation();
 
       
-console.log(isError)
+  // console.log(isError)
 
-useEffect(() => {
-  if(isError||emailIsError){
-    toast.error('oops,something went wrong refetch this page')
-  }
-}, [isError])
+  useEffect(() => {
+    if(isError||emailIsError){
+      toast.error('oops,something went wrong refetch this page')
+    }
+  }, [isError])
 
   const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       email: "",
+      eth: "",
       displayName:'',
       password: "",
       backupEmail:"",
@@ -80,14 +81,14 @@ useEffect(() => {
 
   useEffect(() => {
     setValue('displayName',data?.displayName)
-     setValue('email',data?.email)
-     setValue('email',data?.email)
+    setValue('email',data?.email)
+    setValue('email',data?.email)
   }, [data?.displayName])
 
   const handleSubmitForm =(data)=>{
-    console.log(data,selectedFile,'handleSubmitForm')
-    const userId =getUserDataS()?.userId;
-    const form =new FormData();
+    // console.log(data,selectedFile,'handleSubmitForm')
+    const userId = getUserDataS()?.userId;
+    const form = new FormData();
       form.append('displayName',data?.displayName);
       selectedFile?.name&& form.append('photo',selectedFile);
       data?.displayName&&selectedFile?.name&& updateUser(form).unwrap().then((data)=>toast.success(data?.message))
@@ -173,6 +174,37 @@ useEffect(() => {
           </div>
         </div>
         {/*  */}
+        <div className="flex items-center mb-12 flex-wrap">
+          <div className="flex-grow w-full lg:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
+            Ethereum Address
+          </div>
+          <div className="flex-grow w-full lg:w-[80%] px-3">
+            <Controller
+              name="eth"
+              control={control}
+              // rules={{
+              //   required: "ETH is required",
+              //   pattern: REGEX_PATTERNS?.EMAIL,
+              //   //   maxLength: generateMaxLength(14),
+              // }}
+              render={({
+                field: { value, onChange },
+                formState: { errors },
+              }) => {
+                const errorMessage = errors?.email?.message;
+                return (
+                  <TextInput
+                    placeholder="0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+                    inputClassName={"text-[14px] "}
+                    containerClassName={" borderColorI border-[2px]"}
+                    name="eth"
+                    {...{ value, onChange, errors: [errorMessage] }}
+                  />
+                );
+              }}
+            />
+          </div>
+        </div>
         {/* <div className="flex items-center mb-12 flex-wrap">
           <div className="flex-grow  w-full lg:w-[20%] px-3 text3 font-semibold text-[16px] mb-3 lg:mb-0">
             Backup Email Address
@@ -246,10 +278,9 @@ useEffect(() => {
                     }) => {
                       const errorMessage = errors?.photo?.message;
                       return (
-              <input id="imageInput" type="file" className={"hidden"} 
-              name="photo"
-              accept="image/*"
-              
+                        <input id="imageInput" type="file" className={"hidden"} 
+                        name="photo"
+                        accept="image/*"
                           {...{ value, onChange, errors: [errorMessage] }}
                           onChange={(e)=>{onChange(e); handleFileSelect(e)}}
                         />
