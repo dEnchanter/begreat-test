@@ -1017,7 +1017,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: fourHoursb?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1031,7 +1031,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: oneHourb?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1045,7 +1045,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: fifteenMinb?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1060,7 +1060,7 @@ export default function DashBoardHome() {
     { 
       id: fiveMinb?.value, 
       coinName,
-      userId: getUserDataS().userId
+      userId: getUserDataS()?.userId
     },
     { 
       refetchOnMountOrArgChange: true ,
@@ -1076,7 +1076,7 @@ export default function DashBoardHome() {
     day1?.value && coinName && {
     id: day1?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000, // 30secs
@@ -1089,7 +1089,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: fourHours?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true , 
     skip:!fourHours?.value || !coinName,
@@ -1103,7 +1103,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: oneHour?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!oneHour?.value || !coinName,
@@ -1117,7 +1117,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: fifteenMin?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!fifteenMin?.value || !coinName,
@@ -1132,7 +1132,7 @@ export default function DashBoardHome() {
     { 
       id: fiveMin?.value, 
       coinName,
-      userId: getUserDataS().userId
+      userId: getUserDataS()?.userId
     },
     { 
       refetchOnMountOrArgChange: true,
@@ -1148,7 +1148,7 @@ export default function DashBoardHome() {
   } = useSearchCoinsQuery({
     coinName,
     timeLeft:timeLeft?.value,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
     }, {
     refetchOnMountOrArgChange: true,
     skip:!timeLeft?.value || !coinName,
@@ -1176,7 +1176,7 @@ export default function DashBoardHome() {
     rank: switchValue,
     sortrfc: currentRfcValue,
     createWatchlist,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000, // 30secs
@@ -1185,7 +1185,7 @@ export default function DashBoardHome() {
   const {
     data: WatchListName
   } = useGetWatchListNameQuery({
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   },{ 
     refetchOnMountOrArgChange: true,
   });
