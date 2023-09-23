@@ -24,10 +24,9 @@ const router = useRouter();
           <div className='text-center'> 
               <h1 className='md:px-4 text-center  mx-auto  md:text-3xl mt-2  text-2xl font-bold'> Maximize Your <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#BE3677] to-[#A64AA2] '> Crypto Profits </span> with <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#9C52B3] to-[#B43E89]'> Be Great </span> <br className='hidden lg:block'/> <span className='text-[#BD3779]'> Finance's  </span> Live Price Analysis Dashboard </h1>
               <p className=' mx-auto lg:text-sm text-base text-center   mt-4 '>               
-              Unlock the potential of algorithmic trend analysis and precise risk management to
-              instantly enhance your cryptocurrency portfolio. <br className='hidden md:flex'/>
-              Join today to access our deluxe suite of
-              premium tools to pinpoint the best profit opportunities in the markets. 
+              Unlock the potential of algorithmic trend analysis and precise risk management to instantly enhance
+              <br className='hidden md:flex'/>  your cryptocurrency portfolio. Join today to access our deluxe suite of premium tools  <br className='hidden md:flex'/>
+              to pinpoint the best profit opportunities in the markets. 
             </p>
           </div>
 
