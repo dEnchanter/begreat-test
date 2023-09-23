@@ -50,12 +50,12 @@ export default function Profile({data,refetch}) {
 
   const [
     updateETH,
-    { isLoading: userUpdateETH, isSuccess: userUpdateETHSuccess,isETHError,ETHerror },
+    { isLoading: userUpdateETH, isSuccess: userUpdateETHSuccess, isETHError, ETHerror },
   ] = useUpdateUserETHMutation();
 
   const [
     updateEmail,
-    { isLoading: emailUpdateLoader, isSuccess: emailUpdateSuccess,isError:emailIsError,error:emailError },
+    { isLoading: emailUpdateLoader, isSuccess: emailUpdateSuccess, isError: emailIsError, error: emailError },
   ] = useUpdateUserEmailMutation();
 
       
@@ -70,7 +70,7 @@ export default function Profile({data,refetch}) {
   const { control, handleSubmit, setValue, getValues } = useForm({
     defaultValues: {
       email: "",
-      // ethAddress: "",
+      ethAddress: "",
       displayName:'',
       password: "",
       backupEmail:"",
@@ -102,27 +102,60 @@ export default function Profile({data,refetch}) {
     // updateUser
   }
 
-  const handleETHSubmission = async () => {
-    // Get the Ethereum address from the form state
+  // const handleETHSubmission = () => {
+  //   // Get the Ethereum address from the form state
+  //   const ethAddress = getValues("ethAddress");
+
+  //   if (!ethAddress) {
+  //     toast.error("Ethereum address is required!");
+  //     return;
+  //   }
+ 
+
+  //   // Validate the Ethereum address (you can use REGEX_PATTERNS.ETHEREUM_ADDRESS.value)
+  //   if (REGEX_PATTERNS.ETHEREUM_ADDRESS.value.test(ethAddress)) {
+
+  //     // Call the mutation
+  //     updateETH(ethAddress).unwrap().then((data)=> {
+  //       console.log("DATADOG", data)
+  //       // toast.success('ETH address updated successfully!');
+  //     }).catch(error => {
+  //       console.error("Error updating ETH address:", error);
+  //       // toast.error('Failed to update ETH address!');
+  //     });
+   
+  //   } else {
+  //       // Display an error toast if the Ethereum address is invalid
+  //       toast.error(REGEX_PATTERNS.ETHEREUM_ADDRESS.message);
+  //   }
+  // };
+
+  const handleETHSubmission = (data) => {
+
     const ethAddress = getValues("ethAddress");
 
-    // Validate the Ethereum address (you can use REGEX_PATTERNS.ETHEREUM_ADDRESS.value)
-    if (REGEX_PATTERNS.ETHEREUM_ADDRESS.value.test(ethAddress)) {
-        try {
-            // Call the mutation
-            const response = await updateETH(ethAddress).unwrap();
+    // Creating a new FormData object
+    const form = new FormData();
 
-            // Display a success toast (or any other UI feedback)
-            toast.success('ETH address updated successfully!');
-
-        } catch (error) {
-            // Display an error toast (or any other UI feedback)
-            toast.error('Failed to update ETH address!');
-        }
-    } else {
-        // Display an error toast if the Ethereum address is invalid
-        toast.error(REGEX_PATTERNS.ETHEREUM_ADDRESS.message);
+    if (!ethAddress) {
+      toast.error("Ethereum address is required!");
+      return;
     }
+    
+    // Append the Ethereum address to the form, if it exists
+    ethAddress && form.append('ethAddress', ethAddress);
+    
+    // Call the updateETH function and unwrap the promise
+    // Display a toast notification on success
+    ethAddress && updateETH(form).unwrap().then((data) => {
+      // console.log("Data11", data)
+      toast.success('ETH address updated successfully!');
+    })
+    .catch((error) => {
+      // Handle the error here, e.g., display an error message
+      console.error('Error updating ETH:', error);
+      toast.error('Failed to update ETH');
+    });
   };
   
   return (
@@ -142,30 +175,30 @@ export default function Profile({data,refetch}) {
             Name
           </div>
           <div className=" flex-grow  w-full lg:w-[80%] px-3">
-              <Controller
+            <Controller
+              name="displayName"
+              control={control}
+              rules={{
+                required: "Display Name is required",
+                // //pattern: REGEX_PATTERNS?.EMAIL,
+                //   maxLength: generateMaxLength(14),
+              }}
+              render={({
+                field: { value, onChange },
+                formState: { errors },
+              }) => {
+                const errorMessage = errors?.displayName?.message;
+                return (
+                  <TextInput
+                    placeholder="Name"
+                    containerClassName={" borderColorI border-[2px] "}
+                    inputClassName={"text-[14px]"}
                     name="displayName"
-                    control={control}
-                    rules={{
-                      required: "Display Name is required",
-                      // //pattern: REGEX_PATTERNS?.EMAIL,
-                      //   maxLength: generateMaxLength(14),
-                    }}
-                    render={({
-                      field: { value, onChange },
-                      formState: { errors },
-                    }) => {
-                      const errorMessage = errors?.displayName?.message;
-                      return (
-                        <TextInput
-                          placeholder="Name"
-                          containerClassName={" borderColorI border-[2px] "}
-                          inputClassName={"text-[14px]"}
-                          name="displayName"
-                          {...{ value, onChange, errors: [errorMessage] }}
-                        />
-                      );
-                    }}
+                    {...{ value, onChange, errors: [errorMessage] }}
                   />
+                );
+              }}
+            />
           </div>
           
         </div>
@@ -218,7 +251,7 @@ export default function Profile({data,refetch}) {
                     name="ethAddress"
                     control={control}
                     rules={{
-                      // required: "Email is required",
+                      //required: "ETH is required",
                       pattern: REGEX_PATTERNS?.ETHEREUM_ADDRESS,
                       //   maxLength: generateMaxLength(14),
                     }}
@@ -300,18 +333,19 @@ export default function Profile({data,refetch}) {
           </div>
 
           <div className=" w-[80%] flex justify-start  px-3"> 
-               <Link href={'/forget_password'}> 
-           <Button
-                  className="px-4 text-white ml-auto  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
-                  
-                >
-                 Reset Password 
-                </Button>
-     </Link>
+            <Link href={'/forget_password'}> 
+              <Button
+                className="px-4 text-white ml-auto  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
+                
+              >
+                Reset Password 
+              </Button>
+            </Link>
           </div>
 
            
         </div>
+
         {/*  */}
         <div className="flex items-center mb-12 mt-10">
           <div className="flex-grow w-[20%] px-3 text3 font-semibold text-[16px]"></div>
@@ -332,6 +366,7 @@ export default function Profile({data,refetch}) {
             />
           </div>
         </div>
+
       </form>
     </section>
   );
