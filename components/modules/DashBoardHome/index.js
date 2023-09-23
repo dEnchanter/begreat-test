@@ -1017,7 +1017,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: fourHoursb?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1031,7 +1031,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: oneHourb?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1045,7 +1045,7 @@ export default function DashBoardHome() {
   } = useTimeFrameQuery({
     id: fifteenMinb?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!coinName,
@@ -1060,7 +1060,7 @@ export default function DashBoardHome() {
     { 
       id: fiveMinb?.value, 
       coinName,
-      userId: getUserDataS().userId
+      userId: getUserDataS()?.userId
     },
     { 
       refetchOnMountOrArgChange: true ,
@@ -1076,7 +1076,7 @@ export default function DashBoardHome() {
     day1?.value && coinName && {
     id: day1?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000, // 30secs
@@ -1089,7 +1089,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: fourHours?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true , 
     skip:!fourHours?.value || !coinName,
@@ -1103,7 +1103,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: oneHour?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!oneHour?.value || !coinName,
@@ -1117,7 +1117,7 @@ export default function DashBoardHome() {
   } = useSearchCoinPriceQuery({
     id: fifteenMin?.value,
     coinName,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     skip:!fifteenMin?.value || !coinName,
@@ -1132,7 +1132,7 @@ export default function DashBoardHome() {
     { 
       id: fiveMin?.value, 
       coinName,
-      userId: getUserDataS().userId
+      userId: getUserDataS()?.userId
     },
     { 
       refetchOnMountOrArgChange: true,
@@ -1148,7 +1148,7 @@ export default function DashBoardHome() {
   } = useSearchCoinsQuery({
     coinName,
     timeLeft:timeLeft?.value,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
     }, {
     refetchOnMountOrArgChange: true,
     skip:!timeLeft?.value || !coinName,
@@ -1176,7 +1176,7 @@ export default function DashBoardHome() {
     rank: switchValue,
     sortrfc: currentRfcValue,
     createWatchlist,
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   }, { 
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000, // 30secs
@@ -1185,7 +1185,7 @@ export default function DashBoardHome() {
   const {
     data: WatchListName
   } = useGetWatchListNameQuery({
-    userId: getUserDataS().userId
+    userId: getUserDataS()?.userId
   },{ 
     refetchOnMountOrArgChange: true,
   });
@@ -1631,12 +1631,36 @@ export default function DashBoardHome() {
 
   // VARIABLES FOR DYNAMIC DIV FOR RISE AND FALL LEVELS
 
-  const MIN_HEIGHT = 50; // For instance, 50 pixels as minimum height
-  const BASE_HEIGHT = 550; // 200px for 100% rise or fall
+  // const MIN_HEIGHT = 50; // For instance, 50 pixels as minimum height
+  // const BASE_HEIGHT = 550; // 200px for 100% rise or fall
 
-  // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
-  const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
-  const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  // // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
+  // const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  // const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+
+  const MIN_HEIGHT = 50; 
+  const BASE_HEIGHT = 550; 
+
+  let riseHeight = MIN_HEIGHT;
+  let fallHeight = MIN_HEIGHT;
+
+  if (data?.riseRatio >= 96 && data?.riseRatio <= 99 && data?.fallRatio <= 4) {
+    riseHeight = BASE_HEIGHT - MIN_HEIGHT;
+    fallHeight = MIN_HEIGHT;
+  } else if (data?.fallRatio >= 96 && data?.fallRatio <= 99 && data?.riseRatio <= 1) {
+    fallHeight = BASE_HEIGHT - MIN_HEIGHT;
+    riseHeight = MIN_HEIGHT;
+  } else if (data?.riseRatio === 0 && data?.fallRatio) {
+    fallHeight = BASE_HEIGHT;
+  } else if (data?.fallRatio === 0 && data?.riseRatio) {
+    riseHeight = BASE_HEIGHT;
+  } else if (data?.riseRatio === 0 && data?.fallRatio === 0) {
+    riseHeight = BASE_HEIGHT / 2;  // dividing the space equally
+    fallHeight = BASE_HEIGHT / 2;  // dividing the space equally
+  } else {
+    riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+    fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  }
 
   return (
     <section className="relative">
