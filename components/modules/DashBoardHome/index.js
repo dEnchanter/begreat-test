@@ -1155,8 +1155,6 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  // console.log("data current price", data)
-
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
   // const [removeAssetsFromWatchlist] = useRemoveAssetsFromWatchlistMutation();
@@ -1499,27 +1497,7 @@ export default function DashBoardHome() {
     }
   }
 
-  // Select dropdown styling
-  // const customStyles = {
-  //   control: (provided) => ({
-  //     ...provided,
-  //     backgroundColor: '#343334', // customize background color of input field
-  //     border: 'none', // remove border
-  //     outline: 'none',
-  //     textColor: 'white', // customize text color
-  //   }),
-  //   menu: (provided) => ({
-  //     ...provided,
-  //     backgroundColor: '#343334', // customize background color of dropdown menu
-  //     textColor: 'white', // customize text color
-  //     border: '1px solid #343334', // customize border color
-  //   }),
-  //   multiValue: (provided) => ({
-  //     ...provided,
-  //     backgroundColor: 'gray', // customize background color of selected options
-  //   }),
-  // };
-
+  // Dropdown styling
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -1631,35 +1609,29 @@ export default function DashBoardHome() {
 
   // VARIABLES FOR DYNAMIC DIV FOR RISE AND FALL LEVELS
 
-  // const MIN_HEIGHT = 50; // For instance, 50 pixels as minimum height
-  // const BASE_HEIGHT = 550; // 200px for 100% rise or fall
-
-  // // Assuming riseRatio is 90% and fallRatio is 10%, calculate the heights:
-  // const riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
-  // const fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
-
   const MIN_HEIGHT = 50; 
   const BASE_HEIGHT = 550; 
 
   let riseHeight = MIN_HEIGHT;
   let fallHeight = MIN_HEIGHT;
 
-  if (data?.riseRatio >= 96 && data?.riseRatio <= 99 && data?.fallRatio <= 4) {
-    riseHeight = BASE_HEIGHT - MIN_HEIGHT;
-    fallHeight = MIN_HEIGHT;
-  } else if (data?.fallRatio >= 96 && data?.fallRatio <= 99 && data?.riseRatio <= 1) {
-    fallHeight = BASE_HEIGHT - MIN_HEIGHT;
-    riseHeight = MIN_HEIGHT;
-  } else if (data?.riseRatio === 0 && data?.fallRatio) {
-    fallHeight = BASE_HEIGHT;
-  } else if (data?.fallRatio === 0 && data?.riseRatio) {
-    riseHeight = BASE_HEIGHT;
-  } else if (data?.riseRatio === 0 && data?.fallRatio === 0) {
-    riseHeight = BASE_HEIGHT / 2;  // dividing the space equally
-    fallHeight = BASE_HEIGHT / 2;  // dividing the space equally
-  } else {
+  // Parse data, as it seems to be in string format
+  const rise = parseFloat(data?.rise || 0);
+  const fall = parseFloat(data?.fall || 0);
+
+  // Check conditions and calculate riseHeight and fallHeight
+  if (rise !== 0 && fall !== 0) {
     riseHeight = (data?.riseRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
     fallHeight = (data?.fallRatio / 100) * BASE_HEIGHT || MIN_HEIGHT;
+  } else if (rise === 0 && fall === 0) {
+    riseHeight = BASE_HEIGHT / 2;
+    fallHeight = BASE_HEIGHT / 2;
+  } else if (rise === 0 && fall) {
+    fallHeight = BASE_HEIGHT - MIN_HEIGHT;
+    riseHeight = MIN_HEIGHT;
+  } else if (fall === 0 && rise) {
+    riseHeight = BASE_HEIGHT - MIN_HEIGHT;
+    fallHeight = MIN_HEIGHT;
   }
 
   return (
