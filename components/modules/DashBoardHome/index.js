@@ -1155,13 +1155,6 @@ export default function DashBoardHome() {
     pollingInterval: 30000, // 30secs
   });
 
-  // console.log("data current price", data)
-  console.log("data rise ratio", data?.riseRatio)
-  console.log("data rise", data?.rise)
-  console.log("data fall", data?.fall)
-  console.log("data fall ratio", data?.fallRatio)
-  // console.log("data current price", data)
-
   const [addToWatchlist] = useAddToWatchListMutation();
   const [createWatchlistHolder] = useCreateWatchlistHolderMutation();
   // const [removeAssetsFromWatchlist] = useRemoveAssetsFromWatchlistMutation();
