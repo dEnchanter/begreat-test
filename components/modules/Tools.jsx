@@ -18,11 +18,11 @@ const Tools = () => {
           <img className='w-[13rem] -mt-[8.5rem] hidden xl:flex lg:ml-2  mx-auto' src='./Images/homepage/globe.png' alt='globe'/>
           <Tabs 
             defaultValue="Analysis Tools" 
-            className="w-full mx-auto -mt-10"
+            className="w-full mx-auto sm:-mt-5 lg:-mt-10"
           >
             <TabsList className="bg-black/8">
-              <TabsTrigger value="Analysis Tools" onClick={() => setActiveButton(1)} className={`${activeButton === 1 ? "bg-gradient-to-r from-[#D32652] to-[#8466E1]" : "bg-gray-600"} text-white w-[15rem]`}>Analysis Tools</TabsTrigger>
-              <TabsTrigger value="Risk Management Tools" onClick={() => setActiveButton(0)} className={`${activeButton === 0 ? "bg-gradient-to-r from-[#D32652] to-[#8466E1]" : "bg-gray-600"} text-white w-[15rem]`}>Risk Management Tools</TabsTrigger>
+              <TabsTrigger value="Analysis Tools" onClick={() => setActiveButton(1)} className={`${activeButton === 1 ? "bg-gradient-to-r from-[#D32652] to-[#8466E1]" : "bg-gray-600"} text-white sm:w-[10rem] lg:w-[15rem]`}>Analysis Tools</TabsTrigger>
+              <TabsTrigger value="Risk Management Tools" onClick={() => setActiveButton(0)} className={`${activeButton === 0 ? "bg-gradient-to-r from-[#D32652] to-[#8466E1]" : "bg-gray-600"} text-white sm:w-[10rem] lg:w-[15rem]`}>Risk Management Tools</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
