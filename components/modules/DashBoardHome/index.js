@@ -1975,9 +1975,9 @@ export default function DashBoardHome() {
                                     </Button>
                                   </TableCell>
                                   <TableCell className="w-[13rem]">
-                                    <TextInput 
+                                    <TextInput
                                       type="text" 
-                                      placeholder={data?.currentPrice || 0}
+                                      placeholder={data?.currentPrice}
                                       wrapperClassName={`p-1`}
                                       // inputClassName={`${isInputDisabled ? '' : ''}`}
                                       value={customInputValue}
@@ -1987,7 +1987,7 @@ export default function DashBoardHome() {
                                           setCustomInputValue(e.target.value);
                                         }
                                       }}
-                                      // disabled={isInputDisabled}  
+                                      disabled={isInputDisabled}  
                                     />
                                   </TableCell>
                                   <TableCell className="w-[13rem]">
