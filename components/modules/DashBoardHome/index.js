@@ -2136,7 +2136,7 @@ export default function DashBoardHome() {
               {
                 expandedChild === 'firstChild' && (
                   <div className="-ml-[18rem]">
-                    <Card className="bg-white p-2 border-none">
+                    <Card className="bg-header p-2 border-none">
                       <div className="flex items-center justify-between pb-3 pt-3 border-b-[1px] borderColor">
                         <div className="flex items-center ">
                           <AiFillSetting size={30} className="mr-3" />{" "}
@@ -2329,15 +2329,15 @@ export default function DashBoardHome() {
                           {WatchListIsLoading ? (
                             <p className="text-center">
                               <div className="flex justify-center items-center min-h-[20rem]">
-                                <div className="loading-gif"></div>
+                                <div className="loading-gif-grey"></div>
                               </div>
                             </p>
                           ) : WatchListIsFetching ? (
                             <div className="flex justify-center items-center min-h-[20rem]">
-                              <div className="loading-gif"></div>
+                              <div className="loading-gif-grey"></div>
                             </div>
                           ) : (
-                            <Card className="bg-white p-2 flex flex-col items-center border-none">
+                            <Card className="bg-header p-2 flex flex-col items-center border-none">
                               <TableHeader className="bg-header2">
                                 <TableRow className="hover:bg-header2">
                                   {['Symbol', 'Price', '%Change', 'Pulse', 'Shift', 'Rise', 'Fall'].map((header) => (
