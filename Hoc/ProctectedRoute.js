@@ -9,6 +9,7 @@ import { logoutUser, selectIsAuthenticated, selectLoading } from "../store/auth/
 import { getUserDataS } from "../helper";
 import { useCheckStatusQuery, useGetUserProfileQuery } from "../store/auth/authApi";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 
 
@@ -69,13 +70,15 @@ export const ProtectedRoute = ({ children, type }) => {
       setGetData(false)
       localStorage.clear()
     }
-  }, [ router,isLoggedIn,getToken(),IsAuthenticated]);
+  }, [router, isLoggedIn, getToken(), IsAuthenticated]);
 
   return getData ? (
     children
   ) : (
-    <div>
-      <div>Loading...</div>
+    <div className="min-h-screen flex items-center">
+      <div className="mx-auto">
+        <div className="loading-home"></div>
+      </div>
     </div>
   );
 };

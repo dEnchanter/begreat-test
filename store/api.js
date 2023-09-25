@@ -11,7 +11,7 @@ export const baseQuery = fetchBaseQuery({
     const token = getToken();
     const token2 = getToken2();
 
-    console.log(token, token2, "token")
+    // console.log(token, token2, "token")
 
 
     if (token || token2) {
