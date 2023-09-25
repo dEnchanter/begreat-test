@@ -650,8 +650,8 @@ body {
 }
 
 .loading-home {
-    width: 150px; /* Adjust as needed */
-    height: 150px; /* Adjust as needed */
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
     background-image: var(--loading-home);
     background-size: cover;
     background-position: center;

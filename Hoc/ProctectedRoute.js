@@ -75,7 +75,7 @@ export const ProtectedRoute = ({ children, type }) => {
   return getData ? (
     children
   ) : (
-    <div className="min-h-screen flex items-center">
+    <div className="min-h-screen flex items-center bg-black">
       <div className="mx-auto">
         <div className="loading-home"></div>
       </div>
