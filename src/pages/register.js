@@ -46,7 +46,9 @@ export default function Login() {
   useEffect(() => {
     if (isSuccess) {
       reset();
-      toast.success("User Created Successfully...");
+      toast.success("User Created Successfully, please verify your email before logging in...", {
+        duration: 5000
+      });
       // console.log(dataResponse, "dataResponse");
       router.push("/login");
     }

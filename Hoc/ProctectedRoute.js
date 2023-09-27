@@ -29,15 +29,15 @@ export const ProtectedRoute = ({ children, type }) => {
   const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
   console.log("data status", dataStatus)
 
-  useEffect(() => {
-    if (dataStatus?.status&&dataStatus?.status!=="active") {
-      // alert('seen')
-      router.push('/pricing');
-      toast.error('Please buy a plan')
-      // toast.error('')
-      dispatch(logoutUser());
-    }
-  }, [dispatch, dataStatus?.status]);
+  // useEffect(() => {
+  //   if (dataStatus?.status&&dataStatus?.status!=="active") {
+  //     // alert('seen')
+  //     router.push('/pricing');
+  //     toast.error('Please buy a plan')
+  //     // toast.error('')
+  //     dispatch(logoutUser());
+  //   }
+  // }, [dispatch, dataStatus?.status]);
 
   useEffect(() => {
     if (data) {
