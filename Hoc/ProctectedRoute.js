@@ -25,7 +25,7 @@ export const ProtectedRoute = ({ children, type }) => {
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
-  console.log("datadata", data)
+   console.log("datadata", data)
   const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
   console.log("data status", dataStatus)
   
