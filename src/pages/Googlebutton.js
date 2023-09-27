@@ -58,18 +58,6 @@ const GoogleButton = () => {
   }
   }, []);
 
-  //   useEffect(() => {
-  //   if (isLoggedIn) {
-  //     router.push('/dashboard')
-  //   }
-  // }, [router, isLoggedIn])
-  useEffect(() => {
-    if (error) {
-      // toast.error(error)
-    }
-  }, [error])
-
-
   return (
     <span id="google-btn"  >
       <FcGoogle size={20} /> Continue with Google

@@ -10,8 +10,6 @@ import { getUserDataS } from "../helper";
 import { useCheckStatusQuery, useGetUserProfileQuery } from "../store/auth/authApi";
 import { toast } from "react-hot-toast";
 
-
-
 export const ProtectedRoute = ({ children, type }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -27,9 +25,9 @@ export const ProtectedRoute = ({ children, type }) => {
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
-  // console.log("user data", data);
+   console.log("datadata", data)
   const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
-  // console.log("user subscription", dataStatus);
+  console.log("data status", dataStatus)
   
   // useEffect(() => {
   //   if(dataStatus && dataStatus?.status!=="active") {
@@ -48,6 +46,16 @@ export const ProtectedRoute = ({ children, type }) => {
       }
     }
   }, [data, dataStatus])
+
+  // useEffect(() => {
+  //   if (!data) {
+  //     if (!dataStatus) {
+  //       toast.error('Please buy a plan')
+  //       router.push('/pricing');
+  //       dispatch(logoutUser());
+  //     }
+  //   }
+  // }, [data, dataStatus])
 
   useEffect(() => {
     setGetData(true)
@@ -69,13 +77,15 @@ export const ProtectedRoute = ({ children, type }) => {
       setGetData(false)
       localStorage.clear()
     }
-  }, [ router,isLoggedIn,getToken(),IsAuthenticated]);
+  }, [router, isLoggedIn, getToken(), IsAuthenticated]);
 
   return getData ? (
     children
   ) : (
-    <div>
-      <div>Loading...</div>
+    <div className="min-h-screen flex items-center bg-black">
+      <div className="mx-auto">
+        <div className="loading-home"></div>
+      </div>
     </div>
   );
 };

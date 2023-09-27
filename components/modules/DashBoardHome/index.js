@@ -53,6 +53,7 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/auth";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { AiFillSetting } from "react-icons/ai";
+import Image from "next/image";
 
 export default function DashBoardHome() {
 
@@ -1974,9 +1975,9 @@ export default function DashBoardHome() {
                                     </Button>
                                   </TableCell>
                                   <TableCell className="w-[13rem]">
-                                    <TextInput 
+                                    <TextInput
                                       type="text" 
-                                      placeholder={data?.currentPrice || 0}
+                                      placeholder={data?.currentPrice}
                                       wrapperClassName={`p-1`}
                                       // inputClassName={`${isInputDisabled ? '' : ''}`}
                                       value={customInputValue}
@@ -1986,7 +1987,7 @@ export default function DashBoardHome() {
                                           setCustomInputValue(e.target.value);
                                         }
                                       }}
-                                      // disabled={isInputDisabled}  
+                                      disabled={isInputDisabled}  
                                     />
                                   </TableCell>
                                   <TableCell className="w-[13rem]">
@@ -2328,17 +2329,17 @@ export default function DashBoardHome() {
                           {WatchListIsLoading ? (
                             <p className="text-center">
                               <div className="flex justify-center items-center min-h-[20rem]">
-                                <ClipLoader color="#52bfd9" size={50}/>
+                                <div className="loading-gif-grey"></div>
                               </div>
                             </p>
                           ) : WatchListIsFetching ? (
                             <div className="flex justify-center items-center min-h-[20rem]">
-                              <ClipLoader color="#52bfd9" size={50}/>
+                              <div className="loading-gif-grey"></div>
                             </div>
                           ) : (
                             <Card className="bg-header p-2 flex flex-col items-center border-none">
                               <TableHeader className="bg-header2">
-                                <TableRow className="hover:bg-black">
+                                <TableRow className="hover:bg-header2">
                                   {['Symbol', 'Price', '%Change', 'Pulse', 'Shift', 'Rise', 'Fall'].map((header) => (
                                     <TableHead className="text-left w-[10rem] primaryText" key={header}>
                                       {header}
@@ -2346,7 +2347,7 @@ export default function DashBoardHome() {
                                   ))}
                                 </TableRow>
                               </TableHeader>
-                              <TableBody className="h-[20rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap">
+                              <TableBody className="h-[20rem] overflow-y-auto scrollbar-hide whitespace-no-wrap">
                                 {WatchList?.data?.map((item, index, array) => {
                                   const priceColor = item.wltf > 0 ? "text-[#26A17B]" : "text-[#EA3943]";
                                   const pulseColor = item.pulse === 2 ? "bg-[#26A17B]" : item.pulse === -2 ? "bg-[#EA3943]" : "bg-[#d1d5db]";
@@ -2586,13 +2587,17 @@ export default function DashBoardHome() {
                       <div className="col-span-1">Change%</div>
                       <div className="col-span-1"></div>
                   </div>
-                  <div className="h-[33rem] scrollbar-thin overflow-hidden overflow-y-auto whitespace-no-wrap bg-white">
+                  <div className="h-[33rem] overflow-y-auto scrollbar-hide whitespace-no-wrap bg-white">
                       {WatchListIsLoading ? (
-                        <p className="text-center"><div className="flex justify-center items-center"><ClipLoader color="#52bfd9" size={50}/></div></p>
+                        <p className="text-center">
+                          <div className="flex justify-center items-center">
+                            <div className="loading-gif"></div>
+                          </div>
+                        </p>
                       ) : WatchListIsFetching ? (
                         // <Spinner />
                         <div className="flex justify-center items-center">
-                          <ClipLoader color="#52bfd9" size={50}/>
+                          <div className="loading-gif"></div>
                         </div>
                       ) : (
                         WatchList?.data?.map((item, i) => {

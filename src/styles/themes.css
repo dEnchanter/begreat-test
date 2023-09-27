@@ -90,6 +90,10 @@
     --option-text-color: #333;
     --active-option-bg-color: #ddd;
     --placeholder-text-color: #888;
+
+    --loading-gif: url('../../public/loading_logo.gif');
+    --loading-gif-grey: url('../../public/loading_logo.gif');
+    --loading-home: url('../../public/Splash_Screen.gif');
 }
 
 [data-theme='dark'] {
@@ -181,6 +185,10 @@
     --option-text-color: #fff;
     --active-option-bg-color: #333;
     --placeholder-text-color: #aaa;
+
+    --loading-gif: url('../../public/loading_logo_black.gif');
+    --loading-gif-grey: url('../../public/loading_logo_grey.gif');
+    --loading-home: url('../../public/Splash_Screen_Black.gif');
 
 }
 
@@ -633,5 +641,29 @@ body {
     border-image: linear-gradient(to right, #f00, #0f0, #00f) 1;
     background-color: transparent;
     border-radius: 25px;
+}
+
+.loading-gif {
+    width: 150px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
+    background-image: var(--loading-gif);
+    background-size: cover;
+    background-position: center;
+}
+
+.loading-gif-grey {
+    width: 150px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
+    background-image: var(--loading-gif-grey);
+    background-size: cover;
+    background-position: center;
+}
+
+.loading-home {
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+    background-image: var(--loading-home);
+    background-size: cover;
+    background-position: center;
 }
 
