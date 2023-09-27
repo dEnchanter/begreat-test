@@ -206,7 +206,7 @@ export default function Navbar({ fixed }) {
                   {" "}
                   <Link href="https://app.begreat.finance/register">Sign Up</Link>{" "}
                 </h1>
-                <Link href="https://app.begreat.finance/login">
+                <Link href="https://app.begreat.finance">
                 <Button
                   className="px-4 text-white -ml-1  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
                   
