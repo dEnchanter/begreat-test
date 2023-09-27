@@ -11,7 +11,7 @@
       "rewrites": [
         {
           "source": "/**",
-          "dynamicLinks": true
+          "destination": "/index.html"
         }
       ]
     },
@@ -25,8 +25,8 @@
       ],
       "rewrites": [
         {
-          "source": "/**",
-          "dynamicLinks": true
+          "source": "**",
+          "destination": "/index.html"
         }
       ]
     }
