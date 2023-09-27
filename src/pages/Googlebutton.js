@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 const GoogleButton = () => {
   const dispatch = useDispatch();
-   const router = useRouter();
+  const router = useRouter();
   const [sendToken, { isLoading, isError, error:AuthGoogleError,isSuccess }] = useUserLoginGoogleAuthMutation();
   const {loading,userInfo,isLoggedIn,error,} = useSelector((state) => state.auth)
 
@@ -32,7 +32,7 @@ const GoogleButton = () => {
   .catch((err) => {
     console.error('Failed to send token:', err);
   });
-};
+  };
 
   useEffect(() => {
     if(!isLoggedIn){
@@ -43,7 +43,8 @@ const GoogleButton = () => {
       script.onload = () => {
         google.accounts.id.initialize({
           // client id should be stored in an environment variable
-          client_id: "878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com",
+          // client_id: "878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com",
+          client_id: "835111729100-862akcf0948la5pfj0892g8v55tbuva8.apps.googleusercontent.com",
           callback: handleCredentialResponse
         });
         google.accounts.id.renderButton(

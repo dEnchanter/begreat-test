@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import Layout from "../../components/Layout";
 import ButtonComp from "../../components/ui/ButtonComp";
 import TextInput from "../../components/ui/TextInput";
@@ -15,8 +15,8 @@ import Footer from "../../components/modules/Footer";
 import { toast } from "react-hot-toast";
 import GoogleSignInButton from "../../components/common/GoogleSignInButton";
 // import { gapi } from "gapi-script";
-import { LoginGoogle } from "../../components/common/Login";
-import { GoogleLogin } from "@react-oauth/google";
+// import { LoginGoogle } from "../../components/common/Login";
+// import { GoogleLogin } from "@react-oauth/google";
 import { useGetUserProfileQuery, useSubscribeMutation, useUserLoginGoogleMutation } from "../../store/auth/authApi";
 import { DeleteAuthTokenMaster, getPath, getUserDataS, setToken, setUserDataS } from "../../helper";
 import GoogleButton from "./Googlebutton";
@@ -69,6 +69,7 @@ export default function Login() {
           DeleteAuthTokenMaster('begreatFinace:pathlink')
         }).catch((err)=>console.log(err))
       }
+
       if(data?.payload?.email){
         router.push('/dashboard')
       }
@@ -80,18 +81,14 @@ export default function Login() {
     }
   };
 
-  // const { data } = useUserLoginGoogleAuthMutation({
-  //   token :'eyJhbGciOiJSUzI1NiIsImtpZCI6ImFjZGEzNjBmYjM2Y2QxNWZmODNhZjgzZTE3M2Y0N2ZmYzM2ZDExMWMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODA4OTk0NzIsImF1ZCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMDU1MTQwMjAyNTc4OTQyNzI4MiIsImVtYWlsIjoiZGFtbXltb3NlczIwMDFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF6cCI6Ijg3ODg5NDgyMzY3NC05ODA4NDNwaXVydTdvcjI3ZDhlbmsxajRibTMxdDByNS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsIm5hbWUiOiJEYW1teSBNb3NlcyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BR05teXhZdkxuSlFZRlFWWVAtdXRSVnFFTE52MDNiTUVUVUZJRVRsT3ZxeT1zOTYtYyIsImdpdmVuX25hbWUiOiJEYW1teSIsImZhbWlseV9uYW1lIjoiTW9zZXMiLCJpYXQiOjE2ODA4OTk3NzIsImV4cCI6MTY4MDkwMzM3MiwianRpIjoiZWRiMDVjMDc4NTc2MTg3ZTE5OGI0YmVlODc2OGZlNWJhZjdmZWRiYiJ9.VdOfQKC9LMsEnFxV3ANNnjnbBEyuHjQXdjKSZgKm8ZriCgjx_DWR8dqiSBAKRiIAed8PqYMRsLs43cQ6iY6k4Lko92oqY6qK8FkATQMgKJIBSlXZCHEtXnnpcoRfW5Oc24iIjDoerQuavGZcvKzbEV41o46RX24S-nQzcPbSoyah8LfT7F7JXJKLl0_eJ2iiMnj82YKAoCpjd7m_bkDOnv4cFYo9fsKYXSvYMvU7ehuliYyFl1fmumAMCoRVnQvQgnMSKKEbF22HMpg5mBNadNX-Zxup9XmnS63SB9loMLIW4g1YKUBvhVP8Beruyc1k3zT3tqiILuflLN4VbOX33g'
-  // },   { refetchOnMountOrArgChange: true,skip:false});
-
-  const [sendToken, { isLoading, isError, error:AuthGoogleError, isSuccess }] = useUserLoginGoogleAuthMutation();
+  const [sendToken, { isLoading, isError, error: AuthGoogleError, isSuccess }] = useUserLoginGoogleAuthMutation();
 
   useEffect(() => {
     if(isSuccess){
       dispatch(googleAuth())
-      setToken(data?.accessToken)
-      setUserDataS(data?.user)
-      toast.success(data?.message);
+      // setToken(data?.accessToken)
+      // setUserDataS(data?.user)
+      // toast.success(data?.message);
     }
   }, [])
 
@@ -136,7 +133,8 @@ export default function Login() {
       script.onload = () => {
         google.accounts.id.initialize({
           // client id should be stored in an environment variable
-          client_id: "878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com",
+          // client_id: "878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com",
+          client_id: "835111729100-862akcf0948la5pfj0892g8v55tbuva8.apps.googleusercontent.com",
           callback: handleCredentialResponse
         });
         google.accounts.id.renderButton(

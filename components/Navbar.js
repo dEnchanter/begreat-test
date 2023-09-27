@@ -44,7 +44,7 @@ export default function Navbar({ fixed }) {
      <nav className="fixed w-full herobg top-0 z-50 flex flex-wrap items-center justify-between pb-4    lg:py-3   mb-3">
         <div className="container lg:px-[4rem] herobg px-4  mt-2  xl:max-w-[1180px] mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start  ">
-            <Link href='https://begreat.finance'>
+            <Link href='/'>
               <Image width="150" height="200" src={theme=="light"?"/Images/homepage/logoD.png":"/Images/homepage/logoW.png" } alt="logo" className="h-10  "/> 
             </Link>
             <button

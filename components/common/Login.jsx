@@ -1,6 +1,7 @@
 import {GoogleLogin} from 'react-google-login';
 
-const clientId ='878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com';
+// const clientId ='878894823674-980843piuru7or27d8enk1j4bm31t0r5.apps.googleusercontent.com';
+const clientId = "835111729100-862akcf0948la5pfj0892g8v55tbuva8.apps.googleusercontent.com"
 
 export function LoginGoogle(){
 
