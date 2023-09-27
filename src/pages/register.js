@@ -1,17 +1,17 @@
 import { useTheme } from "next-themes";
 import React, { useEffect ,useState} from "react";
-import { BsSun } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
-import { HiOutlineMoon } from "react-icons/hi";
-import FallBackImage from "../../components/common/FallBackImage";
+// import { BsSun } from "react-icons/bs";
+// import { FcGoogle } from "react-icons/fc";
+// import { HiOutlineMoon } from "react-icons/hi";
+// import FallBackImage from "../../components/common/FallBackImage";
 import ButtonComp from "../../components/ui/ButtonComp";
-import DropDownItem from "../../components/ui/DropDownItem";
+// import DropDownItem from "../../components/ui/DropDownItem";
 import TextInput from "../../components/ui/TextInput";
 import { useUserSignUpMutation } from "../../store/auth/authApi";
 import { Controller, useForm } from "react-hook-form";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import {
-  generateMaxLength,
+  // generateMaxLength,
   generateMinLength,
   REGEX_PATTERNS,
 } from "../../constants/errors";
@@ -23,17 +23,18 @@ import GoogleButton from "./Googlebutton";
 import Footer from "../../components/modules/Footer";
 
 export default function Login() {
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
 
-const togglePasswordVisibility = () => {
-  setShowPassword(!showPassword);
-};
-  const [userSignUp, { isLoading, isError, isSuccess }] =
-    useUserSignUpMutation();
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const [userSignUp, { isLoading, isError, isSuccess }] = useUserSignUpMutation();
+
   const { control, handleSubmit, reset,getValues } = useForm({
     defaultValues: {
       email: "",
@@ -86,12 +87,12 @@ const togglePasswordVisibility = () => {
     <Layout>
         <main className="pb-[7rem] pt-[5rem] lg:pt-[6rem] bg-transparent px-2">
         <section className="mb-[2rem]">
-        <div className="text-center text-[1.8rem] font-semibold font-3 leading-10">
+          <div className="text-center text-[1.8rem] font-semibold font-3 leading-10">
               {/* Revolutionize Your with{" "}
               <br className=" hidden lg:block" /> Our Powerful Platform */}
 
               Simplify Your Investments, <br className=" hidden lg:block" /> <span className="check"> Maximize </span>Your Profits
-            </div>
+          </div>
         </section>
         {/*  */}
         <section className="flex justify-center">
@@ -168,10 +169,10 @@ const togglePasswordVisibility = () => {
                       type={showPassword ? 'text' : 'password'}
                         containerClassName={"loginInputBorder border-[1px]"}
                         prefixIcon={ showPassword ? (
-              <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
-            ) : (
-              <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
-            )}
+                            <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
+                          ) : (
+                            <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
+                          )}
                         name="password"
                         {...{ value, onChange, errors: [errorMessage] }}
                       />
@@ -200,15 +201,15 @@ const togglePasswordVisibility = () => {
                     const errorMessage = errors?.confirmPassword?.message;
                     return (
                       <TextInput
-                      placeholder="Enter Password to confirm"
+                        placeholder="Enter Password to confirm"
 
-                      type={showPassword ? 'text' : 'password'}
+                        type={showPassword ? 'text' : 'password'}
                         containerClassName={"loginInputBorder border-[1px]"}
                         prefixIcon={ showPassword ? (
-              <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
-            ) : (
-              <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
-            )}
+                          <AiOutlineEye size={20} onClick={togglePasswordVisibility} />
+                        ) : (
+                          <AiOutlineEyeInvisible size={20} onClick={togglePasswordVisibility} />
+                        )}
                         name="password"
                         {...{ value, onChange, errors: [errorMessage] }}
                       />
@@ -218,7 +219,7 @@ const togglePasswordVisibility = () => {
                 <div className="flex justify-between mt-1">
                   <div className="text-[12px] text-[#A1A1A1] flex items-center gap-2">
                     {" "}
-                       <input
+                    <input
                       type={"checkbox"}
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
@@ -236,11 +237,12 @@ const togglePasswordVisibility = () => {
                 }
               />
 
-<div className="mt-7 priceText font-normal text-[13px] lg:text-[14px] mb-5">
-                  Already Have an Account?
-                  <span className="font-extrabold cursor-pointer text-gray-400 hover:text-[#C72E66] hover:duration-200 hover:ease-in"><Link href={'/login'}> Login </Link></span>
-                </div>
+              <div className="mt-7 priceText font-normal text-[13px] lg:text-[14px] mb-5">
+                Already Have an Account?
+                <span className="font-extrabold cursor-pointer text-gray-400 hover:text-[#C72E66] hover:duration-200 hover:ease-in"><Link href={'/login'}> Login </Link></span>
+              </div>
             </form>
+
             <div className="py-[1rem]"></div>
           </div>
         </section>

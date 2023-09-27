@@ -14,7 +14,7 @@ export default function pricing() {
   const router = useRouter();
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
   
-  console.log(data?.userRecord?.email,'isLoggedIn')
+  // console.log(data?.userRecord?.email,'isLoggedIn')
 
   const handlePayment1 =(paymentId) =>{
     const payload ={
@@ -34,7 +34,7 @@ export default function pricing() {
     }
   }
 
-  const handlePayment2 =(paymentId) =>{
+  const handlePayment2 = (paymentId) =>{
     const payload ={
       link:'https://payments.begreat.finance/b/aEU5nV32NbJP1kA289',
       payment:paymentId

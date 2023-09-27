@@ -23,15 +23,13 @@
 //       </Head>
       
 //       <main>
+
 //         <Hero/>
 //         <HowItWorks/>
 //         <Tools/>
 //         <Pricing/>
 //         <Faqs/>
 //         <Footer/>
-
-        
-      
 
 //       </main>
 //     </Layout>

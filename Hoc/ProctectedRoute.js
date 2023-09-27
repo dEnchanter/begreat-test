@@ -9,9 +9,6 @@ import { logoutUser, selectIsAuthenticated, selectLoading } from "../store/auth/
 import { getUserDataS } from "../helper";
 import { useCheckStatusQuery, useGetUserProfileQuery } from "../store/auth/authApi";
 import { toast } from "react-hot-toast";
-import Image from "next/image";
-
-
 
 export const ProtectedRoute = ({ children, type }) => {
   const router = useRouter();
@@ -28,9 +25,9 @@ export const ProtectedRoute = ({ children, type }) => {
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
-  // console.log("user data", data);
+  console.log("datadata", data)
   const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
-  // console.log("user subscription", dataStatus);
+  console.log("data status", dataStatus)
   
   // useEffect(() => {
   //   if(dataStatus && dataStatus?.status!=="active") {
