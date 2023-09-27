@@ -17,7 +17,7 @@ export const ProtectedRoute = ({ children, type }) => {
   const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
 
-  const userId = getUserDataS()?.userId
+  // const userId = getUserDataS()?.userId
   // console.log("userId", userId)
  
   // const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
@@ -26,7 +26,7 @@ export const ProtectedRoute = ({ children, type }) => {
 
   const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
   console.log("datadata", data)
-  const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
+  const { data: dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
   console.log("data status", dataStatus)
 
   // useEffect(() => {
