@@ -48,6 +48,16 @@ export const ProtectedRoute = ({ children, type }) => {
   }, [data, dataStatus])
 
   useEffect(() => {
+    if (!data) {
+      if (!dataStatus) {
+        toast.error('Please buy a plan')
+        router.push('/pricing');
+        dispatch(logoutUser());
+      }
+    }
+  }, [data, dataStatus])
+
+  useEffect(() => {
     setGetData(true)
     if(!getToken()){
       setGetData(false)
