@@ -17,17 +17,16 @@ export const ProtectedRoute = ({ children, type }) => {
   const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
 
-  // const userId = getUserDataS()?.userId
-  // console.log("userId", userId)
+  const userId = getUserDataS()?.userId
  
   // const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
   const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
   const { data, isLoading, error, status} = useGetUserProfileQuery(); // Use the generated hook
-  console.log("datadata", data)
+  // console.log("datadata", data)
   const { data: dataStatus, isLoading: statusLoader } = useCheckStatusQuery(); // Use the generated hook
-  console.log("data status", dataStatus)
+  // console.log("data status", dataStatus)
 
   // useEffect(() => {
   //   if(isLoading || statusLoader) {

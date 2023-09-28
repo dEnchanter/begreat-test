@@ -115,7 +115,7 @@ export const authApi = createApi({
     ///api/:userId/checkstatus
     checkStatus: builder.query({
       query: (body) => ({
-        url: `/${getUserDataS()?.userId || token?.userId}/checkstatus`,
+        url: `/${getUserDataS()?.userId}/checkstatus`,
         method: "GET",
         body,
       }),

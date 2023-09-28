@@ -46,7 +46,8 @@ export const removeWatchlist = (token) =>{
 export const getPath = () => {
     if(typeof window !== 'undefined'){
         return JSON.parse(localStorage.getItem("begreatFinace:pathlink"));
-    }
+    } 
+    return JSON.parse(localStorage.getItem("begreatFinace:pathlink"));
 };
 
 export const setPath = (path) =>{

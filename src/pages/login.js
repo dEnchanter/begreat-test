@@ -60,6 +60,7 @@ export default function Login() {
     // console.log(data,'userInfoLoginData');
     await dispatch(loginUser({ email, password })).then((data)=>{ 
       // router.push('/dashboard')
+      console.log("get path", getPath?.link)
       if(getPath()?.link){
         const payload={
           priceId:getPath()?.payment
