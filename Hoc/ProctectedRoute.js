@@ -37,21 +37,25 @@ export const ProtectedRoute = ({ children, type }) => {
   }, [dispatch, dataStatus]);
 
   useEffect(() => {
-    setGetData(true)
+    
+    if(isLoggedIn) {
+      setGetData(true)
+    }
+
     if(!getToken()){
       setGetData(false)
       dispatch(logoutUser());
-      router.push("/");
+      router.push("https://app.begreat.finance");
       // localStorage.clear() 
     }
 
     if(status==="rejected"&&!data?.userRecord?.email){
       dispatch(logoutUser());
-      router.push("/");
+      router.push("https://app.begreat.finance");
     }
     
     if (error?.status === 401) {
-      router.push("/");
+      router.push("https:app.begreat.finance");
       dispatch(logoutUser());
       setGetData(false)
       localStorage.clear()
