@@ -37,10 +37,6 @@ export const ProtectedRoute = ({ children, type }) => {
   }, [dispatch, dataStatus]);
 
   useEffect(() => {
-    
-    if(isLoggedIn) {
-      setGetData(true)
-    }
 
     if(!getToken()){
       setGetData(false)
