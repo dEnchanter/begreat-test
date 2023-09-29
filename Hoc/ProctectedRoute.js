@@ -13,68 +13,45 @@ import { toast } from "react-hot-toast";
 export const ProtectedRoute = ({ children, type }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { loading, userInfo, isLoggedIn } = useSelector((state) => state.auth);
-  const all = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  // const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
-
-  const userId = getUserDataS()?.userId
-  // console.log("userId", userId)
- 
-  // const { data, isLoading, error,isError,status } = useGetUserProfileQuery({userId},{skip:!userId}); // Use the generated hook
+  
   const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
-  const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
+  // const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
 
-  const { data, isLoading, error, refetch, isError, status} = useGetUserProfileQuery(); // Use the generated hook
-  console.log("datadata", data)
-  const { data:dataStatus, isLoading:statusLoader, error:errorLoader, isError:statusIsError } = useCheckStatusQuery(); // Use the generated hook
-  console.log("data status", dataStatus)
+  const { data, isLoading, error, status} = useGetUserProfileQuery(); // Use the generated hook
+  const { data: dataStatus, isLoading: statusLoader } = useCheckStatusQuery(); // Use the generated hook
+  // console.log("data status", dataStatus)
 
   useEffect(() => {
-    if (dataStatus?.status&&dataStatus?.status!=="active") {
-      // alert('seen')
+    if(isLoading || statusLoader) {
+      return;
+    }
+
+    if (dataStatus && dataStatus?.status!=="active") {
       router.push('/pricing');
       toast.error('Please buy a plan')
-      // toast.error('')
-      dispatch(logoutUser());
+      // dispatch(logoutUser());
     }
-  }, [dispatch, dataStatus?.status]);
-
-  // useEffect(() => {
-  //   if (data) {
-  //     if (!dataStatus) {
-  //       toast.error('Please buy a plan')
-  //       router.push('/pricing');
-  //       dispatch(logoutUser());
-  //     }
-  //   }
-  // }, [data, dataStatus])
-
-  // useEffect(() => {
-  //   if (!data) {
-  //     if (!dataStatus) {
-  //       toast.error('Please buy a plan')
-  //       router.push('/pricing');
-  //       dispatch(logoutUser());
-  //     }
-  //   }
-  // }, [data, dataStatus])
+  }, [dispatch, dataStatus]);
 
   useEffect(() => {
     setGetData(true)
     if(!getToken()){
       setGetData(false)
       dispatch(logoutUser());
-      router.push("/login");
+      router.push("/");
       // localStorage.clear() 
     }
 
     if(status==="rejected"&&!data?.userRecord?.email){
       dispatch(logoutUser());
-      router.push("/login");
+      router.push("/");
     }
     
     if (error?.status === 401) {
-      router.push("/login");
+      router.push("/");
       dispatch(logoutUser());
       setGetData(false)
       localStorage.clear()
