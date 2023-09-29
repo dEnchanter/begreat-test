@@ -87,9 +87,9 @@ export default function Login() {
   useEffect(() => {
     if(isSuccess){
       dispatch(googleAuth())
-      // setToken(data?.accessToken)
-      // setUserDataS(data?.user)
-      // toast.success(data?.message);
+      setToken(data?.accessToken)
+      setUserDataS(data?.user)
+      toast.success(data?.message);
     }
   }, [])
 

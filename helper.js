@@ -46,8 +46,7 @@ export const removeWatchlist = (token) =>{
 export const getPath = () => {
     if(typeof window !== 'undefined'){
         return JSON.parse(localStorage.getItem("begreatFinace:pathlink"));
-    } 
-    return JSON.parse(localStorage.getItem("begreatFinace:pathlink"));
+    }
 };
 
 export const setPath = (path) =>{
@@ -55,14 +54,9 @@ export const setPath = (path) =>{
 }
 
 export const getUserDataS = () => {
-    try {
-        if (typeof window !== 'undefined') {
-            const data = localStorage.getItem("begreatFinace:user");
-            return data ? JSON.parse(data) : null;
-        }
-    } catch (error) {
-        console.error("Error retrieving user data from local storage:", error);
-        return null;
+    if (typeof window !== 'undefined') {
+        const data = localStorage.getItem("begreatFinace:user");
+        return data ? JSON.parse(data) : null;
     }
 };
 
