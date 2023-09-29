@@ -124,7 +124,7 @@ export default function pricing() {
         duration: 5000,
       })
       setPath(payload)
-      router.push('/')
+      router.push('https://app.begreat.finance')
     }
   }
 
@@ -135,7 +135,7 @@ export default function pricing() {
     else{
       toast.error('You have to Sign In to Buy Plan')
       setPath(payload)
-      router.push('/')
+      router.push('https://app.begreat.finance')
     }
   }
 
