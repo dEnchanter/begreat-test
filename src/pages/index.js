@@ -12,7 +12,7 @@ import Tools from '../../components/modules/Tools';
 
 
 export default function Home() {
-  const router =useRouter();
+  const router = useRouter();
   return (
     <Layout>
       <Head>
