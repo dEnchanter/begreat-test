@@ -100,26 +100,26 @@ export default function Home() {
 //     },
 //   });
 
-//   const [
-//     subscribePlan,
-//     { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess,isError:SubscribeIsError,error:SubscribeError },
-//   ] = useSubscribeMutation();
+  const [
+    subscribePlan,
+    { isLoading: SubscribeUpdateLoader, isSuccess: SubscribeUpdateSuccess, isError: SubscribeIsError, error: SubscribeError },
+  ] = useSubscribeMutation();
   
-//   const HandleSubmit = async (data) => {
-//     const { email, password } = data;
-//     // console.log(data,'userInfoLoginData');
-//     await dispatch(loginUser({ email, password })).then((data)=>{ 
-//       // router.push('/dashboard')
-//       console.log("get path", getPath?.link)
-//       if(getPath()?.link){
-//         const payload={
-//           priceId:getPath()?.payment
-//         }
-//         subscribePlan(payload).unwrap().then((data)=>{
-//           window.location.href = data?.sessionURL;
-//           DeleteAuthTokenMaster('begreatFinace:pathlink')
-//         }).catch((err)=>console.log(err))
-//       }
+  const HandleSubmit = async (data) => {
+    const { email, password } = data;
+    // console.log(data,'userInfoLoginData');
+    await dispatch(loginUser({ email, password })).then((data)=>{ 
+      
+      console.log("get path", getPath?.link)
+      if(getPath()?.link){
+        const payload={
+          priceId:getPath()?.payment
+        }
+        subscribePlan(payload).unwrap().then((data)=>{
+          window.location.href = data?.sessionURL;
+          DeleteAuthTokenMaster('begreatFinace:pathlink')
+        }).catch((err)=>console.log(err))
+      }
 
 //       if(data?.payload?.email){
 //         router.push('/dashboard')
