@@ -120,7 +120,7 @@ export default function Navbar({ fixed }) {
                           ? "text-red-500 "
                           : "text-secondary"
                       } transition ease-in duration-300`}
-                      href="https://begreat.finance/pricing"
+                      href="https://begreat.finance/#pricing"
                       scroll={false}
                       onClick={() => setActiveLink("pricing")}
                     >
