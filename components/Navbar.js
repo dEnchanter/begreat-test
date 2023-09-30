@@ -90,7 +90,7 @@ export default function Navbar({ fixed }) {
                           ? "text-red-500"
                           : "text-secondary"
                       } transition ease-in duration-300`}
-                      href="https://begreat.finance/#how-it-works"
+                      href="/#how-it-works"
                       scroll={false}
                       onClick={() => setActiveLink("how-it-works")}
                     >
@@ -105,7 +105,7 @@ export default function Navbar({ fixed }) {
                           ? "text-red-500 "
                           : "text-secondary"
                       } transition ease-in duration-300`}
-                      href="https://begreat.finance/#tools"
+                      href="/#tools"
                       scroll={false}
                       onClick={() => setActiveLink("tools")}
                     >
@@ -120,7 +120,7 @@ export default function Navbar({ fixed }) {
                           ? "text-red-500 "
                           : "text-secondary"
                       } transition ease-in duration-300`}
-                      href="https://begreat.finance/#pricing"
+                      href="/#pricing"
                       scroll={false}
                       onClick={() => setActiveLink("pricing")}
                     >
