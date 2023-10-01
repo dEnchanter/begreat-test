@@ -29,29 +29,29 @@ export const ProtectedRoute = ({ children, type }) => {
       return;
     }
 
-    if (dataStatus && dataStatus?.status!=="active") {
+    if(dataStatus && dataStatus?.status!=="active") {
       router.push('/pricing');
       toast.error('Please buy a plan')
-      // dispatch(logoutUser());
+      dispatch(logoutUser());
     }
-  }, [dispatch, dataStatus]);
+  });
 
   useEffect(() => {
     setGetData(true)
     if(!getToken()){
       setGetData(false)
       dispatch(logoutUser());
-      router.push("https://app.begreat.finance");
+      // router.push("https://app.begreat.finance");
       // localStorage.clear() 
     }
 
     if(status==="rejected"&&!data?.userRecord?.email){
       dispatch(logoutUser());
-      router.push("https://app.begreat.finance");
+      // router.push("https://app.begreat.finance");
     }
     
     if (error?.status === 401) {
-      router.push("https:app.begreat.finance");
+      // router.push("https:app.begreat.finance");
       dispatch(logoutUser());
       setGetData(false)
       localStorage.clear()
