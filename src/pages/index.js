@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title> Be Great Finance</title>
+        <title> Be Great Finance </title>
         <link rel="icon" href="/Bicon.png" />
 
         {/* <GoogleAnalytics measurementId='G-DQXFFNZWXG' /> */}
