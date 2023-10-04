@@ -30,7 +30,7 @@ export const ProtectedRoute = ({ children, type }) => {
     }
 
     if(dataStatus && dataStatus?.status!=="active") {
-      router.push('/pricing');
+      router.push('https://app.begreat.finance/pricing');
       toast.error('Please buy a plan')
       dispatch(logoutUser());
     }
@@ -41,13 +41,13 @@ export const ProtectedRoute = ({ children, type }) => {
     if(!getToken()){
       setGetData(false)
       dispatch(logoutUser());
-      // router.push("https://app.begreat.finance");
+      router.push("https://app.begreat.finance");
       // localStorage.clear() 
     }
 
     if(status==="rejected"&&!data?.userRecord?.email){
       dispatch(logoutUser());
-      // router.push("https://app.begreat.finance");
+      router.push("https://app.begreat.finance");
     }
     
     if (error?.status === 401) {

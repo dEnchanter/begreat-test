@@ -1473,7 +1473,7 @@ export default function DashBoardHome() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    router.push('/login');
+    router.push('https://app.begreat.finance/login');
   };
 
   const handleContinueWorking = () => {

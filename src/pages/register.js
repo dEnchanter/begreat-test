@@ -50,7 +50,7 @@ export default function Login() {
         duration: 5000
       });
       // console.log(dataResponse, "dataResponse");
-      router.push("/login");
+      router.push("https://app.begreat.finance/login");
     }
   }, [isSuccess, reset, router]);
 
