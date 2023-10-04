@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title> Be Great Finance </title>
+        <title> Be Great Finance</title>
         <link rel="icon" href="/Bicon.png" />
 
         {/* <GoogleAnalytics measurementId='G-DQXFFNZWXG' /> */}
@@ -43,7 +43,7 @@ export default function Home() {
 //   const router = useRouter();
 
 //   useEffect(() => {
-//     router.replace('/login');
+//     router.replace('https://app.begreat.finance/login');
 //   }, []);
 
 // }

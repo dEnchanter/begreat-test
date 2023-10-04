@@ -24,7 +24,7 @@ export const ProtectedRoute = ({ children, type }) => {
     // This will make sure that the loader is displayed for at least 3 seconds
     const timer = setTimeout(() => {
       setInitialLoadingDone(true);
-    }, 3000);
+    }, 10000);
 
     return () => clearTimeout(timer); // Cleanup the timer on unmount
   }, []);
