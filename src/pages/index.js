@@ -43,7 +43,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/login');
+    router.replace('https://app.begreat.finance/login');
   }, []);
 
 }
