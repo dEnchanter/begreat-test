@@ -20,7 +20,7 @@ export default function DashBoardNav({change}) {
 
   const handleLogoutClick = () => {
     dispatch(logoutUser());
-    router.push('https://app.begreat.finance');
+    router.push('/');
   };
 
   const toggleDropdown = () => {
@@ -30,7 +30,7 @@ export default function DashBoardNav({change}) {
   return (
     <nav>
         <div className='flex justify-between items-center px-3 xl:px-5 pt-4  pb-8 shadow-xl bg-header '>
-            <div  className="hover:cursor-pointer"  onClick={()=>router.push('https://app.begreat.finance/dashboard')}>
+            <div  className="hover:cursor-pointer"  onClick={()=>router.push('/dashboard')}>
                 <img
                 // src={'/Images/Dashboard/Logo1.png'}
                  src={theme=="dark"?'/Images/Dashboard/Logo1.png':'/Images/Dashboard/logo.png'}
@@ -54,14 +54,14 @@ export default function DashBoardNav({change}) {
                 </div>
                {!change? <div className='border hover:bg-gray-500  borderColor  rounded'>
                     <ButtonComp
-                    onClick={()=>router.push('https://app.begreat.finance/dashboard/settings')}
+                    onClick={()=>router.push('/dashboard/settings')}
                     btnText={<AiFillSetting size={20}/>}
                     />
                 </div>
                 :
                 <div>
                     <ButtonComp
-                      onClick={()=>router.push('https://app.begreat.finance/dashboard')}
+                      onClick={()=>router.push('/dashboard')}
                     btnText={'Go to Dashboard'}
                     btnTextClassName='iconColor2 textII text-xs md:text-base rounded-xl px-4 py-2'
                     />

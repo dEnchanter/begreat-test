@@ -36,7 +36,7 @@ const router = useRouter();
           btnText={'Get Started '}
           btnTextClassName='bg-secondary  iconColor1 rounded-3xl px-5'
           /> */}
-            <Button  onClick={() => router.push("https://app.begreat.finance/register")} className='bg-bk border-0 textII py-1.5 text-[0.7rem] hover:cursor-pointer hover:text-gray-300 hover:shadow-2xl transition ease-in duration-300 font-semibold '> Get Started  </Button>
+            <Button  onClick={() => router.push("/register")} className='bg-bk border-0 textII py-1.5 text-[0.7rem] hover:cursor-pointer hover:text-gray-300 hover:shadow-2xl transition ease-in duration-300 font-semibold '> Get Started  </Button>
             <Button onClick={()=>router.push('/pricing')} className= {theme=="light"? " ' text-[0.7rem] py-1.5 border border-red-400 hover:cursor-pointer hover:shadow-lg transition ease-in duration-300 text-transparent font-semibold bg-clip-text bg-gradient-to-r from-[#fc0542] to-[#8a76c7]" : "' text-[0.7rem] py-1.5  hover:cursor-pointer hover:text-gray-100 hover:shadow-lg transition ease-in duration-300 border border-red-400  font-semibold text-white"}> View Pricing  </Button>
           </div>
 

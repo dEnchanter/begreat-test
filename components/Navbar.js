@@ -90,7 +90,7 @@ export default function Navbar({ fixed }) {
                           ? "text-red-500"
                           : "text-secondary"
                       } transition ease-in duration-300`}
-                      href="https://begreat.finance/#how-it-works"
+                      href="/#how-it-works"
                       scroll={false}
                       onClick={() => setActiveLink("how-it-works")}
                     >
@@ -105,7 +105,7 @@ export default function Navbar({ fixed }) {
                           ? "text-red-500 "
                           : "text-secondary"
                       } transition ease-in duration-300`}
-                      href="https://begreat.finance/#tools"
+                      href="/#tools"
                       scroll={false}
                       onClick={() => setActiveLink("tools")}
                     >
@@ -120,7 +120,7 @@ export default function Navbar({ fixed }) {
                           ? "text-red-500 "
                           : "text-secondary"
                       } transition ease-in duration-300`}
-                      href="https://begreat.finance/#pricing"
+                      href="/#pricing"
                       scroll={false}
                       onClick={() => setActiveLink("pricing")}
                     >
@@ -201,9 +201,9 @@ export default function Navbar({ fixed }) {
               <div className="flex lg:space-x-4  lg:items-center flex-col lg:flex-row ">
                 <h1 className="mt-2 lg:mt-0 text-sm font-semibold hover:cursor-pointer hover:text-[#FF0000] transition  ease-in duration-300">
                   {" "}
-                  <Link href="https://app.begreat.finance/register">Sign Up</Link>{" "}
+                  <Link href="/register">Sign Up</Link>{" "}
                 </h1>
-                <Link href="https://app.begreat.finance/login">
+                <Link href="/login">
                 <Button
                   className="px-4 text-white -ml-1  mt-4 lg:mt-0 text-xs py-2 border-0 bg-gradient-to-r from-[#D32652] to-[#8466E1] hover:cursor-pointer font-semibold  hover:text-gray-300 transition ease-in duration-300"
                   
