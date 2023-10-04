@@ -58,7 +58,7 @@ console.log(getUserDataS()?.userId,'getUserDataS()?.userId')
       
       toast.success(data?.message);
       reset()
-       router.push('/login')
+       router.push('https://app.begreat.finance/login')
     console.log('Token sent successfully!',data,'data1');
   })
   .catch((err) => {
@@ -91,7 +91,7 @@ console.log(getUserDataS()?.userId,'getUserDataS()?.userId')
     }
   }, [error])
 
-  const userId =getUserDataS()?.userId
+  const userId = getUserDataS()?.userId
 
   const { data, isLoading:userloader, error:userError } = useGetUserProfileQuery({userId},{skip:userId}); // Use the generated hook
 
@@ -106,7 +106,7 @@ console.log(getUserDataS()?.userId,'getUserDataS()?.userId')
         setToken(data?.accessToken?.split('Bearer ')?.join(""))
         dispatch(googleAuth(data))
         toast.success(data?.message);
-        router.push('/dashboard')
+        router.push('https://app.begreat.finance/dashboard')
       console.log('Token sent successfully!',data,'data1');
     })
     .catch((err) => {
