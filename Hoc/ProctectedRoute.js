@@ -1,5 +1,3 @@
-// contexts/auth.js
-// append this new bit a the end:
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,15 +12,22 @@ export const ProtectedRoute = ({ children, type }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.auth);
-  // const all = useSelector((state) => state.auth);
   const [getData, setGetData] = useState(isLoggedIn || false);
   
-  const IsAuthenticated = useSelector(selectIsAuthenticated); // Add isLoading from Redux store
-  // const loadingNAhs = useSelector(selectLoading); // Add isLoading from Redux store
+  const IsAuthenticated = useSelector(selectIsAuthenticated); 
+  const { data, isLoading, error, status} = useGetUserProfileQuery();
+  const { data: dataStatus, isLoading: statusLoader } = useCheckStatusQuery();
 
-  const { data, isLoading, error, status} = useGetUserProfileQuery(); // Use the generated hook
-  const { data: dataStatus, isLoading: statusLoader } = useCheckStatusQuery(); // Use the generated hook
-  // console.log("data status", dataStatus)
+  const [initialLoadingDone, setInitialLoadingDone] = useState(false);
+
+  useEffect(() => {
+    // This will make sure that the loader is displayed for at least 3 seconds
+    const timer = setTimeout(() => {
+      setInitialLoadingDone(true);
+    }, 3000);
+
+    return () => clearTimeout(timer); // Cleanup the timer on unmount
+  }, []);
 
   useEffect(() => {
     if(isLoading || statusLoader) {
@@ -42,7 +47,6 @@ export const ProtectedRoute = ({ children, type }) => {
       setGetData(false)
       dispatch(logoutUser());
       router.push("https://app.begreat.finance");
-      // localStorage.clear() 
     }
 
     if(status==="rejected"&&!data?.userRecord?.email){
@@ -51,14 +55,13 @@ export const ProtectedRoute = ({ children, type }) => {
     }
     
     if (error?.status === 401) {
-      // router.push("https:app.begreat.finance");
       dispatch(logoutUser());
       setGetData(false)
       localStorage.clear()
     }
   }, [router, isLoggedIn, getToken(), IsAuthenticated]);
 
-  return getData ? (
+  return (getData && initialLoadingDone) ? (
     children
   ) : (
     <div className="min-h-screen flex items-center bg-black">
