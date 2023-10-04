@@ -72,7 +72,7 @@ export default function Login() {
       // }
 
       if(data?.payload?.email){
-        router.push('https://app.begreat.finance/dashboard')
+        router.push('/dashboard')
       }
     });
 
@@ -117,7 +117,7 @@ export default function Login() {
         setToken(data?.accessToken?.split('Bearer ')?.join(""))
         dispatch(googleAuth(data))
         toast.success(data?.message);
-        router.push('https://app.begreat.finance/dashboard')
+        router.push('/dashboard')
         // console.log('Token sent successfully!',data,'data1');
     })
     .catch((err) => {
